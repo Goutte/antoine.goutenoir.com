@@ -1,11 +1,12 @@
 var minDistBetweenPoints = 7;
+var movingSpeed = 23;
 
 var drawnPath;
 var drawnPaths = new Array();
 
 
 // Only execute onMouseDrag when the mouse has moved at least 7 points
-//tool.distanceThreshold = 70;
+//tool.distanceThreshold = 70; // not working !
 
 //var textItem = new PointText(new Point(20, 55));
 //textItem.fillColor = 'black';
@@ -17,13 +18,10 @@ function onMouseDown (event) {
     drawnPath.selected = false;
   }
 
-  // Create a new path and set its stroke color to black:
+  // Create a new path
   drawnPath = new Path();
   drawnPath.add(event.point);
   drawnPath.strokeColor = 'white';
-
-  // Select the path, so we can see its segment points:
-  //path.fullySelected = true;
 }
 
 // While the user drags the mouse or the finger, points are added to the path
@@ -33,21 +31,11 @@ function onMouseDrag (event) {
   // Get the last point of the path
   var lastPoint = drawnPath.getLastSegment().getPoint();
   // Check if the new point is far away enough
-  //var distBetweenPoints = Math.sqrt(Math.pow(event.point.x - lastPoint.getX(), 2) + Math.pow(event.point.y - lastPoint.getY(), 2));
   var distBetweenPoints = event.point.getDistance(lastPoint);
 
   if (distBetweenPoints > minDistBetweenPoints) {
     drawnPath.add(event.point);
   }
-
-  //drawnPath.add(event.point);
-
-//  log ('event.point',event.point);
-//
-//  Update the content of the text item to show how many
-//  segments it has:
-//  textItem.content = 'Segment count: ' + path.segments.length;
-
 
 }
 
@@ -67,23 +55,17 @@ function onMouseUp (event) {
 
   // Add to the stack
   drawnPaths.push(drawnPath);
+}
 
-
-  // Select the path, so we can see its segments:
-  //path.fullySelected = true;
-
-//  var newSegmentCount = path.segments.length;
-//  var difference = segmentCount - newSegmentCount;
-//  var percentage = 100 - Math.round(newSegmentCount / segmentCount * 100);
-
-  //textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
+function onFrame () {
+  if (Key.isDown('s')) {
+    movePathsTowardsSave();
+  }
 }
 
 function onKeyDown (event) {
   if (event.key == 'z') {
     undo();
-  } else if (event.key == 's') {
-    movePathsTowardsSave();
   }
 }
 
@@ -92,38 +74,48 @@ function undo () {
   p.remove();
 }
 
+/** ANIMATION STEPS ***************************************************************************************************/
+
 function movePathsTowardsSave () {
   var toX = view.size.width;
   var toY = view.size.height;
   var to = new Point(toX, toY);
 
-  var path = drawnPaths[0];
-
-  movePathTowards(path, to);
+  for (var i = 0; i < drawnPaths.length; i++) {
+    movePathTowards(drawnPaths[i], to);
+  }
 }
 
-function movePathTowards (path, point) {
-  log('moving path', path, point.x, point.y);
+function movePathTowards (path, destinationPoint) {
 
-  //path.getLastSegment().point = point;
+  var j = -1;
+  var movingVector;
 
-  path.segments[0].point = path.segments[0].point + (new Point(10, 10));
+  do {
+    j++;
+    movingVector = destinationPoint - path.segments[j].point;
+    if (movingVector.length > movingSpeed) movingVector = movingVector.normalize(movingSpeed);
+  } while (movingVector.isZero() && j < path.segments.length - 1);
 
-  for (var i = 0; i < path.segments.length - 1; i++) {
+  if (j >= path.segments.length) return; // nothing to move
+
+  var oldPrevPoint = new Point(path.segments[j].point);
+
+  path.segments[j].point = path.segments[j].point + movingVector;
+
+  for (var i = j+1; i < path.segments.length; i++) {
+    var prevSegment = path.segments[i - 1];
     var thisSegment = path.segments[i];
-    var nextSegment = path.segments[i + 1];
 
-    var angle = (thisSegment.point - nextSegment.point).angle;
-    var length = path.segments[i].curve.length;
-    length = path.segments[i].point.getDistance(nextSegment.point) * 0.7;
-    length = ( nextSegment.point - thisSegment.point).length * 0.7;
-    length = 50;
-
+    var angle  = (thisSegment.point - prevSegment.point).angle;
+    var length = (thisSegment.point - oldPrevPoint).length;
     var vector = new Point({ angle: angle, length: length });
-    nextSegment.point = thisSegment.point - vector;
-  }
-  path.smooth();
 
-  //path.shear(point);
+    oldPrevPoint = new Point(thisSegment.point);
+
+    thisSegment.point = prevSegment.point + vector;
+  }
+
+  path.smooth();
 
 }
