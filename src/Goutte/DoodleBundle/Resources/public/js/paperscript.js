@@ -1,7 +1,7 @@
 var minDistBetweenPoints = 7;
 
-var path;
-var paths = new Array();
+var drawnPath;
+var drawnPaths = new Array();
 
 
 //var textItem = new PointText(new Point(20, 55));
@@ -10,14 +10,14 @@ var paths = new Array();
 
 function onMouseDown (event) {
   // If we produced a path before, deselect it:
-  if (path) {
-    path.selected = false;
+  if (drawnPath) {
+    drawnPath.selected = false;
   }
 
   // Create a new path and set its stroke color to black:
-  path = new Path();
-  path.add(event.point);
-  path.strokeColor = 'white';
+  drawnPath = new Path();
+  drawnPath.add(event.point);
+  drawnPath.strokeColor = 'white';
 
   // Select the path, so we can see its segment points:
   //path.fullySelected = true;
@@ -28,7 +28,7 @@ function onMouseDown (event) {
 function onMouseDrag (event) {
 
   // Get the last point of the path
-  var lastPoint = path.getLastSegment().getPoint();
+  var lastPoint = drawnPath.getLastSegment().getPoint();
   // Check if the new point is far away enough
   var distBetweenPoints = Math.sqrt(Math.pow(event.point.x-lastPoint.getX(),2)+Math.pow(event.point.y-lastPoint.getY(),2));
 
@@ -37,7 +37,7 @@ function onMouseDrag (event) {
   //log ('last segment',path.getLastSegment());
 
   if (distBetweenPoints > minDistBetweenPoints) {
-    path.add(event.point);
+    drawnPath.add(event.point);
   }
 
   //log ('event.point',event.point);
@@ -49,13 +49,13 @@ function onMouseDrag (event) {
 
 // When the mouse is released, we simplify the path:
 function onMouseUp (event) {
-  var segmentCount = path.segments.length;
+  var segmentCount = drawnPath.segments.length;
 
   // When the mouse is released, simplify it:
-  path.simplify(13);
+  drawnPath.simplify(13);
 
   // Add to the stack
-  paths.push(path);
+  drawnPaths.push(drawnPath);
 
 
   // Select the path, so we can see its segments:
@@ -68,6 +68,34 @@ function onMouseUp (event) {
   //textItem.content = difference + ' of the ' + segmentCount + ' segments were removed. Saving ' + percentage + '%';
 }
 
+function onKeyDown (event) {
+  if (event.key == 'z') {
+    undo();
+  } else if (event.key == 's') {
+    movePathsTowardsSave();
+  }
+}
+
+function undo () {
+  var p = drawnPaths.pop();
+  p.remove();
+}
+
 function movePathsTowardsSave () {
+  var toX = view.size.width;
+  var toY = view.size.height;
+  var to = new Point (toX, toY);
+
+  var path = drawnPaths[0];
+
+  movePathTowards(path, to);
+}
+
+function movePathTowards (path, point) {
+  log('moving path', path, point.x, point.y);
+
+  path.getLastSegment().point = point;
+
+  //path.shear(point);
 
 }

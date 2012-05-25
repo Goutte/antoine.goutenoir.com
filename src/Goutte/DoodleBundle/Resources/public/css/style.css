@@ -58,14 +58,14 @@ body {
  */
 
 ::-moz-selection {
-  background: #fe57a1;
-  color: #fff;
+  background: #fef743;
+  color: #000;
   text-shadow: none;
 }
 
 ::selection {
-  background: #fe57a1;
-  color: #fff;
+  background: #fef743;
+  color: #000;
   text-shadow: none;
 }
 
@@ -391,6 +391,7 @@ header {
 #whoami {
   color: white;
   padding: 20px;
+  text-align: center;
 }
 
 #whoami h1,
@@ -415,6 +416,7 @@ header {
   left: 0;
   z-index: 10;
   background-color: #000;
+  cursor: crosshair;
 }
 
 @font-face {
