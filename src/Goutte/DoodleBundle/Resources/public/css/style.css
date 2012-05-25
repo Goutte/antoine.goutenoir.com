@@ -380,6 +380,16 @@ Chrome Frame Prompt
 Author:
 ========================================================================== */
 
+.discreet {
+  -webkit-transition: all 0.5s ease-in-out;
+  -khtml-transition:  all 0.5s ease-in-out;
+  -moz-transition:    all 0.5s ease-in-out;
+  -o-transition:      all 0.5s ease-in-out;
+  transition:         all 0.5s ease-in-out;
+}
+
+
+
 header {
   position: absolute;
   top:  0;
@@ -403,11 +413,20 @@ header {
 
 #whoami h1 {
   font-size: 5em;
-
 }
 
 #whoami h2 {
   font-size: 4em;
+}
+
+#whoami h1 .discreet,
+#whoami h2 .discreet {
+  font-size: 0;
+}
+
+#whoami:hover h1 .discreet,
+#whoami:hover h2 .discreet {
+  font-size: 1em;
 }
 
 #doodleCanvas {
