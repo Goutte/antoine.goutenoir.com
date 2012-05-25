@@ -12,14 +12,16 @@
 
   <meta name="viewport" content="width=device-width">
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+
+  <link rel="stylesheet" href="{{ asset('bundles/gouttedoodle/css/style.css') }}">
 
   <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
 
-  <script src="js/libs/modernizr-2.5.3.min.js"></script>
+  <script type="text/javascript" src="bundles/gouttedoodle/js/libs/modernizr-2.5.3.min.js"></script>
 </head>
 <body>
-  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>prehistoric!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
   <header>
 
     <div id="whoami" class="contentFrame">
@@ -30,7 +32,7 @@
   </header>
   <div role="main">
 
-    here be some canvas
+    <canvas id="doodleCanvas" resize></canvas>
 
   </div>
   <footer>
@@ -40,11 +42,11 @@
 
   <!-- JavaScript at the bottom for fast page loading -->
 
-  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/paper.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/plugins.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/script.js') }}"></script>
 
-  <script src="js/plugins.js"></script>
-  <script src="js/script.js"></script>
+  <script type="text/paperscript" src="{{ asset('bundles/gouttedoodle/js/paperscript.js') }}" canvas="doodleCanvas"></script>
 
   <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
        mathiasbynens.be/notes/async-analytics-snippet -->
