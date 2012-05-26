@@ -15,7 +15,7 @@ class AjaxController extends Controller
      * Saves the image dataURL passed in POST variable $dataURL
      * Checks if the user has not saved already 42 images
      *
-     * @Route("/save")
+     * @Route("/doodle/save")
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @return array
      */
@@ -60,7 +60,7 @@ class AjaxController extends Controller
         $json = array(
             'status' => 'ok',
             'id'     => $doodle->getId(),
-            'count'  => count($doodles),
+            'saves'  => count($doodles),
         );
 
         return $this->createJsonResponse($json);

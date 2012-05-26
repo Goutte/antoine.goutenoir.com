@@ -137,17 +137,22 @@ function save () {
 }
 
 var saveRequest = new Request.JSON({
-    url: 'app_dev.php/save',
-    method: 'post',
-    onRequest: function(){
-        log('Saving !');
-    },
-    onSuccess: function(responseJSON, responseText){
-        log('onSuccess',responseText);
-    },
-    onFailure: function(){
-        log('Fail !');
+  url: 'doodle/save',
+  method: 'post',
+  onRequest: function () {
+    log('Saving Doodle...');
+  },
+  onSuccess: function (responseJSON, responseText) {
+    log('onSuccess', responseText);
+    if (responseJSON.status == 'ok') {
+      document.location.href = 'doodle/view/' + responseJSON.id;
+    } else if (responseJSON.status == 'error') {
+      alert(responseJSON.error);
     }
+  },
+  onFailure: function () {
+    log('Fail ! Sorry.');
+  }
 });
 
 function saveAsImage () {
@@ -161,12 +166,9 @@ function saveAsImage () {
   }));
 
 
-
   //var rawImageData = dataURL.replace("image/png", "image/octet-stream")
   //document.location.href = rawImageData;
 }
-
-
 
 
 /** ANIMATION STEPS ***************************************************************************************************/

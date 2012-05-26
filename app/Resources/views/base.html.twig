@@ -1,13 +1,52 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>{% block title %}Don't be evil™{% endblock %} -- Antoine Goutenoir</title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width">
+
+  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+
+  <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+  {% block stylesheets %}{% endblock %}
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+
+  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+
+  <script type="text/javascript" src="bundles/gouttedoodle/js/libs/modernizr-2.5.3.min.js"></script>
+</head>
+<body>
+
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>prehistoric!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+  {% block body %}{% endblock %}
+
+
+  <!-- JavaScript at the bottom for fast page loading -->
+
+  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/mootools-core-1.4.5.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/mootools-more-1.4.0.1.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/paper.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/plugins.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/script.js') }}"></script>
+
+  {% block javascripts %}{% endblock %}
+
+  <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+       mathiasbynens.be/notes/async-analytics-snippet -->
+  <!--<script>-->
+    <!--var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];-->
+    <!--(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];-->
+    <!--g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';-->
+    <!--s.parentNode.insertBefore(g,s)}(document,'script'));-->
+  <!--</script>-->
+
+</body>
 </html>

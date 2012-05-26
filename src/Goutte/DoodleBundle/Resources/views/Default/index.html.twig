@@ -1,65 +1,34 @@
-<!doctype html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+{% extends "::base.html.twig" %}
 
-  <title>Don't be evil™ -- Antoine Goutenoir</title>
-  <meta name="description" content="">
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('bundles/gouttedoodle/css/style.css') }}">
+{% endblock %}
 
-  <meta name="viewport" content="width=device-width">
+{% block body %}
 
-  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+<header>
 
-  <link rel="stylesheet" href="{{ asset('bundles/gouttedoodle/css/style.css') }}">
-
-  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
-
-  <script type="text/javascript" src="bundles/gouttedoodle/js/libs/modernizr-2.5.3.min.js"></script>
-</head>
-<body>
-
-  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>prehistoric!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-
-  <header>
-
-    <div id="whoami" class="contentFrame">
-      <h1>A<span class="discreet">ntoine</span> G<span class="discreet">outenoir</span></h1>
-      <h2><span class="discreet">Thinker, WebSmith</span></h2>
-    </div>
-
-  </header>
-
-  <div role="main">
-
-    <canvas id="doodleCanvas" resize></canvas>
-
+  <div id="whoami" class="contentFrame">
+    <h1>A<span class="discreet">ntoine</span> G<span class="discreet">outenoir</span></h1>
+    <h2><span class="discreet">Thinker, WebSmith</span></h2>
   </div>
 
-  <footer>
+</header>
 
-  </footer>
+<div role="main">
 
-  <!-- JavaScript at the bottom for fast page loading -->
+  <canvas id="doodleCanvas" resize></canvas>
 
-  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/mootools-core-1.4.5.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/mootools-more-1.4.0.1.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/paper.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/plugins.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/script.js') }}"></script>
+</div>
 
-  <script type="text/paperscript" src="{{ asset('bundles/gouttedoodle/js/paperscript.js') }}" canvas="doodleCanvas"></script>
+<footer>
 
-  <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
-       mathiasbynens.be/notes/async-analytics-snippet -->
-  <!--<script>-->
-    <!--var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];-->
-    <!--(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];-->
-    <!--g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';-->
-    <!--s.parentNode.insertBefore(g,s)}(document,'script'));-->
-  <!--</script>-->
-</body>
-</html>
+</footer>
+
+{% endblock %}
+
+
+{% block javascripts %}
+<script type="text/paperscript" src="{{ asset('bundles/gouttedoodle/js/paperscript.js') }}" canvas="doodleCanvas"></script>
+{% endblock %}
+
