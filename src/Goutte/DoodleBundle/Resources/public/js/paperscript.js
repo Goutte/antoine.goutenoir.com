@@ -193,7 +193,7 @@ function getDrawingCanvas () {
 
 /**
  * Returns the dataURL (Base64 encoded data url string)
- * of the specified canvas, but applies background first
+ * of the specified canvas, but applies background color first
  * @param canvas
  * @param backgroundColor
  * @return {String} the dataURL

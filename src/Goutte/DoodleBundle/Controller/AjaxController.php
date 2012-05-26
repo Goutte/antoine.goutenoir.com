@@ -43,7 +43,7 @@ class AjaxController extends Controller
         if (count($doodles) > 41) {
             $json = array(
                 'status' => 'error',
-                'error'  => "You already saved 42 doodles, which is the limit ! Your enthusiasm is inspiring ; please contact me if you want more !"
+                'error' => "You already saved 42 doodles, which is the limit ! Your enthusiasm is inspiring ; please contact me if you want more !"
             );
             return $this->createJsonResponse($json);
         }
@@ -59,14 +59,62 @@ class AjaxController extends Controller
 
         $json = array(
             'status' => 'ok',
-            'id'     => $doodle->getId(),
-            'saves'  => count($doodles),
+            'id' => $doodle->getId(),
+            'saves' => count($doodles),
         );
 
         return $this->createJsonResponse($json);
     }
 
-    public function createJsonResponse ($json) {
+
+    /**
+     * Marks the doodle as important
+     * The ip must be the same as the creator
+     *
+     * @Route("/doodle/send/{id}", requirements={"id" = "\d+"})
+     *
+     * @param $id
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @return array
+     */
+    public function sendAction($id)
+    {
+        $request = $this->get('request');
+
+        /** @var $em \Doctrine\ORM\EntityManager */
+        $em = $this->get('doctrine')->getEntityManager();
+
+        $doodle = $em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findOneBy(array('id' => $id));
+
+        // Do we have a doodle ?
+        if (!$doodle) {
+            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('No doodle for this id.');
+        }
+
+        if ($doodle->getCreatedBy() != $request->getClientIp()) {
+            $json = array(
+                'status' => 'error',
+                'error'  => 'Your IP may have changed since you saved the doodle.',
+            );
+
+            return $this->createJsonResponse($json);
+        }
+
+        // Edit the doodle
+        $doodle->setImportant(true);
+
+        $em->persist($doodle);
+        $em->flush();
+
+        $json = array(
+            'status' => 'ok',
+        );
+
+        return $this->createJsonResponse($json);
+    }
+
+    public function createJsonResponse($json)
+    {
         $response = new Response();
         $response->setContent(json_encode($json));
         $response->setStatusCode(200);

@@ -1,1 +1,7 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Viewing Doodle {{ doodle.title | default('#'~doodle.id) }}{% endblock %}
+
+{% block body %}
 <img src="{{ doodle.data }}" alt="Doodle #{{ doodle.id }}" />
+{% endblock %}
