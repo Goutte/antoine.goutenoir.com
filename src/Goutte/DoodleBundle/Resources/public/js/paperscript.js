@@ -16,7 +16,7 @@ var drawnPaths = new Array();
 
 /** INIT **************************************************************************************************************/
 
-// Fill the canvas with black
+
 
 
 /** LISTENERS *********************************************************************************************************/
@@ -87,54 +87,6 @@ function undo () {
   p.remove();
 }
 
-//function censor(censor) {
-//  return (function() {
-//    var i = 0;
-//
-//    return function(key, value) {
-//      if(i !== 0 && typeof(censor) === 'object' && typeof(value) == 'object' && censor == value)
-//        return '[Circular]';
-//
-//      if(i >= 29) // seems to be a harded maximum of 30 serialized objects?
-//        return '[Unknown]';
-//
-//      ++i; // so we know we aren't using the original object anymore
-//
-//      return value;
-//    }
-//  })(censor);
-//}
-//
-//function censor2 (key, value) {
-//  log ('typeof', typeof (value));
-//  log ('key', key);
-//  return value;
-//}
-
-//function exportPath (pathIn) {
-//  var pathOut = new Array();
-//  for (var i = 0; i < pathIn.segments.length; i++) {
-//    pathOut.push(exportSegment(pathIn.segments[i]));
-//  }
-//}
-//
-//function exportSegment (segmentIn) {
-//
-//}
-
-//var savedState;
-
-function save () {
-  //log (paper, paper.project, paper.project.symbols);
-  //log (drawnPaths);
-
-  var dataURL = canvasToImage(getDrawingCanvas(), '#000');
-
-  var img = document.createElement('img');
-  img.setAttribute('src', dataURL);
-  //document.getElementById('whoami').appendChild(img);
-
-}
 
 var saveRequest = new Request.JSON({
   url: 'doodle/save',
@@ -143,7 +95,7 @@ var saveRequest = new Request.JSON({
     log('Saving Doodle...');
   },
   onSuccess: function (responseJSON, responseText) {
-    log('onSuccess', responseText);
+    log('Success !', responseText);
     if (responseJSON.status == 'ok') {
       document.location.href = 'doodle/view/' + responseJSON.id;
     } else if (responseJSON.status == 'error') {
@@ -152,8 +104,19 @@ var saveRequest = new Request.JSON({
   },
   onFailure: function () {
     log('Fail ! Sorry.');
+    alert('Something went terribly wrong. Try again later ?');
   }
 });
+
+function save () {
+
+  var dataURL = canvasToImage(getDrawingCanvas(), '#000');
+
+  var img = document.createElement('img');
+  img.setAttribute('src', dataURL);
+  //document.getElementById('whoami').appendChild(img);
+
+}
 
 function saveAsImage () {
   var dataURL = canvasToImage(getDrawingCanvas(), '#000');
