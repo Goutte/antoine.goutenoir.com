@@ -84,7 +84,7 @@ function onKeyDown (event) {
 function undo () {
   var p = drawnPaths.pop();
   p.remove();
-  updateControls('undo');
+  updateControls('undo', {});
 }
 
 
@@ -166,6 +166,7 @@ function getLinkViewAsImage (doodleId) {
 
 function updateControls (from, options) {
   var buttonSave = document.id('buttonSave');
+  var buttonUndo = document.id('buttonUndo');
   var buttonSend = document.id('buttonSend');
   var buttonView = document.id('buttonView');
   var buttonDown = document.id('buttonDown');
@@ -173,8 +174,10 @@ function updateControls (from, options) {
 
   if (drawnPaths.length) {
     buttonSave.removeClass('hiddenSmall');
+    buttonUndo.removeClass('hiddenSmall');
   } else {
     buttonSave.addClass('hiddenSmall');
+    buttonUndo.addClass('hiddenSmall');
   }
 
   if ('save' == from && options.doodleId) {
@@ -199,15 +202,22 @@ function updateControls (from, options) {
       buttonSend.addClass('used');
       formSend.removeClass('hiddenSmall');
     } else {
-      formSend.addClass('hiddenSmall');
-      alert("Well done, and thank you !");
+      warpDoodleIntoSpace();
     }
   }
 }
 
+
+function warpDoodleIntoSpace () {
+  document.id('formSend').addClass('hiddenSmall');
+  alert("Well done, and thank you !");
+}
+
+
 window.addEvent('domready', function () {
 
   var buttonSave = document.id('buttonSave');
+  var buttonUndo = document.id('buttonUndo');
   var buttonSend = document.id('buttonSend');
   var buttonView = document.id('buttonView');
   var buttonDown = document.id('buttonDown');
@@ -216,13 +226,23 @@ window.addEvent('domready', function () {
 
   buttonSave.addEvents({
     'click': function (event) {
-      event = new Event(event);
-      event.stop();
+      event = new Event(event); event.stop();
       save();
     },
     'mousedown': function (event) { this.addClass('selected'); },
     'mouseup':   function (event) { this.removeClass('selected'); }
   });
+
+  buttonUndo.addEvents({
+    'click': function (event) {
+      event = new Event(event); event.stop();
+      undo();
+    },
+    'mousedown': function (event) { this.addClass('selected'); },
+    'mouseup':   function (event) { this.removeClass('selected'); }
+  });
+
+
 
   buttonSend.addEvent('click', function (event) {
     event = new Event(event);
@@ -234,7 +254,14 @@ window.addEvent('domready', function () {
   formSend.addEvents({
     'submit': function (event) {
       event.stop();
-      send(Object.merge({id: buttonSend.getAttribute('doodleId')}, this.toQueryString().parseQueryString()));
+      var formData = this.toQueryString().parseQueryString();
+      if (formData.title || formData.message) {
+        // Send the stuff back to base
+        send(Object.merge({id: buttonSend.getAttribute('doodleId')}, formData));
+      } else {
+        // We clicked on submit but filled nothing, so we're going to hide the form and that's it !
+        warpDoodleIntoSpace();
+      }
     },
     // compatibility with paper's onKeyDown
     'keydown': function (event) { event.stopPropagation(); },

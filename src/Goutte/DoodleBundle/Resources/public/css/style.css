@@ -81,39 +81,47 @@ header {
   visibility: hidden;
 }
 
-#controls #buttonSave {
+#controls .button {
   display: block;
   width:  64px;
   height: 64px;
-  background-color: #f39;
+
+  margin: 5px;
+  border-radius:         32px;
+  -moz-border-radius:    32px;
+  -webkit-border-radius: 32px;
+  border: 2px solid white;
+  color: #fff;
+  background: #000;
+  line-height: 64px;
+  text-align: center;
+  text-decoration: none;
+
+  font-family: 'Handwriting', Arial, sans-serif;
+  font-size:   3em;
 }
 
-#controls #buttonSave:hover,
-#controls #buttonSave:focus,
-#controls #buttonSave.selected {
-  background-color: #3f9;
+#controls #buttonSave {
+
+}
+
+#controls .button:hover,
+#controls .button:focus,
+#controls .button.selected {
+  background-color: #fff;
+  color: #000;
 }
 
 #controls #buttonSend {
-  display: block;
-  width:  64px;
-  height: 64px;
-  background-color: #f39;
 }
 
 #controls #buttonView {
-  display: block;
-  width:  64px;
-  height: 64px;
-  background-color: #f39;
 }
 
 #controls #buttonDown {
-  display: block;
-  width:  64px;
-  height: 64px;
-  background-color: #f39;
 }
+
+
 
 #formSend {
   position: absolute;
@@ -136,6 +144,9 @@ header {
   margin:  5px auto 0 auto;
   padding: 3px;
 }
+
+
+
 
 
 @font-face {

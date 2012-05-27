@@ -43,7 +43,9 @@ class AjaxController extends Controller
         if (count($doodles) > 41) {
             $json = array(
                 'status' => 'error',
-                'error' => "You already saved 42 doodles, which is the limit ! Your enthusiasm is inspiring ; please contact me if you want more !"
+                'error' => "You already saved 42 doodles, which is the limit ! ".
+                           "Your enthusiasm is inspiring ; please contact me if you want more ! ".
+                           "-- antoine@goutenoir.com"
             );
             return $this->createJsonResponse($json);
         }
