@@ -17,8 +17,6 @@ var drawnPaths = new Array();
 /** INIT **************************************************************************************************************/
 
 
-
-
 /** LISTENERS *********************************************************************************************************/
 
 function onMouseDown (event) {
@@ -64,6 +62,8 @@ function onMouseUp (event) {
 
   // Add to the stack
   drawnPaths.push(drawnPath);
+  // Update Controls
+  updateControls('draw');
 }
 
 function onFrame () {
@@ -75,40 +75,41 @@ function onFrame () {
 function onKeyDown (event) {
   if (event.key == 'z') {
     undo();
-  } else if (event.key == 's') {
-    save();
   }
 }
 
-/** CONTROL ***********************************************************************************************************/
+
+/** CONTROL LOGIC *****************************************************************************************************/
 
 function undo () {
   var p = drawnPaths.pop();
   p.remove();
+  updateControls('undo');
 }
 
 
-var saveRequest = new Request.JSON({
-  url: 'doodle/save',
-  method: 'post',
-  onRequest: function () {
-    log('Saving Doodle...');
-  },
-  onSuccess: function (responseJSON, responseText) {
-    log('Success !', responseText);
-    if (responseJSON.status == 'ok') {
-      document.location.href = 'doodle/view/' + responseJSON.id;
-    } else if (responseJSON.status == 'error') {
-      alert(responseJSON.error);
-    }
-  },
-  onFailure: function () {
-    log('Fail ! Sorry.');
-    alert('Something went terribly wrong. Try again later ?');
-  }
-});
-
 function save () {
+
+  var saveRequest = new Request.JSON({
+    url: 'doodle/save',
+    method: 'post',
+    onRequest: function () {
+      log('Saving Doodle...');
+    },
+    onSuccess: function (responseJSON, responseText) {
+      log('Success !', responseText);
+      if (responseJSON.status == 'ok') {
+        updateControls('save', {doodleId: responseJSON.id});
+        //document.location.href = 'doodle/view/' + responseJSON.id;
+      } else if (responseJSON.status == 'error') {
+        alert(responseJSON.error);
+      }
+    },
+    onFailure: function () {
+      log('Fail ! Sorry.');
+      alert('Something went terribly wrong. Try again later ?');
+    }
+  });
 
   var dataURL = canvasToImage(getDrawingCanvas(), '#000');
 
@@ -121,7 +122,38 @@ function save () {
 
 }
 
-function getLinkDownloadAsImage (doodleId) {
+
+function send (data) {
+
+  var sendRequest = new Request.JSON({
+    url: 'doodle/send/' + data.id,
+    method: 'post',
+    onRequest: function () {
+      log('Sending Doodle...');
+    },
+    onSuccess: function (responseJSON, responseText) {
+      log('Success !', responseText);
+      if (responseJSON.status == 'ok') {
+        updateControls('send', data);
+      } else if (responseJSON.status == 'error') {
+        alert(responseJSON.error);
+      }
+    },
+    onFailure: function () {
+      log('Fail ! Sorry.');
+      alert('Something went terribly wrong. Try again later ?');
+    }
+  });
+
+  sendRequest.send(Object.toQueryString(data));
+
+}
+
+function getLinkSend (doodleId) {
+  return 'doodle/send/' + doodleId;
+}
+
+function getLinkDownAsImage (doodleId) {
   return 'doodle/download/' + doodleId;
 }
 
@@ -130,8 +162,87 @@ function getLinkViewAsImage (doodleId) {
 }
 
 
+/** CONTROLS **********************************************************************************************************/
+
+function updateControls (from, options) {
+  var buttonSave = document.id('buttonSave');
+  var buttonSend = document.id('buttonSend');
+  var buttonView = document.id('buttonView');
+  var buttonDown = document.id('buttonDown');
+  var formSend = document.id('formSend');
+
+  if (drawnPaths.length) {
+    buttonSave.removeClass('hiddenSmall');
+  } else {
+    buttonSave.addClass('hiddenSmall');
+  }
+
+  if ('save' == from && options.doodleId) {
+    buttonSend.setAttribute('href', getLinkSend(options.doodleId));
+    buttonSend.setAttribute('doodleId', options.doodleId);
+    buttonSend.removeClass('hiddenSmall');
+    buttonView.setAttribute('href', getLinkViewAsImage(options.doodleId));
+    buttonView.removeClass('hiddenSmall');
+    buttonDown.setAttribute('href', getLinkDownAsImage(options.doodleId));
+    buttonDown.removeClass('hiddenSmall');
+  }
+
+  if ('draw' == from) {
+    buttonSend.addClass('hiddenSmall');
+    buttonView.addClass('hiddenSmall');
+    buttonDown.addClass('hiddenSmall');
+    formSend.addClass('hiddenSmall');
+  }
+
+  if ('send' == from) {
+    if (!options.title && !options.message) {
+      buttonSend.addClass('used');
+      formSend.removeClass('hiddenSmall');
+    } else {
+      formSend.addClass('hiddenSmall');
+      alert("Well done, and thank you !");
+    }
+  }
+}
+
+window.addEvent('domready', function () {
+
+  var buttonSave = document.id('buttonSave');
+  var buttonSend = document.id('buttonSend');
+  var buttonView = document.id('buttonView');
+  var buttonDown = document.id('buttonDown');
+  var formSend   = document.id('formSend');
 
 
+  buttonSave.addEvents({
+    'click': function (event) {
+      event = new Event(event);
+      event.stop();
+      save();
+    },
+    'mousedown': function (event) { this.addClass('selected'); },
+    'mouseup':   function (event) { this.removeClass('selected'); }
+  });
+
+  buttonSend.addEvent('click', function (event) {
+    event = new Event(event);
+    event.stop();
+    send({id: buttonSend.getAttribute('doodleId')});
+  });
+
+
+  formSend.addEvents({
+    'submit': function (event) {
+      event.stop();
+      send(Object.merge({id: buttonSend.getAttribute('doodleId')}, this.toQueryString().parseQueryString()));
+    },
+    // compatibility with paper's onKeyDown
+    'keydown': function (event) { event.stopPropagation(); },
+    'keyup':   function (event) { event.stopPropagation(); }
+  });
+
+
+});
 
 
 /** ANIMATION STEPS ***************************************************************************************************/

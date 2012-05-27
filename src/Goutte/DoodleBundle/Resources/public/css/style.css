@@ -3,6 +3,14 @@
 Author:
 ========================================================================== */
 
+body {
+  color: white;
+}
+
+h2 {
+  padding: 0 15px;
+}
+
 .discreet {
   -webkit-transition: all 0.5s ease-in-out;
   -khtml-transition:  all 0.5s ease-in-out;
@@ -20,7 +28,6 @@ header {
 }
 
 #whoami {
-  color: white;
   padding: 20px;
   text-align: center;
 }
@@ -58,6 +65,78 @@ header {
   background-color: #000;
   cursor: crosshair;
 }
+
+
+
+
+#controls {
+  position: absolute;
+  right:  13px;
+  bottom: 13px;
+  z-index: 30;
+}
+
+#controls .hiddenSmall {
+  display: none !important;
+  visibility: hidden;
+}
+
+#controls #buttonSave {
+  display: block;
+  width:  64px;
+  height: 64px;
+  background-color: #f39;
+}
+
+#controls #buttonSave:hover,
+#controls #buttonSave:focus,
+#controls #buttonSave.selected {
+  background-color: #3f9;
+}
+
+#controls #buttonSend {
+  display: block;
+  width:  64px;
+  height: 64px;
+  background-color: #f39;
+}
+
+#controls #buttonView {
+  display: block;
+  width:  64px;
+  height: 64px;
+  background-color: #f39;
+}
+
+#controls #buttonDown {
+  display: block;
+  width:  64px;
+  height: 64px;
+  background-color: #f39;
+}
+
+#formSend {
+  position: absolute;
+  z-index: 40;
+  left: -230px;
+  width: 200px;
+  font-size: 0.8em;
+}
+
+#formSend textarea {
+  width:   100%;
+  padding: 3px;
+  border: 0;
+}
+
+#formSend input[type=submit] {
+  display: block;
+  width: 62%;
+  text-align: center;
+  margin:  5px auto 0 auto;
+  padding: 3px;
+}
+
 
 @font-face {
   font-family: 'Handwriting';
