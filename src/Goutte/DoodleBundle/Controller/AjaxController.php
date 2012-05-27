@@ -91,6 +91,7 @@ class AjaxController extends Controller
             throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('No doodle for this id.');
         }
 
+        // Do we have the same IP ?
         if ($doodle->getCreatedBy() != $request->getClientIp()) {
             $json = array(
                 'status' => 'error',
@@ -102,6 +103,8 @@ class AjaxController extends Controller
 
         // Edit the doodle
         $doodle->setImportant(true);
+        $doodle->setTitle($request->get('title', ''));
+        $doodle->setMessage($request->get('message', ''));
 
         $em->persist($doodle);
         $em->flush();

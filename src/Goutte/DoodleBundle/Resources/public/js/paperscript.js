@@ -76,7 +76,7 @@ function onKeyDown (event) {
   if (event.key == 'z') {
     undo();
   } else if (event.key == 's') {
-    saveAsImage();
+    save();
   }
 }
 
@@ -114,24 +114,24 @@ function save () {
 
   var img = document.createElement('img');
   img.setAttribute('src', dataURL);
-  //document.getElementById('whoami').appendChild(img);
-
-}
-
-function saveAsImage () {
-  var dataURL = canvasToImage(getDrawingCanvas(), '#000');
-
-  var img = document.createElement('img');
-  img.setAttribute('src', dataURL);
 
   saveRequest.send(Object.toQueryString({
     dataURL: dataURL
   }));
 
-
-  //var rawImageData = dataURL.replace("image/png", "image/octet-stream")
-  //document.location.href = rawImageData;
 }
+
+function getLinkDownloadAsImage (doodleId) {
+  return 'doodle/download/' + doodleId;
+}
+
+function getLinkViewAsImage (doodleId) {
+  return 'doodle/view/' + doodleId;
+}
+
+
+
+
 
 
 /** ANIMATION STEPS ***************************************************************************************************/
