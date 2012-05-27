@@ -8,6 +8,10 @@ INSTALL
 
 Configure app/config.parameters.ini (use .dist file as template)
 
+chmod -R 777 app/cache
+chmod -R 777 app/logs
+
+
 php bin/vendors install
 
 php app/console doctrine:schema:create
