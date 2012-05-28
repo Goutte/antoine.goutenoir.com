@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Viewing All Doodles{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('bundles/gouttedoodle/css/list.css') }}">
+{% endblock %}
+
+{% block body %}
+
+{% for doodle in doodles %}
+{% include 'GoutteDoodleBundle:Doodle:thumb.html.twig' with {'doodle': doodle} %}
+{% endfor %}
+
+{% endblock %}

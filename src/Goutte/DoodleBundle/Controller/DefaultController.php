@@ -90,19 +90,17 @@ class DefaultController extends Controller
     }
 
 
-
     /**
-     *
+     * List the important doodles
      *
      * @Route("/doodles")
      * @Template()
      *
-     * @param $id
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     * @internal param $id
      * @return array
      */
-    public function listAction()
+    public function listImportantAction()
     {
 
         /** @var $em \Doctrine\ORM\EntityManager */
@@ -110,13 +108,39 @@ class DefaultController extends Controller
 
         $doodles = $em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findBy(array('important' => true), array('id'=>'desc'));
 
-        // Do we have a doodle ?
+        // Do we have at least one doodle ?
         if (empty($doodles)) {
             throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('No doodles at all');
         }
 
         return array('doodles' => $doodles);
+    }
 
+
+    /**
+     * List all the doodles
+     *
+     * @Route("/doodles/all")
+     * @Template()
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @internal param $id
+     * @return array
+     */
+    public function listAllAction()
+    {
+
+        /** @var $em \Doctrine\ORM\EntityManager */
+        $em = $this->get('doctrine')->getEntityManager();
+
+        $doodles = $em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findBy(array(), array('id'=>'desc'));
+
+        // Do we have at least one doodle ?
+        if (empty($doodles)) {
+            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('No doodles at all');
+        }
+
+        return array('doodles' => $doodles);
     }
 
 }
