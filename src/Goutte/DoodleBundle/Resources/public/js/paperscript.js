@@ -227,6 +227,8 @@ window.addEvent('domready', function () {
   buttonSave.addEvents({
     'click': function (event) {
       event = new Event(event); event.stop();
+      buttonSave.addClass('hiddenSmall');
+      buttonUndo.addClass('hiddenSmall');
       save();
     },
     'mousedown': function (event) { this.addClass('selected'); },
