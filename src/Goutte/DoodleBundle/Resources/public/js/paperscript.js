@@ -172,7 +172,7 @@ function updateControls (from, options) {
   var buttonDown = document.id('buttonDown');
   var formSend = document.id('formSend');
 
-  if (drawnPaths.length) {
+  if ('save' == from && drawnPaths.length) {
     buttonSave.removeClass('hiddenSmall');
     buttonUndo.removeClass('hiddenSmall');
   } else {
@@ -213,6 +213,7 @@ function warpDoodleIntoSpace () {
   alert("Well done, and thank you !");
 }
 
+/** DOM BEHAVIORS *****************************************************************************************************/
 
 window.addEvent('domready', function () {
 
