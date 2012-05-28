@@ -8,28 +8,40 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
   <title>{% block title %}Don't be evil™{% endblock %} -- Antoine Goutenoir</title>
-  <meta name="description" content="">
+  <meta name="description" content="Just doodle it. Enjoy being alive. Think. Share. Feel. Nothing can stop you being all you can be." />
 
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width" />
 
   <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 
-  <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
   {% block stylesheets %}{% endblock %}
-  <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
 
-  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+  <!-- More brain-teasers for your <head> here: h5bp.com/d/head-Tips -->
 
-  <script type="text/javascript" src="bundles/gouttedoodle/js/libs/modernizr-2.5.3.min.js"></script>
+  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/modernizr-2.5.3.min.js') }}"></script>
 </head>
 <body>
 
-  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>prehistoric!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+  {#### CHROME FRAME ##################################################################################################}
+
+  <!--[if lt IE 7]>
+  <p class=chromeframe>
+    Your browser is <em>prehistoric!</em>
+    <a href="http://browsehappy.com/">Upgrade to a different browser</a> or
+    <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a>
+    to experience this site.
+  </p>
+  <![endif]-->
+
+
+  {#### BODY ##########################################################################################################}
 
   {% block body %}{% endblock %}
 
 
-  <!-- JavaScript at the bottom for fast page loading -->
+  {#### JAVASCRIPT at the bottom for fast page loading ################################################################}
 
   <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/mootools-core-1.4.5.js') }}"></script>
   <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/mootools-more-1.4.0.1.js') }}"></script>
@@ -38,7 +50,6 @@
   <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/script.js') }}"></script>
 
   {% block javascripts %}{% endblock %}
-
 
   {#### ANALYTICS #####################################################################################################}
 
