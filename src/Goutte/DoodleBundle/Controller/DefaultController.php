@@ -26,7 +26,7 @@ class DefaultController extends Controller
     /**
      * View the doodle as <img>
      *
-     * @Route("/doodle/view/{id}", requirements={"id" = "\d+"})
+     * @Route("/doodle/view/{id}", requirements={"id" = "\d+"}, name="view_doodle")
      * @Template()
      *
      * @param $id
@@ -86,6 +86,36 @@ class DefaultController extends Controller
         $response->headers->set('Content-Disposition', 'attachment; filename="doodle'.$id.'.png"');
 
         return $response;
+
+    }
+
+
+
+    /**
+     *
+     *
+     * @Route("/doodles")
+     * @Template()
+     *
+     * @param $id
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     * @return array
+     */
+    public function listAction()
+    {
+
+        /** @var $em \Doctrine\ORM\EntityManager */
+        $em = $this->get('doctrine')->getEntityManager();
+
+        $doodles = $em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findBy(array('important' => true));
+
+        // Do we have a doodle ?
+        if (empty($doodles)) {
+            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('No doodles at all');
+        }
+
+        return array('doodles' => $doodles);
 
     }
 

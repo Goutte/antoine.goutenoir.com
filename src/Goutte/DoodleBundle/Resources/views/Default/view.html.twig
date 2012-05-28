@@ -3,5 +3,5 @@
 {% block title %}Viewing Doodle {{ doodle.title | default('#'~doodle.id) }}{% endblock %}
 
 {% block body %}
-<img src="{{ doodle.data }}" alt="Doodle #{{ doodle.id }}" />
+<img src="{{ doodle.data }}" alt="Doodle #{{ doodle.id }}" title="{{ doodle.message }}" />
 {% endblock %}
