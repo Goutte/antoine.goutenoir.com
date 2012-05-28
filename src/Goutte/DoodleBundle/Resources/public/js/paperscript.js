@@ -378,3 +378,23 @@ function canvasToImage (canvas, backgroundColor) {
 
   return imageData;
 }
+
+// see https://github.com/paperjs/paper.js/issues/48
+//// These did not match up for some reason
+//SVGCanvas.prototype.transform = SVGCanvas.prototype.translate;
+//SVGCanvas.prototype.fillText = SVGCanvas.prototype.text;
+//
+//paper.View.prototype.toSVG = function() {
+//  var svgContext = new SVGCanvas(this.canvas.width, this.canvas.height);
+//
+//  var oldCtx = this._context;
+//
+//  this._context = svgContext;
+//  this.draw(false);
+//
+//  this._context = oldCtx;
+//
+//  // Optional serialization of the SVG DOM nodes
+//  var serializer = new XMLSerializer();
+//  return serializer.serializeToString(svgContext.svg.htmlElement);
+//};
