@@ -11,7 +11,7 @@
 {% for doodle in doodles %}
 <div class="doodle">
   <a href="{{ path('doodle_view', { 'id': doodle.id }) }}">
-    <img src="{{ doodle.data }}" alt="Doodle #{{ doodle.id }}" width="128" height="128" />
+    <img src="{{ doodle.data }}" alt="Doodle #{{ doodle.id }}" width="256" height="256" />
   </a>
   <br />
   <p>{{ doodle.message }}</p>

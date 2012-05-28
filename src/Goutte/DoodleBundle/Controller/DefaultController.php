@@ -26,7 +26,7 @@ class DefaultController extends Controller
     /**
      * View the doodle as <img>
      *
-     * @Route("/doodle/view/{id}", requirements={"id" = "\d+"}, name="view_doodle")
+     * @Route("/doodle/view/{id}", requirements={"id" = "\d+"}, name="doodle_view")
      * @Template()
      *
      * @param $id
@@ -108,7 +108,7 @@ class DefaultController extends Controller
         /** @var $em \Doctrine\ORM\EntityManager */
         $em = $this->get('doctrine')->getEntityManager();
 
-        $doodles = $em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findBy(array('important' => true));
+        $doodles = $em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findBy(array('important' => true), array('id'=>'desc'));
 
         // Do we have a doodle ?
         if (empty($doodles)) {
