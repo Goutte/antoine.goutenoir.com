@@ -9,9 +9,9 @@ var drawnPaths = new Array();
 // Only execute onMouseDrag when the mouse has moved at least 7 points
 //tool.distanceThreshold = 70; // not working !
 
-//var textItem = new PointText(new Point(20, 55));
-//textItem.fillColor = 'black';
-//textItem.content = 'Click and drag to draw a line.';
+var initialTextHelper = new PointText(new Point(getDrawingCanvas().width / 2 - 80, 55));
+initialTextHelper.fillColor = '#fff';
+initialTextHelper.content = 'Click and drag to draw a doodle.';
 
 
 /** INIT **************************************************************************************************************/
@@ -172,6 +172,7 @@ function updateControls (from, options) {
   var buttonDown = document.id('buttonDown');
   var formSend = document.id('formSend');
 
+  // Show / Hide Save & Undo
   if ('save' != from && drawnPaths.length) {
     buttonSave.removeClass('hiddenSmall');
     buttonUndo.removeClass('hiddenSmall');
@@ -180,6 +181,7 @@ function updateControls (from, options) {
     buttonUndo.addClass('hiddenSmall');
   }
 
+  // Show / Hide Download & Send & View
   if ('save' == from && options.doodleId) {
     buttonSend.setAttribute('href', getLinkSend(options.doodleId));
     buttonSend.setAttribute('doodleId', options.doodleId);
@@ -191,6 +193,9 @@ function updateControls (from, options) {
   }
 
   if ('draw' == from) {
+    // Remove initial text helper
+    initialTextHelper.remove();
+    // Hide control buttons
     buttonSend.addClass('hiddenSmall');
     buttonView.addClass('hiddenSmall');
     buttonDown.addClass('hiddenSmall');
