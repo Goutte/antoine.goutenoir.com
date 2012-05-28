@@ -172,7 +172,7 @@ function updateControls (from, options) {
   var buttonDown = document.id('buttonDown');
   var formSend = document.id('formSend');
 
-  if ('save' == from && drawnPaths.length) {
+  if ('save' != from && drawnPaths.length) {
     buttonSave.removeClass('hiddenSmall');
     buttonUndo.removeClass('hiddenSmall');
   } else {
