@@ -3,7 +3,9 @@
 namespace Goutte\DoodleBundle\Tests\Controller;
 
 
-use Goutte\DoodleBundle\Tools\PHPUnit\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+//use Goutte\DoodleBundle\Tools\PHPUnit\WebTestCase;
+
 
 class DefaultControllerTest extends WebTestCase
 {
@@ -24,6 +26,6 @@ class DefaultControllerTest extends WebTestCase
         $client = static::createClient();
         $client->request('GET', '/');
         //die( $client->getResponse()->getContent());
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertTrue($client->getResponse()->isSuccessful());
     }
 }

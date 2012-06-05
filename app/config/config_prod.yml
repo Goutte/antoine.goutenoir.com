@@ -17,3 +17,6 @@ monolog:
             type:  stream
             path:  %kernel.logs_dir%/%kernel.environment%.log
             level: debug
+
+cypress_compass_elephant:
+    register_listener: false
