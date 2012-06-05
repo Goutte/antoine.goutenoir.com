@@ -2,15 +2,12 @@
 
 namespace Goutte\DoodleBundle\Tests\Controller;
 
-
-//use Goutte\DoodleBundle\Tools\PHPUnit\WebTestCase;
-
-
-
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AjaxControllerTest extends WebTestCase
 {
+    private $doodleId;
+
     /**
      * @var \Doctrine\ORM\EntityManager
      */
@@ -24,32 +21,69 @@ class AjaxControllerTest extends WebTestCase
     }
 
 
-
+    /**
+     * @return int The id of the saved doodle
+     */
     public function testSave()
     {
+        // test the save of a new doodle, providing the encoded data
 
         $client = static::createClient();
         $client->request('POST', '/doodle/save', array('dataURL'=>$this->getTestDoodleData()));
         $response = $client->getResponse();
+
         $this->assertTrue($response->isSuccessful(), sprintf("On save, server returns %d",$response->getStatusCode()));
         $content = json_decode($response->getContent());
         $validated = ('ok' == $content->status);
-        $this->assertTrue($validated, "Saving a new doodle via dataURL, wrong status = ".$content->status);
+        $this->assertTrue($validated, sprintf("Saving a new doodle via dataURL, wrong status = %s",$content->status));
+        $doodleId = $content->id;
+        $this->assertInternalType('int', $doodleId);
 
-
-        // fixme : test the deletion of the created doodle
-
-//        $doodle = $this->em
-//                    ->getRepository('Goutte\DoodleBundle\Entity\Doodle')
-//                    ->findOneById($doodleId)
-//                    ->getResult();
-//
-//        $this->assertCount(1, $doodle);
-//        $this->em->remove($doodle);
-//        $this->em->flush();
-
-
+        return $doodleId;
     }
+
+
+
+    /**
+     * @depends testSave
+     * @param $doodleId
+     */
+    public function testSend($doodleId)
+    {
+        // test the save of a new doodle, providing the encoded data
+
+        $client = static::createClient();
+        $client->request('POST', sprintf('/doodle/send/%d', $doodleId), array());
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isSuccessful(), sprintf("On send, server returns %d",$response->getStatusCode()));
+        $content = json_decode($response->getContent());
+        $validated = ('ok' == $content->status);
+        $this->assertTrue($validated, sprintf("Sending a doodle, wrong status = %s",$content->status));
+    }
+
+
+
+    /**
+     * @depends testSave
+     * @param $doodleId
+     */
+    public function testDelete($doodleId)
+    {
+        // test the deletion of the saved doodle
+
+        $doodle = $this->em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findOneById($doodleId);
+
+        $this->assertNotEmpty($doodle, "Could not find freshly saved doodle.");
+        $this->em->remove($doodle);
+        $this->em->flush();
+        $nothing = $this->em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findOneById($doodleId);
+        $this->assertEmpty($nothing, "[WARNING] Could not delete freshly created doodle.");
+    }
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     protected function getTestDoodleData()
     {
