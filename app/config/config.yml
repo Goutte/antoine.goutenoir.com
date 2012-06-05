@@ -58,3 +58,10 @@ swiftmailer:
 jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
+
+# Compass
+
+cypress_compass_elephant:
+    compass_projects:
+        gouttedoodlebundle:
+            path: %kernel.root_dir%/../src/Goutte/DoodleBundle/Resources/public/compass
