@@ -12,8 +12,7 @@ class AjaxControllerTest extends WebTestCase
         $client = static::createClient();
         $client->request('POST', '/doodle/save', array('dataURL'=>$this->getTestDoodleData()));
         $response = $client->getResponse();
-        $received = (200 == $response->getStatusCode());
-        $this->assertTrue($received, "Asking for a save via dataURL.");
+        $this->assertTrue($response->isSuccessful(), "On save, server returns ".$response->getStatusCode());
         $content = json_decode($response->getContent());
         $validated = ('ok' == $content->status);
         $this->assertTrue($validated, "Saving a new doodle via dataURL, wrong status = ".$content->status);
