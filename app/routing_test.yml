@@ -1,0 +1,6 @@
+_doodle_run_tests:
+    pattern: /doodle/test/{filterClass}
+    defaults: { _controller: GoutteDoodleBundle:Test:run, filterClass: null }
+
+_main:
+    resource: routing.yml

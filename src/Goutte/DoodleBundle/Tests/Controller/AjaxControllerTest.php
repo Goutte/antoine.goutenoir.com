@@ -6,18 +6,42 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AjaxControllerTest extends WebTestCase
 {
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
+    private $em;
+
+    public function setUp()
+    {
+        $kernel = static::createKernel();
+        $kernel->boot();
+        $this->em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
+    }
+
+
     public function testSave()
     {
 
         $client = static::createClient();
         $client->request('POST', '/doodle/save', array('dataURL'=>$this->getTestDoodleData()));
         $response = $client->getResponse();
-        $this->assertTrue($response->isSuccessful(), "On save, server returns ".$response->getStatusCode());
+        $this->assertTrue($response->isSuccessful(), sprintf("On save, server returns %d",$response->getStatusCode()));
         $content = json_decode($response->getContent());
         $validated = ('ok' == $content->status);
         $this->assertTrue($validated, "Saving a new doodle via dataURL, wrong status = ".$content->status);
 
+
         // fixme : test the deletion of the created doodle
+
+//        $doodle = $this->em
+//                    ->getRepository('Goutte\DoodleBundle\Entity\Doodle')
+//                    ->findOneById($doodleId)
+//                    ->getResult();
+//
+//        $this->assertCount(1, $doodle);
+//        $this->em->remove($doodle);
+//        $this->em->flush();
+
 
     }
 
