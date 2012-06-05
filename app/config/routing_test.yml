@@ -1,5 +1,5 @@
 _doodle_run_tests:
-    pattern: /doodle/test/{filterClass}
+    pattern: /test/{filterClass}
     defaults: { _controller: GoutteDoodleBundle:Test:run, filterClass: null }
 
 _main:

@@ -11,6 +11,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AjaxController extends Controller
 {
+
     /**
      * Saves the image dataURL passed in POST variable $dataURL
      * Checks if the user has not saved already 42 images

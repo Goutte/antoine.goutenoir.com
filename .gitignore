@@ -17,3 +17,4 @@ web/bundles/*
 
 # Configuration files
 app/config/parameters.ini
+app/phpunit.xml
