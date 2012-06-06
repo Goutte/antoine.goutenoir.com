@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AjaxControllerTest extends WebTestCase
 {
-    private $doodleId;
 
     /**
      * @var \Doctrine\ORM\EntityManager
@@ -19,6 +18,8 @@ class AjaxControllerTest extends WebTestCase
         $kernel->boot();
         $this->em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     /**
@@ -45,13 +46,13 @@ class AjaxControllerTest extends WebTestCase
 
 
     /**
+     * test the send of a new doodle, providing doodle id
+     *
      * @depends testSave
      * @param $doodleId
      */
     public function testSend($doodleId)
     {
-        // test the save of a new doodle, providing the encoded data
-
         $client = static::createClient();
         $client->request('POST', sprintf('/doodle/send/%d', $doodleId), array());
         $response = $client->getResponse();
@@ -65,13 +66,75 @@ class AjaxControllerTest extends WebTestCase
 
 
     /**
+     * test the send of a new doodle, along with a message, providing doodle id
+     *
+     * @depends testSave
+     * @param $doodleId
+     */
+    public function testSendWithMessage($doodleId)
+    {
+        $message = 'Lone Star';
+
+        $client = static::createClient();
+        $client->request('POST', sprintf('/doodle/send/%d', $doodleId), array('message'=>$message));
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isSuccessful(), sprintf("On send with message, server returns %d",$response->getStatusCode()));
+        $content = json_decode($response->getContent());
+        $validated = ('ok' == $content->status);
+        $this->assertTrue($validated, sprintf("Sending a doodle with a message, wrong status = %s",$content->status));
+
+        // check the message has been saved
+        $doodle = $this->em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findOneById($doodleId);
+        $this->assertNotEmpty($doodle, "Could not find freshly saved doodle.");
+        $this->assertEquals($message, $doodle->getMessage(), "Message was not saved");
+    }
+
+
+
+    /**
+     * test the view of a new doodle, providing the doodle id
+     *
+     * @depends testSave
+     * @param $doodleId
+     */
+    public function testView($doodleId)
+    {
+        $client = static::createClient();
+        $client->request('GET', sprintf('/doodle/view/%d', $doodleId), array());
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isSuccessful(), sprintf("On view, server returns %d",$response->getStatusCode()));
+        //var_dump($response->getContent());
+    }
+
+
+
+    /**
+     * test the download of a new doodle, providing the doodle id
+     *
+     * @depends testSave
+     * @param $doodleId
+     */
+    public function testDownload($doodleId)
+    {
+        $client = static::createClient();
+        $client->request('GET', sprintf('/doodle/view/%d', $doodleId), array());
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isSuccessful(), sprintf("On view, server returns %d",$response->getStatusCode()));
+        //var_dump($response->getContent());
+    }
+
+
+
+    /**
+     * FINALLY, test the deletion of the saved doodle
      * @depends testSave
      * @param $doodleId
      */
     public function testDelete($doodleId)
     {
-        // test the deletion of the saved doodle
-
         $doodle = $this->em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findOneById($doodleId);
 
         $this->assertNotEmpty($doodle, "Could not find freshly saved doodle.");

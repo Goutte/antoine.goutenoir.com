@@ -25,6 +25,7 @@ class DefaultController extends Controller
 
     /**
      * View the doodle as <img>
+     * Provide the name of the route for twig paths
      *
      * @Route("/doodle/view/{id}", requirements={"id" = "\d+"}, name="doodle_view")
      * @Template()

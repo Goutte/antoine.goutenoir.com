@@ -24,4 +24,8 @@ class DefaultControllerTest extends WebTestCase
         $client->request('GET', '/');
         $this->assertTrue($client->getResponse()->isSuccessful());
     }
+
+
+    // Other default controller tests are in AjaxControllerTest for convenience
+
 }
