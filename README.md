@@ -17,3 +17,10 @@ php bin/vendors install
 php app/console doctrine:schema:create
 php app/console assets:install --symlink web
 
+
+TESTS
+=====
+
+To be able to set breakpoints in tests, run :
+
+    $ export XDEBUG_CONFIG="idekey=PHPSTORM"
