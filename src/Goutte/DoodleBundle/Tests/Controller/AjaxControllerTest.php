@@ -119,11 +119,47 @@ class AjaxControllerTest extends WebTestCase
     public function testDownload($doodleId)
     {
         $client = static::createClient();
-        $client->request('GET', sprintf('/doodle/view/%d', $doodleId), array());
+        $client->request('GET', sprintf('/doodle/download/%d', $doodleId), array());
         $response = $client->getResponse();
 
-        $this->assertTrue($response->isSuccessful(), sprintf("On view, server returns %d",$response->getStatusCode()));
-        //var_dump($response->getContent());
+        $this->assertTrue($response->isSuccessful(), sprintf("On download, server returns %d",$response->getStatusCode()));
+
+        //var_dump($response);
+        //$h = $response->getHeaders(); // ?
+        //var_dump($h);
+    }
+
+
+
+    /**
+     * test the listing of important doodles
+     *
+     * @depends testSave
+     * @param $doodleId
+     */
+    public function testList($doodleId)
+    {
+        $client = static::createClient();
+        $client->request('GET', '/doodles', array());
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isSuccessful(), sprintf("On list, server returns %d",$response->getStatusCode()));
+    }
+
+
+    /**
+     * test the listing of all doodles
+     *
+     * @depends testSave
+     * @param $doodleId
+     */
+    public function testListAll($doodleId)
+    {
+        $client = static::createClient();
+        $client->request('GET', '/doodles/all', array());
+        $response = $client->getResponse();
+
+        $this->assertTrue($response->isSuccessful(), sprintf("On list all, server returns %d",$response->getStatusCode()));
     }
 
 

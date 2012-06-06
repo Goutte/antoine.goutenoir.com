@@ -63,9 +63,15 @@
     version=v1.0.1
 
 
+
 [compass-elephant]
     git=https://github.com/matteosister/CompassElephant.git
 
 [CompassElephantBundle]
     git=https://github.com/matteosister/CompassElephantBundle.git
     target=bundles/Cypress/CompassElephantBundle
+
+
+[LiipFunctionalTestBundle]
+      git=git://github.com/liip/LiipFunctionalTestBundle.git
+      target=bundles/Liip/FunctionalTestBundle
