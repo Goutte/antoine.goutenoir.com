@@ -16,3 +16,6 @@ AsseticBundle v1.0.1
 compass-elephant v0.2.3
 CompassElephantBundle f5ad39693f4307c92ef56b460e3783b733436af2
 LiipFunctionalTestBundle 337cb30550ed14356be548770a9cbff3b13fb844
+KnpMenu ca754a2e28f12de4a1c379d15066ad039d1f15b2
+KnpMenuBundle v1.1.0
+GoogleBundle 984413101e17a870e448808c6db7f2d4ddf0a5cc
