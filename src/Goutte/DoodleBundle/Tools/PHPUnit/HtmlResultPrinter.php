@@ -5,6 +5,7 @@
 namespace Goutte\DoodleBundle\Tools\PHPUnit;
 
 use PHPUnit_TextUI_ResultPrinter;
+use PHPUnit_Framework_TestResult;
 
 class HtmlResultPrinter extends PHPUnit_TextUI_ResultPrinter
 {
@@ -36,6 +37,17 @@ class HtmlResultPrinter extends PHPUnit_TextUI_ResultPrinter
             if ($this->autoFlush) {
                 $this->incrementalFlush();
             }
+        }
+    }
+
+    protected function printFooter(PHPUnit_Framework_TestResult $result)
+    {
+        parent::printFooter($result);
+        if ($result->wasSuccessful() &&
+            $result->allCompletlyImplemented() &&
+            $result->noneSkipped()) {
+            $this->writeNewLine();
+            $this->write("<strong style=\"color:#016000;\">YOU, SIR, WIN AN INTERNET!</strong>");
         }
     }
 
