@@ -16,6 +16,7 @@ initialTextHelper.content = 'Click and drag to draw a doodle.';
 
 /** INIT **************************************************************************************************************/
 
+log ('view', view.size.width, view.size.height);
 
 /** LISTENERS *********************************************************************************************************/
 
@@ -42,6 +43,7 @@ function onMouseDrag (event) {
 
   if (distBetweenPoints > minDistBetweenPoints) {
     drawnPath.add(event.point);
+    log('adding point', event.point.x, event.point.y, view.size.width - 2 * event.point.x, view.size.height - 2 * event.point.y);
   }
 
 }
