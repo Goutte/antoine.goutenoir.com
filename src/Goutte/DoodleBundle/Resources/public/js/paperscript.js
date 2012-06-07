@@ -43,7 +43,8 @@ function onMouseDrag (event) {
 
   if (distBetweenPoints > minDistBetweenPoints) {
     drawnPath.add(event.point);
-    log('adding point', event.point.x, event.point.y, view.size.width - 2 * event.point.x, view.size.height - 2 * event.point.y);
+    if (view.size.width == 2 * event.point.x && view.size.height == 2 * event.point.y) alert('center!');
+    //log('adding point', event, event.point.x, event.point.y, view.size.width - 2 * event.point.x, view.size.height - 2 * event.point.y);
   }
 
 }

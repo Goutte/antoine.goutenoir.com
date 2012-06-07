@@ -21,8 +21,10 @@ class DefaultControllerTest extends WebTestCase
 
         // "Doodle on me" page
         $client = static::createClient();
-        $client->request('GET', '/');
+        $crawler = $client->request('GET', '/');
         $this->assertTrue($client->getResponse()->isSuccessful());
+
+        $this->assertGreaterThanOrEqual(1, count($crawler->filter('canvas')), "No canvas element in the index page");
     }
 
 
