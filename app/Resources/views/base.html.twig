@@ -14,9 +14,13 @@
 
   <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 
-  <link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
-  {% block stylesheets %}{% endblock %}
-  <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
+  {% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('bundles/gouttedoodle/compass/stylesheets/screen.css') }}" />
+  {% endblock %}
+
+  {#<link rel="stylesheet" href="{{ asset('css/reset.css') }}" />#}
+  {#{% block stylesheets %}{% endblock %}#}
+  {#<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />#}
 
   <!-- More brain-teasers for your <head> here: h5bp.com/d/head-Tips -->
 

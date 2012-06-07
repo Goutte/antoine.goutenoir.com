@@ -13,9 +13,13 @@ chmod -R 777 app/logs
 
 
 php bin/vendors install
+php bin/vendors update
 
 php app/console doctrine:schema:create
 php app/console assets:install --symlink web
+
+php app/console cypress:compass:compile
+php app/console cypress:compass:compile -e=prod
 
 
 TESTS

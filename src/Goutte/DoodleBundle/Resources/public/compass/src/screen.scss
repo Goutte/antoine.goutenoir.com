@@ -3,4 +3,55 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
-@import "compass/reset";
+/** RESET (this one is tricky, beware) ********************************************************************************/
+
+@import "common/reset.scss";
+
+@import "common/mixins.scss";
+
+
+/** CONFIG ************************************************************************************************************/
+
+$backgroundColor: #000000;
+$textColor: #FFFFFF;
+
+/** GLOBAL DESIGN *****************************************************************************************************/
+
+@mixin handwritten {
+  font-family: 'Handwriting', Arial, sans-serif;
+  font-weight: normal;
+  line-height: 0.6em;
+}
+
+
+
+body {
+  color: $textColor;
+  background-color: $backgroundColor
+}
+
+h2 {
+  padding: 0 15px;
+}
+
+.discreet {
+  @include smooth;
+}
+
+
+
+
+//@import "views/doodle.scss";
+
+
+
+
+@import "external-assets.scss";
+
+@import "font-face.scss";
+
+
+
+/** BOOTSTRAP *********************************************************************************************************/
+
+@import "common/bootstrap.scss";

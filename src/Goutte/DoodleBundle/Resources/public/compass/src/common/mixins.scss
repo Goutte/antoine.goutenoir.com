@@ -1,0 +1,55 @@
+/** GENERAL MIXINS (could be reused) **********************************************************************************/
+
+
+
+
+
+
+@mixin absolute($z:1) {
+  position: absolute;
+  top:  0;
+  left: 0;
+  z-index: $z;
+}
+
+
+
+@mixin slick {
+  -webkit-transition: all 0.2s ease-out;
+  -khtml-transition:  all 0.2s ease-out;
+  -moz-transition:    all 0.2s ease-out;
+  -o-transition:      all 0.2s ease-out;
+  transition:         all 0.2s ease-out;
+}
+
+@mixin smooth {
+  -webkit-transition: all 0.9s ease-out;
+  -khtml-transition:  all 0.9s ease-out;
+  -moz-transition:    all 0.9s ease-out;
+  -o-transition:      all 0.9s ease-out;
+  transition:         all 0.9s ease-out;
+}
+
+@mixin slow {
+  -webkit-transition: all 1.3s ease-out;
+  -khtml-transition:  all 1.3s ease-out;
+  -moz-transition:    all 1.3s ease-out;
+  -o-transition:      all 1.3s ease-out;
+  transition:         all 1.3s ease-out;
+}
+
+@mixin sloow {
+  -webkit-transition: all 1.9s ease-in-out;
+  -khtml-transition:  all 1.9s ease-in-out;
+  -moz-transition:    all 1.9s ease-in-out;
+  -o-transition:      all 1.9s ease-in-out;
+  transition:         all 1.9s ease-in-out;
+}
+
+
+
+
+
+
+
+/** DOODLE SPECIFIC MIXINS ********************************************************************************************/

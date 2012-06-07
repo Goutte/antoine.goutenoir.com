@@ -1,0 +1,130 @@
+
+
+@import "screen.scss";
+
+
+
+
+
+/** TOP LEFT INITIALS *************************************************************************************************/
+
+header {
+  @include absolute(20);
+}
+
+#whoami {
+
+  padding: 20px;
+  text-align: center;
+
+  h1, h2 {
+    @include handwritten;
+  }
+
+  h1 {
+    font-size: 5em;
+  }
+
+  h2 {
+    font-size: 4em;
+  }
+
+  .discreet {
+    font-size: 0;
+  }
+
+  &:hover .discreet {
+    font-size: 0;
+  }
+
+}
+
+
+
+
+/** CANVAS FOR DOODLES ************************************************************************************************/
+
+#doodleCanvas {
+  @include absolute(10);
+  //background-color: $backgroundColor;
+  cursor: crosshair;
+}
+
+
+
+
+#controls {
+  position: absolute;
+  right:  13px;
+  bottom: 13px;
+  z-index: 30;
+}
+
+#controls .hiddenSmall {
+  display: none !important;
+  visibility: hidden;
+}
+
+#controls .button {
+  display: block;
+  width:  64px;
+  height: 64px;
+
+  margin: 5px;
+  border-radius:         32px;
+  -moz-border-radius:    32px;
+  -webkit-border-radius: 32px;
+  border: 2px solid white;
+  color: #fff;
+  background: #000;
+  line-height: 64px;
+  text-align: center;
+  text-decoration: none;
+
+  font-family: 'Handwriting', Arial, sans-serif;
+  font-size:   3em;
+}
+
+#controls #buttonSave {
+
+}
+
+#controls .button:hover,
+#controls .button:focus,
+#controls .button.selected {
+  background-color: #fff;
+  color: #000;
+}
+
+#controls #buttonSend {
+}
+
+#controls #buttonView {
+}
+
+#controls #buttonDown {
+}
+
+
+
+#formSend {
+  position: absolute;
+  z-index: 40;
+  left: -230px;
+  width: 200px;
+  font-size: 0.8em;
+}
+
+#formSend textarea {
+  width:   100%;
+  padding: 3px;
+  border: 0;
+}
+
+#formSend input[type=submit] {
+  display: block;
+  width: 62%;
+  text-align: center;
+  margin:  5px auto 0 auto;
+  padding: 3px;
+}

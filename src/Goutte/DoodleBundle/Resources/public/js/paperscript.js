@@ -36,6 +36,10 @@ function onMouseDown (event) {
 // at the position of the mouse or the finger:
 function onMouseDrag (event) {
 
+  // Chrome on android sometimes fire this listener with a event.point in the exact center of the view
+  // I cannot find the origin of the bug (for now), so we cancel any event pointed to the exact center
+  if (view.size.width == 2 * event.point.x && view.size.height == 2 * event.point.y) return;
+
   // Get the last point of the path
   var lastPoint = drawnPath.getLastSegment().getPoint();
   // Check if the new point is far away enough
@@ -43,7 +47,6 @@ function onMouseDrag (event) {
 
   if (distBetweenPoints > minDistBetweenPoints) {
     drawnPath.add(event.point);
-    if (view.size.width == 2 * event.point.x && view.size.height == 2 * event.point.y) alert('center!');
     //log('adding point', event, event.point.x, event.point.y, view.size.width - 2 * event.point.x, view.size.height - 2 * event.point.y);
   }
 

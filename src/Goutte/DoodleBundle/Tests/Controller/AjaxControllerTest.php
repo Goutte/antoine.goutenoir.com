@@ -204,7 +204,7 @@ class AjaxControllerTest extends WebTestCase
         $my = $r->getMethod('__constructYou');
         $py = $my->getParameters();
 
-        $this->assertEquals($p,$py, "WAOW ! IF THIS FAILS I WANT TO HEAR ABOUT IT !"); // true
+        $this->assertEquals($p,$py, "WAOW ! IF THIS FAILS I WANT TO HEAR ABOUT IT !"); // passes
     }
 }
 
