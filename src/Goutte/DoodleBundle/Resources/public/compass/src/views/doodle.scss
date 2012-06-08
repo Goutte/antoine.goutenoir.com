@@ -1,6 +1,6 @@
 
 
-@import "screen.scss";
+@import "../screen.scss";
 
 
 
@@ -46,6 +46,7 @@ header {
 
 #doodleCanvas {
   @include absolute(10);
+  @include unselectable;
   //background-color: $backgroundColor;
   cursor: crosshair;
 }
@@ -58,6 +59,10 @@ header {
   right:  13px;
   bottom: 13px;
   z-index: 30;
+
+
+
+
 }
 
 #controls .hiddenSmall {
@@ -66,6 +71,9 @@ header {
 }
 
 #controls .button {
+
+  @include unselectable;
+
   display: block;
   width:  64px;
   height: 64px;
