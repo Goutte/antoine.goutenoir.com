@@ -19,6 +19,8 @@ header {
 
   h1, h2 {
     @include handwritten;
+    font-weight: normal;
+    line-height: 0.6em;
   }
 
   h1 {
@@ -59,10 +61,6 @@ header {
   right:  13px;
   bottom: 13px;
   z-index: 30;
-
-
-
-
 }
 
 #controls .hiddenSmall {
@@ -71,8 +69,9 @@ header {
 }
 
 #controls .button {
-
   @include unselectable;
+  @include smooth;
+  @include handwritten;
 
   display: block;
   width:  64px;
@@ -82,15 +81,15 @@ header {
   border-radius:         32px;
   -moz-border-radius:    32px;
   -webkit-border-radius: 32px;
-  border: 2px solid white;
-  color: #fff;
-  background: #000;
-  line-height: 64px;
+
+  border: 2px solid $textColor;
+  color: $textColor;
+  background: $backgroundColor;
+
   text-align: center;
   text-decoration: none;
-
-  font-family: 'Handwriting', Arial, sans-serif;
   font-size:   3em;
+  line-height: 64px;
 }
 
 #controls #buttonSave {
@@ -98,10 +97,10 @@ header {
 }
 
 #controls .button:hover,
-#controls .button:focus,
+#controls .button:active,
 #controls .button.selected {
-  background-color: #fff;
-  color: #000;
+  background-color: $textColor;
+  color: $backgroundColor;
 }
 
 #controls #buttonSend {
@@ -116,23 +115,28 @@ header {
 
 
 #formSend {
+
   position: absolute;
   z-index: 40;
   left: -230px;
   width: 200px;
+
   font-size: 0.8em;
+
+  textarea {
+    width:   100%;
+    padding: 3px;
+    border: 0;
+  }
+
+  input[type=submit] {
+    display: block;
+    width: 62%;
+    text-align: center;
+    margin:  5px auto 0 auto;
+    padding: 3px;
+  }
+
 }
 
-#formSend textarea {
-  width:   100%;
-  padding: 3px;
-  border: 0;
-}
 
-#formSend input[type=submit] {
-  display: block;
-  width: 62%;
-  text-align: center;
-  margin:  5px auto 0 auto;
-  padding: 3px;
-}

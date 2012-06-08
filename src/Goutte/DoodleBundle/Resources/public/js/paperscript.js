@@ -251,9 +251,9 @@ window.addEvent('domready', function () {
     'click': function (event) {
       event = new Event(event); event.stop();
       undo();
-    },
-    'mousedown': function (event) { this.addClass('selected'); },
-    'mouseup':   function (event) { this.removeClass('selected'); }
+    }
+//    'mousedown': function (event) { this.addClass('selected'); },
+//    'mouseup':   function (event) { this.removeClass('selected'); }
   });
 
 
