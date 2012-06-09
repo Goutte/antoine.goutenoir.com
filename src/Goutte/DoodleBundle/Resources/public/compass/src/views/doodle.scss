@@ -33,10 +33,13 @@ header {
 
   .discreet {
     font-size: 0;
+    visibility: hidden;
   }
 
-  &:hover .discreet {
-    font-size: 0;
+  &:hover .discreet,
+  &:active .discreet {
+    font-size: 1em;
+    visibility: visible;
   }
 
 }
