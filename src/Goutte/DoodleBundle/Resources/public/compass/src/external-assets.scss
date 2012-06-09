@@ -1,11 +1,21 @@
 /** SHARE ON GITHUB **/
 
-#shareOnGithub img {
-  position: absolute;
-  top:    0;
-  right:  0;
-  border: 0;
-  z-index: 40;
+#shareOnGithub {
+
+  img {
+    position: absolute;
+    top:    0;
+    right:  0;
+    border: 0;
+    z-index: 40;
+    @include slick;
+  }
+
+  &:hover img,
+  &:active img {
+    top:   -10px;
+    right: -10px;
+  }
 }
 
 /** CHROME FRAME PROMPT **/

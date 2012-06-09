@@ -26,6 +26,7 @@ $textColor: #FFFFFF;
 body {
   color: $textColor;
   background-color: $backgroundColor;
+  overflow: hidden;
 }
 
 h2 {

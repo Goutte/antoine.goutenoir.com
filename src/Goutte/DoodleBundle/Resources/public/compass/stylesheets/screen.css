@@ -153,14 +153,15 @@ td { vertical-align: top; }
 /** DOODLE SPECIFIC MIXINS ********************************************************************************************/
 /** CONFIG ************************************************************************************************************/
 /** GLOBAL DESIGN *****************************************************************************************************/
-body { color: white; background-color: black; }
+body { color: white; background-color: black; overflow: hidden; }
 
 h2 { padding: 0 15px; }
 
 .discreet { -webkit-transition: all 0.9s ease-out; -khtml-transition: all 0.9s ease-out; -moz-transition: all 0.9s ease-out; -o-transition: all 0.9s ease-out; transition: all 0.9s ease-out; }
 
 /** SHARE ON GITHUB **/
-#shareOnGithub img { position: absolute; top: 0; right: 0; border: 0; z-index: 40; }
+#shareOnGithub img { position: absolute; top: 0; right: 0; border: 0; z-index: 40; -webkit-transition: all 0.2s ease-out; -khtml-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; -o-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
+#shareOnGithub:hover img, #shareOnGithub:active img { top: -10px; right: -10px; }
 
 /** CHROME FRAME PROMPT **/
 .chromeframe { margin: 0.2em 0; background: #ccc; color: black; padding: 0.2em 0; }
