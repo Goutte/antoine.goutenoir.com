@@ -58,14 +58,14 @@ body {
  */
 
 ::-moz-selection {
-  background: #fef743;
-  color: #000;
+  background: $textColor;
+  color: $backgroundColor;
   text-shadow: none;
 }
 
 ::selection {
-  background: #fef743;
-  color: #000;
+  background: $textColor;
+  color: $backgroundColor;
   text-shadow: none;
 }
 

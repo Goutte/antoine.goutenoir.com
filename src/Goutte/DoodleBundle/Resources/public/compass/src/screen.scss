@@ -3,6 +3,11 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
+/** CONFIG ************************************************************************************************************/
+
+$backgroundColor: #000000;
+$textColor: #FFFFFF;
+
 /** RESET (this one is tricky, beware) ********************************************************************************/
 
 @import "common/reset.scss";
@@ -12,10 +17,7 @@
 @import "common/animate.scss";
 
 
-/** CONFIG ************************************************************************************************************/
 
-$backgroundColor: #000000;
-$textColor: #FFFFFF;
 
 /** GLOBAL DESIGN *****************************************************************************************************/
 
@@ -23,6 +25,32 @@ $textColor: #FFFFFF;
   font-family: 'Handwriting', Arial, sans-serif;
 }
 
+@mixin scaleX($ratio:0.5) {
+  transform:         scaleX($ratio);
+  -o-transform:      scaleX($ratio);
+  -ms-transform:     scaleX($ratio);
+  -moz-transform:    scaleX($ratio);
+  -khtml-transform:  scaleX($ratio);
+  -webkit-transform: scaleX($ratio);
+}
+
+@mixin scaleY($ratio:0.5) {
+  transform:         scaleY($ratio);
+  -o-transform:      scaleY($ratio);
+  -ms-transform:     scaleY($ratio);
+  -moz-transform:    scaleY($ratio);
+  -khtml-transform:  scaleY($ratio);
+  -webkit-transform: scaleY($ratio);
+}
+
+@mixin scale($x:1,$y:1) {
+  transform:         scale($x, $y);
+  -o-transform:      scale($x, $y);
+  -ms-transform:     scale($x, $y);
+  -moz-transform:    scale($x, $y);
+  -khtml-transform:  scale($x, $y);
+  -webkit-transform: scale($x, $y);
+}
 
 
 body {

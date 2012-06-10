@@ -73,7 +73,7 @@ header {
 
 #controls .button {
   @include unselectable;
-  @include smooth;
+  @include slick;
   @include handwritten;
 
   display: block;
@@ -104,6 +104,8 @@ header {
 #controls .button.selected {
   background-color: $textColor;
   color: $backgroundColor;
+  font-weight: bold;
+  @include scale(1.23,0.77);
 }
 
 #controls #buttonSend {

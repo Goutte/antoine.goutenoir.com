@@ -217,7 +217,17 @@ function updateControls (from, options) {
 
   if ('draw' == from) {
     if (drawnPaths.length == 1) {
-      notif('Good ! Have fun !', {clear:true});
+      notif('Good job ! Have fun !', {clear:true});
+    } else if (drawnPaths.length == 6) {
+      notif('<b>KEYBOARD ENABLED !</b><br />You can hit <b>[z]</b> to undo your last draw.');
+    } else if (drawnPaths.length == 12) {
+      notif('The page is probably getting slower.<br />It is expected -- this is a performance experiment.');
+    } else if (drawnPaths.length == 32) {
+      notif("Just hit <b>[c]</b> for Free Cake™ !");
+    } else if (drawnPaths.length == 100) {
+      notif("Waow, that's a big doodle you're drawing there !<br />I hope you'll save that !");
+    } else if (drawnPaths.length == 256) {
+      notif("<b>~ ACHIEVEMENT UNLOCKED ~</b><br />Web Doodle Artist");
     }
     // Hide control buttons
     buttonSend.addClass('hiddenSmall');
