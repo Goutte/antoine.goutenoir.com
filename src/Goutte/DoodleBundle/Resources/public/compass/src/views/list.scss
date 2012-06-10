@@ -5,8 +5,13 @@
   margin: 20px;
   float: left;
   width: 256px;
-}
 
-.doodle p {
-  min-height: 42px;
+  img {
+    border: 1px solid $textColor;
+  }
+
+  p {
+    padding: 0.5em;
+    min-height: 3em;
+  }
 }

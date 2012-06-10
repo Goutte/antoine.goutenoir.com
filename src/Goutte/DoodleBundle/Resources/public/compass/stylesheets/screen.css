@@ -1,4 +1,5 @@
 /* Welcome to Compass. In this file you should write your main styles. (or centralize your imports) Import this file using the following HTML or equivalent: <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/** CONFIG ************************************************************************************************************/
 /** RESET (this one is tricky, beware) ********************************************************************************/
 /* =============================================================================
 HTML5 display definitions
@@ -24,9 +25,9 @@ html, button, input, select, textarea { font-family: sans-serif; color: #222; }
 body { margin: 0; font-size: 1em; line-height: 1.4; }
 
 /* Remove text-shadow in selection highlight: h5bp.com/i These selection declarations have to be separate Also: hot pink! (or customize the background color to match your design) */
-::-moz-selection { background: #fef743; color: #000; text-shadow: none; }
+::-moz-selection { background: white; color: black; text-shadow: none; }
 
-::selection { background: #fef743; color: #000; text-shadow: none; }
+::selection { background: white; color: black; text-shadow: none; }
 
 /* =============================================================================
 Links
@@ -1390,9 +1391,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 .animated.wiggle { -webkit-animation-duration: 0.75s; -moz-animation-duration: 0.75s; -ms-animation-duration: 0.75s; -o-animation-duration: 0.75s; animation-duration: 0.75s; }
 
-/** CONFIG ************************************************************************************************************/
 /** GLOBAL DESIGN *****************************************************************************************************/
-body { color: white; background-color: black; overflow: hidden; }
+body { color: white; background-color: black; }
 
 h2 { padding: 0 15px; }
 
