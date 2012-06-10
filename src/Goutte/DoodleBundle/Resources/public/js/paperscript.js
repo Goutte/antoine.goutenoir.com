@@ -16,11 +16,13 @@ initialTextHelper.content = 'Click and drag to draw a doodle.';
 
 /** INIT **************************************************************************************************************/
 
-log ('view', view.size.width, view.size.height);
+//log ('view', view.size.width, view.size.height);
 
-/** LISTENERS *********************************************************************************************************/
+/** TOOLS LISTENERS ***************************************************************************************************/
 
-function onMouseDown (event) {
+var drawingTool = new Tool();
+
+drawingTool.onMouseDown = function (event) {
   // If we produced a path before, deselect it:
   if (drawnPath) {
     drawnPath.selected = false;
@@ -30,15 +32,15 @@ function onMouseDown (event) {
   drawnPath = new Path();
   drawnPath.add(event.point);
   drawnPath.strokeColor = 'white';
-}
+};
 
 // While the user drags the mouse or the finger, points are added to the path
 // at the position of the mouse or the finger:
-function onMouseDrag (event) {
+drawingTool.onMouseDrag = function (event) {
 
   // Chrome on android sometimes fire this listener with a event.point in the exact center of the view
   // I cannot find the origin of the bug (for now), so we cancel any event pointed to the exact center
-  if (view.size.width == 2 * event.point.x && view.size.height == 2 * event.point.y) return;
+  if (getDrawingCanvas().width == 2 * event.point.x && getDrawingCanvas().height == 2 * event.point.y) return;
 
   // Get the last point of the path
   var lastPoint = drawnPath.getLastSegment().getPoint();
@@ -48,18 +50,19 @@ function onMouseDrag (event) {
   if (distBetweenPoints > minDistBetweenPoints) {
     drawnPath.add(event.point);
     //log('adding point', event, event.point.x, event.point.y, view.size.width - 2 * event.point.x, view.size.height - 2 * event.point.y);
+    //drawnPath.smooth();
   }
 
-}
+};
 
 // When the mouse is released, we simplify the path:
-function onMouseUp (event) {
+drawingTool.onMouseUp = function (event) {
   var segmentCount = drawnPath.segments.length;
 
   // When the mouse is released, simplify it:
   drawnPath.simplify(13);
 
-  // If it is a point, make it bigger
+  // If it is a point, make it bigger fixme
   if (segmentCount == 1) {
     drawnPath.strokeWidth = 10;
   } else {
@@ -70,19 +73,25 @@ function onMouseUp (event) {
   drawnPaths.push(drawnPath);
   // Update Controls
   updateControls('draw');
-}
+};
 
-function onFrame () {
+
+drawingTool.onKeyDown = function (event) {
+  if (event.key == 'z') {
+    undo();
+  }
+};
+
+
+
+/** VIEW ONFRAME ******************************************************************************************************/
+
+function onFrame (event) {
   if (Key.isDown('c')) {
     movePathsTowardsSave();
   }
 }
 
-function onKeyDown (event) {
-  if (event.key == 'z') {
-    undo();
-  }
-}
 
 
 /** CONTROL LOGIC *****************************************************************************************************/
@@ -179,7 +188,7 @@ function updateControls (from, options) {
   var formSend = document.id('formSend');
 
   // Show / Hide Save & Undo
-  if ('save' != from && drawnPaths.length) {
+  if ('save' != from && 'send' != from && drawnPaths.length) {
     buttonSave.removeClass('hiddenSmall');
     buttonUndo.removeClass('hiddenSmall');
   } else {
@@ -242,9 +251,9 @@ window.addEvent('domready', function () {
       buttonSave.addClass('hiddenSmall');
       buttonUndo.addClass('hiddenSmall');
       save();
-    },
-    'mousedown': function (event) { this.addClass('selected'); },
-    'mouseup':   function (event) { this.removeClass('selected'); }
+    }
+//    'mousedown': function (event) { this.addClass('selected'); },
+//    'mouseup':   function (event) { this.removeClass('selected'); }
   });
 
   buttonUndo.addEvents({
@@ -310,8 +319,13 @@ function movePathTowards (path, destinationPoint) {
     if (movingVector.length > movingSpeed) movingVector = movingVector.normalize(movingSpeed);
   } while (movingVector.isZero() && j < path.segments.length - 1);
 
-  // If we have nothing to move
-  if (j >= path.segments.length) return; // todo : path.remove() ?
+  // If we have nothing to move for this path
+  if (j >= path.segments.length)  {
+    path.remove();
+    drawnPaths.splice(drawnPaths.indexOf(path), 1);
+    updateControls();
+    return;
+  }
 
   // Backup the position of the point so we can calculate the movement of the next
   var oldPrevPoint = new Point(path.segments[j].point);
