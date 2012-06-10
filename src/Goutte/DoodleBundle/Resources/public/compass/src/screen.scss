@@ -87,6 +87,8 @@ h2 {
     background: url(../../../images/notification_bg.gif) no-repeat top left;
     margin: 1em auto 1em auto;
     text-align: center;
+    color: $textColor;
+    background-color: $backgroundColor;
 
     p {
       padding: 10px;
