@@ -40,6 +40,28 @@ h2 {
 }
 
 
+#notifications {
+
+  @include absolute(40);
+
+  overflow: visible;
+  width: 100%;
+
+  .notification {
+
+    visibility: hidden;
+
+    cursor: pointer;
+    border: 2px solid $textColor;
+    margin: 1em auto 1em auto;
+    width: 20%;
+    text-align: center;
+
+    p {
+      padding: 10px;
+    }
+  }
+}
 
 
 

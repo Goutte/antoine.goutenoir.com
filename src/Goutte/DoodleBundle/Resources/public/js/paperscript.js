@@ -9,9 +9,9 @@ var drawnPaths = new Array();
 // Only execute onMouseDrag when the mouse has moved at least 7 points
 //tool.distanceThreshold = 70; // not working !
 
-var initialTextHelper = new PointText(new Point(getDrawingCanvas().width / 2 - 80, 55));
-initialTextHelper.fillColor = '#fff';
-initialTextHelper.content = 'Click and drag to draw a doodle.';
+//var initialTextHelper = new PointText(new Point(getDrawingCanvas().width / 2 - 80, 55));
+//initialTextHelper.fillColor = '#fff';
+//initialTextHelper.content = 'Click and drag to draw a doodle.';
 
 
 /** INIT **************************************************************************************************************/
@@ -117,12 +117,12 @@ function save () {
         updateControls('save', {doodleId: responseJSON.id});
         //document.location.href = 'doodle/view/' + responseJSON.id;
       } else if (responseJSON.status == 'error') {
-        alert(responseJSON.error);
+        notif(responseJSON.error);
       }
     },
     onFailure: function () {
       log('Fail ! Sorry.');
-      alert('Something went terribly wrong. Try again later ?');
+      notif('Something went terribly wrong. Try again later ?');
     }
   });
 
@@ -151,12 +151,12 @@ function send (data) {
       if (responseJSON.status == 'ok') {
         updateControls('send', data);
       } else if (responseJSON.status == 'error') {
-        alert(responseJSON.error);
+        notif(responseJSON.error);
       }
     },
     onFailure: function () {
       log('Fail ! Sorry.');
-      alert('Something went terribly wrong. Try again later ?');
+      notif('Something went terribly wrong. Try again later ?');
     }
   });
 
@@ -205,11 +205,15 @@ function updateControls (from, options) {
     buttonView.removeClass('hiddenSmall');
     buttonDown.setAttribute('href', getLinkDownAsImage(options.doodleId));
     buttonDown.removeClass('hiddenSmall');
+    notif('<b>Your doodle has been saved.</b><br />' +
+          'You can send it to me along with a message, ' +
+          'view the image in a new tab or simply download it as a png image.');
   }
 
   if ('draw' == from) {
-    // Remove initial text helper
-    initialTextHelper.remove();
+    if (drawnPaths.length == 1) {
+      notif('Good ! Have fun !', {clear:true});
+    }
     // Hide control buttons
     buttonSend.addClass('hiddenSmall');
     buttonView.addClass('hiddenSmall');
@@ -230,7 +234,7 @@ function updateControls (from, options) {
 
 function warpDoodleIntoSpace () {
   document.id('formSend').addClass('hiddenSmall');
-  alert("Well done, and thank you !");
+  notifs.add("Well done, and thank you !");
 }
 
 /** DOM BEHAVIORS *****************************************************************************************************/
