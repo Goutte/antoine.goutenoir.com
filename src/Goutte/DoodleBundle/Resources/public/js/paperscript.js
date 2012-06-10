@@ -6,8 +6,6 @@ var drawnPath;
 var drawnPaths = new Array();
 
 
-// Only execute onMouseDrag when the mouse has moved at least 7 points
-//tool.distanceThreshold = 70; // not working !
 
 //var initialTextHelper = new PointText(new Point(getDrawingCanvas().width / 2 - 80, 55));
 //initialTextHelper.fillColor = '#fff';
@@ -21,6 +19,8 @@ var drawnPaths = new Array();
 /** TOOLS LISTENERS ***************************************************************************************************/
 
 var drawingTool = new Tool();
+
+drawingTool.minDistance = minDistBetweenPoints;
 
 drawingTool.onMouseDown = function (event) {
   // If we produced a path before, deselect it:
@@ -42,16 +42,19 @@ drawingTool.onMouseDrag = function (event) {
   // I cannot find the origin of the bug (for now), so we cancel any event pointed to the exact center
   if (getDrawingCanvas().width == 2 * event.point.x && getDrawingCanvas().height == 2 * event.point.y) return;
 
-  // Get the last point of the path
-  var lastPoint = drawnPath.getLastSegment().getPoint();
-  // Check if the new point is far away enough
-  var distBetweenPoints = event.point.getDistance(lastPoint);
+  // Add the new point to the path
+  drawnPath.add(event.point);
 
-  if (distBetweenPoints > minDistBetweenPoints) {
-    drawnPath.add(event.point);
-    //log('adding point', event, event.point.x, event.point.y, view.size.width - 2 * event.point.x, view.size.height - 2 * event.point.y);
-    //drawnPath.smooth();
-  }
+//  // Get the last point of the path
+//  var lastPoint = drawnPath.getLastSegment().getPoint();
+//  // Check if the new point is far away enough
+//  var distBetweenPoints = event.point.getDistance(lastPoint);
+//
+//  if (distBetweenPoints > minDistBetweenPoints) {
+//    drawnPath.add(event.point);
+//    //log('adding point', event, event.point.x, event.point.y, view.size.width - 2 * event.point.x, view.size.height - 2 * event.point.y);
+//    //drawnPath.smooth();
+//  }
 
 };
 
@@ -82,6 +85,8 @@ drawingTool.onKeyDown = function (event) {
   }
 };
 
+
+drawingTool.activate();
 
 
 /** VIEW ONFRAME ******************************************************************************************************/

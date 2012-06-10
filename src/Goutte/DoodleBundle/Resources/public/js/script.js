@@ -1,12 +1,54 @@
+(function () {
+  var _slice = Array.prototype.slice;
 
+  Element.implement({
+    /*
+     adds 1+ classes to the element
+     e.g. document.id('myEl').addClasses('one', 'two', 'three');
+          document.id('myEl').addClasses(['one', 'two', 'three']);
+     */
+    addClasses: function () {
+      var args, i, l;
 
+      if (arguments.length == 1 && Array.isArray(arguments[0]))
+        args = arguments[0];
+      else
+        args = _slice.call(arguments);
+
+      l = args.length;
+
+      for (i = 0; i < l; i++)
+        if (!this.hasClass(args[i]))
+          this.className = (this.className + ' ' + args[i]).clean();
+
+      return this;
+    },
+
+    /*
+     removes 1+ classes from the element
+     e.g. document.id('myEl').removeClasses('one', 'two', 'three');
+     */
+    removeClasses: function () {
+      this.className = this.className.replace(new RegExp('(^|\\s)(?:' + _slice.call(arguments).join('|') + ')(?:\\s|$)', 'g'), '$1');
+
+      return this;
+    }
+  });
+})();
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var NotificationsManager = new Class({
 
   Implements: [Options, Chain, Events],
 
   options: {
-    animationDuration: 1600
+    notification: {
+      animationDuration: 1600,
+      classShow: 'bounceInDown',
+      classHide: 'bounceOutUp',
+      clear:     false
+    }
   },
 
   initialize: function (holder, options) {
@@ -16,16 +58,25 @@ var NotificationsManager = new Class({
   },
 
   add: function (message, options) {
+    options = Object.merge(this.options.notification, options);
     if (options && true == options.clear) {
       this.clear();
       options.clear = false;
-      this.add.delay(this.options.animationDuration, this, [message, options]);
+      this.add.delay(this.options.notification.animationDuration, this, [message, options]);
     } else {
-      var n = new Notification(message, options);
+      var n = new Notification(this, message, options);
       n.getElement().inject(this.holder);
       n.show();
       n.getElement().setStyle('visibility', 'visible');
       this.stack.push(n);
+    }
+  },
+
+  remove: function (notification) {
+    var i = this.stack.indexOf(notification);
+    if (i != -1) {
+      this.stack.splice(i,1);
+      notification.hideAndDestroy();
     }
   },
 
@@ -43,23 +94,24 @@ var Notification = new Class({
   Implements: [Options, Chain, Events],
 
   options: {
-    class: 'notification',
+    classes: ['notification', 'animatedSmooth'],
     classShow: 'bounceInDown',
     classHide: 'bounceOutUp',
     animationDuration: 1600,
     onClick: function(){
-      this.hideAndDestroy();
+      this.manager.remove(this);
     }
   },
 
-  initialize: function (message, options) {
+  initialize: function (manager, message, options) {
+    this.manager = manager;
     this.message = message;
     this.setOptions(options);
   },
 
   _createDOM: function () {
     this.element = new Element('div');
-    this.element.addClass(this.options.class).addClass('animatedSmooth');
+    this.element.addClasses(this.options.classes);
     var p = new Element('p');
     p.set('html', this.message);
     p.inject(this.element);
@@ -92,14 +144,17 @@ var Notification = new Class({
 
 });
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var notifs;
 
 window.addEvent('load', function(){
 
-  //log ('domready paper', paper);
   notifs = new NotificationsManager('notifications');
-  notifs.add('Hello there !<br />Click and drag anywhere on the screen to draw a doodle.', {});
+  (function(){
+    notifs.add('Hello there !<br />Click and drag anywhere on the screen to draw a doodle.', {});
+  }).delay(1000);
+
 
 });
 
