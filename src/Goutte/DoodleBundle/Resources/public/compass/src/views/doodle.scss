@@ -51,10 +51,13 @@ header {
 
 /** CANVAS FOR DOODLES ************************************************************************************************/
 
+#doodleHolderCanvas {
+  @include absolute(9);
+  @include unselectable;
+}
 #doodleCanvas {
   @include absolute(10);
   @include unselectable;
-  //background-color: $backgroundColor;
   cursor: crosshair;
 }
 
@@ -66,48 +69,50 @@ header {
   right:  13px;
   bottom: 13px;
   z-index: 30;
+
+
+  .hiddenSmall {
+    display: none !important;
+    visibility: hidden;
+  }
+
+  .button {
+    @include unselectable;
+    @include slick;
+    @include handwritten;
+
+    display: block;
+    width:  64px;
+    height: 64px;
+
+    margin: 5px;
+    border-radius:         32px;
+    -moz-border-radius:    32px;
+    -webkit-border-radius: 32px;
+
+    border: 2px solid $textColor;
+    color: $textColor;
+    background: $backgroundColor;
+
+    text-align: center;
+    text-decoration: none;
+    font-size:   3em;
+    line-height: 64px;
+
+    &:hover,
+    &:active {
+      background-color: $textColor;
+      color: $backgroundColor;
+      font-weight: bold;
+      @include scale(1.23,0.77);
+    }
+
+  }
+
 }
 
-#controls .hiddenSmall {
-  display: none !important;
-  visibility: hidden;
-}
-
-#controls .button {
-  @include unselectable;
-  @include slick;
-  @include handwritten;
-
-  display: block;
-  width:  64px;
-  height: 64px;
-
-  margin: 5px;
-  border-radius:         32px;
-  -moz-border-radius:    32px;
-  -webkit-border-radius: 32px;
-
-  border: 2px solid $textColor;
-  color: $textColor;
-  background: $backgroundColor;
-
-  text-align: center;
-  text-decoration: none;
-  font-size:   3em;
-  line-height: 64px;
-}
 
 #controls #buttonSave {
-
-}
-
-#controls .button:hover,
-#controls .button:active,
-#controls .button.selected {
-  background-color: $textColor;
-  color: $backgroundColor;
-  font-weight: bold;
-  @include scale(1.23,0.77);
 }
 
 #controls #buttonSend {

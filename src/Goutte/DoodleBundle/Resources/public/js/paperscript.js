@@ -91,6 +91,8 @@ drawingTool.activate();
 
 /** VIEW ONFRAME ******************************************************************************************************/
 
+
+
 function onFrame (event) {
   if (Key.isDown('c')) {
     movePathsTowardsSave();
@@ -437,3 +439,18 @@ function canvasToImage (canvas, backgroundColor) {
 //  var serializer = new XMLSerializer();
 //  return serializer.serializeToString(svgContext.svg.htmlElement);
 //};
+
+
+//
+//var test = new paper.View(document.id('doodleHolderCanvas'));
+//test.activate();
+//
+//log (view, test);
+//
+//drawnPath = new Path();
+//drawnPath.add(new Point.random() * view.size);
+//drawnPath.add(new Point.random() * view.size);
+//drawnPath.strokeColor = 'blue';
+
+log ('scopeDoodle',paper._id);
+
