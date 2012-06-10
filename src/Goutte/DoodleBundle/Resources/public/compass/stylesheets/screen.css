@@ -1399,7 +1399,7 @@ h2 { padding: 0 15px; }
 .discreet { -webkit-transition: all 0.9s ease-out; -khtml-transition: all 0.9s ease-out; -moz-transition: all 0.9s ease-out; -o-transition: all 0.9s ease-out; transition: all 0.9s ease-out; }
 
 #notifications { position: absolute; top: 0; left: 0; z-index: 40; overflow: visible; width: 20%; margin-left: 40%; }
-#notifications .notification { visibility: hidden; cursor: pointer; border: 2px solid white; margin: 1em auto 1em auto; text-align: center; }
+#notifications .notification { visibility: hidden; cursor: pointer; border: 2px solid white; border-top-right-radius: 1em; border-bottom-left-radius: 1em; border-bottom-right-radius: 1em; background: url(../../../images/notification_bg.gif) no-repeat top left; margin: 1em auto 1em auto; text-align: center; }
 #notifications .notification p { padding: 10px; }
 
 /** SHARE ON GITHUB **/
