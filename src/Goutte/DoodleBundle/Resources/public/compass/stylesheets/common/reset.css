@@ -1,9 +1,9 @@
 /*
 Syntax error: Undefined variable: "$textColor".
-        on line 61 of /home/tonioth/htdocs/antoine.goutenoir.com/src/Goutte/DoodleBundle/Resources/public/compass/src/common/reset.scss
+        on line 60 of /home/tonioth/htdocs/antoine.goutenoir.com/src/Goutte/DoodleBundle/Resources/public/compass/src/common/reset.scss
 
 Backtrace:
-/home/tonioth/htdocs/antoine.goutenoir.com/src/Goutte/DoodleBundle/Resources/public/compass/src/common/reset.scss:61
+/home/tonioth/htdocs/antoine.goutenoir.com/src/Goutte/DoodleBundle/Resources/public/compass/src/common/reset.scss:60
 /usr/lib/ruby/1.8/sass/script/variable.rb:39:in `_perform'
 /usr/lib/ruby/1.8/sass/script/node.rb:61:in `perform'
 /usr/lib/ruby/1.8/sass/tree/prop_node.rb:132:in `perform!'
@@ -44,4 +44,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$textColor\".\A         on line 61 of /home/tonioth/htdocs/antoine.goutenoir.com/src/Goutte/DoodleBundle/Resources/public/compass/src/common/reset.scss"; }
+  content: "Syntax error: Undefined variable: \"$textColor\".\A         on line 60 of /home/tonioth/htdocs/antoine.goutenoir.com/src/Goutte/DoodleBundle/Resources/public/compass/src/common/reset.scss"; }

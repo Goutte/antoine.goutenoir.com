@@ -72,6 +72,8 @@ drawingTool.onMouseUp = function (event) {
     drawnPath.strokeWidth = 2;
   }
 
+  addPathToHolder(drawnPath); // fixme
+
   // Add to the stack
   drawnPaths.push(drawnPath);
   // Update Controls
@@ -453,4 +455,6 @@ function canvasToImage (canvas, backgroundColor) {
 //drawnPath.strokeColor = 'blue';
 
 log ('scopeDoodle',paper._id);
+
+doodlePaperScope = paper;
 
