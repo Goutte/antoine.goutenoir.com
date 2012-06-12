@@ -70,6 +70,7 @@ h2 {
 #notifications {
 
   @include absolute(40);
+  @include unselectable;
 
   overflow: visible;
   width: 20%;
@@ -77,6 +78,7 @@ h2 {
 
   .notification {
 
+    @include unselectable;
     visibility: hidden;
 
     cursor: pointer;

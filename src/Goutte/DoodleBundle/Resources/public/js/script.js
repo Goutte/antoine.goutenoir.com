@@ -1,3 +1,5 @@
+//// ADD TO MOOTOOLS CLOUD
+
 (function () {
   var _slice = Array.prototype.slice;
 
@@ -35,6 +37,15 @@
     }
   });
 })();
+
+
+//// UGLY-ASS TWEAKS ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Chrome, linux (maybe others?), the crosshair is sometimes replaced by a text-select
+// The page has virtually no selectable content, so we remove selection altogether
+document.onselectstart = function () { return false; };
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -120,6 +131,8 @@ var Notification = new Class({
       'click': function(){this.fireEvent('click')}.bind(this)
     });
 
+    this.fireEvent('create');
+
     return this.element;
   },
 
@@ -147,17 +160,40 @@ var Notification = new Class({
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var notifs;
+var defaultNotifOptions = {
+  classes: ['notification', 'animatedSmooth'],
+  classShow: 'bounceInDown',
+  classHide: 'bounceOutUp',
+  animationDuration: 1600,
+  onCreate: function(){
+    // add timeout : 5s
+    log ('1', this);
+    (function(){
+      log ('2', this);
+      if (this) {
+        this.fireEvent('click');
+      }
+    }).delay(13000, this);
+  },
+  onClick: function(){
+    // remove the notif
+    this.manager.remove(this);
+    // get the focus back to the canvas
+    document.id('doodleCanvas').focus();
+  }
+};
 
 window.addEvent('load', function(){
 
   notifs = new NotificationsManager('notifications');
   (function(){
-    notifs.add('Hello there !<br />Click and drag anywhere on the screen to draw a doodle.', {});
+    notif('Hello there !<br />Click and drag anywhere on the screen to draw a doodle.', {});
   }).delay(1000);
 
 });
 
 function notif (message, options) {
+  options = Object.merge(defaultNotifOptions, options);
   if (notifs) notifs.add(message, options);
   else log ('notification failed', message, options);
 }
@@ -186,20 +222,19 @@ window.addEvent('domready', function(){
 var doodlePaperScope, doodleHolderPaperScope;
 
 var addPathToHolder = function (path) {
-
   paper = doodleHolderPaperScope;
   var pathCopy = paper.addPathToHolder(path);
-
   return pathCopy;
-
 };
 
+/**
+ * Redraw the holder.
+ * This is not good.
+ */
 var drawHolder = function () {
-
   paper = doodleHolderPaperScope;
   paper.view.draw();
-
-}
+};
 
 //// CONFIGURATION AND GLOBAL VARS /////////////////////////////////////////////////////////////////////////////////////
 
