@@ -214,7 +214,7 @@ window.addEvent('domready', function () {
     dp.add(new Point.random() * view.size);
     dp.strokeColor = 'red';
 
-    log (dp);
+    log (dp, Point.random(), view, view.size); // THE OPERATORS ARE NOT WORKING, WHICH SUCKS
 
     paper.view.draw();
 
