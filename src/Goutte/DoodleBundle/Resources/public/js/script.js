@@ -194,6 +194,13 @@ var addPathToHolder = function (path) {
 
 };
 
+var drawHolder = function () {
+
+  paper = doodleHolderPaperScope;
+  paper.view.draw();
+
+}
+
 //// CONFIGURATION AND GLOBAL VARS /////////////////////////////////////////////////////////////////////////////////////
 
 var minDistBetweenPoints = 7;

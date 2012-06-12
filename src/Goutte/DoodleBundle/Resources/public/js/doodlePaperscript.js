@@ -94,6 +94,7 @@ function onFrame (event) {
   //refreshFramerate(event.delta);
   if (Key.isDown('c')) {
     movePathsTowardsSave();
+    drawHolder();
   }
 }
 
@@ -105,6 +106,7 @@ function undo () {
   var p = drawnPaths.pop();
   p.remove();
   updateControls('undo', {});
+  drawHolder();
 }
 
 

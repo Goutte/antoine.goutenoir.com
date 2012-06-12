@@ -1,14 +1,9 @@
 
 
 
-//drawnPath = new Path();
-//drawnPath.add(new Point.random() * view.size);
-//drawnPath.add(new Point.random() * view.size);
-//drawnPath.strokeColor = 'blue';
-
-log ('scopeHolder',paper._id);
-
+// defined globally in script.js
 doodleHolderPaperScope = paper;
+
 
 paper.addPathToHolder = function(path) {
   var pathCopy = new Path(path.segments); //path.segments
@@ -20,3 +15,10 @@ paper.addPathToHolder = function(path) {
 
   return pathCopy;
 };
+
+
+
+//drawnPath = new Path();
+//drawnPath.add(new Point.random() * view.size);
+//drawnPath.add(new Point.random() * view.size);
+//drawnPath.strokeColor = 'blue';
