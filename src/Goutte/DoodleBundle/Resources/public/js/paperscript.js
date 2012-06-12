@@ -1,9 +1,4 @@
-var minDistBetweenPoints = 7;
-var movingSpeedFor1000 = 50;
-var minMovingSpeed = 17;
 
-var drawnPath;
-var drawnPaths = new Array();
 
 
 
@@ -72,10 +67,11 @@ drawingTool.onMouseUp = function (event) {
     drawnPath.strokeWidth = 2;
   }
 
-  addPathToHolder(drawnPath); // fixme
+  var drawnPathCopy = addPathToHolder(drawnPath);
+  drawnPath.remove();
 
   // Add to the stack
-  drawnPaths.push(drawnPath);
+  drawnPaths.push(drawnPathCopy);
   // Update Controls
   updateControls('draw');
 };
@@ -86,7 +82,6 @@ drawingTool.onKeyDown = function (event) {
     undo();
   }
 };
-
 
 drawingTool.activate();
 
