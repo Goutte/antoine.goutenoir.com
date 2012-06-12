@@ -163,6 +163,24 @@ function notif (message, options) {
 }
 
 
+
+//// DOM CONTROL FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Refreshes the framerate under AG for testing
+ * @param delta event.delta
+ */
+var refreshFramerate = function(){};
+
+window.addEvent('domready', function(){
+
+  refreshFramerate = function (delta) {
+    document.id ('framerate').set('text', delta ? 1/delta : 0);
+  }
+
+});
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var doodlePaperScope, doodleHolderPaperScope;
@@ -186,6 +204,8 @@ var drawnPath;
 var drawnPaths = new Array();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 
 

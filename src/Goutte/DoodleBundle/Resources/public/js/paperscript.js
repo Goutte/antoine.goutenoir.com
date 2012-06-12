@@ -91,6 +91,7 @@ drawingTool.activate();
 
 
 function onFrame (event) {
+  //refreshFramerate(event.delta);
   if (Key.isDown('c')) {
     movePathsTowardsSave();
   }
