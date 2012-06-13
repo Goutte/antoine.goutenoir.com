@@ -67,34 +67,7 @@ h2 {
 }
 
 
-#notifications {
 
-  @include absolute(40);
-
-  overflow: visible;
-  width: 20%;
-  margin-left: 40%;
-
-  .notification {
-
-    visibility: hidden;
-
-    cursor: pointer;
-    border: 2px solid $textColor;
-    border-top-right-radius:    1em;
-    border-bottom-left-radius:  1em;
-    border-bottom-right-radius: 1em;
-    background: url(../../../images/notification_bg.gif) no-repeat top left;
-    margin: 1em auto 1em auto;
-    text-align: center;
-    color: $textColor;
-    background-color: $backgroundColor;
-
-    p {
-      padding: 10px;
-    }
-  }
-}
 
 
 

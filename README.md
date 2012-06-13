@@ -10,7 +10,7 @@ Configure app/config.parameters.ini (use .dist file as template)
 
 chmod -R 777 app/cache
 chmod -R 777 app/logs
-
+(use setfacl too !)
 
 php bin/vendors install
 php bin/vendors update
@@ -28,3 +28,14 @@ TESTS
 To be able to set breakpoints in tests, run :
 
     $ export XDEBUG_CONFIG="idekey=PHPSTORM"
+
+
+MIGRATE TO PROD
+===============
+
+# remove the cache (and the logs)
+rm -Rf app/cache/* && rm -Rf app/logs/*.log
+# (temp) toggle htaccess comment
+# upload
+# clean server's cache
+# examine server's logs

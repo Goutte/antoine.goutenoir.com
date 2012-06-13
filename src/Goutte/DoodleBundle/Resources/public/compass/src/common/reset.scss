@@ -54,19 +54,20 @@ body {
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection declarations have to be separate
- * Also: hot pink! (or customize the background color to match your design)
  */
 
 ::-moz-selection {
   background: $textColor;
   color: $backgroundColor;
   text-shadow: none;
+  cursor: pointer;
 }
 
 ::selection {
   background: $textColor;
   color: $backgroundColor;
   text-shadow: none;
+  cursor: pointer;
 }
 
 /* =============================================================================

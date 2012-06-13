@@ -1,9 +1,4 @@
-var minDistBetweenPoints = 7;
-var movingSpeedFor1000 = 50;
-var minMovingSpeed = 17;
 
-var drawnPath;
-var drawnPaths = new Array();
 
 
 
@@ -72,8 +67,11 @@ drawingTool.onMouseUp = function (event) {
     drawnPath.strokeWidth = 2;
   }
 
+  var drawnPathCopy = addPathToHolder(drawnPath);
+  drawnPath.remove();
+
   // Add to the stack
-  drawnPaths.push(drawnPath);
+  drawnPaths.push(drawnPathCopy);
   // Update Controls
   updateControls('draw');
 };
@@ -85,15 +83,18 @@ drawingTool.onKeyDown = function (event) {
   }
 };
 
-
 drawingTool.activate();
 
 
 /** VIEW ONFRAME ******************************************************************************************************/
 
+
+
 function onFrame (event) {
+  //refreshFramerate(event.delta);
   if (Key.isDown('c')) {
     movePathsTowardsSave();
+    drawHolder();
   }
 }
 
@@ -105,6 +106,7 @@ function undo () {
   var p = drawnPaths.pop();
   p.remove();
   updateControls('undo', {});
+  drawHolder();
 }
 
 
@@ -437,3 +439,20 @@ function canvasToImage (canvas, backgroundColor) {
 //  var serializer = new XMLSerializer();
 //  return serializer.serializeToString(svgContext.svg.htmlElement);
 //};
+
+
+//
+//var test = new paper.View(document.id('doodleHolderCanvas'));
+//test.activate();
+//
+//log (view, test);
+//
+//drawnPath = new Path();
+//drawnPath.add(new Point.random() * view.size);
+//drawnPath.add(new Point.random() * view.size);
+//drawnPath.strokeColor = 'blue';
+
+log ('scopeDoodle',paper._id);
+
+doodlePaperScope = paper;
+
