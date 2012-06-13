@@ -166,10 +166,8 @@ var defaultNotifOptions = {
   classHide: 'bounceOutUp',
   animationDuration: 1600,
   onCreate: function(){
-    // add timeout : 5s
-    log ('1', this);
+    // add timeout : 13s
     (function(){
-      log ('2', this);
       if (this) {
         this.fireEvent('click');
       }

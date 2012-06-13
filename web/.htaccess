@@ -3,7 +3,6 @@
     #RewriteBase /contact/
     #################
     RewriteEngine On
-#    RewriteCond %{REQUEST_URI} contact
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.*)$ app.php [QSA,L]
 </IfModule>
