@@ -133,7 +133,7 @@ function save () {
     }
   });
 
-  var dataURL = canvasToImage(getDrawingCanvas(), '#000');
+  var dataURL = canvasToImage(getHoldingCanvas(), '#000');
 
   var img = document.createElement('img');
   img.setAttribute('src', dataURL);
@@ -377,6 +377,12 @@ function movePathTowards (path, destinationPoint) {
 function getDrawingCanvas () {
   return paper.project.view._element;
 }
+
+function getHoldingCanvas () {
+  paper = doodleHolderPaperScope;
+  return paper.project.view._element;
+}
+
 
 /**
  * Returns the dataURL (Base64 encoded data url string)

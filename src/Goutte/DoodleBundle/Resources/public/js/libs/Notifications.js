@@ -24,7 +24,6 @@ var NotificationsManager = new Class({
     options = Object.merge(this.options.notification, options);
 
     if (true == options.once && this.hasShown(message, options)) {
-      log ('already');
       return false;
     } else if (true == options.clear) {
       this.clear();
