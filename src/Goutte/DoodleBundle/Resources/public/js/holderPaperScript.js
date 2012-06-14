@@ -11,7 +11,7 @@ paper.addPathToHolder = function(path) {
   pathCopy.strokeWidth = path.strokeWidth;
   view.draw();
 
-  log ('addPathToHolder2', path, pathCopy);
+  //log ('addPathToHolder2', path, pathCopy);
 
   return pathCopy;
 };

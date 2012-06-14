@@ -70,11 +70,7 @@ var defaultNotifOptions = {
   animationDuration: 1600,
   onCreate: function(){
     // add timeout : 13s
-    (function(){
-      if (this) {
-        this.fireEvent('click');
-      }
-    }).delay(13000, this);
+    (function(){ if (this) this.fireEvent('click'); }).delay(13000, this);
   },
   onClick: function(){
     // remove the notif
@@ -84,9 +80,11 @@ var defaultNotifOptions = {
   }
 };
 
+
+
 window.addEvent('load', function(){
 
-  notifs = new NotificationsManager('notifications');
+  notifs = new NotificationsManager('notifications', {notification: defaultNotifOptions});
   (function(){
     notif('Hello there !<br />Click and drag anywhere on the screen to draw a doodle.', {});
   }).delay(500);
@@ -131,7 +129,7 @@ var addPathToHolder = function (path) {
 
 /**
  * Redraw the holder.
- * This is not good.
+ * This is not good. How ?
  */
 var drawHolder = function () {
   paper = doodleHolderPaperScope;

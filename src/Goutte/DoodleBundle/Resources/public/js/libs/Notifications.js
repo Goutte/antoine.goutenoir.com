@@ -1,3 +1,4 @@
+// Notifications and their manager
 
 var NotificationsManager = new Class({
 
@@ -6,6 +7,7 @@ var NotificationsManager = new Class({
   options: {
     notification: {
       // any Notification option, plus
+      animationDuration: 1500, // needed here
       clear: false
     }
   },
@@ -57,7 +59,8 @@ var Notification = new Class({
     classShow: 'animateIn',
     classHide: 'animateOut',
     animationDuration: 1500,
-    onClick: function(){ /*this.manager.remove(this);*/ }
+    onClick:  function(){ /*this.manager.remove(this);*/ },
+    onCreate: function(){}
   },
 
   initialize: function (manager, message, options) {
