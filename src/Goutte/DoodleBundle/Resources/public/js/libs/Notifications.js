@@ -8,44 +8,64 @@ var NotificationsManager = new Class({
     notification: {
       // any Notification option, plus
       animationDuration: 1500, // needed here
-      clear: false
+      clear: false,
+      once:  true
     }
   },
 
   initialize: function (holder, options) {
     this.holder = document.id(holder);
     this.setOptions(options);
-    this.stack = [];
+    this.currentStack = [];
+    this.archiveStack = [];
   },
 
   add: function (message, options) {
     options = Object.merge(this.options.notification, options);
-    if (options && true == options.clear) {
+
+    if (true == options.once && this.hasShown(message, options)) {
+      log ('already');
+      return false;
+    } else if (true == options.clear) {
       this.clear();
       options.clear = false;
-      this.add.delay(this.options.notification.animationDuration, this, [message, options]);
+      return this.add.delay(this.options.notification.animationDuration, this, [message, options]);
     } else {
       var n = new Notification(this, message, options);
       n.getElement().inject(this.holder);
       n.show();
       n.getElement().setStyle('visibility', 'visible');
-      this.stack.push(n);
+      this.currentStack.push(n);
+      this.archiveStack.push(n);
+      return true;
     }
   },
 
   remove: function (notification) {
-    var i = this.stack.indexOf(notification);
+    var i = this.currentStack.indexOf(notification);
     if (i != -1) {
-      this.stack.splice(i,1);
+      this.currentStack.splice(i,1);
       notification.hideAndDestroy();
     }
   },
 
   clear: function () {
     var n;
-    while (n = this.stack.pop()) {
+    while (n = this.currentStack.pop()) {
       n.hideAndDestroy();
     }
+  },
+
+  hasShown: function (message, options) {
+    var has = false; var n;
+    var i = 0;
+    while (false == has && i < this.archiveStack.length) {
+      if (this.archiveStack[i].message == message)  {
+        has = true;
+      }
+      i++;
+    }
+    return has;
   }
 
 });
