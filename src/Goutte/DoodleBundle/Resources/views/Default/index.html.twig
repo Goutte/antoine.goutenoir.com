@@ -11,7 +11,7 @@
   <div id="whoami" class="contentFrame">
     <h1>A<span class="discreet">ntoine</span> G<span class="discreet">outenoir</span></h1>
     <h2><span class="discreet">Thinker, WebSmith</span></h2>
-    <span id="framerate"></span>
+    <span id="framerate"></span>{# For perf-test, 'tis 62 right now #}
   </div>
 
 </header>
@@ -55,8 +55,9 @@
 
 {% block javascripts %}
 <script type="text/javascript"  src="{{ asset('bundles/gouttedoodle/js/libs/Notifications.js') }}"></script>
+<script type="text/javascript"  src="{{ asset('bundles/gouttedoodle/js/libs/AppManager.js') }}"></script>
+<script type="text/javascript"  src="{{ asset('bundles/gouttedoodle/js/script.js') }}"></script>
 <script type="text/paperscript" src="{{ asset('bundles/gouttedoodle/js/doodlePaperscript.js') }}" canvas="doodleCanvas"></script>
 <script type="text/paperscript" src="{{ asset('bundles/gouttedoodle/js/holderPaperScript.js') }}" canvas="doodleHolderCanvas"></script>
-<script type="text/javascript"  src="{{ asset('bundles/gouttedoodle/js/script.js') }}"></script>
 {% endblock %}
 
