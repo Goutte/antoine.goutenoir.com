@@ -218,16 +218,7 @@ function movePathTowards (path, destinationPoint) {
 
 }
 
-/** TOOLS *************************************************************************************************************/
 
-function getDrawingCanvas () {
-  return paper.project.view._element;
-}
-
-function getHoldingCanvas () {
-  paper = doodleHolderPaperScope;
-  return paper.project.view._element;
-}
 
 
 

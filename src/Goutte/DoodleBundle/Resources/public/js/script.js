@@ -161,6 +161,19 @@ window.addEvent('domready', function(){
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+/** TOOLS *************************************************************************************************************/
+
+function getDrawingCanvas () {
+  paper = doodlePaperScope;
+  return paper.project.view._element;
+}
+
+function getHoldingCanvas () {
+  paper = doodleHolderPaperScope;
+  return paper.project.view._element;
+}
+
 /**
  * Add the provided path to the holder
  * @param path
@@ -178,6 +191,9 @@ var drawHolder = function () {
   paper = doodleHolderPaperScope;
   paper.view.draw();
 };
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -298,7 +314,7 @@ function updateControls (from, options) {
     buttonDown.removeClass('hiddenSmall');
     notif('<b>Your doodle has been saved.</b><br />' +
           'You can send it to me along with a message, ' +
-          'view the image in a new tab or simply download it as a png image.');
+          'view the image in a new tab or simply download it as a png image.', {once: false});
   }
 
   if ('draw' == from) {
