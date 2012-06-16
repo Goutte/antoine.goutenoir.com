@@ -43,17 +43,6 @@ drawingTool.onMouseDrag = function (event) {
   // Add the new point to the path
   drawnPath.add(event.point);
 
-//  // Get the last point of the path
-//  var lastPoint = drawnPath.getLastSegment().getPoint();
-//  // Check if the new point is far away enough
-//  var distBetweenPoints = event.point.getDistance(lastPoint);
-//
-//  if (distBetweenPoints > minDistBetweenPoints) {
-//    drawnPath.add(event.point);
-//    //log('adding point', event, event.point.x, event.point.y, view.size.width - 2 * event.point.x, view.size.height - 2 * event.point.y);
-//    //drawnPath.smooth();
-//  }
-
 };
 
 // When the mouse is released, we simplify the path:
@@ -65,7 +54,10 @@ drawingTool.onMouseUp = function (event) {
 
   // If it is a point, make it bigger fixme
   if (segmentCount == 1) {
-    drawnPath.strokeWidth = 10;
+    drawnPath.remove();
+    drawnPath = new Path.Circle(drawnPath.segments[0]._point, 1);
+    drawnPath.strokeWidth = 2;
+    drawnPath.strokeColor = 'white';
   } else {
     drawnPath.strokeWidth = 2;
   }

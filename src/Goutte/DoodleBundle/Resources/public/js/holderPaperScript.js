@@ -9,9 +9,11 @@ paper.addPathToHolder = function(path) {
   var pathCopy = new Path(path.segments); //path.segments
   pathCopy.strokeColor = path.strokeColor;
   pathCopy.strokeWidth = path.strokeWidth;
+  pathCopy.closed      = path.closed;
+//  pathCopy._parent = null;
   view.draw();
 
-  //log ('addPathToHolder2', path, pathCopy);
+  log ('addPathToHolder2', path, pathCopy);
 
   return pathCopy;
 };
