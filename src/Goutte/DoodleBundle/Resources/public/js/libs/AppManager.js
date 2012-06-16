@@ -96,7 +96,7 @@ var ButtonControl = new Class({
   },
 
   initialize: function (button, options) {
-    self::parent(button, options);
+    parent(button, options);
   }
 
 });
