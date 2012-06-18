@@ -48,7 +48,7 @@ var Control = new Class({
   },
 
   disable: function () {
-    this.setDisabled(false);
+    this.setDisabled(true);
     this.fireEvent('disable');
   }
 
