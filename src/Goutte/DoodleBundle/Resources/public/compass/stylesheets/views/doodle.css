@@ -1470,7 +1470,7 @@ header { position: absolute; top: 0; left: 0; z-index: 20; }
 
 /** NOTIFICATIONS *****************************************************************************************************/
 #notifications { position: absolute; top: 0; left: 0; z-index: 40; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-user-drag: none; -moz-user-drag: none; user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); overflow: visible; width: 25%; min-width: 205px; margin-left: 40%; }
-#notifications .notification { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-user-drag: none; -moz-user-drag: none; user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); visibility: hidden; cursor: pointer; border: 2px solid white; border-top-right-radius: 1em; border-bottom-left-radius: 1em; border-bottom-right-radius: 1em; background: url(../../../images/notification_bg.gif) no-repeat top left; margin: 1em auto 1em auto; text-align: center; color: white; background-color: black; }
+#notifications .notification { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-user-drag: none; -moz-user-drag: none; user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); visibility: hidden; cursor: pointer; border: 2px solid white; border-top-right-radius: 1em; border-bottom-left-radius: 1em; border-bottom-right-radius: 1em; background: url(../../../img/notification_bg.gif) no-repeat top left; margin: 1em auto 1em auto; text-align: center; color: white; background-color: black; }
 #notifications .notification p { padding: 10px; }
 
 /** CANVAS FOR DOODLES ************************************************************************************************/
@@ -1480,8 +1480,18 @@ header { position: absolute; top: 0; left: 0; z-index: 20; }
 
 #controls { position: absolute; right: 13px; bottom: 13px; z-index: 30; }
 #controls .hiddenSmall { display: none !important; visibility: hidden; }
-#controls .button { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-user-drag: none; -moz-user-drag: none; user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-transition: all 0.2s ease-out; -khtml-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; -o-transition: all 0.2s ease-out; transition: all 0.2s ease-out; font-family: 'Handwriting', Arial, sans-serif; display: block; width: 64px; height: 64px; margin: 5px; border-radius: 32px; -moz-border-radius: 32px; -webkit-border-radius: 32px; border: 2px solid white; color: white; background: black; text-align: center; text-decoration: none; font-size: 3em; line-height: 64px; }
-#controls .button:hover, #controls .button:active { background-color: white; color: black; font-weight: bold; transform: scale(1.23, 0.77); -o-transform: scale(1.23, 0.77); -ms-transform: scale(1.23, 0.77); -moz-transform: scale(1.23, 0.77); -khtml-transform: scale(1.23, 0.77); -webkit-transform: scale(1.23, 0.77); }
+#controls .button { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-user-drag: none; -moz-user-drag: none; user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-transition: all 0.2s ease-out; -khtml-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; -o-transition: all 0.2s ease-out; transition: all 0.2s ease-out; font-family: 'Handwriting', Arial, sans-serif; display: block; width: 64px; height: 64px; margin: 8px; color: white; text-decoration: none; }
+#controls .button:hover, #controls .button:focus { transform: scale(1.23, 0.77); -o-transform: scale(1.23, 0.77); -ms-transform: scale(1.23, 0.77); -moz-transform: scale(1.23, 0.77); -khtml-transform: scale(1.23, 0.77); -webkit-transform: scale(1.23, 0.77); }
+
+#controls #buttonUndo { background: url(../../../img/icon/back.png) no-repeat center center; }
+
+#controls #buttonSave { background: url(../../../img/icon/save.png) no-repeat center center; }
+
+#controls #buttonSend { background: url(../../../img/icon/email.png) no-repeat center center; }
+
+#controls #buttonView { background: url(../../../img/icon/tab.png) no-repeat center center; }
+
+#controls #buttonDown { background: url(../../../img/icon/png.png) no-repeat center center; }
 
 #formSend { position: absolute; z-index: 40; left: -230px; width: 200px; font-size: 0.8em; }
 #formSend textarea { width: 100%; padding: 3px; border: 0; }

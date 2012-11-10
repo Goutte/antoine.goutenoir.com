@@ -69,7 +69,7 @@ header {
     border-top-right-radius:    1em;
     border-bottom-left-radius:  1em;
     border-bottom-right-radius: 1em;
-    background: url(../../../images/notification_bg.gif) no-repeat top left;
+    background: url(../../../img/notification_bg.gif) no-repeat top left;
     margin: 1em auto 1em auto;
     text-align: center;
     color: $textColor;
@@ -118,25 +118,14 @@ header {
     width:  64px;
     height: 64px;
 
-    margin: 5px;
-    border-radius:         32px;
-    -moz-border-radius:    32px;
-    -webkit-border-radius: 32px;
+    margin: 8px;
 
-    border: 2px solid $textColor;
     color: $textColor;
-    background: $backgroundColor;
 
-    text-align: center;
     text-decoration: none;
-    font-size:   3em;
-    line-height: 64px;
 
     &:hover,
-    &:active {
-      background-color: $textColor;
-      color: $backgroundColor;
-      font-weight: bold;
+    &:focus {
       @include scale(1.23,0.77);
     }
 
@@ -145,16 +134,24 @@ header {
 }
 
 
+#controls #buttonUndo {
+  background: url(../../../img/icon/back.png) no-repeat center center;
+}
+
 #controls #buttonSave {
+  background: url(../../../img/icon/save.png) no-repeat center center;
 }
 
 #controls #buttonSend {
+  background: url(../../../img/icon/email.png) no-repeat center center;
 }
 
 #controls #buttonView {
+  background: url(../../../img/icon/tab.png) no-repeat center center;
 }
 
 #controls #buttonDown {
+  background: url(../../../img/icon/png.png) no-repeat center center;
 }
 
 
