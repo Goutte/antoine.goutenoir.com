@@ -52,7 +52,7 @@ drawingTool.onMouseUp = function (event) {
   // When the mouse is released, simplify it:
   drawnPath.simplify(13);
 
-  // If it is a point, make it bigger fixme
+  // If it is a point, make it so
   if (segmentCount == 1) {
     drawnPath.remove();
     drawnPath = new Path.Circle(drawnPath.segments[0]._point, 1);
@@ -218,43 +218,6 @@ function movePathTowards (path, destinationPoint) {
 
 }
 
-
-
-
-
-// see https://github.com/paperjs/paper.js/issues/48
-//// These did not match up for some reason
-//SVGCanvas.prototype.transform = SVGCanvas.prototype.translate;
-//SVGCanvas.prototype.fillText = SVGCanvas.prototype.text;
-//
-//paper.View.prototype.toSVG = function() {
-//  var svgContext = new SVGCanvas(this.canvas.width, this.canvas.height);
-//
-//  var oldCtx = this._context;
-//
-//  this._context = svgContext;
-//  this.draw(false);
-//
-//  this._context = oldCtx;
-//
-//  // Optional serialization of the SVG DOM nodes
-//  var serializer = new XMLSerializer();
-//  return serializer.serializeToString(svgContext.svg.htmlElement);
-//};
-
-
-//
-//var test = new paper.View(document.id('doodleHolderCanvas'));
-//test.activate();
-//
-//log (view, test);
-//
-//drawnPath = new Path();
-//drawnPath.add(new Point.random() * view.size);
-//drawnPath.add(new Point.random() * view.size);
-//drawnPath.strokeColor = 'blue';
-
-//log ('scopeDoodle',paper._id);
 
 doodlePaperScope = paper;
 

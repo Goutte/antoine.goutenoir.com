@@ -28,10 +28,10 @@
   <div id="controls">
     <form action="#" id="formSend" class="hiddenSmall">
       <p>
-        <strong>I will be notified of your doodle.</strong><br />
+        <strong>I will be notified of your doodle.</strong>
+        <br />
         Do you want to attach a message?
       </p>
-      {#<input type="text" name="title" value="" size="20" /><br />#}
       <textarea name="message" rows="10"></textarea><br />
       <input type="submit" value="SEND" />
     </form>
@@ -46,18 +46,16 @@
 
 </div>
 
-<footer>
-
-</footer>
+<footer></footer>
 
 {% endblock %}
 
 
 {% block javascripts %}
-<script type="text/javascript"  src="{{ asset('bundles/gouttedoodle/js/libs/Notifications.js') }}"></script>
-<script type="text/javascript"  src="{{ asset('bundles/gouttedoodle/js/libs/AppManager.js') }}"></script>
-<script type="text/javascript"  src="{{ asset('bundles/gouttedoodle/js/script.js') }}"></script>
-<script type="text/paperscript" src="{{ asset('bundles/gouttedoodle/js/doodlePaperscript.js') }}" canvas="doodleCanvas"></script>
-<script type="text/paperscript" src="{{ asset('bundles/gouttedoodle/js/holderPaperScript.js') }}" canvas="doodleHolderCanvas"></script>
+  <script type="text/javascript"  src="{{ asset('bundles/gouttedoodle/js/libs/Notifications.js') }}"></script>
+  <script type="text/javascript"  src="{{ asset('bundles/gouttedoodle/js/libs/AppManager.js') }}"></script>
+  <script type="text/javascript"  src="{{ asset('bundles/gouttedoodle/js/script.js') }}"></script>
+  <script type="text/paperscript" src="{{ asset('bundles/gouttedoodle/js/doodlePaperscript.js') }}" canvas="doodleCanvas"></script>
+  <script type="text/paperscript" src="{{ asset('bundles/gouttedoodle/js/holderPaperScript.js') }}" canvas="doodleHolderCanvas"></script>
 {% endblock %}
 
