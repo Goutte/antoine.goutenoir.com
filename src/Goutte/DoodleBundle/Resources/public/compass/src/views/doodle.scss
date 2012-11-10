@@ -55,7 +55,8 @@ header {
   @include unselectable;
 
   overflow: visible;
-  width: 20%;
+  width: 25%;
+  min-width: 205px;
   margin-left: 40%;
 
   .notification {

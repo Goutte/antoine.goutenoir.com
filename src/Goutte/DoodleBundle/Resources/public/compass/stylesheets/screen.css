@@ -1398,10 +1398,6 @@ h2 { padding: 0 15px; }
 
 .discreet { -webkit-transition: all 0.9s ease-out; -khtml-transition: all 0.9s ease-out; -moz-transition: all 0.9s ease-out; -o-transition: all 0.9s ease-out; transition: all 0.9s ease-out; }
 
-#notifications { position: absolute; top: 0; left: 0; z-index: 40; overflow: visible; width: 20%; margin-left: 40%; }
-#notifications .notification { visibility: hidden; cursor: pointer; border: 2px solid white; border-top-right-radius: 1em; border-bottom-left-radius: 1em; border-bottom-right-radius: 1em; background: url(../../../images/notification_bg.gif) no-repeat top left; margin: 1em auto 1em auto; text-align: center; color: white; background-color: black; }
-#notifications .notification p { padding: 10px; }
-
 /** SHARE ON GITHUB **/
 #shareOnGithub img { position: absolute; top: 0; right: 0; border: 0; z-index: 40; -webkit-transition: all 0.2s ease-out; -khtml-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; -o-transition: all 0.2s ease-out; transition: all 0.2s ease-out; }
 #shareOnGithub:hover img, #shareOnGithub:active img { top: -10px; right: -10px; }
@@ -1459,3 +1455,4 @@ Inlined to avoid required HTTP connection: h5bp.com/r
   @page { margin: 0.5cm; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; } }
+@media (max-width: 500px) { #shareOnGithub { display: none; } }

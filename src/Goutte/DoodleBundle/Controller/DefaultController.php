@@ -10,10 +10,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * Main page, shows the drawing area
+     * Main page, shows the doodling area
      *
      * @Route("/")
-     * @Template()
+     * @Template("GoutteDoodleBundle:Default:doodle.html.twig")
      *
      * @return array
      */

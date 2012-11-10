@@ -254,7 +254,7 @@ function movePathTowards (path, destinationPoint) {
 //drawnPath.add(new Point.random() * view.size);
 //drawnPath.strokeColor = 'blue';
 
-log ('scopeDoodle',paper._id);
+//log ('scopeDoodle',paper._id);
 
 doodlePaperScope = paper;
 

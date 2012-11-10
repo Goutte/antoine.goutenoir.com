@@ -13,7 +13,7 @@ paper.addPathToHolder = function(path) {
 //  pathCopy._parent = null;
   view.draw();
 
-  log ('addPathToHolder2', path, pathCopy);
+//  log ('addPathToHolder2', path, pathCopy);
 
   return pathCopy;
 };
