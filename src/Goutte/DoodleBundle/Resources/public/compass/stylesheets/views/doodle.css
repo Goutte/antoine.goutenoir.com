@@ -1474,9 +1474,9 @@ header { position: absolute; top: 0; left: 0; z-index: 20; }
 #notifications .notification p { padding: 10px; }
 
 /** CANVAS FOR DOODLES ************************************************************************************************/
-#doodleHolderCanvas { position: absolute; top: 0; left: 0; z-index: 9; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-user-drag: none; -moz-user-drag: none; user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+#doodleHoldingCanvas { position: absolute; top: 0; left: 0; z-index: 9; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-user-drag: none; -moz-user-drag: none; user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
-#doodleCanvas { position: absolute; top: 0; left: 0; z-index: 10; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-user-drag: none; -moz-user-drag: none; user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: crosshair; }
+#doodleDrawingCanvas { position: absolute; top: 0; left: 0; z-index: 10; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-user-drag: none; -moz-user-drag: none; user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: crosshair; }
 
 #controls { position: absolute; right: 13px; bottom: 13px; z-index: 30; }
 #controls .hiddenSmall { display: none !important; visibility: hidden; }

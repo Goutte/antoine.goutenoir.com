@@ -84,11 +84,11 @@ header {
 
 /** CANVAS FOR DOODLES ************************************************************************************************/
 
-#doodleHolderCanvas {
+#doodleHoldingCanvas {
   @include absolute(9);
   @include unselectable;
 }
-#doodleCanvas {
+#doodleDrawingCanvas {
   @include absolute(10);
   @include unselectable;
   cursor: crosshair;

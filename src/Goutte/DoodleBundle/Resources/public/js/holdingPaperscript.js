@@ -219,5 +219,5 @@ function movePathTowards (path, destinationPoint) {
 }
 
 
-doodlePaperScope = paper;
+Doodle.drawingPaperScope = paper;
 

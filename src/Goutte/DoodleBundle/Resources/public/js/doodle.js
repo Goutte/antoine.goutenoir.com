@@ -1,42 +1,5 @@
-//// ADD TO MOOTOOLS CLOUD
+var Doodle = {};
 
-(function () {
-  var _slice = Array.prototype.slice;
-
-  Element.implement({
-    /*
-     adds 1+ classes to the element
-     e.g. document.id('myEl').addClasses('one', 'two', 'three');
-          document.id('myEl').addClasses(['one', 'two', 'three']);
-     */
-    addClasses: function () {
-      var args, i, l;
-
-      if (arguments.length == 1 && Array.isArray(arguments[0]))
-        args = arguments[0];
-      else
-        args = _slice.call(arguments);
-
-      l = args.length;
-
-      for (i = 0; i < l; i++)
-        if (!this.hasClass(args[i]))
-          this.className = (this.className + ' ' + args[i]).clean();
-
-      return this;
-    },
-
-    /*
-     removes 1+ classes from the element
-     e.g. document.id('myEl').removeClasses('one', 'two', 'three');
-     */
-    removeClasses: function () {
-      this.className = this.className.replace(new RegExp('(^|\\s)(?:' + _slice.call(arguments).join('|') + ')(?:\\s|$)', 'g'), '$1');
-
-      return this;
-    }
-  });
-})();
 
 
 /**
@@ -99,9 +62,9 @@ var movingSpeedFor1000   = 50;
 var minMovingSpeed       = 17;
 
 var drawnPath;
-var drawnPaths = new Array();
+var drawnPaths = [];
 
-var doodlePaperScope, doodleHolderPaperScope;
+//var Doodle.drawingPaperScope, Doodle.holderPaperScope;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -119,7 +82,7 @@ var defaultNotifOptions = {
     // remove the notif
     this.manager.remove(this);
     // get the focus back to the canvas
-    document.id('doodleCanvas').focus();
+    document.id('doodleDrawingCanvas').focus();
   }
 };
 
@@ -130,14 +93,14 @@ window.addEvent('load', function(){
   notifs = new NotificationsManager('notifications', {notification: defaultNotifOptions});
   (function(){
     notif('Hello there !<br />Click and drag anywhere on the screen to draw a doodle.', {});
-  }).delay(500);
+  }).delay(666);
 
 });
 
 function notif (message, options) {
   options = Object.merge(defaultNotifOptions, options);
   if (notifs) notifs.add(message, options);
-  else log ('notification failed', message, options);
+  else log ('Notification failed', message, options);
 }
 
 
@@ -148,7 +111,7 @@ function notif (message, options) {
  * Refreshes the framerate under AG for testing
  * @param delta event.delta
  */
-var refreshFramerate = function(){};
+var refreshFramerate = function(delta){};
 
 window.addEvent('domready', function(){
 
@@ -165,12 +128,12 @@ window.addEvent('domready', function(){
 /** TOOLS *************************************************************************************************************/
 
 function getDrawingCanvas () {
-  paper = doodlePaperScope;
+  paper = Doodle.drawingPaperScope;
   return paper.project.view._element;
 }
 
 function getHoldingCanvas () {
-  paper = doodleHolderPaperScope;
+  paper = Doodle.holderPaperScope;
   return paper.project.view._element;
 }
 
@@ -179,7 +142,7 @@ function getHoldingCanvas () {
  * @param path
  */
 var addPathToHolder = function (path) {
-  paper = doodleHolderPaperScope;
+  paper = Doodle.holderPaperScope;
   return paper.addPathToHolder(path);
 };
 
@@ -188,7 +151,7 @@ var addPathToHolder = function (path) {
  * This is not good. How ?
  */
 var drawHolder = function () {
-  paper = doodleHolderPaperScope;
+  paper = Doodle.holderPaperScope;
   paper.view.draw();
 };
 
@@ -351,5 +314,5 @@ function updateControls (from, options) {
 
 function warpDoodleIntoSpace () {
   document.id('formSend').addClass('hiddenSmall');
-  notifs.add("Well done, and thank you !");
+  notifs.add("Well done, and thank you!");
 }
