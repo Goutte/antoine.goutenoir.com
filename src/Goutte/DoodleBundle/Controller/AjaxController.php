@@ -12,9 +12,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class AjaxController extends Controller
 {
 
+    const MAX_DOODLES_PER_USER = 42;
+
     /**
      * Saves the image dataURL passed in POST variable $dataURL
-     * Checks if the user has not saved already 42 images
+     * Checks if the user has not saved already MAX_DOODLES_PER_USER images
      *
      * @Route("/doodle/save")
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
@@ -24,7 +26,7 @@ class AjaxController extends Controller
     {
         $request = $this->get('request');
 
-        if ($request->getMethod() != 'POST') {
+        if ($request->getMethod() != 'POST') { // fixme: move this to routing !
             throw new NotFoundHttpException("Save is POST only.");
         }
 
@@ -41,11 +43,11 @@ class AjaxController extends Controller
 
         // Check if ip has not already saved too much images
         $doodles = $em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findBy(array('created_by' => $ip));
-        if (count($doodles) > 41) {
+        if (count($doodles) >= self::MAX_DOODLES_PER_USER) {
             $json = array(
                 'status' => 'error',
-                'error' => "You already saved 42 doodles, which is the limit ! ".
-                           "Your enthusiasm is inspiring ; please contact me if you want more ! ".
+                'error' => "You already saved ".self::MAX_DOODLES_PER_USER." doodles, which is the limit !\n ".
+                           "Your enthusiasm is inspiring ; please contact me if you want more !\n ".
                            "-- antoine@goutenoir.com"
             );
             return $this->createJsonResponse($json);
@@ -119,6 +121,11 @@ class AjaxController extends Controller
         return $this->createJsonResponse($json);
     }
 
+    /**
+     * Util for easy json Response creation (old sf2 version)
+     * @param $json
+     * @return Response
+     */
     public function createJsonResponse($json)
     {
         $response = new Response();

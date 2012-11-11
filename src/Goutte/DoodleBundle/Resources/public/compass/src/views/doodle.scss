@@ -62,7 +62,7 @@ header {
 
   overflow: visible;
   width: 25%;
-  min-width: 222px;
+  min-width: 200px;
   margin-left: 37.5%;
 
   .notification {
@@ -75,14 +75,14 @@ header {
     cursor: pointer;
     border: 3px solid $textColor;
     border-radius: 1em;
-    margin: 1em 10px 1em 10px;
+    margin: 2em 10px 1em 10px;
     text-align: center;
     color: $textColor;
     background-color: $backgroundColor;
 
     .speaker {
       position: absolute;
-      top: 0;
+      top: -1.5em;
 
       @include speakerSize(128px);
       background: url(../../../img/speaker/neo.png) no-repeat center;
