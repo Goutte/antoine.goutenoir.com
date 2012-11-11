@@ -49,6 +49,12 @@ header {
 
 /** NOTIFICATIONS *****************************************************************************************************/
 
+@mixin speakerSize($size:128) {
+  left:   $size * -1;
+  width:  $size;
+  height: $size;
+}
+
 #notifications {
 
   @include absolute(40);
@@ -56,24 +62,64 @@ header {
 
   overflow: visible;
   width: 25%;
-  min-width: 205px;
-  margin-left: 40%;
+  min-width: 222px;
+  margin-left: 37.5%;
 
   .notification {
 
     @include unselectable;
     visibility: hidden;
 
+    position: relative;
+
     cursor: pointer;
-    border: 2px solid $textColor;
-    border-top-right-radius:    1em;
-    border-bottom-left-radius:  1em;
-    border-bottom-right-radius: 1em;
-    background: url(../../../img/notification_bg.gif) no-repeat top left;
-    margin: 1em auto 1em auto;
+    border: 3px solid $textColor;
+    border-radius: 1em;
+    margin: 1em 10px 1em 10px;
     text-align: center;
     color: $textColor;
     background-color: $backgroundColor;
+
+    .speaker {
+      position: absolute;
+      top: 0;
+
+      @include speakerSize(128px);
+      background: url(../../../img/speaker/neo.png) no-repeat center;
+
+      &.neo {
+        @include speakerSize(128px);
+        background-image: url(../../../img/speaker/neo.png);
+      }
+      &.geiger {
+        @include speakerSize(157px);
+        background-image: url(../../../img/speaker/geiger.png);
+      }
+      &.devil {
+        @include speakerSize(128px);
+        background-image: url(../../../img/speaker/devil.png);
+      }
+      &.yoda {
+        @include speakerSize(110px);
+        background-image: url(../../../img/speaker/yoda.png);
+      }
+      &.rabbit {
+        @include speakerSize(160px);
+        background-image: url(../../../img/speaker/rabbit.png);
+      }
+      &.hulk {
+        @include speakerSize(166px);
+        background-image: url(../../../img/speaker/hulk.png);
+      }
+      &.samurai {
+        @include speakerSize(145px);
+        background-image: url(../../../img/speaker/samurai.png);
+      }
+      &.wizard {
+        @include speakerSize(128px);
+        background-image: url(../../../img/speaker/wizard.png);
+      }
+    }
 
     p {
       padding: 10px;
@@ -121,7 +167,6 @@ header {
     margin: 8px;
 
     color: $textColor;
-
     text-decoration: none;
 
     &:hover,
@@ -182,3 +227,4 @@ header {
 }
 
 
+@import "../responsive.scss";

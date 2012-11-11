@@ -1455,7 +1455,6 @@ Inlined to avoid required HTTP connection: h5bp.com/r
   @page { margin: 0.5cm; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; } }
-@media (max-width: 500px) { #shareOnGithub { display: none; } }
 .doodle { margin: 20px; float: left; width: 256px; }
 .doodle img { border: 1px solid white; }
 .doodle p { padding: 0.5em; min-height: 3em; }

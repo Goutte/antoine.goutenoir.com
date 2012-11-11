@@ -73,6 +73,7 @@ var defaultNotifOptions = {
   classes: ['notification', 'animatedSmooth'],
   classShow: 'bounceInDown',
   classHide: 'bounceOutUp',
+  speaker:   'neo',
   animationDuration: 1600,
   onCreate: function(){
     // add timeout : 13s
@@ -92,7 +93,7 @@ window.addEvent('load', function(){
 
   notifs = new NotificationsManager('notifications', {notification: defaultNotifOptions});
   (function(){
-    notif('Hello there !<br />Click and drag anywhere on the screen to draw a doodle.', {});
+    notif('Hello there !<br /><strong>Click and drag</strong> anywhere on the screen to draw a doodle.', {});
   }).delay(666);
 
 });
@@ -277,22 +278,22 @@ function updateControls (from, options) {
     buttonDown.removeClass('hiddenSmall');
     notif('<b>Your doodle has been saved.</b><br />' +
           'You can send it to me along with a message, ' +
-          'view the image in a new tab or simply download it as a png image.', {once: false});
+          'view the image in a new tab or simply download it as a png image.', {once: false, speaker: 'samurai'});
   }
 
   if ('draw' == from) {
     if (drawnPaths.length == 1) {
-      notif('Good job ! Have fun !', {clear:true});
+      notif('Good job ! Have fun !', {clear: true, speaker: 'yoda'});
     } else if (drawnPaths.length == 6) {
-      notif('<b>KEYBOARD ENABLED !</b><br />You can hit <b>[z]</b> to undo your last draw.');
-    } else if (drawnPaths.length == 12) {
-      notif('The page is probably getting slower.<br />It is expected -- this is a performance experiment.');
+      notif('<b>KEYBOARD ENABLED !</b><br />You can hit <b>[z]</b> to undo your last draw.', {speaker: 'rabbit'});
+    } else if (drawnPaths.length == 16) {
+      notif('The page is probably getting slower.<br />It is expected -- this is a performance experiment.', {speaker: 'geiger'});
     } else if (drawnPaths.length == 32) {
-      notif("Just hit <b>[c]</b> for Free Cake™ !");
+      notif("Just hit <b>[c]</b> for Free Cake™ !", {speaker: 'devil'});
     } else if (drawnPaths.length == 100) {
-      notif("Waow, that's a big doodle you're drawing there !<br />I hope you'll save that !");
+      notif("Waow, that's a big doodle you're drawing there !<br />I hope you'll save that !", {speaker: 'hulk'});
     } else if (drawnPaths.length == 256) {
-      notif("<b>~ ACHIEVEMENT UNLOCKED ~</b><br />Web Doodle Artist");
+      notif("<b>~ ACHIEVEMENT UNLOCKED ~</b><br />Web Doodle Artist", {speaker: 'wizard'});
     }
     // Hide control buttons
     buttonSend.addClass('hiddenSmall');

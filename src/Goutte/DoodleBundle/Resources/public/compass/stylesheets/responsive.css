@@ -1,1 +1,3 @@
-@media (max-width: 500px) { #shareOnGithub { display: none; } }
+@media (max-width: 500px) { #whoami { display: none; }
+  #shareOnGithub { display: none; }
+  #notifications { margin-left: 160px; } }

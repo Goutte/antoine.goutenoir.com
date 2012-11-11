@@ -1,9 +1,16 @@
 
+@media (max-width: 500px) {
 
-@media (max-width: 500px) { // 767
+  #whoami {
+    display: none;
+  }
 
   #shareOnGithub {
     display: none;
+  }
+
+  #notifications {
+    margin-left: 160px;
   }
 
 }

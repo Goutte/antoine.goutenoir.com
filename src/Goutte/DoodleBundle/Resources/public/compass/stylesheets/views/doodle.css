@@ -1455,7 +1455,6 @@ Inlined to avoid required HTTP connection: h5bp.com/r
   @page { margin: 0.5cm; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; } }
-@media (max-width: 500px) { #shareOnGithub { display: none; } }
 body { overflow: hidden; }
 
 /** TOP LEFT INITIALS *************************************************************************************************/
@@ -1469,8 +1468,17 @@ header { position: absolute; top: 0; left: 0; z-index: 20; }
 #whoami:hover .discreet, #whoami:active .discreet { font-size: 1em; visibility: visible; }
 
 /** NOTIFICATIONS *****************************************************************************************************/
-#notifications { position: absolute; top: 0; left: 0; z-index: 40; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-user-drag: none; -moz-user-drag: none; user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); overflow: visible; width: 25%; min-width: 205px; margin-left: 40%; }
-#notifications .notification { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-user-drag: none; -moz-user-drag: none; user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); visibility: hidden; cursor: pointer; border: 2px solid white; border-top-right-radius: 1em; border-bottom-left-radius: 1em; border-bottom-right-radius: 1em; background: url(../../../img/notification_bg.gif) no-repeat top left; margin: 1em auto 1em auto; text-align: center; color: white; background-color: black; }
+#notifications { position: absolute; top: 0; left: 0; z-index: 40; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-user-drag: none; -moz-user-drag: none; user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); overflow: visible; width: 25%; min-width: 222px; margin-left: 37.5%; }
+#notifications .notification { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-user-drag: none; -moz-user-drag: none; user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); visibility: hidden; position: relative; cursor: pointer; border: 3px solid white; border-radius: 1em; margin: 1em 10px 1em 10px; text-align: center; color: white; background-color: black; }
+#notifications .notification .speaker { position: absolute; top: 0; left: -128px; width: 128px; height: 128px; background: url(../../../img/speaker/neo.png) no-repeat center; }
+#notifications .notification .speaker.neo { left: -128px; width: 128px; height: 128px; background-image: url(../../../img/speaker/neo.png); }
+#notifications .notification .speaker.geiger { left: -157px; width: 157px; height: 157px; background-image: url(../../../img/speaker/geiger.png); }
+#notifications .notification .speaker.devil { left: -128px; width: 128px; height: 128px; background-image: url(../../../img/speaker/devil.png); }
+#notifications .notification .speaker.yoda { left: -110px; width: 110px; height: 110px; background-image: url(../../../img/speaker/yoda.png); }
+#notifications .notification .speaker.rabbit { left: -160px; width: 160px; height: 160px; background-image: url(../../../img/speaker/rabbit.png); }
+#notifications .notification .speaker.hulk { left: -166px; width: 166px; height: 166px; background-image: url(../../../img/speaker/hulk.png); }
+#notifications .notification .speaker.samurai { left: -145px; width: 145px; height: 145px; background-image: url(../../../img/speaker/samurai.png); }
+#notifications .notification .speaker.wizard { left: -128px; width: 128px; height: 128px; background-image: url(../../../img/speaker/wizard.png); }
 #notifications .notification p { padding: 10px; }
 
 /** CANVAS FOR DOODLES ************************************************************************************************/
@@ -1496,3 +1504,7 @@ header { position: absolute; top: 0; left: 0; z-index: 20; }
 #formSend { position: absolute; z-index: 40; left: -230px; width: 200px; font-size: 0.8em; }
 #formSend textarea { width: 100%; padding: 3px; border: 0; }
 #formSend input[type=submit] { display: block; width: 62%; text-align: center; margin: 5px auto 0 auto; padding: 3px; }
+
+@media (max-width: 500px) { #whoami { display: none; }
+  #shareOnGithub { display: none; }
+  #notifications { margin-left: 160px; } }

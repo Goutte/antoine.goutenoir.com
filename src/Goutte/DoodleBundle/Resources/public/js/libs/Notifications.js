@@ -77,6 +77,7 @@ var Notification = new Class({
     classes:  ['notification'],
     classShow: 'animateIn',
     classHide: 'animateOut',
+    speaker:    null, // string, class the speaker will have
     animationDuration: 1500,
     onClick:  function(){ /*this.manager.remove(this);*/ },
     onCreate: function(){}
@@ -94,6 +95,12 @@ var Notification = new Class({
     var p = new Element('p');
     p.set('html', this.message);
     p.inject(this.element);
+    if (this.options.speaker) {
+      var speaker = new Element('div');
+      speaker.addClass('speaker');
+      speaker.addClass(this.options.speaker);
+      speaker.inject(this.element);
+    }
 
     this.element.addEvents ({
       'click': function(){this.fireEvent('click')}.bind(this)
