@@ -1,6 +1,15 @@
 var Doodle = {};
 
+//// CONFIGURATION AND GLOBAL VARS /////////////////////////////////////////////////////////////////////////////////////
 
+var minDistBetweenPoints = 7;
+var movingSpeedFor1000   = 50;
+var minMovingSpeed       = 17;
+
+var drawnPath;
+var drawnPaths = [];
+
+//// UTILS /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Returns the dataURL (Base64 encoded data url string)
@@ -9,16 +18,15 @@ var Doodle = {};
  * @param backgroundColor
  * @return {String} the dataURL
  */
-function canvasToImage (canvas, backgroundColor) {
-  // cache height and width
+Doodle.canvasToImage = function (canvas, backgroundColor) {
   var w = canvas.width;
   var h = canvas.height;
   var context = canvas.getContext("2d");
-  var data;
+  var canvasData;
 
   if (backgroundColor) {
     // get the current ImageData for the canvas.
-    data = context.getImageData(0, 0, w, h);
+    canvasData = context.getImageData(0, 0, w, h);
     // store the current globalCompositeOperation
     var compositeOperation = context.globalCompositeOperation;
     // set to draw behind current content
@@ -36,13 +44,13 @@ function canvasToImage (canvas, backgroundColor) {
     // clear the canvas
     context.clearRect(0, 0, w, h);
     // restore it with original / cached ImageData
-    context.putImageData(data, 0, 0);
+    context.putImageData(canvasData, 0, 0);
     // reset the globalCompositeOperation to what it was
     context.globalCompositeOperation = compositeOperation;
   }
 
   return imageData;
-}
+};
 
 
 //// UGLY-ASS TWEAKS ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -55,18 +63,10 @@ document.onselectstart = function () { return false; };
 
 
 
-//// CONFIGURATION AND GLOBAL VARS /////////////////////////////////////////////////////////////////////////////////////
 
-var minDistBetweenPoints = 7;
-var movingSpeedFor1000   = 50;
-var minMovingSpeed       = 17;
 
-var drawnPath;
-var drawnPaths = [];
 
-//var Doodle.drawingPaperScope, Doodle.holderPaperScope;
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//// NOTIFICATIONS /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 var notifs;
 var defaultNotifOptions = {
@@ -86,8 +86,6 @@ var defaultNotifOptions = {
     document.id('doodleDrawingCanvas').focus();
   }
 };
-
-
 
 window.addEvent('load', function(){
 
@@ -134,7 +132,7 @@ function getDrawingCanvas () {
 }
 
 function getHoldingCanvas () {
-  paper = Doodle.holderPaperScope;
+  paper = Doodle.holdingPaperScope;
   return paper.project.view._element;
 }
 
@@ -143,7 +141,7 @@ function getHoldingCanvas () {
  * @param path
  */
 var addPathToHolder = function (path) {
-  paper = Doodle.holderPaperScope;
+  paper = Doodle.holdingPaperScope;
   return paper.addPathToHolder(path);
 };
 
@@ -152,7 +150,7 @@ var addPathToHolder = function (path) {
  * This is not good. How ?
  */
 var drawHolder = function () {
-  paper = Doodle.holderPaperScope;
+  paper = Doodle.holdingPaperScope;
   paper.view.draw();
 };
 
@@ -203,11 +201,11 @@ function save () {
     },
     onFailure: function () {
       log('Fail ! Sorry.');
-      notif('Something went terribly wrong. Try again later ?');
+      notif('Something went terribly wrong. Try again later?', {speaker: 'hulk'});
     }
   });
 
-  var dataURL = canvasToImage(getHoldingCanvas(), '#000');
+  var dataURL = Doodle.canvasToImage(getHoldingCanvas(), '#000');
 
   var img = document.createElement('img');
   img.setAttribute('src', dataURL);
@@ -237,7 +235,7 @@ function send (data) {
     },
     onFailure: function () {
       log('Fail ! Sorry.');
-      notif('Something went terribly wrong. Try again later ?');
+      notif('Something went terribly wrong. Try again later?', {speaker: 'hulk'});
     }
   });
 
@@ -278,22 +276,23 @@ function updateControls (from, options) {
     buttonDown.removeClass('hiddenSmall');
     notif('<b>Your doodle has been saved.</b><br />' +
           'You can send it to me along with a message, ' +
-          'view the image in a new tab or simply download it as a png image.', {once: false, speaker: 'samurai'});
+          'view the image in a new tab ' +
+          'or simply download it as a png image.', {once: false, speaker: 'samurai'});
   }
 
   if ('draw' == from) {
     if (drawnPaths.length == 1) {
-      notif('Good job ! Have fun !', {clear: true, speaker: 'yoda'});
+      notif('Good job ! Have fun !<br /><small>(and with you may be the force !)</small>', {clear: true, speaker: 'yoda'});
     } else if (drawnPaths.length == 6) {
-      notif('<b>KEYBOARD ENABLED !</b><br />You can hit <b>[z]</b> to undo your last draw.', {speaker: 'rabbit'});
+      notif('<b>KEYBOARD ENABLED !</b><br />You can hit <b>[Z]</b> to <b>undo</b> your last draw.', {speaker: 'rabbit'});
     } else if (drawnPaths.length == 16) {
-      notif('The page is probably getting slower.<br />It is expected -- this is a performance experiment.', {speaker: 'geiger'});
+      notif('The page may be a bit sluggish.<br />It is expected, as this is a performance experiment.<br /><small>(no atom was hurt in the making of this webpage)</small>', {speaker: 'geiger'});
     } else if (drawnPaths.length == 32) {
-      notif("Just hit <b>[c]</b> for Free Cake™ !", {speaker: 'devil'});
+      notif("Just hit <b>[C]</b> for Free Cake™ !", {speaker: 'devil'});
     } else if (drawnPaths.length == 100) {
       notif("Waow, that's a big doodle you're drawing there !<br />I hope you'll save that !", {speaker: 'hulk'});
     } else if (drawnPaths.length == 256) {
-      notif("<b>~ ACHIEVEMENT UNLOCKED ~</b><br />Web Doodle Artist", {speaker: 'wizard'});
+      notif("<b>~ ACHIEVEMENT UNLOCKED ~</b><br /><em>Web Doodle Artist</em>", {speaker: 'wizard'});
     }
     // Hide control buttons
     buttonSend.addClass('hiddenSmall');
@@ -315,5 +314,5 @@ function updateControls (from, options) {
 
 function warpDoodleIntoSpace () {
   document.id('formSend').addClass('hiddenSmall');
-  notifs.add("Well done, and thank you!");
+  notif("Well done, and thank you!");
 }

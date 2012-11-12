@@ -3,7 +3,10 @@
 namespace Goutte\DoodleBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Response;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
@@ -36,14 +39,11 @@ class DefaultController extends Controller
      */
     public function viewAction($id)
     {
-        /** @var $em \Doctrine\ORM\EntityManager */
-        $em = $this->get('doctrine')->getEntityManager();
-
-        $doodle = $em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findOneBy(array('id' => $id));
+        $doodle = $this->findOneDoodleById($id);
 
         // Do we have a doodle ?
         if (!$doodle) {
-            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('No doodle for this id');
+            throw new NotFoundHttpException("No doodle for the id '{$id}'");
         }
 
         return array('doodle' => $doodle);
@@ -61,20 +61,16 @@ class DefaultController extends Controller
      */
     public function downloadAction($id)
     {
-
-        /** @var $em \Doctrine\ORM\EntityManager */
-        $em = $this->get('doctrine')->getEntityManager();
-
-        $doodle = $em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findOneBy(array('id' => $id));
+        $doodle = $this->findOneDoodleById($id);
 
         // Do we have a doodle ?
         if (!$doodle) {
-            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('No doodle for this id');
+            throw new NotFoundHttpException("No doodle for the id '{$id}'");
         }
 
         // Grab the MIME type and the data with a regex for convenience
         if (!preg_match('#data:([^;]*);base64,(.*)#', $doodle->getData(), $matches)) {
-            throw new \Symfony\Component\HttpKernel\Exception\HttpException('Data in database is corrupted');
+            throw new HttpException("Data in database is corrupted for doodle id '{$id}'");
         }
 
         // Decode the data
@@ -87,7 +83,12 @@ class DefaultController extends Controller
         $response->headers->set('Content-Disposition', 'attachment; filename="doodle'.$id.'.png"');
 
         return $response;
+    }
 
+    public function findOneDoodleById($id) {
+        /** @var $em \Doctrine\ORM\EntityManager */
+        $em = $this->get('doctrine')->getEntityManager();
+        return $em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findOneBy(array('id' => $id));
     }
 
 
@@ -130,7 +131,6 @@ class DefaultController extends Controller
      */
     public function listAllAction()
     {
-
         /** @var $em \Doctrine\ORM\EntityManager */
         $em = $this->get('doctrine')->getEntityManager();
 

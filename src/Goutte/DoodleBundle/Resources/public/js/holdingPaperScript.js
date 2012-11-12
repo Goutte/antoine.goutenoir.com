@@ -1,9 +1,9 @@
 
 // defined globally in doodle.js
-Doodle.holderPaperScope = paper;
+Doodle.holdingPaperScope = paper;
 
 
-Doodle.holderPaperScope.addPathToHolder = function(path) {
+Doodle.holdingPaperScope.addPathToHolder = function(path) {
   var pathCopy = new Path(path.segments); //path.segments
   pathCopy.strokeColor = path.strokeColor;
   pathCopy.strokeWidth = path.strokeWidth;
