@@ -123,10 +123,6 @@ class AjaxControllerTest extends WebTestCase
         $response = $client->getResponse();
 
         $this->assertTrue($response->isSuccessful(), sprintf("On download, server returns %d",$response->getStatusCode()));
-
-        //var_dump($response);
-        //$h = $response->getHeaders(); // ?
-        //var_dump($h);
     }
 
 
@@ -204,7 +200,7 @@ class AjaxControllerTest extends WebTestCase
         $my = $r->getMethod('__constructYou');
         $py = $my->getParameters();
 
-        $this->assertEquals($p,$py, "WAOW ! IF THIS FAILS I WANT TO HEAR ABOUT IT !"); // passes
+        $this->assertEquals($p, $py, "WAOW ! WHEN THIS FAILS I WANT TO HEAR ABOUT IT !"); // passes
     }
 }
 
