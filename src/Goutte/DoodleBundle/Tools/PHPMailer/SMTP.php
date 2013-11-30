@@ -15,6 +15,8 @@
  * @license   http://www.gnu.org/copyleft/lesser.html Distributed under the Lesser General Public License (LGPL)
  */
 
+namespace Goutte\DoodleBundle\Tools\PHPMailer;
+
 /**
  * PHPMailer RFC821 SMTP email transport class.
  *

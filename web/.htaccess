@@ -1,7 +1,5 @@
 <IfModule mod_rewrite.c>
-    # ONLY FOR SERVER
-    #RewriteBase /contact/
-    #################
+    RewriteBase /contact/
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.*)$ app_dev.php [QSA,L]

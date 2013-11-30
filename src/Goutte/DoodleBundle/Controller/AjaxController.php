@@ -2,34 +2,32 @@
 
 namespace Goutte\DoodleBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Goutte\DoodleBundle\Entity\Doodle;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class AjaxController extends Controller
+class AjaxController extends BaseController
 {
 
     const MAX_DOODLES_PER_USER = 42;
 
     /**
      * Saves the image dataURL passed in POST variable $dataURL
-     * Checks if the user has not saved already MAX_DOODLES_PER_USER images
+     * Checks if the user has not saved already MAX_DOODLES_PER_USER images, using the IP.
      *
      * @Route("/doodle/save")
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @return array
+     * @Method({"POST"})
+     *
+     * @throws NotFoundHttpException
+     * @return Response
      */
     public function saveAction()
     {
         $request = $this->get('request');
-
-        if ($request->getMethod() != 'POST') { // fixme: move this to routing !
-            throw new NotFoundHttpException("Save is POST only.");
-        }
-
         $dataURL = $request->get('dataURL');
 
         if (strpos($dataURL, 'data:image/png;base64') !== 0) {
@@ -38,8 +36,7 @@ class AjaxController extends Controller
 
         $ip = $request->getClientIp();
 
-        /** @var $em \Doctrine\ORM\EntityManager */
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->getEm();
 
         // Check if ip has not already saved too much images
         $doodles = $em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findBy(array('created_by' => $ip));
@@ -54,7 +51,7 @@ class AjaxController extends Controller
         }
 
         // Save the doodle
-        $doodle = new \Goutte\DoodleBundle\Entity\Doodle();
+        $doodle = new Doodle();
         $doodle->setCreatedBy($ip);
         $doodle->setCreatedAt();
         $doodle->setData($dataURL);
@@ -77,10 +74,11 @@ class AjaxController extends Controller
      * The ip must be the same as the creator
      *
      * @Route("/doodle/send/{id}", requirements={"id" = "\d+"})
+     * @Method({"POST"})
      *
      * @param $id
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @return array
+     * @throws NotFoundHttpException
+     * @return Response
      */
     public function sendAction($id)
     {
@@ -93,7 +91,7 @@ class AjaxController extends Controller
 
         // Do we have a doodle ?
         if (!$doodle) {
-            throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('No doodle for this id.');
+            throw new NotFoundHttpException('No doodle for this id.');
         }
 
         // Do we have the same IP ?
@@ -121,18 +119,5 @@ class AjaxController extends Controller
         return $this->createJsonResponse($json);
     }
 
-    /**
-     * Util for easy json Response creation (old sf2 version)
-     * @param $json
-     * @return Response
-     */
-    public function createJsonResponse($json)
-    {
-        $response = new Response();
-        $response->setContent(json_encode($json));
-        $response->setStatusCode(200);
-        $response->headers->set('Content-Type', 'application/json');
 
-        return $response;
-    }
 }

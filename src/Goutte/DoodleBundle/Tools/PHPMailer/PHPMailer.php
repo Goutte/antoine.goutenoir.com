@@ -18,6 +18,8 @@
  * FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+namespace Goutte\DoodleBundle\Tools\PHPMailer;
+
 if (version_compare(PHP_VERSION, '5.0.0', '<')) {
     exit("Sorry, PHPMailer will only run on PHP version 5 or greater!\n");
 }
@@ -571,9 +573,9 @@ class PHPMailer
     {
         $this->exceptions = ($exceptions == true);
         //Make sure our autoloader is loaded
-        if (!spl_autoload_functions() || !in_array('PHPMailerAutoload', spl_autoload_functions())) {
-            require 'PHPMailerAutoload.php';
-        }
+        //if (!spl_autoload_functions() || !in_array('PHPMailerAutoload', spl_autoload_functions())) {
+        //    require 'PHPMailerAutoload.php';
+        //}
     }
 
     /**
@@ -3270,7 +3272,7 @@ class PHPMailer
  * PHPMailer exception handler
  * @package PHPMailer
  */
-class phpmailerException extends Exception
+class phpmailerException extends \Exception
 {
     /**
      * Prettify error message output
