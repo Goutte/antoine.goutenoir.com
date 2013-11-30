@@ -59,6 +59,10 @@ class AjaxController extends BaseController
         $em->persist($doodle);
         $em->flush();
 
+        // Send me an email
+        $this->sendDoodleImageByEmail($doodle);
+
+        // Build the JSON Response
         $json = array(
             'status' => 'ok',
             'id' => $doodle->getId(),
@@ -112,6 +116,10 @@ class AjaxController extends BaseController
         $em->persist($doodle);
         $em->flush();
 
+        // Send me an email
+        $this->sendDoodleMessageByEmail($doodle);
+
+        // Build the JSON Response
         $json = array(
             'status' => 'ok',
         );

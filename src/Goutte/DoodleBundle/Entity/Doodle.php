@@ -135,6 +135,17 @@ class Doodle
     }
 
     /**
+     * Get binary image data
+     *
+     * @return string
+     */
+    public function getBlob()
+    {
+        $blob = substr($this->getData(),strlen('data:image/png;base64,'));
+        return base64_decode($blob);
+    }
+
+    /**
      * Set created_at
      *
      * @param datetime $createdAt
