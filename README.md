@@ -13,6 +13,10 @@ Configure app/config.parameters.ini (use .dist file as template)
 ```
 sudo setfacl -R  -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs
 sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs
+
+sudo setfacl -R  -m u:www-data:rwx -m u:`whoami`:rwx src/Goutte/DoodleBundle/Resources/public
+sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx src/Goutte/DoodleBundle/Resources/public
+
 sudo setfacl -R  -m u:www-data:rwx -m u:`whoami`:rwx web
 sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx web
 

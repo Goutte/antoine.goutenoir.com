@@ -1,0 +1,22 @@
+#!/bin/sh
+
+## CLEAR THE CACHE
+echo "Clearing the Cache..."
+#php app/console cache:clear --env=dev
+#php app/console cache:clear --env=dev --no-debug
+#php app/console cache:clear --env=prod
+#php app/console cache:clear --env=prod --no-debug
+# and, as the above does not work as expected :
+rm -Rf app/cache/*
+
+## CLEAR THE LOGS
+echo "Clearing the Logs..."
+rm -Rf app/logs/*.log
+
+## RSYNC WITH SERVER
+# todo: find out how to ignore git files
+echo "Synchronizing files..."
+rsync -vr app antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
+rsync -vr src antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
+rsync -vr web antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
+rsync -vr vendor antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
