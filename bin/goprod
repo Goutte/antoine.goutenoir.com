@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd /home/goutenoir/antoine/contact/
+php app/console assets:install --symlink web

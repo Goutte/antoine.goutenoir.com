@@ -41,13 +41,13 @@ class AjaxController extends BaseController
         // Check if ip has not already saved too much images
         $doodles = $em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findBy(array('created_by' => $ip));
         if (count($doodles) >= self::MAX_DOODLES_PER_USER) {
-            $json = array(
+            $data = array(
                 'status' => 'error',
                 'error' => "You already saved ".self::MAX_DOODLES_PER_USER." doodles, which is the limit !\n ".
                            "Your enthusiasm is inspiring ; please contact me if you want more !\n ".
                            "-- antoine@goutenoir.com"
             );
-            return $this->createJsonResponse($json);
+            return $this->createJsonResponse($data);
         }
 
         // Save the doodle
@@ -63,13 +63,13 @@ class AjaxController extends BaseController
         $this->sendDoodleImageByEmail($doodle);
 
         // Build the JSON Response
-        $json = array(
+        $data = array(
             'status' => 'ok',
             'id' => $doodle->getId(),
             'saves' => count($doodles),
         );
 
-        return $this->createJsonResponse($json);
+        return $this->createJsonResponse($data);
     }
 
 
@@ -88,8 +88,7 @@ class AjaxController extends BaseController
     {
         $request = $this->get('request');
 
-        /** @var $em \Doctrine\ORM\EntityManager */
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->getEM();
 
         $doodle = $em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findOneBy(array('id' => $id));
 
@@ -100,12 +99,12 @@ class AjaxController extends BaseController
 
         // Do we have the same IP ?
         if ($doodle->getCreatedBy() != $request->getClientIp()) {
-            $json = array(
+            $data = array(
                 'status' => 'error',
                 'error'  => 'Your IP may have changed since you saved the doodle.',
             );
 
-            return $this->createJsonResponse($json);
+            return $this->createJsonResponse($data);
         }
 
         // Edit the doodle
@@ -120,11 +119,46 @@ class AjaxController extends BaseController
         $this->sendDoodleMessageByEmail($doodle);
 
         // Build the JSON Response
-        $json = array(
+        $data = array(
             'status' => 'ok',
         );
 
-        return $this->createJsonResponse($json);
+        return $this->createJsonResponse($data);
+    }
+
+
+    /**
+     * Deletes the doodle
+     *
+     * @Route("/doodle/erase/{id}", requirements={"id" = "\d+"}, name="doodle_erase")
+     * @Method({"POST"})
+     *
+     * DELETE method is not working in prod, don't know why ?!
+     *
+     * @param $id
+     * @throws NotFoundHttpException
+     * @return Response
+     */
+    public function eraseAction($id)
+    {
+        $em = $this->getEm();
+
+        // Get the doodle
+        $doodle = $em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findOneBy(array('id' => $id));
+        if (!$doodle) {
+            throw new NotFoundHttpException('No doodle for this id.');
+        }
+
+        // Delete the doodle
+        $em->remove($doodle);
+        $em->flush();
+
+        // Build the JSON Response
+        $data = array(
+            'status' => 'ok',
+        );
+
+        return $this->createJsonResponse($data);
     }
 
 

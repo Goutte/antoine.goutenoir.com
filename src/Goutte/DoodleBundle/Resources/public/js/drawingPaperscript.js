@@ -1,15 +1,9 @@
 
 
-
-
-//var initialTextHelper = new PointText(new Point(getDrawingCanvas().width / 2 - 80, 55));
-//initialTextHelper.fillColor = '#fff';
-//initialTextHelper.content = 'Click and drag to draw a doodle.';
-
-
 /** INIT **************************************************************************************************************/
 
-log ('View size', view.size.width, view.size.height);
+//log ('View size', view.size.width, view.size.height);
+var drawnPath;
 
 /** TOOLS LISTENERS ***************************************************************************************************/
 

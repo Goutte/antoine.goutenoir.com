@@ -14,9 +14,10 @@ echo "Clearing the Logs..."
 rm -Rf app/logs/*.log
 
 ## RSYNC WITH SERVER
-# todo: find out how to ignore git files
 echo "Synchronizing files..."
-rsync -vr app antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
-rsync -vr src antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
-rsync -vr web antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
-rsync -vr vendor antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
+rsync -vr --delete --stats app    antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
+rsync -vr --delete --stats src    antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
+rsync -vr --delete --stats web    antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
+rsync -vr --delete --stats --exclude-from 'app/config/rsync_exclusions' vendor antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
+
+ssh antoine@antoine-qrok.me 'bash -s' < bin/goprod

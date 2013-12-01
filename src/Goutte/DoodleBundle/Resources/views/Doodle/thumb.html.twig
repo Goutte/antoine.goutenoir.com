@@ -6,4 +6,9 @@
   </a>
   <br />
   <p>{{ doodle.message }}</p>
+  <ul class="actions">
+      <li>
+          <a class="erase" href="{{ path('doodle_erase', { 'id': doodle.id }) }}">Erase</a>
+      </li>
+  </ul>
 </div>

@@ -13,3 +13,25 @@
 {% endfor %}
 
 {% endblock %}
+
+
+{% block javascripts %}
+<script type="text/javascript">
+
+window.addEvent('domready', function(){
+
+    $$('a.erase').each(function(element){
+        element.addEvent('click', function(event){
+            event.stop();
+            if (confirm("Are you sure you want to DEFINITELY erase this beautiful doodle ?")) {
+                element.getParent('.doodle').destroy();
+                new Request({url: element.getProperty('href'), method: 'post', onFailure: function(xhr){ log('fail',xhr) }}).send();
+            }
+        });
+    });
+
+});
+
+</script>
+{% endblock %}
+
