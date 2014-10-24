@@ -1,4 +1,5 @@
 
+*.log
 */.git/*
 */Test/*
 */Tests/*

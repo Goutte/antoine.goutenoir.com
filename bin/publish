@@ -1,23 +1,23 @@
 #!/bin/sh
 
 ## CLEAR THE CACHE
-echo "Clearing the Cache..."
-#php app/console cache:clear --env=dev
-#php app/console cache:clear --env=dev --no-debug
-#php app/console cache:clear --env=prod
-#php app/console cache:clear --env=prod --no-debug
-# and, as the above does not work as expected :
-rm -Rf app/cache/*
+echo "Clearing the cache..."
+php app/console cache:clear --env=dev
+php app/console cache:clear --env=dev --no-debug
+php app/console cache:clear --env=prod
+php app/console cache:clear --env=prod --no-debug
+# and, if the above does not work as expected :
+#rm -Rf app/cache/*
 
 ## CLEAR THE LOGS
-echo "Clearing the Logs..."
-rm -Rf app/logs/*.log
+#echo "Clearing the logs..."
+#rm -Rf app/logs/*.log
 
 ## RSYNC WITH SERVER
 echo "Synchronizing files..."
-rsync -vr --delete --stats app    antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
-rsync -vr --delete --stats src    antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
-rsync -vr --delete --stats web    antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
+rsync -vr --delete --stats --exclude-from 'app/config/rsync_exclusions' app    antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
+rsync -vr --delete --stats --exclude-from 'app/config/rsync_exclusions' src    antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
+rsync -vr --delete --stats --exclude-from 'app/config/rsync_exclusions' web    antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
 rsync -vr --delete --stats --exclude-from 'app/config/rsync_exclusions' vendor antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
 
 ssh antoine@antoine-qrok.me 'bash -s' < bin/goprod
