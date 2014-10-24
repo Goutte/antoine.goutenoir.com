@@ -99,7 +99,7 @@ window.addEvent('load', function(){
 });
 
 function notif (message, options) {
-  options = Object.merge(defaultNotifOptions, options);
+  options = Object.merge({}, defaultNotifOptions, options);
   if (notifs) notifs.add(message, options);
   else log ('Notification failed', message, options);
 }

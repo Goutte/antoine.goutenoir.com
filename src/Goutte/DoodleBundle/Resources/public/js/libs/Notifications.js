@@ -21,7 +21,7 @@ var NotificationsManager = new Class({
   },
 
   add: function (message, options) {
-    options = Object.merge(this.options.notification, options);
+    options = Object.merge({}, this.options.notification, options);
 
     if (true == options.once && this.hasShown(message, options)) {
       return false;
