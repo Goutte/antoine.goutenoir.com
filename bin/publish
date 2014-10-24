@@ -9,6 +9,10 @@ php app/console cache:clear --env=prod --no-debug
 # and, if the above does not work as expected :
 #rm -Rf app/cache/*
 
+## ASSETS
+php app/console assets:install --symlink web
+php app/console assetic:dump
+
 ## CLEAR THE LOGS
 #echo "Clearing the logs..."
 #rm -Rf app/logs/*.log

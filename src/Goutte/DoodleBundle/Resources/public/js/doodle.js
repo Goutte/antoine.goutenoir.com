@@ -76,13 +76,13 @@ var defaultNotifOptions = {
   speaker:   'neo',
   animationDuration: 1600,
   onCreate: function(){
-    // add timeout : 13s
+    // Notification stays for 13s and then GTFO
     (function(){ if (this) this.fireEvent('click'); }).delay(13000, this);
   },
   onClick: function(){
-    // remove the notif
+    // Remove the notif
     this.manager.remove(this);
-    // get the focus back to the canvas
+    // Get the focus back to the canvas
     document.id('doodleDrawingCanvas').focus();
   }
 };
@@ -91,7 +91,9 @@ window.addEvent('load', function(){
 
   notifs = new NotificationsManager('notifications', {notification: defaultNotifOptions});
   (function(){
-    notif('Hello there !<br /><strong>Click and drag</strong> anywhere on the screen to draw a doodle.', {});
+    notif('Hello there !<br /><strong>Click and drag</strong> anywhere on the screen to draw a doodle.', {
+      onCreate: function(){} // the first notification stays on-screen
+    });
   }).delay(666);
 
 });
@@ -283,15 +285,27 @@ function updateControls (from, options) {
   if ('draw' == from) {
     if (drawnPaths.length == 1) {
       notif('Good job ! Have fun !<br /><small>(and with you may be the force !)</small>', {clear: true, speaker: 'yoda'});
-    } else if (drawnPaths.length == 6) {
-      notif('<b>KEYBOARD ENABLED !</b><br />You can hit <b>[Z]</b> to <b>undo</b> your last draw.', {speaker: 'rabbit'});
-    } else if (drawnPaths.length == 16) {
-      notif('The page may be a bit sluggish.<br />It is expected, as this is a performance experiment.<br /><small>(no atom was hurt in the making of this webpage)</small>', {speaker: 'geiger'});
-    } else if (drawnPaths.length == 32) {
-      notif("Just hit <b>[C]</b> for Free Cake™ !", {speaker: 'devil'});
-    } else if (drawnPaths.length == 100) {
+    } else if (drawnPaths.length == 2) {
+      notif('This is not an usual contact page, <br /> but you know what they say... <br /> <em>An image is worth a thousand words.</em>', {clear: true, speaker: 'wizard'});
+    } else if (drawnPaths.length == 3) {
+      notif('<em>Enlightenment does matter.</em><br />Think about it. Einstein did !', {clear: true, speaker: 'idea'});
+    } else if (drawnPaths.length == 5) {
+      notif('<b>KEYBOARD ENABLED !</b><br />You can hit <b><kbd>[Z]</kbd></b> to <b>undo</b> your last draw.', {clear: true, speaker: 'rabbit'});
+    } else if (drawnPaths.length == 8) {
+      notif('The page may be a bit sluggish.<br />It is expected, as this is a performance experiment.<br /><small>(a few atoms were hurt in the making of this webpage)</small>', {speaker: 'geiger'});
+    } else if (drawnPaths.length == 13) {
+      notif("Just hold <b><kbd>[C]</kbd></b> for Free Cake™ !", {speaker: 'devil'});
+    } else if (drawnPaths.length == 21) {
+      notif("You can browse the source of this website <br /> by clicking on the github ribbon over there →", {speaker: 'penguins'});
+    } else if (drawnPaths.length == 34) {
+      notif("I highly recommend that you visit the <a href=\"https://www.khanacademy.org\" target=\"_blank\">Khan Academy</a>.<br />My dream is to teach there some day.", {speaker: 'vishnu'});
+    } else if (drawnPaths.length == 55) {
+      notif("<strong><code>666 999 = 666 x 999 + 666 + 999</code></strong><br />Upside down, this is still true !", {speaker: 'devil'});
+    } else if (drawnPaths.length == 89) {
       notif("Waow, that's a big doodle you're drawing there !<br />I hope you'll save that !", {speaker: 'hulk'});
-    } else if (drawnPaths.length == 256) {
+    } else if (drawnPaths.length == 144) {
+      notif("Did you notice that the notifications' frequency <br /> followed the Fibonacci sequence ? <br /> Bet you didn't !", {speaker: 'neo'});
+    } else if (drawnPaths.length == 233) {
       notif("<b>~ ACHIEVEMENT UNLOCKED ~</b><br /><em>Web Doodle Artist</em>", {speaker: 'wizard'});
     }
     // Hide control buttons

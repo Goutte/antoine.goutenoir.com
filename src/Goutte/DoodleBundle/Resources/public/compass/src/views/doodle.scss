@@ -119,6 +119,18 @@ header {
         @include speakerSize(128px);
         background-image: url(../../../img/speaker/wizard.png);
       }
+      &.idea {
+        @include speakerSize(122px);
+        background-image: url(../../../img/speaker/idea.png);
+      }
+      &.penguins {
+        @include speakerSize(153px);
+        background-image: url(../../../img/speaker/penguins.png);
+      }
+      &.vishnu {
+        @include speakerSize(140px);
+        background-image: url(../../../img/speaker/vishnu.png);
+      }
     }
 
     p {
@@ -148,7 +160,6 @@ header {
   right:  13px;
   bottom: 13px;
   z-index: 30;
-
 
   .hiddenSmall {
     display: none !important;

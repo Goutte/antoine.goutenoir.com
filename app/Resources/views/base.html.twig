@@ -22,7 +22,7 @@
 </head>
 <body>
 
-  {#### CHROME FRAME ##################################################################################################}
+{#### CHROME FRAME ############################################################}
 
   <!--[if lt IE 7]>
   <p class=chromeframe>
@@ -35,34 +35,33 @@
   <![endif]-->
 
 
-  {#### BODY ##########################################################################################################}
+{#### BODY ####################################################################}
 
 {% block body %}{% endblock %}
 
 
-  {#### JAVASCRIPT at the bottom for fast page loading ################################################################}
+{#### JAVASCRIPT at the bottom for fast page loading ##########################}
 
-  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/mootools-core-1.4.5.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/mootools-more-1.4.0.1.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/mootools-cloud.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/paper.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/vanilla-plugins.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/mootools-core-1.4.5.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/mootools-more-1.4.0.1.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/mootools-cloud.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/libs/paper.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/gouttedoodle/js/vanilla-plugins.js') }}"></script>
 
 
 {% block javascripts %}{% endblock %}
 
-  {#### ANALYTICS #####################################################################################################}
+{#### ANALYTICS ###############################################################}
 
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-18803919-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
+<script type="text/javascript">
+  // GOOGLE'S SPELL
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-18803919-1', 'auto');
+  ga('send', 'pageview');
+</script>
 
 </body>
 </html>

@@ -25,7 +25,11 @@ window.addEvent('domready', function(){
             event.stop();
             if (confirm("Are you sure you want to DEFINITELY erase this beautiful doodle ?")) {
                 element.getParent('.doodle').destroy();
-                new Request({url: element.getProperty('href'), method: 'post', onFailure: function(xhr){ log('fail',xhr) }}).send();
+                new Request({
+                  url: element.getProperty('href'),
+                  method: 'post',
+                  onFailure: function(xhr){ log('fail',xhr) }
+                }).send();
             }
         });
     });
