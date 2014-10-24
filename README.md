@@ -48,6 +48,12 @@ php app/console cypress:compass:compile
 php app/console cypress:compass:compile -e=prod
 ```
 
+We need compass, too :
+
+    $ sudo gem install compass
+
+Then, configure a watcher, with correct paths, and it works !
+
 TESTS
 =====
 
