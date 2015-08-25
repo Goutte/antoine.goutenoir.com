@@ -132,13 +132,8 @@ window.addEvent('domready', function () {
     'submit': function (event) {
       event.stop();
       var formData = this.toQueryString().parseQueryString();
-      if (formData.title || formData.message) {
-        // Send the stuff back to base
-        send(Object.merge({id: buttonSend.getAttribute('doodleId')}, formData));
-      } else {
-        // We clicked on submit but filled nothing, so we're going to hide the form and that's it !
-        warpDoodleIntoSpace();
-      }
+      // Send the stuff back to base
+      send(Object.merge({id: buttonSend.getAttribute('doodleId')}, formData));
     },
     // compatibility with paper's onKeyDown
     'keydown': function (event) { event.stopPropagation(); },

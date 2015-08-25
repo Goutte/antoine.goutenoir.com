@@ -315,16 +315,11 @@ function updateControls (from, options) {
   }
 
   if ('send' == from) {
+    document.id('formSend').addClass('hiddenSmall');
     if (!options.title && !options.message) {
-      notif("Did you just try to send me an empty message ?<br />Bah, I got the drawing, it's better than nothing !", {speaker: 'hulk'});
+      notif("Did you just send me an empty message ?<br />Bah, I got the drawing, it's better than nothing !", {speaker: 'hulk'});
     } else {
-      warpDoodleIntoSpace();
+      notif("Well done, and thank you!");
     }
   }
-}
-
-
-function warpDoodleIntoSpace () {
-  document.id('formSend').addClass('hiddenSmall');
-  notif("Well done, and thank you!");
 }
