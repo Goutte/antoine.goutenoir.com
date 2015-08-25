@@ -2,7 +2,6 @@
 
 /** INIT **************************************************************************************************************/
 
-//log ('View size', view.size.width, view.size.height);
 var drawnPath;
 
 /** TOOLS LISTENERS ***************************************************************************************************/
@@ -76,21 +75,18 @@ drawingTool.onKeyDown = function (event) {
 drawingTool.activate();
 
 
+
 /** VIEW ONFRAME ******************************************************************************************************/
 
-
-
 function onFrame (event) {
+  // Debug framerate
   //refreshFramerate(event.delta);
+  // Evil `C` keyboard shortcut that screws up the drawing
   if (Key.isDown('c')) {
     movePathsTowardsSave();
     drawHolder();
   }
 }
-
-
-
-
 
 
 
@@ -126,14 +122,11 @@ window.addEvent('domready', function () {
 //    'mouseup':   function (event) { this.removeClass('selected'); }
   });
 
-
-
   buttonSend.addEvent('click', function (event) {
     event = new Event(event);
     event.stop();
-    send({id: buttonSend.getAttribute('doodleId')});
+    formSend.removeClass('hiddenSmall');
   });
-
 
   formSend.addEvents({
     'submit': function (event) {

@@ -30,16 +30,16 @@ class AjaxController extends BaseController
         $request = $this->get('request');
         $dataURL = $request->get('dataURL');
 
+        // Quick and dirty sanitization, but better than nothing
         if (strpos($dataURL, 'data:image/png;base64') !== 0) {
             throw new NotFoundHttpException("Data does not validate.");
         }
 
+        // Grab some information about the client
         $ip = $request->getClientIp();
 
-        $em = $this->getEm();
-
         // Check if ip has not already saved too much images
-        $doodles = $em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findBy(array('created_by' => $ip));
+        $doodles = $this->doodles()->findBy(array('created_by' => $ip));
         if (count($doodles) >= self::MAX_DOODLES_PER_USER) {
             $data = array(
                 'status' => 'error',
@@ -56,6 +56,7 @@ class AjaxController extends BaseController
         $doodle->setCreatedAt();
         $doodle->setData($dataURL);
 
+        $em = $this->getEM();
         $em->persist($doodle);
         $em->flush();
 
@@ -74,8 +75,8 @@ class AjaxController extends BaseController
 
 
     /**
-     * Marks the doodle as important
-     * The ip must be the same as the creator
+     * Marks the doodle as important.
+     * The sender ip must be the same as the doodle creator ip.
      *
      * @Route("/doodle/send/{id}", requirements={"id" = "\d+"})
      * @Method({"POST"})
@@ -88,9 +89,7 @@ class AjaxController extends BaseController
     {
         $request = $this->get('request');
 
-        $em = $this->getEM();
-
-        $doodle = $em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findOneBy(array('id' => $id));
+        $doodle = $this->doodles()->findOneBy(array('id' => $id));
 
         // Do we have a doodle ?
         if (!$doodle) {
@@ -112,6 +111,7 @@ class AjaxController extends BaseController
         $doodle->setTitle($request->get('title', ''));
         $doodle->setMessage($request->get('message', ''));
 
+        $em = $this->getEM();
         $em->persist($doodle);
         $em->flush();
 
@@ -141,15 +141,14 @@ class AjaxController extends BaseController
      */
     public function eraseAction($id)
     {
-        $em = $this->getEm();
-
         // Get the doodle
-        $doodle = $em->getRepository('Goutte\DoodleBundle\Entity\Doodle')->findOneBy(array('id' => $id));
+        $doodle = $this->doodles()->findOneBy(array('id' => $id));
         if (!$doodle) {
             throw new NotFoundHttpException('No doodle for this id.');
         }
 
         // Delete the doodle
+        $em = $this->getEm();
         $em->remove($doodle);
         $em->flush();
 

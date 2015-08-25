@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# This script publishes the website online
+# It takes care of all the boring stuff
+
 ## CLEAR THE CACHE
 echo "Clearing the cache..."
 php app/console cache:clear --env=dev
@@ -19,9 +22,9 @@ php app/console assetic:dump
 
 ## RSYNC WITH SERVER
 echo "Synchronizing files..."
-rsync -vr --delete --stats --exclude-from 'app/config/rsync_exclusions' app    antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
-rsync -vr --delete --stats --exclude-from 'app/config/rsync_exclusions' src    antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
-rsync -vr --delete --stats --exclude-from 'app/config/rsync_exclusions' web    antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
-rsync -vr --delete --stats --exclude-from 'app/config/rsync_exclusions' vendor antoine@antoine-qrok.me:/home/goutenoir/antoine/contact/
+rsync -vr --delete --stats --exclude-from 'app/config/rsync_exclusions' app    web@antoine-qrok.me:/home/goutenoir/antoine/contact/
+rsync -vr --delete --stats --exclude-from 'app/config/rsync_exclusions' src    web@antoine-qrok.me:/home/goutenoir/antoine/contact/
+rsync -vr --delete --stats --exclude-from 'app/config/rsync_exclusions' web    web@antoine-qrok.me:/home/goutenoir/antoine/contact/
+rsync -vr --delete --stats --exclude-from 'app/config/rsync_exclusions' vendor web@antoine-qrok.me:/home/goutenoir/antoine/contact/
 
-ssh antoine@antoine-qrok.me 'bash -s' < bin/goprod
+ssh web@antoine-qrok.me 'bash -s' < bin/goprod

@@ -3,6 +3,7 @@
 namespace Goutte\DoodleBundle\Controller;
 
 use Goutte\DoodleBundle\Entity\Doodle;
+use Goutte\DoodleBundle\Entity\DoodleRepository;
 use Goutte\DoodleBundle\Tools\PHPMailer\PHPMailer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,16 @@ abstract class BaseController extends Controller
     protected function getEm()
     {
         return $this->get('doctrine')->getEntityManager();
+    }
+
+    /**
+     * Returns the Doodles repository.
+     * This is simply some sugary deliciousness.
+     * @return DoodleRepository
+     */
+    protected function doodles()
+    {
+        return $this->getEm()->getRepository('Goutte\DoodleBundle\Entity\Doodle');
     }
 
     /**
@@ -33,6 +44,10 @@ abstract class BaseController extends Controller
         return $response;
     }
 
+    /**
+     * @param  $doodle Doodle
+     * @return bool    Whether sending was successful or not.
+     */
     public function sendDoodleImageByEmail($doodle)
     {
         $subject = "Nouveau Doodle sur antoine.goutenoir.com";
@@ -63,6 +78,10 @@ EOF;
         return $success;
     }
 
+    /**
+     * @param  $doodle Doodle
+     * @return bool    Whether sending was successful or not.
+     */
     public function sendDoodleMessageByEmail($doodle)
     {
 
@@ -112,14 +131,12 @@ EOF;
 
         $mail = new PHPMailer(true);
 
-        $mail->isSMTP();
+        $mail->isSendmail();
 
         $mail->Host = 'smtp.gmail.com';
         $mail->Port = 587;
         $mail->SMTPSecure = 'tls';
         $mail->SMTPAuth = true;
-        $mail->Username = "gouttemailer@gmail.com";
-        $mail->Password = "/~k)*Y2i=)Wg&}^(*o_z0"; // T_T
 
         $mail->setFrom('gouttemailer@gmail.com', 'GoutteMailer');
 

@@ -6,7 +6,6 @@ var minDistBetweenPoints = 7;
 var movingSpeedFor1000   = 50;
 var minMovingSpeed       = 17;
 
-var drawnPath;
 var drawnPaths = [];
 
 //// UTILS /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -101,7 +100,7 @@ window.addEvent('load', function(){
 function notif (message, options) {
   options = Object.merge({}, defaultNotifOptions, options);
   if (notifs) notifs.add(message, options);
-  else log ('Notification failed', message, options);
+  else log('Notification failed', message, options);
 }
 
 
@@ -117,7 +116,7 @@ var refreshFramerate = function(delta){};
 window.addEvent('domready', function(){
 
   refreshFramerate = function (delta) {
-    document.id ('framerate').set('text', delta ? (1/delta).toInt() : 0);
+    document.id('framerate').set('text', delta ? (1/delta).toInt() : 0);
   }
 
 });
@@ -317,8 +316,7 @@ function updateControls (from, options) {
 
   if ('send' == from) {
     if (!options.title && !options.message) {
-      buttonSend.addClass('used');
-      formSend.removeClass('hiddenSmall');
+      notif("Did you just try to send me an empty message ?<br />Bah, I got the drawing, it's better than nothing !", {speaker: 'hulk'});
     } else {
       warpDoodleIntoSpace();
     }

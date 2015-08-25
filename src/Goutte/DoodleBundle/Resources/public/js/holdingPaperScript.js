@@ -4,11 +4,11 @@ Doodle.holdingPaperScope = paper;
 
 
 Doodle.holdingPaperScope.addPathToHolder = function(path) {
-  var pathCopy = new Path(path.segments); //path.segments
+  var pathCopy = new Path(path.segments);
   pathCopy.strokeColor = path.strokeColor;
   pathCopy.strokeWidth = path.strokeWidth;
   pathCopy.closed      = path.closed;
-//  pathCopy._parent = null;
+
   view.draw();
 
   return pathCopy;
