@@ -118,6 +118,7 @@ EOF;
 
     /**
      * Handy Helper to create a Mail ready to be sent (to me !)
+     * The gouttemailer password is stored in /etc/exim4/passwd.client
      *
      * @param $subject
      * @param $content
