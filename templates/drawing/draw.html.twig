@@ -31,11 +31,11 @@
                 </p>
                 <input type="submit" value="Submit" />
             </form>
-            <a href="#" id="buttonSend" class="hiddenSmall button" title="Send it to me along with a message"></a>
-            <a href="#" id="buttonView" class="hiddenSmall button" title="View doodle in new tab" target="_blank" ></a>
-            <a href="#" id="buttonDown" class="hiddenSmall button" title="Download as PNG"></a>
-            <a href="#" id="buttonUndo" class="hiddenSmall button" title="[z] Undo the last path"></a>
-            <a href="#" id="buttonSave" class="hiddenSmall button" title="Save your doodle to /dev/floppy"></a>
+{#            <a href="#" id="buttonSend" class="hiddenSmall button" title="Send it to me along with a message"></a>#}
+{#            <a href="#" id="buttonView" class="hiddenSmall button" title="View doodle in new tab" target="_blank" ></a>#}
+{#            <a href="#" id="buttonDown" class="hiddenSmall button" title="Download as PNG"></a>#}
+{#            <a href="#" id="buttonUndo" class="hiddenSmall button" title="[z] Undo the last path"></a>#}
+{#            <a href="#" id="buttonSave" class="hiddenSmall button" title="Save your doodle to /dev/floppy"></a>#}
         </div>
 
         </div>
@@ -43,5 +43,11 @@
         <div id="notifications"></div>
 
     </div>
+
+    <script type="application/javascript" src="{{ asset('js/paper.js') }}"></script>
+    <script type="application/javascript" src="{{ asset('js/doodle.js') }}"></script>
+    <script type="text/paperscript" src="{{ asset('js/drawing-paperscript.js') }}" canvas="doodleDrawingCanvas"></script>
+    <script type="text/paperscript" src="{{ asset('js/holding-paperscript.js') }}" canvas="doodleHoldingCanvas"></script>
+{#    <script type="text/paperscript" src="{{ asset('bundles/gouttedoodle/js/holdingPaperScript.js') }}" canvas="doodleHoldingCanvas"></script>#}
 
 {% endblock %}

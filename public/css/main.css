@@ -21,10 +21,16 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
+    /*margin: 0;*/
+    /*padding: 0;*/
 }
 
 canvas {
-    background-color: #f39;
+    background-color: transparent;
+
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 /** DRAWING FORM **/
@@ -34,6 +40,7 @@ canvas {
     right: 0;
     bottom: 0;
     overflow: hidden;
+    pointer-events: none;
 }
 #send-drawing-container {
     padding: 1.62em 1em 1em 1.62em;
@@ -44,13 +51,15 @@ canvas {
     position: relative;
     left: 92%;
 
+    pointer-events: all;
+
     background-color: var(--text-color);
 
     transition: left 0.3s ease-out, background-color 0.2s linear;
 }
-
 #send-drawing-container:focus,
 #send-drawing-container:hover {
     left: 0;
     background-color: var(--bg-color);
 }
+
