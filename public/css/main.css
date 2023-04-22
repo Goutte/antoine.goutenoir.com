@@ -1,0 +1,56 @@
+:root {
+    --bg-color: #1a1c1d;
+    --text-color: #ddd;
+    --link-color: #86d9ff;
+    --link-hover-color: #baeaff;
+    --link-visited-color: #ffb886;
+    --link-visited-hover-color: #ffd7be;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        /*--bg-color: #dcdcdc;*/
+        /*--text-color: #1e1e1e;*/
+        /*--link-color: #446b80;*/
+        /*--link-hover-color: #5e757e;*/
+        /*--link-visited-color: #614633;*/
+        /*--link-visited-hover-color: #7b695e;*/
+    }
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+canvas {
+    background-color: #f39;
+}
+
+/** DRAWING FORM **/
+
+#send-drawing-wrapper {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+#send-drawing-container {
+    padding: 1.62em 1em 1em 1.62em;
+    border-top: 2px solid var(--text-color);
+    border-left: 2px solid var(--text-color);
+    border-radius: 2em 0 0 0;
+
+    position: relative;
+    left: 92%;
+
+    background-color: var(--text-color);
+
+    transition: left 0.3s ease-out, background-color 0.2s linear;
+}
+
+#send-drawing-container:focus,
+#send-drawing-container:hover {
+    left: 0;
+    background-color: var(--bg-color);
+}
