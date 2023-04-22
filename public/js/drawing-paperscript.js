@@ -1,12 +1,14 @@
 
-
 /** INIT **************************************************************************************************************/
 
+// Remember: This is paperscript, not ECMA6.   No fancy things like let or => functions
+
+// Currently drawn path, the only path on this rendering layer.
 var drawnPath;
 
 /** TOOLS LISTENERS ***************************************************************************************************/
 
-var drawingTool = new Tool();
+const drawingTool = new Tool();
 
 drawingTool.minDistance = minDistBetweenPoints;
 
@@ -31,7 +33,7 @@ drawingTool.onMouseDrag = function (event) {
 
     // Chrome on android sometimes fire this listener with a event.point in the exact center of the view
     // I cannot find the origin of the bug (for now), so we cancel any event pointed to the exact center
-    if (getDrawingCanvas().width == 2 * event.point.x && getDrawingCanvas().height == 2 * event.point.y) return;
+    if (getDrawingCanvas().width === 2 * event.point.x && getDrawingCanvas().height === 2 * event.point.y) return;
 
     // Add the new point to the path
     drawnPath.add(event.point);
@@ -40,13 +42,13 @@ drawingTool.onMouseDrag = function (event) {
 
 // When the mouse is released, we simplify the path:
 drawingTool.onMouseUp = function (event) {
-    var segmentCount = drawnPath.segments.length;
+    const segmentCount = drawnPath.segments.length;
 
     // When the mouse is released, simplify it:
-    drawnPath.simplify(13);
+    drawnPath.simplify(baseSimplificationStrength);
 
     // If it is a point, make it so
-    if (segmentCount == 1) {
+    if (segmentCount === 1) {
         drawnPath.remove();
         drawnPath = new Path.Circle(drawnPath.segments[0]._point, 1);
         drawnPath.strokeWidth = 2;
@@ -55,19 +57,17 @@ drawingTool.onMouseUp = function (event) {
         drawnPath.strokeWidth = 2;
     }
 
-    var drawnPathCopy = addPathToHolder(drawnPath);
+    const drawnPathCopy = addPathToHolder(drawnPath);
     drawnPath.remove();
     drawnPath = null;
-
-    // Add to the stack
     drawnPaths.push(drawnPathCopy);
-    // Update Controls
+
     updateControls('draw');
 };
 
 
 drawingTool.onKeyDown = function (event) {
-    if (event.key == 'z') {
+    if (event.key === 'z') {
         undo();
     }
 };
@@ -147,9 +147,9 @@ window.addEvent('domready', function () {
 /** ANIMATION STEPS ***************************************************************************************************/
 
 function movePathsTowardsSave () {
-    var toX = view.size.width;
-    var toY = view.size.height;
-    var to = new Point(toX, toY);
+    const toX = view.size.width;
+    const toY = view.size.height;
+    const to = new Point(toX, toY);
 
     for (var i = 0; i < drawnPaths.length; i++) {
         movePathTowards(drawnPaths[i], to);
@@ -197,7 +197,6 @@ function movePathTowards (path, destinationPoint) {
     }
 
     path.smooth();
-
 }
 
 

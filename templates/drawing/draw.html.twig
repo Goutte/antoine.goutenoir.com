@@ -29,6 +29,7 @@
                 <p>
                     <textarea id="send-drawing-what" name="what" rows="9" cols="32"></textarea>
                 </p>
+                <input id="send-drawing-image" type="hidden" name="doodle" />
                 <input type="submit" value="Submit" />
             </form>
 {#            <a href="#" id="buttonSend" class="hiddenSmall button" title="Send it to me along with a message"></a>#}
@@ -48,6 +49,5 @@
     <script type="application/javascript" src="{{ asset('js/doodle.js') }}"></script>
     <script type="text/paperscript" src="{{ asset('js/drawing-paperscript.js') }}" canvas="doodleDrawingCanvas"></script>
     <script type="text/paperscript" src="{{ asset('js/holding-paperscript.js') }}" canvas="doodleHoldingCanvas"></script>
-{#    <script type="text/paperscript" src="{{ asset('bundles/gouttedoodle/js/holdingPaperScript.js') }}" canvas="doodleHoldingCanvas"></script>#}
 
 {% endblock %}

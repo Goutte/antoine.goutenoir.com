@@ -5,6 +5,7 @@ const Doodle = {};
 const minDistBetweenPoints = 7;
 const movingSpeedFor1000 = 50;
 const minMovingSpeed = 17;
+const baseSimplificationStrength = 13;
 
 const drawnPaths = [];
 
@@ -17,9 +18,9 @@ const drawnPaths = [];
  * @param backgroundColor
  * @return {String} the dataURL
  */
-Doodle.canvasToImage = function (canvas, backgroundColor) {
-    var w = canvas.width;
-    var h = canvas.height;
+Doodle.canvasToImage = (canvas, backgroundColor) => {
+    const w = canvas.width;
+    const h = canvas.height;
     var context = canvas.getContext("2d");
     var canvasData;
 
@@ -175,7 +176,7 @@ function getLinkViewAsImage (doodleId) {
 /** CONTROL LOGIC *****************************************************************************************************/
 
 function undo () {
-    var p = drawnPaths.pop();
+    const p = drawnPaths.pop();
     p.remove();
     updateControls('undo', {});
     drawHolder();
@@ -184,30 +185,30 @@ function undo () {
 
 function save () {
 
-    var saveRequest = new Request.JSON({
-        url: 'doodle/save',
+    const saveRequest = new Request.JSON({
+        url: 'drawings',
         method: 'post',
         onRequest: function () {
-            log('Saving Doodle...');
+            console.info('Saving Doodle…');
         },
         onSuccess: function (responseJSON, responseText) {
-            log('Success !', responseText);
-            if (responseJSON.status == 'ok') {
+            console.info('Success !', responseText);
+            if (responseJSON.status === 'ok') {
                 updateControls('save', {doodleId: responseJSON.id});
                 //document.location.href = 'doodle/view/' + responseJSON.id;
-            } else if (responseJSON.status == 'error') {
+            } else if (responseJSON.status === 'error') {
                 notif(responseJSON.error);
             }
         },
         onFailure: function () {
-            log('Fail ! Sorry.');
+            console.error('Failure!  Sorry.');
             notif('Something went terribly wrong. Try again later?', {speaker: 'hulk'});
         }
     });
 
-    var dataURL = Doodle.canvasToImage(getHoldingCanvas(), '#000');
+    const dataURL = Doodle.canvasToImage(getHoldingCanvas(), '#000');
 
-    var img = document.createElement('img');
+    const img = document.createElement('img');
     img.setAttribute('src', dataURL);
 
     saveRequest.send(Object.toQueryString({
@@ -216,9 +217,8 @@ function save () {
 
 }
 
-
+/*
 function send (data) {
-
     var sendRequest = new Request.JSON({
         url: 'doodle/send/' + data.id,
         method: 'post',
@@ -240,10 +240,19 @@ function send (data) {
     });
 
     sendRequest.send(Object.toQueryString(data));
-
 }
+*/
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("send-drawing-form");
+    form.addEventListener("submit", (e) => {
+        const doodleInput = document.getElementById("send-drawing-image");
+        const dataURL = Doodle.canvasToImage(getHoldingCanvas(), '#000');
+        doodleInput.value = dataURL;
+        console.log("Image data url", dataURL);
+    });
+});
 
 
 /** CONTROLS **********************************************************************************************************/
