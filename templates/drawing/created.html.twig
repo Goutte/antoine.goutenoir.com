@@ -8,7 +8,14 @@
 </style>
 
 <div class="hero-wrapper">
-    <h1>Your doodle was sent ! ✅</h1>
+    <h1>Your doodle was sent ! &#9989;</h1>
+
+    {% if not wasMailSent %}
+    <p>
+        &#128308; The doodle was recorded but the email notification failed,
+        so I might not see your message right away unless you ping me some other way.
+    </p>
+    {% endif %}
 
     Thank you.
 

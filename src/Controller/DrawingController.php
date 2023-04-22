@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\MailSender;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,27 +20,48 @@ class DrawingController extends AbstractController
     }
 
     #[Route(path: '/drawings', name: 'app_drawing_create', methods: ['post'])]
-    public function create(Request $request): Response
+    public function create(Request $request, MailSender $mailer): Response
     {
         $props = [
-            ['name' => 'who'],
-            ['name' => 'what'],
-            ['name' => 'doodle'],
+            ['name' => 'who', 'maxLength' => 8000],
+            ['name' => 'what', 'maxLength' => 8000],
+            ['name' => 'doodle', 'maxLength' => 80000],
         ];
 
         $data = [];
         foreach ($props as $p) {
-            $data[$p['name']] = $request->get($p['name'], '');
+            $name = $p['name'];
+            $data[$name] = $request->get($name, '');
+            $data[$name] = htmlentities($data[$name]);
+            $data[$name] = mb_substr($data[$name], 0, min($p['maxLength'], mb_strlen($data[$name])));
         }
 
         $now = (new \DateTime())->format("Y-m-d_H:i:s");
-
         $filename =  "../var/".$now.".yaml";
         $serialized = Yaml::dump($data);
         file_put_contents($filename, $serialized);
 
+        $emailBody = <<<EMAIL_BODY
+<strong>WHO</strong>
+<p>
+{$data['who']}
+</p>
+
+<strong>WHAT</strong>
+<p>
+{$data['what']}
+</p>
+
+<hr />
+
+<img src="cid:doodle" alt="A Doodle" width="600px" />
+EMAIL_BODY;
+
+        $wasMailSent = $mailer->perhapsSend("New Doodle !", $emailBody, $data['doodle']);
+
         return $this->render('drawing/created.html.twig', [
-            'controller_name' => 'DrawingController',
+            'doodle' => $data,
+            'wasMailSent' => $wasMailSent,
         ]);
     }
 
