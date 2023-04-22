@@ -22,12 +22,12 @@ class DrawingController extends AbstractController
     #[Route(path: '/drawings', name: 'app_drawing_create', methods: ['post'])]
     public function create(Request $request, MailSender $mailer): Response
     {
+        // TODO: come on, just use the Form and Validator components
         $props = [
             ['name' => 'who', 'maxLength' => 8000],
             ['name' => 'what', 'maxLength' => 8000],
             ['name' => 'doodle', 'maxLength' => 80000],
         ];
-
         $data = [];
         foreach ($props as $p) {
             $name = $p['name'];
@@ -36,11 +36,13 @@ class DrawingController extends AbstractController
             $data[$name] = mb_substr($data[$name], 0, min($p['maxLength'], mb_strlen($data[$name])));
         }
 
+        // TODO: refactor as flat-file DoodleRepository service
         $now = (new \DateTime())->format("Y-m-d_H:i:s");
-        $filename =  "../var/".$now.".yaml";
+        $filename = "../var/" . $now . ".yaml";
         $serialized = Yaml::dump($data);
         file_put_contents($filename, $serialized);
 
+        // TODO: refactor $data as Doodle entity and move template generation to service
         $emailBody = <<<EMAIL_BODY
 <strong>WHO</strong>
 <p>
@@ -56,7 +58,6 @@ class DrawingController extends AbstractController
 
 <img src="cid:doodle" alt="A Doodle" width="600px" />
 EMAIL_BODY;
-
         $wasMailSent = $mailer->perhapsSend("New Doodle !", $emailBody, $data['doodle']);
 
         return $this->render('drawing/created.html.twig', [
@@ -68,6 +69,7 @@ EMAIL_BODY;
     #[Route(path: '/drawings', name: 'app_drawing_index', methods: ['get'])]
     public function index(): Response
     {
+        // TODO: index doodles
         return $this->render('drawing/index.html.twig', [
             'controller_name' => 'DrawingController',
         ]);

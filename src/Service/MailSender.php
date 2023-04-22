@@ -2,54 +2,69 @@
 
 namespace App\Service;
 
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Part\DataPart;
 
 class MailSender
 {
-    private \Symfony\Component\Mailer\MailerInterface $mailer;
+    const IMAGE_FORMAT = "image/png";
+    const IMAGE_ENCODING = "base64";
 
-    public function __construct(\Symfony\Component\Mailer\MailerInterface $mailer)
+    private MailerInterface $mailer;
+    private string $emailSender;
+    private string $emailRecipient;
+
+    public function __construct(
+        MailerInterface $mailer,
+        string $emailSender,
+        string $emailRecipient,
+    )
     {
         $this->mailer = $mailer;
+        $this->emailSender = $emailSender;
+        $this->emailRecipient = $emailRecipient;
     }
 
-    public function getBlob($data)
+    public function getBlob($data): string
     {
-        $blob = substr($data, strlen('data:image/png;base64,'));
-        return base64_decode($blob);
+        $blob = substr($data, strlen(
+            "data:" .
+            self::IMAGE_FORMAT .
+            ";" .
+            self::IMAGE_ENCODING .
+            ","
+        ));
+        $decoded = base64_decode($blob);
+        if ($decoded === false) {
+            return "";
+        }
+        return $decoded;
     }
 
-    public function perhapsSend($subject, $content, $imageData): bool
+    public function perhapsSend($subject, $contentHtml, $imageData): bool
     {
-        $blob = $this->getBlob($imageData);
+        $imageBlob = $this->getBlob($imageData);
         $email = (new Email())
-            ->from('postmaster@goutenoir.com')
-            ->to('antoine@goutenoir.com')
+            ->from($this->emailSender)
+            ->to($this->emailRecipient)
             //->cc('cc@example.com')
             //->bcc('bcc@example.com')
             //->replyTo('fabien@example.com')
             //->priority(Email::PRIORITY_HIGH)
             ->subject($subject)
             ->addPart((new DataPart(
-                $blob,
+                $imageBlob,
                 "doodle",
-                "image/png",
-                "base64"
+                self::IMAGE_FORMAT,
+                self::IMAGE_ENCODING
             ))->asInline())
-//            ->addPart((new DataPart(
-//                $blob,
-//                "doodle.png",
-//                "image/png",
-//                "base64"
-//            )))
-            //->text('New doodle')
-            ->html($content)
-        ;
+            ->html($contentHtml);
 
         try {
             $this->mailer->send($email);
-        } catch (\Symfony\Component\Mailer\Exception\TransportExceptionInterface $e) {
+        } catch (TransportExceptionInterface $e) {
             return false;
         }
 
