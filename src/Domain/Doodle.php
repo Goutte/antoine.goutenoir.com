@@ -1,10 +1,11 @@
 <?php
 
+namespace App\Domain;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Polyfill\Intl\Icu\Exception\NotImplementedException;
 
-class Doodle implements Serializable
+class Doodle implements \Serializable
 {
     const IMAGE_FORMAT = "image/png";
     const IMAGE_ENCODING = "base64";

@@ -4,12 +4,12 @@
 # https://docs.docker.com/develop/develop-images/multistage-build/#stop-at-a-specific-build-stage
 # https://docs.docker.com/compose/compose-file/#target
 
+########################################################################################################################
 # Builder images
 FROM composer/composer:2-bin AS composer
 
 FROM mlocati/php-extension-installer:latest AS php_extension_installer
 
-# Build Caddy with the Mercure and Vulcain modules
 FROM caddy:2.6-builder-alpine AS app_caddy_builder
 
 RUN xcaddy build \
@@ -18,6 +18,7 @@ RUN xcaddy build \
 	--with github.com/dunglas/vulcain \
 	--with github.com/dunglas/vulcain/caddy
 
+########################################################################################################################
 # Prod image
 FROM php:8.2-fpm-alpine AS app_php
 
@@ -120,7 +121,9 @@ RUN set -eux; \
 
 RUN rm -f .env.local.php
 
+########################################################################################################################
 # Caddy image
+# Caddy falls into a 300 loop with our config, somehow.  Going for nginx instead…
 FROM caddy:2.6-alpine AS app_caddy
 
 WORKDIR /srv/app
@@ -128,3 +131,15 @@ WORKDIR /srv/app
 COPY --from=app_caddy_builder --link /usr/bin/caddy /usr/bin/caddy
 COPY --from=app_php --link /srv/app/public public/
 COPY --link docker/caddy/Caddyfile /etc/caddy/Caddyfile
+
+########################################################################################################################
+# Nginx
+ARG NGINX_VERSION=1.16
+FROM nginx:${NGINX_VERSION}-alpine AS app_nginx
+
+COPY docker/nginx/conf.d /etc/nginx/conf.d/
+
+WORKDIR /srv/app
+
+COPY --from=app_php --link /srv/app/public public/
+#COPY --from=app_nodejs /srv/app/public public/
