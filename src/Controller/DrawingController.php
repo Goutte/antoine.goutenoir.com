@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Service\MailSender;
+use League\Flysystem\Filesystem;
+use League\Flysystem\Local\LocalFilesystemAdapter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,45 +25,22 @@ class DrawingController extends AbstractController
     public function create(Request $request, MailSender $mailer): Response
     {
         // TODO: come on, just use the Form and Validator components
-        $props = [
-            ['name' => 'who', 'maxLength' => 8000],
-            ['name' => 'what', 'maxLength' => 8000],
-            ['name' => 'doodle', 'maxLength' => 80000],
-        ];
-        $data = [];
-        foreach ($props as $p) {
-            $name = $p['name'];
-            $data[$name] = $request->get($name, '');
-            $data[$name] = htmlentities($data[$name]);
-            $data[$name] = mb_substr($data[$name], 0, min($p['maxLength'], mb_strlen($data[$name])));
-        }
+        $doodle = \Doodle::fromRequest($request);
 
-        // TODO: refactor as flat-file DoodleRepository service
+        // TODO: refactor as flat-file DoodleRepository service, using the amazing Flysystem
+        $adapter = new LocalFilesystemAdapter("../var/doodle");
+        $filesystem = new Filesystem($adapter);
         $now = (new \DateTime())->format("Y-m-d_H:i:s");
-        $filename = "../var/" . $now . ".yaml";
-        $serialized = Yaml::dump($data);
-        file_put_contents($filename, $serialized);
+        $filenameYaml = $now . ".yaml";
+        $filenamePng = $now . ".png";
+        $serialized = Yaml::dump($doodle->serialize());
+        $filesystem->write($filenameYaml, $serialized);
+        $filesystem->write($filenamePng, $doodle->getBlob());
 
-        // TODO: refactor $data as Doodle entity and move template generation to service
-        $emailBody = <<<EMAIL_BODY
-<strong>WHO</strong>
-<p>
-{$data['who']}
-</p>
-
-<strong>WHAT</strong>
-<p>
-{$data['what']}
-</p>
-
-<hr />
-
-<img src="cid:doodle" alt="A Doodle" width="600px" />
-EMAIL_BODY;
-        $wasMailSent = $mailer->perhapsSend("New Doodle !", $emailBody, $data['doodle']);
+        $wasMailSent = $mailer->perhapsSendDoodle($doodle);
 
         return $this->render('drawing/created.html.twig', [
-            'doodle' => $data,
+            'doodle' => $doodle,
             'wasMailSent' => $wasMailSent,
         ]);
     }

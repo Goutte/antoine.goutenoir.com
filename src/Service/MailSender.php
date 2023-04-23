@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use Doodle;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
@@ -43,9 +44,26 @@ class MailSender
         return $decoded;
     }
 
-    public function perhapsSend($subject, $contentHtml, $imageData): bool
+    public function perhapsSendDoodle(Doodle $doodle): bool
     {
-        $imageBlob = $this->getBlob($imageData);
+        $emailSubject = "New Doodle!";
+        $emailBody = <<<EMAIL_BODY
+<strong>WHO</strong>
+<pre>
+{$doodle->getWho()}
+</pre>
+
+<strong>WHAT</strong>
+<pre>
+{$doodle->getWhat()}
+</pre>
+
+<hr />
+
+<img src="cid:doodle" alt="A Doodle" width="600px" />
+EMAIL_BODY;
+
+        $imageBlob = $doodle->getBlob();
         $email = (new Email())
             ->from($this->emailSender)
             ->to($this->emailRecipient)
@@ -53,14 +71,14 @@ class MailSender
             //->bcc('bcc@example.com')
             //->replyTo('fabien@example.com')
             //->priority(Email::PRIORITY_HIGH)
-            ->subject($subject)
+            ->subject($emailSubject)
             ->addPart((new DataPart(
                 $imageBlob,
                 "doodle",
                 self::IMAGE_FORMAT,
                 self::IMAGE_ENCODING
             ))->asInline())
-            ->html($contentHtml);
+            ->html($emailBody);
 
         try {
             $this->mailer->send($email);
