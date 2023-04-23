@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\MailSender;
+use Doodle;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Local\LocalFilesystemAdapter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,7 +26,7 @@ class DrawingController extends AbstractController
     public function create(Request $request, MailSender $mailer): Response
     {
         // TODO: come on, just use the Form and Validator components
-        $doodle = \Doodle::fromRequest($request);
+        $doodle = Doodle::fromRequest($request);
 
         // TODO: refactor as flat-file DoodleRepository service, using the amazing Flysystem
         $adapter = new LocalFilesystemAdapter("../var/doodle");
