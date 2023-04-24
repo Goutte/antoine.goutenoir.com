@@ -65,4 +65,8 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
 	setfacl -dR -m u:www-data:rwX -m u:"$(whoami)":rwX var
 fi
 
+# We could also use RabbitMQ and another container for this.
+# Also, we process the queue every 15 minutes, it's enough.
+bin/console messenger:consume async -vv --sleep 900 &
+
 exec docker-php-entrypoint "$@"
