@@ -257,8 +257,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /** CONTROLS **********************************************************************************************************/
 
+document.addEventListener("DOMContentLoaded", () => {
+
+    const undoButton = document.getElementById("control-undo");
+    undoButton.addEventListener("click", (e) => {
+        undo();
+    });
+
+    updateControls("init");
+});
 
 function updateControls (from, options) {
+    const undoButton = document.getElementById("control-undo");
+
+    // Show / Hide Undo
+    if ('save' !== from && 'send' !== from && drawnPaths.length) {
+        undoButton.classList.remove('hidden');
+    } else {
+        undoButton.classList.add('hidden');
+    }
+
     /*
     var buttonSave = document.id('buttonSave');
     var buttonUndo = document.id('buttonUndo');

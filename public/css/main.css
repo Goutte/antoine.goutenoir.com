@@ -48,6 +48,18 @@ a:visited:hover {
     color: var(--link-visited-hover-color);
 }
 
+/** GENERIC **/
+
+.hidden {
+    display: none;
+}
+
+/** DOODLE CONTROLS **/
+
+#doodle-controls {
+    text-align: right;
+}
+
 /** DRAWING FORM **/
 
 #send-drawing-wrapper {

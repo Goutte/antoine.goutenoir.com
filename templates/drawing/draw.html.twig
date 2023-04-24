@@ -10,24 +10,33 @@
 {#            <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />#}
 {#        </a>#}
 
+        {# Canvas holding the doodle's splines (all but current) -#}
+        {# camelCase id because of paperjs shenanigans (?) -#}
         <canvas id="doodleHoldingCanvas" resize></canvas>
+        {# Canvas holding only the currently drawn doodle's spline -#}
+        {# Raster is quite expensive, so we win a big bunch of FPS -#}
         <canvas id="doodleDrawingCanvas" resize></canvas>
 
-        <div id="send-drawing-wrapper">
+        <div id="send-drawing-wrapper">{# helps with absolute positioning #}
         <div id="send-drawing-container">
+            <div id="doodle-controls">
+                <input type="button" id="control-undo" value="Undo" />
+            </div>
+{#            <input type="button" id="control-vortex" value="&#127786;" />#}
+            <hr>
             <form action="/drawings" method="post" id="send-drawing-form">
                 <label for="send-drawing-who">
                     Who are you ?
                 </label>
                 <p>
-                    <textarea id="send-drawing-who" name="who" rows="5" cols="32"></textarea>
+                    <textarea id="send-drawing-who" name="who" rows="5" cols="42"></textarea>
                 </p>
                 <br>
                 <label for="send-drawing-what">
                     What do you want ?
                 </label>
                 <p>
-                    <textarea id="send-drawing-what" name="what" rows="9" cols="32"></textarea>
+                    <textarea id="send-drawing-what" name="what" rows="9" cols="42"></textarea>
                 </p>
                 <input id="send-drawing-image" type="hidden" name="doodle" />
                 <input type="submit" value="Submit" />

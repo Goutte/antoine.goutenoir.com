@@ -1,7 +1,8 @@
+// noinspection ES6ConvertVarToLetConst
+
+// Remember: This is paperscript, not ES6.   No fancy things like let or => functions
 
 /** INIT **************************************************************************************************************/
-
-// Remember: This is paperscript, not ECMA6.   No fancy things like let or => functions
 
 // Currently drawn path, the only path on this rendering layer.
 var drawnPath;
@@ -68,7 +69,10 @@ drawingTool.onMouseUp = function (event) {
 
 drawingTool.onKeyDown = function (event) {
     if (event.key === 'z') {
-        undo();
+        // CONTROL key is unavailable here
+        //console.log(event);
+        // So we disable UNDO on Z unless we can detect focus
+        //undo();
     }
 };
 
@@ -81,16 +85,21 @@ drawingTool.activate();
 function onFrame (event) {
     // Debug framerate
     //refreshFramerate(event.delta);
+
     // Evil `C` keyboard shortcut that screws up the drawing
+    // Disabled until we can detect focus
     if (Key.isDown('c')) {
-        movePathsTowardsSave();
-        drawHolder();
+        //movePathsTowardsSave();
+        //drawHolder();
     }
 }
 
 
 
 /** DOM BEHAVIORS *****************************************************************************************************/
+
+
+
 /*
 window.addEvent('domready', function () {
 
