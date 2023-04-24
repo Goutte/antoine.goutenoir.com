@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use Doodle;
+use App\Domain\Doodle;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;

@@ -67,7 +67,7 @@ RUN mkdir -p /var/run/php
 COPY --link docker/php/docker-healthcheck.sh /usr/local/bin/docker-healthcheck
 RUN chmod +x /usr/local/bin/docker-healthcheck
 
-HEALTHCHECK --interval=10s --timeout=3s --retries=3 CMD ["docker-healthcheck"]
+HEALTHCHECK --interval=3600s --timeout=30s --retries=2 CMD ["docker-healthcheck"]
 
 COPY --link docker/php/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
 RUN chmod +x /usr/local/bin/docker-entrypoint
@@ -134,8 +134,7 @@ COPY --link docker/caddy/Caddyfile /etc/caddy/Caddyfile
 
 ########################################################################################################################
 # Nginx
-ARG NGINX_VERSION=1.16
-FROM nginx:${NGINX_VERSION}-alpine AS app_nginx
+FROM nginx:1.16-alpine AS app_nginx
 
 COPY docker/nginx/conf.d /etc/nginx/conf.d/
 

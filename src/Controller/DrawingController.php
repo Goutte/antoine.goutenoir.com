@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
+use App\Domain\Doodle;
 use App\Service\MailSender;
-use Doodle;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Local\LocalFilesystemAdapter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
