@@ -131,6 +131,9 @@ function getDrawingCanvas () {
     paper = Doodle.drawingPaperScope;
     return paper.project.view._element;
 }
+function getDrawingCanvasDomElement () {
+    return document.getElementById("doodleDrawingCanvas");
+}
 
 function getHoldingCanvas () {
     paper = Doodle.holdingPaperScope;
@@ -258,6 +261,12 @@ document.addEventListener("DOMContentLoaded", () => {
 /** CONTROLS **********************************************************************************************************/
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    getDrawingCanvasDomElement().addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.key === 'z') {
+            undo();
+        }
+    });
 
     const undoButton = document.getElementById("control-undo");
     undoButton.addEventListener("click", (e) => {

@@ -15,7 +15,8 @@
         <canvas id="doodleHoldingCanvas" resize></canvas>
         {# Canvas holding only the currently drawn doodle's spline -#}
         {# Raster is quite expensive, so we win a big bunch of FPS -#}
-        <canvas id="doodleDrawingCanvas" resize></canvas>
+        {# Tabindex enables keydown events (to get UNDO on CTRL+Z) -#}
+        <canvas id="doodleDrawingCanvas" resize tabindex='1'></canvas>
 
         <div id="send-drawing-wrapper">{# helps with absolute positioning #}
         <div id="send-drawing-container">

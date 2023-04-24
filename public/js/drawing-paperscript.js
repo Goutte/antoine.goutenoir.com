@@ -98,8 +98,6 @@ function onFrame (event) {
 
 /** DOM BEHAVIORS *****************************************************************************************************/
 
-
-
 /*
 window.addEvent('domready', function () {
 
