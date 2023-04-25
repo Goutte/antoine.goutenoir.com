@@ -4,6 +4,20 @@
 
 {% block body %}
 
+    <header>
+        <div id="vanity-card" class="discreet-container">
+            <h1 title="@ your service">A<span class="discreet-text">ntoine</span> G<span class="discreet-text">outenoir</span></h1>
+            <h2 class="discreet-text">
+                <span title="Enthusiastic autodidact since 1999">Consultant</span>
+                ⋅
+                <span title="It's not rocket science, except when it is !">WebSmith</span>
+                ⋅
+                <span title="Juggler, Mathematician, Philologue">Nerd</span>
+            </h2>
+            <span id="framerate" title="Frames Per Second" aria-hidden="true"></span>{# For perf-test, 'tis 62 right now #}
+        </div>
+    </header>
+
     <div role="main">
 
 {#        <a id="shareOnGithub" href="https://github.com/Goutte/antoine.goutenoir.com">#}
@@ -21,7 +35,7 @@
         <div id="send-drawing-wrapper">{# helps with absolute positioning #}
         <div id="send-drawing-container">
             <div id="doodle-controls">
-                <input type="button" id="control-undo" value="Undo" />
+                <input type="button" id="control-undo" value="Undo" title="Remove the most recent spline.  (CTRl+Z)" />
             </div>
 {#            <input type="button" id="control-vortex" value="&#127786;" />#}
             <hr>

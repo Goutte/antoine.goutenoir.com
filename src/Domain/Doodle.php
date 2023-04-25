@@ -67,7 +67,7 @@ class Doodle implements \Serializable
         $props = [
             ['name' => 'who', 'maxLength' => 8000],
             ['name' => 'what', 'maxLength' => 8000],
-            ['name' => 'doodle', 'maxLength' => 80000],
+            ['name' => 'doodle', 'maxLength' => 800000],
         ];
         $data = new self();
         foreach ($props as $p) {

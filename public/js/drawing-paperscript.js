@@ -84,7 +84,7 @@ drawingTool.activate();
 
 function onFrame (event) {
     // Debug framerate
-    //refreshFramerate(event.delta);
+    refreshFramerate(event.delta);
 
     // Evil `C` keyboard shortcut that screws up the drawing
     // Disabled until we can detect focus

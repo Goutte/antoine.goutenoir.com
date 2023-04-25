@@ -21,14 +21,15 @@ const drawnPaths = [];
 Doodle.canvasToImage = (canvas, backgroundColor) => {
     const w = canvas.width;
     const h = canvas.height;
-    var context = canvas.getContext("2d");
-    var canvasData;
+    const context = canvas.getContext("2d");
+    let canvasData;
+    let compositeOperation;
 
     if (backgroundColor) {
         // get the current ImageData for the canvas.
         canvasData = context.getImageData(0, 0, w, h);
         // store the current globalCompositeOperation
-        var compositeOperation = context.globalCompositeOperation;
+        compositeOperation = context.globalCompositeOperation;
         // set to draw behind current content
         context.globalCompositeOperation = "destination-over";
         // set background color
@@ -38,7 +39,7 @@ Doodle.canvasToImage = (canvas, backgroundColor) => {
     }
 
     // get the image data from the canvas
-    var imageData = canvas.toDataURL("image/png");
+    const imageData = canvas.toDataURL("image/png");
 
     if (backgroundColor) {
         // clear the canvas
@@ -107,20 +108,48 @@ function notif (message, options) {
 
 
 
-//// DOM CONTROL FUNCTIONS /////////////////////////////////////////////////////////////////////////////////////////////
+//// FRAMERATE /////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+class RollingValue {
+    constructor(historySize=60, defaultValue=0.0) {
+        this.historySize = historySize;
+        this.history = Array(historySize).fill(defaultValue);
+        this.currentIndex = 0;
+        console.assert(this.historySize > 0);
+    }
+
+    addValue(value) {
+        this.history[this.currentIndex] = value;
+        this.currentIndex = (this.currentIndex + 1) % this.historySize;
+        return this;
+    }
+
+    getMean() {
+        return this.history.reduce((previousValue, currentValue) => previousValue + currentValue) / this.historySize;
+    }
+}
+
+const framerateBuffer = new RollingValue(30, 0.016);
 
 /**
- * Refreshes the framerate under AG for testing
+ * Refreshes the framerate under AG for benchmarking
  * @param delta event.delta
  */
-var refreshFramerate = function(delta){};
-/*
-window.addEvent('domready', function(){
+let refreshFramerate = function(delta){};
+
+document.addEventListener("DOMContentLoaded", () => {
     refreshFramerate = function (delta) {
-        document.id('framerate').set('text', delta ? (1/delta).toInt() : 0);
+        framerateBuffer.addValue(delta);
+        if (framerateBuffer.currentIndex === 0) {  // only update twice per second (expensive!)
+            document.getElementById('framerate').textContent =
+                "fps = "
+                +
+                (delta ? Math.round(1.0/framerateBuffer.getMean()) : 0).toString()
+            ;
+        }
     }
 });
-*/
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -144,7 +173,7 @@ function getHoldingCanvas () {
  * Add the provided path to the holder
  * @param path
  */
-var addPathToHolder = function (path) {
+const addPathToHolder = function (path) {
     paper = Doodle.holdingPaperScope;
     return paper.addPathToHolder(path);
 };
@@ -153,12 +182,10 @@ var addPathToHolder = function (path) {
  * Redraw the holder.
  * This is not good. How ?
  */
-var drawHolder = function () {
-    paper = Doodle.holdingPaperScope;
-    paper.view.draw();
+const drawHolder = function () {
+    // paper = Doodle.holdingPaperScope;
+    Doodle.holdingPaperScope.view.draw();
 };
-
-
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
