@@ -83,15 +83,15 @@ drawingTool.activate();
 /** VIEW ONFRAME ******************************************************************************************************/
 
 function onFrame (event) {
+    // Evil `$` keyboard shortcut that screws up the drawing
+    // Disabled until we can detect focus
+    if (Key.isDown('$')) {
+        movePathsTowardsSave();
+        drawHolder();
+    }
+
     // Debug framerate
     refreshFramerate(event.delta);
-
-    // Evil `C` keyboard shortcut that screws up the drawing
-    // Disabled until we can detect focus
-    if (Key.isDown('c')) {
-        //movePathsTowardsSave();
-        //drawHolder();
-    }
 }
 
 

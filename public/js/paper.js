@@ -7334,6 +7334,7 @@ var Key = this.Key = new function() {
 			scope = view && view.isVisible() && view._scope,
 			tool = scope && scope.tool;
 		keyMap[key] = down;
+		//console.debug("k", key, down);
 		if (tool && tool.responds(type)) {
 			tool.fire(type, new KeyEvent(down, key, character, event));
 			if (view)

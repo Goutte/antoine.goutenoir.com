@@ -18,6 +18,50 @@
     }
 }
 
+@keyframes backInDown {
+    0% {
+        transform: translateY(-1200px) scale(0.7);
+        opacity: 0.7;
+    }
+
+    80% {
+        transform: translateY(0px) scale(0.7);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.backInDown {
+    animation-name: backInDown;
+    animation-duration: 1s;
+}
+
+@keyframes backOutUp {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    20% {
+        transform: translateY(0px) scale(0.7);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateY(-700px) scale(0.7);
+        opacity: 0.7;
+    }
+}
+
+.backOutUp {
+    animation-name: backOutUp;
+    animation-duration: 0.75s;
+}
+
 @font-face {
     font-family: 'Handwriting';
     src: url('../font/jellyka_estrya_handwriting-webfont.eot');
@@ -59,6 +103,18 @@ a:visited:hover {
     color: var(--link-visited-hover-color);
 }
 
+button, input[type=button], input[type=submit] {
+    cursor: pointer;
+
+    padding: 0.38em;
+}
+
+textarea {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 1.2em;
+}
+
 /** GENERICS **/
 
 .hidden {
@@ -74,11 +130,55 @@ a:visited:hover {
     font-size: inherit;
 }
 
+/** NOTIFICATIONS **/
+
+#notifications {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: "DejaVu Sans", "Ubuntu Light", serif;
+    line-height: 1.62em;
+}
+/*.notification-wrapper {*/
+    /*display: inline-block;*/
+/*}*/
+.notification {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /*border: 3px solid var(--text-color);*/
+    /*border-radius: 2em;*/
+    margin-left: auto;
+    margin-right: auto;
+    /*margin-bottom: 0.62em;*/
+    /*padding: 0.62em;*/
+    min-width: 38%;
+    max-width: 62%;
+
+    cursor: pointer;
+}
+.notification img.speaker {
+    float: left;
+    margin-right: 2em;
+}
+.notification p {
+    text-align: left;
+    background-color: var(--bg-color);
+
+    border: 3px solid var(--text-color);
+    border-radius: 1.62em 1.62em 1.62em 0;
+    padding: 1.62em;
+}
+
+
 /** VANITY CARD **/
 
 #vanity-card {
     font-family: 'Handwriting', serif;
-    font-size: 1.8rem;
+    font-size: 2.3rem;
     position: absolute;
     z-index: 2;
     cursor: help;
@@ -110,7 +210,7 @@ a:visited:hover {
     border-radius: 2em 0 0 0;
 
     position: relative;
-    left: 92%;
+    left: 94%;
 
     pointer-events: all;
 

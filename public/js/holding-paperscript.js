@@ -1,3 +1,7 @@
+// noinspection ES6ConvertVarToLetConst
+
+// Remember: This is paperscript, not ES6.   No fancy things like let or => functions
+
 
 // defined globally in doodle.js
 Doodle.holdingPaperScope = paper;

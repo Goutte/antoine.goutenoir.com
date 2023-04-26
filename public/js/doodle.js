@@ -58,50 +58,113 @@ Doodle.canvasToImage = (canvas, backgroundColor) => {
 
 // Chrome, linux (maybe others?), the crosshair is sometimes replaced by a text-select
 // The page has virtually no selectable content, so we remove selection altogether
-document.onselectstart = function () { return false; };
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
+document.onselectstart = () => { return false; };
 
 
 //// NOTIFICATIONS /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-var notifs;
-var defaultNotifOptions = {
-    classes: ['notification', 'animatedSmooth'],
-    classShow: 'bounceInDown',
-    classHide: 'bounceOutUp',
-    speaker:   'neo',
-    animationDuration: 1600,
-    onCreate: function(){
-        // Notification stays for 13s and then GTFO
-        (function(){ if (this) this.fireEvent('click'); }).delay(13000, this);
-    },
-    onClick: function(){
-        // Remove the notif
-        this.manager.remove(this);
-        // Get the focus back to the canvas
-        document.id('doodleDrawingCanvas').focus();
+class Notifications {
+    static defaultOptions = {
+        classes: ['notification'],
+        classShow: 'backInDown',
+        classHide: 'backOutUp',
+        speaker:   'neo', // public/img/speaker/<speaker>.png
+        animationInDuration: 1000,
+        animationOutDuration: 750,
+        onShow: (that) => {
+            // Notification stays for 13s and then GTFO
+            setTimeout((() => { if (that) that.hide(); }), 13000);
+        },
+        onClick: () => {
+            // Get the focus back to the canvas
+            //document.getElementById('doodleDrawingCanvas').focus();
+        }
     }
-};
-/*
-window.addEvent('load', function(){
 
-    notifs = new NotificationsManager('notifications', {notification: defaultNotifOptions});
-    (function(){
-        notif('Hello there !<br /><strong>Click and drag</strong> anywhere on the screen to draw a doodle.', {
-            onCreate: function(){} // the first notification stays on-screen
+    constructor(holder) {
+        this.holder = holder;
+        this.pastNotifications = [];
+    }
+
+    add(message, options={}) {
+        const notificationOptions = {
+            ...Notifications.defaultOptions,
+            ...options,
+        }
+        if (options.clear) {
+            this.pastNotifications.forEach((n) => {
+                n.hide();
+            });
+            setTimeout(() => {
+                notificationOptions.clear = false;
+                this.add(message, notificationOptions);
+            }, notificationOptions.animationOutDuration + 100);
+        } else {
+            const n = new Notification(message, notificationOptions);
+            this.pastNotifications.push(n);
+            this.holder.append(n.element);
+            n.show();
+        }
+    }
+}
+
+class Notification {
+    constructor(message, options) {
+        this.message = message;
+        this.options = options;
+        this._buildDom();
+    }
+
+    _buildDom() {
+        this.element = document.createElement("div");
+        this.element.classList.add(...this.options.classes)
+
+        const speaker = document.createElement("img");
+        speaker.src = "img/speaker/"+this.options.speaker+".png";
+        speaker.classList.add("speaker");
+        this.element.append(speaker);
+
+        const paragraph = document.createElement("p");
+        paragraph.innerHTML = this.message;
+        this.element.append(paragraph);
+
+        paragraph.addEventListener("click", (e) => {
+            this.hide();
         });
-    }).delay(666);
+    }
 
+    show() {
+        this.element.classList.add(this.options.classShow);
+        this.options.onShow(this);
+    }
+
+    hide() {
+        this.element.classList.remove(this.options.classShow);
+        this.element.classList.add(this.options.classHide);
+        setTimeout(
+            () => {
+                this.element.remove();
+            }, this.options.animationOutDuration - 100
+        );
+    }
+}
+
+
+let notifs;
+document.addEventListener("DOMContentLoaded", () => {
+    const notificationsHolder = document.getElementById("notifications");
+    notifs = new Notifications(notificationsHolder);
+    setTimeout(
+        () => {
+            notif('Hello there !<br /><strong>Click and drag</strong> anywhere on the screen to draw a doodle.', {
+                onShow: function(that){} // the first notification stays on-screen
+            });
+        }, 666
+    );
 });
-*/
+
 
 function notif (message, options) {
-    options = Object.merge({}, defaultNotifOptions, options);
     if (notifs) notifs.add(message, options);
     else console.error('Notification failed', message, options);
 }
@@ -157,16 +220,14 @@ document.addEventListener("DOMContentLoaded", () => {
 /** TOOLS *************************************************************************************************************/
 
 function getDrawingCanvas () {
-    paper = Doodle.drawingPaperScope;
-    return paper.project.view._element;
+    return Doodle.drawingPaperScope.project.view._element;
 }
 function getDrawingCanvasDomElement () {
     return document.getElementById("doodleDrawingCanvas");
 }
 
 function getHoldingCanvas () {
-    paper = Doodle.holdingPaperScope;
-    return paper.project.view._element;
+    return Doodle.holdingPaperScope.project.view._element;
 }
 
 /**
@@ -174,8 +235,7 @@ function getHoldingCanvas () {
  * @param path
  */
 const addPathToHolder = function (path) {
-    paper = Doodle.holdingPaperScope;
-    return paper.addPathToHolder(path);
+    return Doodle.holdingPaperScope.addPathToHolder(path);
 };
 
 /**
@@ -183,13 +243,13 @@ const addPathToHolder = function (path) {
  * This is not good. How ?
  */
 const drawHolder = function () {
-    // paper = Doodle.holdingPaperScope;
     Doodle.holdingPaperScope.view.draw();
 };
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
 function getLinkSend (doodleId) {
     return 'doodle/send/' + doodleId;
 }
@@ -201,6 +261,7 @@ function getLinkDownAsImage (doodleId) {
 function getLinkViewAsImage (doodleId) {
     return 'doodle/view/' + doodleId;
 }
+*/
 
 
 /** CONTROL LOGIC *****************************************************************************************************/
@@ -247,32 +308,6 @@ function save () {
 
 }
 
-/*
-function send (data) {
-    var sendRequest = new Request.JSON({
-        url: 'doodle/send/' + data.id,
-        method: 'post',
-        onRequest: function () {
-            log('Sending Doodle...');
-        },
-        onSuccess: function (responseJSON, responseText) {
-            log('Success !', responseText);
-            if (responseJSON.status == 'ok') {
-                updateControls('send', data);
-            } else if (responseJSON.status == 'error') {
-                notif(responseJSON.error);
-            }
-        },
-        onFailure: function () {
-            log('Fail ! Sorry.');
-            notif('Something went terribly wrong. Try again later?', {speaker: 'hulk'});
-        }
-    });
-
-    sendRequest.send(Object.toQueryString(data));
-}
-*/
-
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("send-drawing-form");
@@ -280,7 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const doodleInput = document.getElementById("send-drawing-image");
         const dataURL = Doodle.canvasToImage(getHoldingCanvas(), '#000');
         doodleInput.value = dataURL;
-        console.log("Image data url", dataURL);
+        console.info("Doodle data url", dataURL);
     });
 });
 
@@ -304,88 +339,44 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function updateControls (from, options) {
-    const undoButton = document.getElementById("control-undo");
 
     // Show / Hide Undo
+    const undoButton = document.getElementById("control-undo");
     if ('save' !== from && 'send' !== from && drawnPaths.length) {
         undoButton.classList.remove('hidden');
     } else {
         undoButton.classList.add('hidden');
     }
 
-    /*
-    var buttonSave = document.id('buttonSave');
-    var buttonUndo = document.id('buttonUndo');
-    var buttonSend = document.id('buttonSend');
-    var buttonView = document.id('buttonView');
-    var buttonDown = document.id('buttonDown');
-    var formSend = document.id('formSend');
-
-    // Show / Hide Save & Undo
-    if ('save' != from && 'send' != from && drawnPaths.length) {
-        buttonSave.removeClass('hiddenSmall');
-        buttonUndo.removeClass('hiddenSmall');
-    } else {
-        buttonSave.addClass('hiddenSmall');
-        buttonUndo.addClass('hiddenSmall');
-    }
-
-    // Show / Hide Download & Send & View
-    if ('save' == from && options.doodleId) {
-        buttonSend.setAttribute('href', getLinkSend(options.doodleId));
-        buttonSend.setAttribute('doodleId', options.doodleId);
-        buttonSend.removeClass('hiddenSmall');
-        buttonView.setAttribute('href', getLinkViewAsImage(options.doodleId));
-        buttonView.removeClass('hiddenSmall');
-        buttonDown.setAttribute('href', getLinkDownAsImage(options.doodleId));
-        buttonDown.removeClass('hiddenSmall');
-        notif('<b>Your doodle has been saved.</b><br />' +
-            'You can send it to me along with a message, ' +
-            'view the image in a new tab ' +
-            'or simply download it as a png image.', {once: false, speaker: 'samurai'});
-    }
-
-    if ('draw' == from) {
-        if (drawnPaths.length == 1) {
-            notif('Good job ! Have fun !<br /><small>(and with you may be the force !)</small>', {clear: true, speaker: 'yoda'});
-        } else if (drawnPaths.length == 2) {
+    // Inexpensive notification chain
+    if ('draw' === from) {
+        if (drawnPaths.length === 1) {
+            notif('Good job ! Have fun !<br /><small>(and with you may be the fork)</small>', {clear: true, speaker: 'yoda'});
+        } else if (drawnPaths.length === 2) {
             notif('This is not an usual contact page, <br /> but you know what they say... <br /> <em>An image is worth a thousand words.</em>', {clear: true, speaker: 'wizard'});
-        } else if (drawnPaths.length == 3) {
+        } else if (drawnPaths.length === 3) {
             notif('<em>Enlightenment does matter.</em><br />Think about it. Einstein did !', {clear: true, speaker: 'idea'});
-        } else if (drawnPaths.length == 5) {
-            notif('<b>KEYBOARD ENABLED !</b><br />You can hit <b><kbd>[Z]</kbd></b> to <b>undo</b> your last draw.', {clear: true, speaker: 'rabbit'});
-        } else if (drawnPaths.length == 8) {
-            notif('The page may be a bit sluggish.<br />It is expected, as this is a performance experiment.<br /><small>(a few atoms were hurt in the making of this webpage)</small>', {speaker: 'geiger'});
-        } else if (drawnPaths.length == 13) {
-            notif("Just hold <b><kbd>[C]</kbd></b> for Free Cake™ !", {speaker: 'devil'});
-        } else if (drawnPaths.length == 21) {
-            notif("You can browse the source of this website <br /> by clicking on the github ribbon over there →", {speaker: 'penguins'});
-        } else if (drawnPaths.length == 34) {
-            notif("I highly recommend that you visit the <a href=\"https://www.khanacademy.org\" target=\"_blank\">Khan Academy</a>.<br />My dream is to teach there some day.", {speaker: 'vishnu'});
-        } else if (drawnPaths.length == 55) {
+        } else if (drawnPaths.length === 5) {
+            notif('<strong>KEYBOARD ENABLED !</strong><br />You can hit <b><kbd>[CTRL]+[Z]</kbd></b> to <strong>undo</strong> your last draw.', {clear: true, speaker: 'rabbit'});
+        } else if (drawnPaths.length === 8) {
+            notif('The page may be a bit sluggish.<br />It is expected, as this is a performance experiment.<br /><small>(a few atoms were hurt in the making of this webpage)</small>', {clear: true, speaker: 'geiger'});
+        } else if (drawnPaths.length === 13) {
+            notif("Just hold <strong><kbd>[$]</kbd></strong> for Free Cake™ !<br /><small>(no undo, no refunds)</small>", {clear: true, speaker: 'devil'});
+        } else if (drawnPaths.length === 21) {
+            notif("Like most things I do, this website is <em>libre software</em>.<br />You can browse its <a href=\"https://github.com/Goutte/antoine.goutenoir.com\" target='\"_blank\"'>source code</a>.", {clear: true, speaker: 'penguins'});
+        } else if (drawnPaths.length === 34) {
+            notif("I highly recommend that you visit the <a href=\"https://www.khanacademy.org\" target=\"_blank\">Khan Academy</a>.<br />It is the kind of school I dreamt of as a kid.", {speaker: 'vishnu'});
+        } else if (drawnPaths.length === 55) {
             notif("<strong><code>666 999 = 666 x 999 + 666 + 999</code></strong><br />Upside down, this is still true !", {speaker: 'devil'});
-        } else if (drawnPaths.length == 89) {
+        } else if (drawnPaths.length === 89) {
             notif("Waow, that's a big doodle you're drawing there !<br />I hope you'll save that !", {speaker: 'hulk'});
-        } else if (drawnPaths.length == 144) {
-            notif("Did you notice that the notifications' frequency <br /> followed the Fibonacci sequence ? <br /> Bet you didn't !", {speaker: 'neo'});
-        } else if (drawnPaths.length == 233) {
+        } else if (drawnPaths.length === 144) {
+            notif("Did you notice that the notifications' frequency <br /> followed the Fibonacci sequence ? <br /> <em title=\"Congratulations to Gaëlle, who figured it out !\">Bet you didn't !</em>", {speaker: 'neo'});
+        } else if (drawnPaths.length === 233) {
             notif("<b>~ ACHIEVEMENT UNLOCKED ~</b><br /><em>Web Doodle Artist</em>", {speaker: 'wizard'});
-        }
-        // Hide control buttons
-        buttonSend.addClass('hiddenSmall');
-        buttonView.addClass('hiddenSmall');
-        buttonDown.addClass('hiddenSmall');
-        formSend.addClass('hiddenSmall');
-    }
-
-    if ('send' == from) {
-        document.id('formSend').addClass('hiddenSmall');
-        if (!options.title && !options.message) {
-            notif("Did you just send me an empty message ?<br />Bah, I got the drawing, it's better than nothing !", {speaker: 'hulk'});
-        } else {
-            notif("Well done, and thank you!");
+        } else if (drawnPaths.length === 377) {
+            notif("<strong>Congratulations</strong>, you reached the end of the notifications, with <code>377</code> strokes.", {speaker: 'penguins'});
         }
     }
 
-    */
 }
