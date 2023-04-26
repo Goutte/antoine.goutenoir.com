@@ -1,0 +1,550 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Cyx — a modern tic tac toe in 3D</title>
+
+    <meta name="description" content="A Leap Motion enabled geodetic tic-tac-toe. Play hotseat against a friend or play solo against the computer !">
+    <meta name="keywords"    content="cyx, game, experiment, connect six, tic-tac-toe, honeycombed, geode, browser, html5, webgl, leap motion">
+    <meta name="author"      content="Goutte <antoine.goutenoir@gmail.com>">
+    <meta name="author"      content="Kiouze <kiouze@gmail.com>">
+
+    <meta property="og:title" content="Cyx — a modern tic tac toe in 3D">
+    <meta property="og:image" content="://antoine.goutenoir.com/games/cyx/img/cyx-media-image.png">
+
+    <link rel="icon" href="favicon.ico">
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="android-chrome-192x192.png" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="57x57"   href="apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60"   href="apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72"   href="apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76"   href="apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
+    <link rel="manifest"  href="manifest.json">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="msapplication-TileImage" content="mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" type="text/css" href="css/play.css">
+  </head>
+
+  <body>
+
+    <div id="game_frame" class="fullscreen hidden">
+
+      <canvas id="game_canvas" class="fullscreen"></canvas>
+
+      <div id="ingame_crosshair"></div>
+
+      <div id="ingame_shape_flower"></div>
+      <div id="ingame_shape_circle"></div>
+      <div id="ingame_shape_triangle"></div>
+      <div id="ingame_shape_line"></div>
+
+      <div id="ingame_tutorial_04" class="tutorial_step hidden">
+        <p>
+          You can also use the keyboard<br /><br />
+          <strong>arrows</strong><br/><br />
+          to navigate, the<br /><br />
+          <strong>space bar</strong><br /><br />
+          to place a stone, and<br /><br />
+          <strong><kbd>M</kbd></strong><br /><br />
+          to toggle the sound.
+        </p>
+      </div>
+
+      <div id="ingame_tutorial_03" class="tutorial_step hidden">
+        <p>Cyx is a geodetic<br><br> <strong>TIC TAC TOE</strong></p>
+        <p>Make one of the four shapes<br> before your opponent does.</p>
+        <img src="img/help/shapes.png" alt=""/>
+      </div>
+
+      <div id="ingame_tutorial_02" class="tutorial_step hidden">
+        <p>Keep your hand steady for a few<br> seconds to play on the selected tile.</p>
+        <img src="img/help/leap_motion_02.png" alt=""/>
+      </div>
+
+      <div id="ingame_tutorial_01" class="tutorial_step hidden">
+        <p>Move your hand as if you were<br> caressing the geode to rotate it.</p>
+        <img src="img/help/leap_motion_01.png" alt=""/>
+      </div>
+
+      <div id="ingame_tutorial_00" class="tutorial_step hidden">
+        <p class="tutorial_tagline">Make one of the four shapes<br> before your opponent does.</p>
+      </div>
+
+    </div>
+
+    <div id="notification" class="animated hidden"></div>
+
+    <div id="game_over_msg" class="btn_exit"><p>Press ESC to exit</p></div>
+
+    <div id="noleap_error"><p>No LEAP Motion Controller detected</p></div>
+
+    <div id="nowebgl_error">
+      <h2>OH NOES !</h2>
+      <p data-i18n="error.nowebgl.message">
+        Your browser does not support WebGL ?!<br>
+        We are sorry, you need a webGL-friendly browser <em>and</em> video card to play.
+      </p>
+      <p>
+        <a href="https://get.webgl.org/" data-i18n="error.nowebgl.getwebgl">Get WebGL</a>
+      </p>
+    </div>
+
+    <div id="main_menu">
+
+      <section id="main_menu_game_commands">
+
+        <div id="main_ui_loader" class="gmf_ui_loader" data-hide-on="jax_ready"></div>
+
+        <div id="hexagon_container" class="hidden" data-show-on="jax_ready">
+          <a id="main_menu_start_hotseat" href="" class="hexagon" title="Duel a frenemy in a local hotseat game.  Or go someplace secret if you feel you can CONTROL the power blooming within…">
+            <span>2<br>players</span>
+            <div class="hexagon_p60"></div>
+            <div class="hexagon_m60"></div>
+          </a>
+          <a id="main_menu_start_solo_easy" href="" class="start_single_game hexagon" data-jax-action="playEasy" title="You can win this, I promise.">
+            <span>Solo<br>(Easy)</span>
+            <div class="hexagon_p60"></div>
+            <div class="hexagon_m60"></div>
+          </a>
+          <a id="main_menu_start_solo_normal" href="" class="locked start_single_game hexagon" data-jax-action="playNormal" title="It's actually just a tad less candid version of Easy.">
+            <span>Solo<br>(Normal)</span>
+            <div class="hexagon_p60"></div>
+            <div class="hexagon_m60"></div>
+          </a>
+          <a id="main_menu_start_solo_hard" href="" class="locked start_single_game hexagon" data-jax-action="playHard" title="Yes we canchon!">
+            <span>Solo<br>(Hard)</span>
+            <div class="hexagon_p60"></div>
+            <div class="hexagon_m60"></div>
+          </a>
+          <a id="main_menu_start_solo_expert" href="" class="locked start_single_game hexagon" data-jax-action="playExpert" title="Can you best these measly lines of code?">
+            <span>Solo<br>(Master)</span>
+            <div class="hexagon_p60"></div>
+            <div class="hexagon_m60"></div>
+          </a>
+        </div>
+
+        <!--
+        <div id="claps-button">
+          <form id="claps-form" action="claps.php" method="post">
+            <input id="claps-input" type="submit" value="👏"
+                   title="Press it to applaud Cyx, if you like it.  We removed ALL the non-consensual trackers and are adding this instead.  Is the energy spent into making Cyx worth the effort?  Tell us, if you want." />
+            <p class="subtext">
+              <span id="claps-amount">some</span>
+              claps
+            </p>
+          </form>
+        </div>
+        -->
+
+      </section>
+
+      <footer>
+        <a href="https://mastodon.social/@Goutte" class="credentials">
+          <img src="img/marks/goutte.png" alt="Antoine Goutenoir" width="34" height="54" />
+        </a>
+        <p>
+          Version 3.13.0
+        </p>
+
+        <section class="teasers postface">
+          <details>
+            <summary>
+              <img src="img/teasers/toying-with-godot.gif" />
+            </summary>
+            <p>
+              Thank you for the continued support, everyone.
+            </p>
+            <p>
+              We plan on remaking Cyx using Godot.
+              <br />
+              Things were tested.  Pixels were painted.
+              <br />
+              In a while, I'll publish here a link to a form about the future of Cyx.
+            </p>
+
+            <em>Stay algebraic!</em>
+          </details>
+        </section>
+
+        <!-- More third-party for immediate assessment, to remove later -->
+        <!--<div align="center" title="Approximate number of visits since 2017.">-->
+            <!--<a href='http://www.counter12.com'>-->
+                <!--<img src='http://www.counter12.com/img-bZ38bcbDBDZ5D8B6-57.gif' border='0' alt='free web counter' />-->
+            <!--</a>-->
+            <!--<script type='text/javascript' src='http://www.counter12.com/ad.js?id=bZ38bcbDBDZ5D8B6' async></script>-->
+        <!--</div>-->
+      </footer>
+
+    </div>
+
+
+    <!-- BELOW IS SOME JAVASCRIPT MAGIC TO GLUE IT ALL -->
+
+    <script type="text/javascript" src="js/lazyload.js"></script>
+
+    <script type="text/javascript">
+
+      // WELCOME TO THE SOURCE !
+      // This is a purely static HTML5 & Javascript game published first in 2013.
+
+      // Q: Why isn't there a multiplayer mode?
+      // A: A multiplayer mode has always been on the road map.
+      //    Right now I'm happy and able to pay for you, to keep Cyx online.
+      //    But a multiplayer mode means a lot more money, and a LOT of work in scalability and security.
+      //    At its peak, Cyx had thousands of hits per day, most of them graciously provided by Google's Chrome Store.
+      //    Besides, we got a working multiplayer demo with Godot.  Ping us!
+
+      // Q: Hey, why are there third party trackers on the page?
+      // A: Old things ; will remove them as soon as I get the chance.
+
+      // Q: Will there be ads?
+      // A: Let's say that the money we don't make with ads is part of our æsthetics expense to keep Cyx beautiful.
+
+      // Q: I've seen Cyx with ads?  WHat's up?
+      // A: Bullies and thieves.
+
+      // Q: What is this then?
+      // A: Cyx is a tracer bullet for another game I've been cooking for a while.
+      //    This other game will basically be a free-to-play modern game of Go with cosmetic microtransactions.
+      //    Cyx is also a demo of the potential of the geodetic sphere. Dreamy, eh?
+      //    Ideas: Freeciv, Dames chinoises, Abalone, Reversi, puzzles of all kinds
+
+      // Q: Where's the source?
+      // A: It's on a gitea there : https://git.qrok.me/Goutte/cyx-jax
+      //    That server is unstable.  Best fork it.
+
+      // Q: What's the tech behind it?
+      // A: Coffeescript, a story about mathematics, and a few thousand hours of random keyboard mashing.
+      //    Cyx is built upon the nearly-defunct-yet-awesome Jax WebGL framework https://github.com/sinisterchipmunk/jax
+      //    We are remaking it with Godot.
+
+      // Q: How about https://cyx.game?
+      // A: It's in the works. (hopefully, my bid for it will stand)
+      //    2020 update: .game €424.05/yr+   → I can barely pay rent and food, so… nope.
+
+      // Q: What is this LEAP Motion you mention?
+      // A: LEAP Motion is a high-precision infrared hand motion sensor you can use to play Cyx with.
+      //    The controls could be refined, and they will be once I get my hands on a VR set.
+      //    Time passes.  Still no VR set, but now I'm eyeing neuralinks, there's so much potential for art!
+
+      // ---
+
+      // Contact
+      //
+      // - antoine@goutenoir.com
+      // - Itch : https://goutte.itch.io
+      // - Discord : https://discord.gg/yGfqQRG
+
+      // ---
+
+      // GLOBAL POLLUTION
+      // our objects
+      var jax, cyx_ui, game_canvas, nw_gui, nw_win;
+      // our functions
+      var is_node_webkit, adjust_canvas_size;
+
+      // We also have access to the following global vars :
+      //   - Jax
+      //   - jQuery
+      //   - screenfull
+
+      // Our Airspace app is a Node-Webkit package
+      is_node_webkit = function() {
+        return (typeof global !== 'undefined');
+      };
+
+      // NODE-WEBKIT UI & WINDOW
+      if (is_node_webkit()) {
+        nw_gui = require('nw.gui');
+        nw_win = nw_gui.Window.get();
+        nw_win.focus();
+        nw_win.enterFullscreen();
+
+        // Clear our localStorage data if not from this this machine, because
+        // the LEAP review team tests the application before submitting it.
+        var machine_id = global.process.env.USERDOMAIN + '-' + global.process.env.USERNAME;
+        if (machine_id != window.localStorage.getItem('machine_id')) {
+          window.localStorage.clear();
+          window.localStorage.setItem('machine_id', machine_id);
+        }
+      }
+
+      // ADJUST TO WINDOW SIZE GRACEFULLY
+      adjust_canvas_size = function() {
+        var w = window.innerWidth, h = window.innerHeight;
+        if (game_canvas) { game_canvas.width = w; game_canvas.height = h; }
+      };
+      window.addEventListener('resize', adjust_canvas_size);
+
+      // Load JAX, Timbre and LEAP, and execute a callback when finished.
+      LazyLoad.js(['assets/jax.js', 'js/leap-cursor.js', 'js/timbre.js'], function () {
+
+        // ERROR HANDLING
+        if (!jQuery || typeof Jax === 'undefined' || typeof jQuery.url !== 'function') {
+          console.log("Cyx's Javascript failed to load", jQuery, Jax, jQuery.url);
+          alert("Sorry, the javascript failed to load !\n" +
+                "If the problem persists, please report it\n" +
+                "on the Facebook/Google+ CYX page,\n" +
+                "or by writing to antoine@goutenoir.com !");
+          return;
+        }
+
+        // DEBUG MODE
+        window.debug = jQuery.url().param('dbg') || null;
+
+        // PREPARE GAME CANVAS
+        game_canvas = document.getElementById("game_canvas");
+        adjust_canvas_size(); // Make sure canvas is fullscreen
+        // hotfix for node-webkit, MAY not be needed anymore
+        //game_canvas.ondragstart=function(){return false;};
+
+        // NOW, WAIT FOR DOM
+        jQuery().ready(function($) {
+
+          // BUILD JAX CONTEXT (or GTFO)
+          try {
+            jax = new Jax.Context(game_canvas);
+          } catch (e) {
+            var $no_webgl = $('#nowebgl_error');
+            $no_webgl.html($no_webgl.html()+'<br/>'+e.message);
+            $no_webgl.show();
+            $('#main_ui_loader').addClass('hidden');
+            return;
+          }
+
+          // ADJUST TO NODE-WEBKIT (for the distributed binary for the Leap Motion Store)
+          if (is_node_webkit()) {
+            $('body').addClass('node-webkit');
+          }
+
+          // BUILD AND BIND THE UI
+          // #think not satisfied
+          // The idea was to separate the game controls from the html elements.
+          // Cyx is written in CoffeeScript, putting method calls here feels
+          // disturbing, but we should. Cyx.UI does too much internally.
+          cyx_ui = new Cyx.UI.Main(jQuery, jax, {
+             main_menu:          '#main_menu'
+            ,game_frame:         '#game_frame'
+            ,game_canvas:        '#game_canvas'
+            ,game_commands:      '#main_menu_game_commands'
+            ,notification:       '#notification'
+            ,start_hotseat:      '#main_menu_start_hotseat'
+            ,start_solo:         '.start_single_game'
+            ,start_solo_easy:    '#main_menu_start_solo_easy'
+            ,start_solo_normal:  '#main_menu_start_solo_normal'
+            ,start_solo_hard:    '#main_menu_start_solo_hard'
+            ,start_solo_expert:  '#main_menu_start_solo_expert'
+            ,toggle_mute:        '#ingame_widget_toggle_sound'
+            ,back_button:        '#ingame_widget_back'
+            ,help_button:        '#ingame_widget_help'
+            ,help_overlay:       '#ingame_layer_help'
+            ,crosshair:          '#ingame_crosshair'
+            ,noleap_error:       '#noleap_error'
+            ,game_over_msg:      '#game_over_msg'
+            ,btn_exit:           '.btn_exit'
+          });
+
+          // RANDOM EFFECTS ON THE HEXAGONS
+          var hexagon_animation_classes = [
+            'rotate_360', 'rotate_60',
+            'keystroke',  'flatten',
+            'brackets1',  'brackets2',
+            'pulsar',     'tadaaa',
+            'bluish',     'thinnen'
+          ];
+          var hexagon_animation_class = GMF.Util.getRandomArrayValue(hexagon_animation_classes);
+          $('#main_menu_game_commands a.hexagon:not(.locked)').addClass(hexagon_animation_class);
+
+
+          // LEAP LOOP CONFIG
+          // /!\ This has priority over Jax's loop configuration
+          var leap_loop_opts = {
+            enableGestures: true
+          };
+
+          // LEAP CURSOR
+          var leap_manager_opts = {
+            // We only need one cursor
+            maxCursors: 1,
+            // CSS selector for interactive elements
+            interactiveSelector: "#main_menu_game_commands a.hexagon:not(.locked)",
+            // Disable meta gestures such as history swipe
+            enableDefaultMetaGestureActions: false,
+            enableMetaGestures: false,
+            // Frame scrolling when cursor approaches frame's edges
+            enableFrameScrolling: true,
+            // Disable scrollbar scrolling (whatever that is)
+            enableScrollbarScrolling: false,
+            // Virtual Boundary in which to move your fingers around.
+            // Translates into screen space. Obtained empirically.
+            boundary: {
+              top: 350,
+              left: -100,
+              right: 100,
+              bottom: 150
+            },
+            // Configuration for cursors
+            cursorConfig: {
+              multitapEnabled: false,
+              clickDelay: 1111
+            },
+            // Config to pass into the Loop function for the leap
+            loopConfig: leap_loop_opts
+          };
+          LeapManager.init(leap_manager_opts);
+          cyx_ui.on('game_enter', function(){
+            LeapManager.exit();
+          });
+
+
+          // DISCONNECTED LEAP ERROR
+          // The loop is (silently) started by the cursor manager lib above
+          if (Leap && Leap.loopController) {
+            if (is_node_webkit() && !Leap.loopController.connected()) {
+              cyx_ui.noleap_error.show();
+            }
+            Leap.loopController.on('deviceAttached', function() {
+              cyx_ui.noleap_error.hide();
+            });
+            Leap.loopController.on('deviceRemoved', function() {
+              cyx_ui.noleap_error.show();
+            });
+          }
+
+
+          // EXTRA KEYBOARD MAPPING ON NODE-WEBKIT
+          if (nw_win) {
+            $(document).on('keydown', function(e){
+              if (!cyx_ui.isGameRunning() && e.which == 27) { // ESC
+                nw_win.close();
+              } else if (e.which == 122) { // F11
+                nw_win.toggleFullscreen();
+              } else if (e.which == 119) { // F8
+                nw_win.showDevTools();
+              }
+            });
+          }
+
+
+          // THE UI IS READY !
+          cyx_ui.trigger('jax_ready');
+
+
+          // LAUNCH REPLAY MODE IF ANY
+          var encodedReplay = jQuery.url().param('replay') || null;
+          if (encodedReplay) {
+            var data = { controller: new Jax.ReplayGameController };
+            cyx_ui.trigger('game_enter', data);
+            cyx_ui.trigger('game_start', data);
+          }
+
+
+          // TUTORIAL
+          // Ahem. This obviously is a hack that should be refactored,
+          // but I want to do it in Dart instead.
+          cyx_ui.on('game_enter', function(){
+            if (encodedReplay) return;
+            var duration = 15555;
+            var count_max = 5;
+            var count = window.localStorage.getItem('notif_intro_count') || 0;
+            count = parseInt(count);
+            if (count < count_max) {
+              window.localStorage.setItem('notif_intro_count', count+1);
+              $('#ingame_tutorial_00').removeClass('hidden');
+              setTimeout(function(){
+                $('#ingame_tutorial_00').addClass('hidden');
+                $('#ingame_tutorial_01').removeClass('hidden');
+                setTimeout(function(){
+                  $('#ingame_tutorial_01').addClass('hidden');
+                  if (is_node_webkit()) {
+                      $('#ingame_tutorial_02').removeClass('hidden');
+                  }
+                  setTimeout(function(){
+                    $('#ingame_tutorial_02').addClass('hidden');
+                    $('#ingame_tutorial_03').removeClass('hidden');
+                    setTimeout(function(){
+                      $('#ingame_tutorial_03').addClass('hidden');
+                      $('#ingame_tutorial_04').removeClass('hidden');
+                      setTimeout(function(){
+                        $('#ingame_tutorial_04').addClass('hidden');
+                      }, duration);
+                    }, duration*1.618);
+                  }, duration);
+                }, duration);
+              }, duration);
+            }
+          });
+
+
+          // CLAPS
+          // Homebrewed opt-in tracker
+          /*
+          jQuery.ajax("claps.php", {
+            method: "GET"
+          }).fail(function (xhr, msg, err) {
+            console.log("Failed to retrieve the claps.", xhr, msg, err);
+          }).done(function (data) {
+            data = parseInt(data) || 1337;
+            $("#claps-amount").text(data);
+          });
+
+          $("#claps-form").on("submit", function(e) {
+              console.info("Clap!", e);
+
+              jQuery.ajax("claps.php", {
+                  method: "POST"
+              }).fail(function (xhr, msg, err) {
+                  console.log("Failed to clap.", xhr, msg, err);
+              }).done(function (data) {
+                  data = parseInt(data) || 1337;
+                  $("#claps-amount").text(data);
+              });
+
+              e.stopPropagation();
+              return false;
+          });
+          */
+
+        });
+
+      });
+
+      // Register a Service Worker, that we're using to cache assets for offline gaming.
+      // https://developers.google.com/web/fundamentals/engage-and-retain/app-install-banners/
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('service-worker.js').then(function (registration) {
+            //console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }).catch(function (err) {
+            //console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+
+    </script>
+
+
+    <!-- Google's voodoo -->
+    <!--<script type="text/javascript">-->
+      <!--// Analytics-->
+      <!--(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){-->
+      <!--(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),-->
+      <!--m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)-->
+      <!--})(window,document,'script','http://www.google-analytics.com/analytics.js','ga');-->
+      <!--ga('create', 'UA-40586804-1', 'goutenoir.com');-->
+      <!--ga('send', 'pageview');-->
+    <!--</script>-->
+
+  </body>
+</html>

@@ -1,0 +1,33 @@
+@import 'config';
+
+@cursorSize: 42px;
+@borderSize: 5px;
+
+.leap-cursor {
+  position: absolute;
+  width: @cursorSize;
+  height: @cursorSize;
+  margin: 0;
+
+  transition-property: background-color;
+  transition-timing-function: ease-in;
+  background-color: white;
+  border: @borderSize solid @colorBlue;
+  border-radius: 50%;
+
+  &.active-timer {
+    background-color: @colorOrange;
+  }
+}
+
+body {
+  cursor: url('../img/cursors/hand.png') 11 2, pointer;
+}
+
+body.player-cyan {
+  cursor: url('../img/cursors/hand_cyan.png') 11 2, pointer;
+}
+
+body.player-orange {
+  cursor: url('../img/cursors/hand_orange.png') 11 2, pointer;
+}
