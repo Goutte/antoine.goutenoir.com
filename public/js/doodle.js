@@ -21,7 +21,7 @@ const drawnPaths = [];
 Doodle.canvasToImage = (canvas, backgroundColor) => {
     const w = canvas.width;
     const h = canvas.height;
-    const context = canvas.getContext("2d");
+    let context = canvas.getContext("2d");
     let canvasData;
     let compositeOperation;
 
@@ -39,7 +39,7 @@ Doodle.canvasToImage = (canvas, backgroundColor) => {
     }
 
     // get the image data from the canvas
-    const imageData = canvas.toDataURL("image/png");
+    let imageData = canvas.toDataURL("image/png");
 
     if (backgroundColor) {
         // clear the canvas
@@ -227,7 +227,8 @@ function getDrawingCanvasDomElement () {
 }
 
 function getHoldingCanvas () {
-    return Doodle.holdingPaperScope.project.view._element;
+    paper = Doodle.holdingPaperScope;
+    return paper.project.view._element;
 }
 
 /**
@@ -235,7 +236,8 @@ function getHoldingCanvas () {
  * @param path
  */
 const addPathToHolder = function (path) {
-    return Doodle.holdingPaperScope.addPathToHolder(path);
+    paper = Doodle.holdingPaperScope;
+    return paper.addPathToHolder(path);
 };
 
 /**
@@ -243,7 +245,8 @@ const addPathToHolder = function (path) {
  * This is not good. How ?
  */
 const drawHolder = function () {
-    Doodle.holdingPaperScope.view.draw();
+    paper = Doodle.holdingPaperScope;
+    paper.view.draw();
 };
 
 
@@ -273,7 +276,7 @@ function undo () {
     drawHolder();
 }
 
-
+/*
 function save () {
 
     const saveRequest = new Request.JSON({
@@ -305,9 +308,8 @@ function save () {
     saveRequest.send(Object.toQueryString({
         dataURL: dataURL
     }));
-
 }
-
+*/
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("send-drawing-form");
@@ -315,7 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const doodleInput = document.getElementById("send-drawing-image");
         const dataURL = Doodle.canvasToImage(getHoldingCanvas(), '#000');
         doodleInput.value = dataURL;
-        console.info("Doodle data url", dataURL);
+        console.log("Doodle data url", dataURL);
     });
 });
 

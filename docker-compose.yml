@@ -21,11 +21,8 @@ services:
       start_period: 30s
     environment:
       # Run "composer require symfony/orm-pack" to install and configure Doctrine ORM
+      # We are using a database to store messages (as in message queue), but not doodles.
       #DATABASE_URL: postgresql://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD:-!ChangeMe!}@database:5432/${POSTGRES_DB:-app}?serverVersion=${POSTGRES_VERSION:-14}&charset=${POSTGRES_CHARSET:-utf8}
-      # Run "composer require symfony/mercure-bundle" to install and configure the Mercure integration
-      #MERCURE_URL: ${CADDY_MERCURE_URL:-http://caddy/.well-known/mercure}
-      #MERCURE_PUBLIC_URL: https://${SERVER_NAME:-localhost}/.well-known/mercure
-      #MERCURE_JWT_SECRET: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
       APP_ENV: prod
 
   nginx:
@@ -39,7 +36,7 @@ services:
     #volumes:
       # use a bind-mounted host directory, as we want to keep the media
       #- ./public:/srv/app/public:ro
-    # You probably want this ; I handle network weirdly
+    # You probably want to uncomment this ; I handle network weirdly
 #    ports:
 #      - "80:80"
     environment:
@@ -67,6 +64,7 @@ volumes:
 
 # Tip from https://github.com/jwilder/nginx-proxy/issues/1132#issuecomment-392460028
 # Create it first: docker network create webproxy
+# You might want to remove this.
 networks:
   default:
     name: webproxy

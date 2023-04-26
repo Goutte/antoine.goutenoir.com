@@ -1,7 +1,7 @@
 
 # Doodling for the win
 
-A doodle is worth many words.
+A single doodle is worth so many words.
 
 
 ## Stack
@@ -29,6 +29,7 @@ A doodle is worth many words.
 
     docker compose up
 
+
 ## Messenger
 
 Emails are sent asynchronously.
@@ -37,3 +38,5 @@ This project requires a database to hold the message queue.
 https://symfony.com/doc/current/messenger.html#consuming-messages-running-the-worker
 
     bin/console messenger:consume async -vv
+
+> The docker setup will start a process for this in the entrypoint.
