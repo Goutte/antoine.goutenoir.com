@@ -217,6 +217,14 @@ document.addEventListener("DOMContentLoaded", () => {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+
+document.addEventListener("DOMContentLoaded", () => {
+    const nojsEls = document.getElementsByClassName("nojs");
+    Array.from(nojsEls).forEach((el) => {
+        el.remove();
+    });
+});
+
 /** TOOLS *************************************************************************************************************/
 
 function getDrawingCanvas () {
