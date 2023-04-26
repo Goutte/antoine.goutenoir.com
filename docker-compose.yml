@@ -2,7 +2,6 @@ version: "3.4"
 
 services:
   php:
-    # Container name is used in nginx config
     container_name: antoine.goutenoir.com_php
     build:
       context: .
@@ -14,6 +13,8 @@ services:
     volumes:
       # We do not need that volume anymore, since we're using TCP not socket
       - php_socket:/var/run/php
+      # We use flat files for doodles and messages, let's keep em around
+      - doodles:/srv/app/var/doodle
     healthcheck:
       interval: 30s
       timeout: 3s
@@ -41,6 +42,7 @@ services:
 #      - "80:80"
     environment:
       # Config for server's nginx-reverse-proxy container
+      # move this to an un-committed override
       LETSENCRYPT_HOST: antoine.goutenoir.com
       LETSENCRYPT_EMAIL: antoine@goutenoir.com
       VIRTUAL_HOST: antoine.goutenoir.com
@@ -50,16 +52,10 @@ services:
 ###> recipes ###
 ###< recipes ###
 
-# Mercure is installed as a Caddy module, prevent the Flex recipe from installing another service
-###> symfony/mercure-bundle ###
-###< symfony/mercure-bundle ###
 
 volumes:
   php_socket:
-#  caddy_data:
-#  caddy_config:
-###> symfony/mercure-bundle ###
-###< symfony/mercure-bundle ###
+  doodles:
 
 
 # Tip from https://github.com/jwilder/nginx-proxy/issues/1132#issuecomment-392460028

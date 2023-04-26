@@ -115,6 +115,10 @@ textarea {
     font-size: 1.2em;
 }
 
+kbd {
+    font-size: 1.5em;
+}
+
 /** GENERICS **/
 
 .hidden {
