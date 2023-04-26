@@ -150,17 +150,17 @@
       </section>
 
       <footer>
-        <a href="https://mastodon.social/@Goutte" class="credentials">
+        <a href="https://antoine.goutenoir.com" class="credentials">
           <img src="img/marks/goutte.png" alt="Antoine Goutenoir" width="34" height="54" />
         </a>
         <p>
-          Version 3.13.0
+          Version 3.13.1
         </p>
 
         <section class="teasers postface">
           <details>
             <summary>
-              <img src="img/teasers/toying-with-godot.gif" />
+              <img src="img/teasers/toying-with-godot.gif" alt="A honeycombed geode." />
             </summary>
             <p>
               Thank you for the continued support, everyone.
@@ -177,13 +177,6 @@
           </details>
         </section>
 
-        <!-- More third-party for immediate assessment, to remove later -->
-        <!--<div align="center" title="Approximate number of visits since 2017.">-->
-            <!--<a href='http://www.counter12.com'>-->
-                <!--<img src='http://www.counter12.com/img-bZ38bcbDBDZ5D8B6-57.gif' border='0' alt='free web counter' />-->
-            <!--</a>-->
-            <!--<script type='text/javascript' src='http://www.counter12.com/ad.js?id=bZ38bcbDBDZ5D8B6' async></script>-->
-        <!--</div>-->
       </footer>
 
     </div>
@@ -426,11 +419,11 @@
           // EXTRA KEYBOARD MAPPING ON NODE-WEBKIT
           if (nw_win) {
             $(document).on('keydown', function(e){
-              if (!cyx_ui.isGameRunning() && e.which == 27) { // ESC
+              if (!cyx_ui.isGameRunning() && e.which === 27) { // ESC
                 nw_win.close();
-              } else if (e.which == 122) { // F11
+              } else if (e.which === 122) { // F11
                 nw_win.toggleFullscreen();
-              } else if (e.which == 119) { // F8
+              } else if (e.which === 119) { // F8
                 nw_win.showDevTools();
               }
             });
