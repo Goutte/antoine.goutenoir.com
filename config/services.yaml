@@ -7,6 +7,10 @@ parameters:
     app.email.sender: '%env(resolve:DOODLE_EMAIL_SENDER)%'
     app.email.recipient: '%env(resolve:DOODLE_EMAIL_RECIPIENT)%'
 
+    # https://symfony.com/doc/current/routing.html#forcing-https-on-generated-urls
+    router.request_context.scheme: 'https'
+    asset.request_context.secure: true
+
 services:
     # default configuration for services in *this* file
     _defaults:

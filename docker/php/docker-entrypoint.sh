@@ -69,4 +69,6 @@ fi
 # Also, we process the queue every 15 minutes, it's enough.
 bin/console messenger:consume async -vv --sleep 900 &
 
+echo "Almost done with the PHP entrypoint…"
+
 exec docker-php-entrypoint "$@"

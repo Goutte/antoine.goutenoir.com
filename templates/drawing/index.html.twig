@@ -22,10 +22,10 @@
 
 <nav>
 {% if page > 0 %}
-    <a href="{{ url('app_doodles_index', {'page': page-1}) }}">← Previous Page</a>
+    <a href="{{ path('app_doodles_index', {'page': page-1}) }}">← Previous Page</a>
     &nbsp; ✶ &nbsp;
 {% endif %}
-    <a href="{{ url('app_doodles_index', {'page': page+1}) }}">Next Page →</a>
+    <a href="{{ path('app_doodles_index', {'page': page+1}) }}">Next Page →</a>
 </nav>
 
 {% endblock %}
