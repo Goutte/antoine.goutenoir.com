@@ -15,13 +15,6 @@ use Symfony\Component\Yaml\Yaml;
 class DoodleController extends AbstractController
 {
 
-    // TODO: move to another controller
-    #[Route(path: '/ping', name: 'app_ping')]
-    public function ping(): Response
-    {
-        return new Response("pong");
-    }
-
     #[Route(path: '/', name: 'app_drawing_draw')]
     public function draw(): Response
     {
