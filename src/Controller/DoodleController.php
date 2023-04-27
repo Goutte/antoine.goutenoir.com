@@ -3,19 +3,16 @@
 namespace App\Controller;
 
 use App\Domain\Doodle;
+use App\Service\DoodleRepository;
 use App\Service\MailSender;
-use League\Flysystem\Filesystem;
-use League\Flysystem\Local\LocalFilesystemAdapter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Yaml\Yaml;
 
 class DoodleController extends AbstractController
 {
-
-    #[Route(path: '/', name: 'app_drawing_draw')]
+    #[Route(path: '/', name: 'app_doodles_draw')]
     public function draw(): Response
     {
         return $this->render('drawing/draw.html.twig', [
@@ -23,22 +20,16 @@ class DoodleController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/drawings', name: 'app_drawing_create', methods: ['post'])]
-    public function create(Request $request, MailSender $mailer): Response
-    {
+    #[Route(path: '/doodles', name: 'app_doodles_create', methods: ['post'])]
+    public function create(
+        Request $request,
+        MailSender $mailer,
+        DoodleRepository $doodleRepository,
+    ): Response {
         // TODO: come on, just use the Form and Validator components
         $doodle = Doodle::fromRequest($request);
 
-        // TODO: refactor as flat-file DoodleRepository service, using the amazing Flysystem
-        $adapter = new LocalFilesystemAdapter("../var/doodle");
-        $filesystem = new Filesystem($adapter);
-        $now = (new \DateTime())->format("Y-m-d_H:i:s");
-        $filenameYaml = $now . ".yaml";
-        $filenamePng = $now . ".png";
-        $serialized = Yaml::dump($doodle->serialize());
-        $filesystem->write($filenameYaml, $serialized);
-        $filesystem->write($filenamePng, $doodle->getBlob());
-
+        $doodleRepository->saveDoodle($doodle);
         $wasMailSent = $mailer->perhapsSendDoodle($doodle);
 
         return $this->render('drawing/created.html.twig', [
@@ -47,12 +38,19 @@ class DoodleController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/drawings', name: 'app_drawing_index', methods: ['get'])]
-    public function index(): Response
+    #[Route(path: '/doodles', name: 'app_doodles_index', methods: ['get'])]
+    public function index(
+        DoodleRepository $doodleRepository,
+        Request $request,
+    ): Response
     {
-        // TODO: index doodles
+        $page = (int) ($request->get("page", 0));
+        $count = $doodleRepository->countDoodles();
+
         return $this->render('drawing/index.html.twig', [
-            'controller_name' => 'DrawingController',
+            'doodles' => $doodleRepository->index($page, 4),
+            'doodlesCount' => $count,
+            'page' => $page,
         ]);
     }
 }

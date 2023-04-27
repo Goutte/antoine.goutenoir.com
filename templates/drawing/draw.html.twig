@@ -39,19 +39,19 @@
             </div>
 {#            <input type="button" id="control-vortex" value="&#127786;" />#}
             <hr>
-            <form action="/drawings" method="post" id="send-drawing-form">
+            <form action="{{ url('app_doodles_create') }}" method="post" id="send-drawing-form">
                 <label for="send-drawing-who">
                     Who are you ?
                 </label>
                 <p>
-                    <textarea id="send-drawing-who" name="who" rows="5" cols="42"></textarea>
+                    <textarea id="send-drawing-who" name="who" rows="5" cols="42" placeholder="… and how can I contact you back ?"></textarea>
                 </p>
                 <br>
                 <label for="send-drawing-what">
                     What do you want ?
                 </label>
                 <p>
-                    <textarea id="send-drawing-what" name="what" rows="9" cols="42"></textarea>
+                    <textarea id="send-drawing-what" name="what" rows="9" cols="42" placeholder="… because you get three wishes !"></textarea>
                 </p>
                 <input id="send-drawing-image" type="hidden" name="doodle" />
                 <input type="submit" value="Submit" />
