@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Yaml\Yaml;
 
-class DrawingController extends AbstractController
+class DoodleController extends AbstractController
 {
 
     // TODO: move to another controller
