@@ -5,16 +5,14 @@ namespace App\Domain;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Polyfill\Intl\Icu\Exception\NotImplementedException;
 
-class Doodle implements \Serializable
+class Doodle
 {
     const IMAGE_FORMAT = "image/png";
     const IMAGE_ENCODING = "base64";
 
-    private string $who;
-
-    private string $what;
-
-    private string $doodle;
+    private string $who = "";
+    private string $what = "";
+    private string $doodle = "";
 
     public function getWho(): string
     {
@@ -80,7 +78,7 @@ class Doodle implements \Serializable
         return $data;
     }
 
-    public function serialize()
+    public function __serialize()
     {
         return [
             'who' => $this->getWho(),
@@ -89,7 +87,7 @@ class Doodle implements \Serializable
         ];
     }
 
-    public function unserialize($data)
+    public function __unserialize($data)
     {
         throw new NotImplementedException("no need for now");
     }

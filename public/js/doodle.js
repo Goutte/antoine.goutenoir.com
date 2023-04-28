@@ -363,17 +363,17 @@ function updateControls (from, options) {
         if (drawnPaths.length === 1) {
             notif('Good job ! Have fun !<br /><small>(and with you may be the fork)</small>', {clear: true, speaker: 'yoda'});
         } else if (drawnPaths.length === 2) {
-            notif('This is not an usual contact page, <br /> but you know what they say... <br /> <em>An image is worth a thousand words.</em>', {clear: true, speaker: 'wizard'});
+            notif('This is not an usual contact page, <br /> but you know what they say... <br /> <em>An image is worth a thousand words.</em>', {clear: false, speaker: 'wizard'});
         } else if (drawnPaths.length === 3) {
-            notif('<em>Enlightenment does matter.</em><br />Think about it. Einstein did !', {clear: true, speaker: 'idea'});
+            notif('<em>Enlightenment does matter.</em><br />Think about it. Einstein did !', {clear: false, speaker: 'idea'});
         } else if (drawnPaths.length === 5) {
-            notif('<strong>KEYBOARD ENABLED !</strong><br />You can hit <b><kbd>[CTRL]+[Z]</kbd></b> to <strong>undo</strong> your last draw.', {clear: true, speaker: 'rabbit'});
+            notif('<strong>KEYBOARD ENABLED !</strong><br />You can hit <b><kbd>[CTRL]+[Z]</kbd></b> to <strong>undo</strong> your last draw.', {clear: false, speaker: 'rabbit'});
         } else if (drawnPaths.length === 8) {
-            notif('The page may be a bit sluggish.<br />It is expected, as this is a performance experiment.<br /><small>(a few atoms were hurt in the making of this webpage)</small>', {clear: true, speaker: 'geiger'});
+            notif('The page may be a bit sluggish.<br />It is expected, as this is a performance experiment.<br /><small>(a few atoms were hurt in the making of this webpage)</small>', {clear: false, speaker: 'geiger'});
         } else if (drawnPaths.length === 13) {
             notif("Just hold <strong><kbd>[$]</kbd></strong> for Free Cake™ !<br /><small>(no undo, no refunds)</small>", {clear: true, speaker: 'devil'});
         } else if (drawnPaths.length === 21) {
-            notif("Like most things I do, this website is <em>libre software</em>.<br />You can browse its <a href=\"https://github.com/Goutte/antoine.goutenoir.com\" target='\"_blank\"'>source code</a>.", {clear: true, speaker: 'penguins'});
+            notif("Like most things I do, this website is <em>libre software</em>.<br />You can browse its <a href=\"https://github.com/Goutte/antoine.goutenoir.com\" target='\"_blank\"'>source code</a>.", {clear: false, speaker: 'penguins'});
         } else if (drawnPaths.length === 34) {
             notif("I highly recommend that you visit the <a href=\"https://www.khanacademy.org\" target=\"_blank\">Khan Academy</a>.<br />It is the kind of school I dreamt of as a kid.", {speaker: 'vishnu'});
         } else if (drawnPaths.length === 55) {
