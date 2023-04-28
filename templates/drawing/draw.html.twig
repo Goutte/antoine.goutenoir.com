@@ -86,7 +86,8 @@
 {#                This is another line that is very long and should probably go over to the next line oh yeah il ne faut pas un pouvoir centralisé#}
 {#            </p>#}
 {#        </div>#}
-        <div class="notification backInDown nojs">
+        <noscript>
+        <div class="notification backInDown">
             <img src="img/speaker/penguins.png" alt="speaker" class="speaker">
             <p>
                 <strong>Javascript is disabled</strong>, and I totally get why.<br />
@@ -94,6 +95,7 @@
                 You can send me a message, but doodling will only work if javascript is enabled.
             </p>
         </div>
+        </noscript>
     </div>
 
     <script type="application/javascript" src="{{ asset('js/paper.js') }}"></script>
