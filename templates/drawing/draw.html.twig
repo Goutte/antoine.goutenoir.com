@@ -2,6 +2,17 @@
 
 {% block title %}Doodle me this{% endblock %}
 
+{% block og %}
+        <meta property="og:title" content="D∞dles" />
+        <meta property="og:type" content="profile" />
+        <meta property="profile:first_name" content="Antoine" />
+        <meta property="profile:last_name" content="Goutenoir" />
+        <meta property="profile:username" content="Goutte" />
+        <meta property="og:url" content="https://antoine.goutenoir.com/" />
+        <meta property="og:image" content="https://antoine.goutenoir.com/img/speaker/penguins.png" />
+        <meta property="og:image:alt" content="Picture of the face of a pale blonde man with glasses and piercing blue eyes" />
+{% endblock %}
+
 {% block body %}
 
     <header>
@@ -55,6 +66,10 @@
                 </p>
                 <input id="send-drawing-image" type="hidden" name="doodle" />
                 <input type="submit" value="Submit" />
+                <label title="please do, I enjoy your doodles">
+                    <input type="checkbox" value="checked" checked disabled="disabled" />
+                    <span>attach doodle</span>
+                </label>
             </form>
         </div>
 
