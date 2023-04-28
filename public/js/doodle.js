@@ -286,11 +286,12 @@ function undo () {
 
 function save() {
     const dataURL = Doodle.canvasToImage(getHoldingCanvas(), '#000');
-    downloadBase64File(dataURL, "doodle.png");
+    let now = (new Date()).toISOString().substring(0, 19).replaceAll(':', '');
+    downloadBase64File(dataURL, `doodle_${now}.png`);
 }
 
 function downloadBase64File(dataUrl, fileName) {
-    const downloadLink = document.createElement("a");
+    const downloadLink = document.createElement('a');
     downloadLink.href = dataUrl;
     downloadLink.download = fileName;
     downloadLink.click();
