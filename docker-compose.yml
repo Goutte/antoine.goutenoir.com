@@ -16,7 +16,7 @@ services:
       # We use flat files for doodles and messages, let's keep em around
       - doodles:/srv/app/var/doodle
     healthcheck:
-      interval: 30s
+      interval: 600s
       timeout: 3s
       retries: 2
       start_period: 30s

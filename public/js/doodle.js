@@ -284,40 +284,17 @@ function undo () {
     drawHolder();
 }
 
-/*
-function save () {
-
-    const saveRequest = new Request.JSON({
-        url: 'drawings',
-        method: 'post',
-        onRequest: function () {
-            console.info('Saving Doodle…');
-        },
-        onSuccess: function (responseJSON, responseText) {
-            console.info('Success !', responseText);
-            if (responseJSON.status === 'ok') {
-                updateControls('save', {doodleId: responseJSON.id});
-                //document.location.href = 'doodle/view/' + responseJSON.id;
-            } else if (responseJSON.status === 'error') {
-                notif(responseJSON.error);
-            }
-        },
-        onFailure: function () {
-            console.error('Failure!  Sorry.');
-            notif('Something went terribly wrong. Try again later?', {speaker: 'hulk'});
-        }
-    });
-
+function save() {
     const dataURL = Doodle.canvasToImage(getHoldingCanvas(), '#000');
-
-    const img = document.createElement('img');
-    img.setAttribute('src', dataURL);
-
-    saveRequest.send(Object.toQueryString({
-        dataURL: dataURL
-    }));
+    downloadBase64File(dataURL, "doodle.png");
 }
-*/
+
+function downloadBase64File(dataUrl, fileName) {
+    const downloadLink = document.createElement("a");
+    downloadLink.href = dataUrl;
+    downloadLink.download = fileName;
+    downloadLink.click();
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("send-drawing-form");
@@ -345,6 +322,11 @@ document.addEventListener("DOMContentLoaded", () => {
         undo();
     });
 
+    const saveButton = document.getElementById("control-save");
+    saveButton.addEventListener("click", (e) => {
+        save();
+    });
+
     updateControls("init");
 });
 
@@ -352,10 +334,13 @@ function updateControls (from, options) {
 
     // Show / Hide Undo
     const undoButton = document.getElementById("control-undo");
+    const saveButton = document.getElementById("control-save");
     if ('save' !== from && 'send' !== from && drawnPaths.length) {
         undoButton.classList.remove('hidden');
+        saveButton.classList.remove('hidden');
     } else {
         undoButton.classList.add('hidden');
+        saveButton.classList.add('hidden');
     }
 
     // Inexpensive notification chain
