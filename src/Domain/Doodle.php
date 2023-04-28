@@ -14,6 +14,7 @@ class Doodle implements \Serializable
     private string $who = "";
     private string $what = "";
     private string $doodle = "";
+    private string $ip = "";
 
     public function getWho(): string
     {
@@ -43,6 +44,16 @@ class Doodle implements \Serializable
     public function setDoodle(string $doodle): void
     {
         $this->doodle = $doodle;
+    }
+
+    public function getIp(): string
+    {
+        return $this->ip;
+    }
+
+    public function setIp(string $ip): void
+    {
+        $this->ip = $ip;
     }
 
     public function getBlob(): string
@@ -76,6 +87,8 @@ class Doodle implements \Serializable
             $data->$name = mb_substr($data->$name, 0, min($p['maxLength'], mb_strlen($data->$name)));
         }
 
+        $data->ip = $request->getClientIp() ?? "";
+
         return $data;
     }
 
@@ -84,6 +97,7 @@ class Doodle implements \Serializable
         return [
             'who' => $this->getWho(),
             'what' => $this->getWhat(),
+            'ip' => $this->getIp(),
             'doodle' => $this->getDoodle(),
         ];
     }

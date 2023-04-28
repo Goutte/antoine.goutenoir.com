@@ -48,6 +48,10 @@ class MailSender
     {
         $emailSubject = "New Doodle!";
         $emailBody = <<<EMAIL_BODY
+<strong>FROM {$doodle->getIp()} (<a href="https://www.geolocation.com/?ip={$doodle->getIp()}">locate</a>)</strong>
+
+<br><br>
+
 <strong>WHO</strong>
 <pre>
 {$doodle->getWho()}
