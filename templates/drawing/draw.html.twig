@@ -31,10 +31,6 @@
 
     <div role="main">
 
-{#        <a id="shareOnGithub" href="https://github.com/Goutte/antoine.goutenoir.com">#}
-{#            <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />#}
-{#        </a>#}
-
         {# Canvas holding the doodle's splines (all but current) -#}
         {# camelCase id because of paperjs shenanigans (?) -#}
         <canvas id="doodleHoldingCanvas" resize></canvas>
@@ -45,8 +41,10 @@
 
         <div id="send-drawing-wrapper">{# helps with absolute positioning #}
         <div id="send-drawing-container">
+            <marquee id="send-drawing-title" scrolldelay="220">Contact Me</marquee>
+
             <div id="doodle-controls">
-                <input type="button" id="control-undo" value="Undo" title="Remove the most recent spline.  (CTRl+Z)" />
+                <input type="button" id="control-undo" value="Undo" title="Remove the most recent spline.  (CTRL+Z)" />
             </div>
 {#            <input type="button" id="control-vortex" value="&#127786;" />#}
             <hr>

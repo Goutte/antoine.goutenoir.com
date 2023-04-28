@@ -153,6 +153,8 @@ kbd {
     text-align: center;
     font-family: "DejaVu Sans", "Ubuntu Light", serif;
     line-height: 1.62em;
+
+    pointer-events: none;
 }
 /*.notification-wrapper {*/
     /*display: inline-block;*/
@@ -171,7 +173,7 @@ kbd {
     min-width: 38%;
     max-width: 62%;
 
-    cursor: pointer;
+    pointer-events: none;
 }
 .notification img.speaker {
     float: left;
@@ -184,6 +186,9 @@ kbd {
     border: 3px solid var(--text-color);
     border-radius: 1.62em 1.62em 1.62em 0;
     padding: 1.62em;
+
+    cursor: pointer;
+    pointer-events: all;
 }
 
 
@@ -229,6 +234,7 @@ kbd {
 
     pointer-events: all;
 
+    color: var(--bg-color);
     background-color: var(--text-color);
 
     transition: left 0.3s ease-out, background-color 0.2s linear;
@@ -236,7 +242,19 @@ kbd {
 #send-drawing-container:focus,
 #send-drawing-container:hover {
     left: 0;
+    color: var(--text-color);
     background-color: var(--bg-color);
+}
+#send-drawing-container:focus #send-drawing-title,
+#send-drawing-container:hover #send-drawing-title {
+    display: none;
+}
+#send-drawing-title {
+    position: absolute;
+    transform: rotateZ(90deg);
+    transform-origin: left bottom;
+    top: 0;
+    left: 0;
 }
 
 div[role=banner] {
