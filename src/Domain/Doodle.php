@@ -2,10 +2,11 @@
 
 namespace App\Domain;
 
+use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Polyfill\Intl\Icu\Exception\NotImplementedException;
 
-class Doodle
+class Doodle implements \Serializable
 {
     const IMAGE_FORMAT = "image/png";
     const IMAGE_ENCODING = "base64";
@@ -90,5 +91,15 @@ class Doodle
     public function __unserialize($data)
     {
         throw new NotImplementedException("no need for now");
+    }
+
+    public function serialize()
+    {
+        return $this->__serialize();
+    }
+
+    public function unserialize($data)
+    {
+        $this->__unserialize($data);
     }
 }
