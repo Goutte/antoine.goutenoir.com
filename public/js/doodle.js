@@ -1,3 +1,6 @@
+
+console.info("Welcome, Ô gracious internet adept !  You can configure some of the Doodle properties here.");
+
 const Doodle = {};
 
 //// CONFIGURATION AND GLOBAL VARS /////////////////////////////////////////////////////////////////////////////////////
@@ -7,7 +10,15 @@ const movingSpeedFor1000 = 50;
 const minMovingSpeed = 17;
 const baseSimplificationStrength = 13;
 
+Doodle.strokeWidth = 3;
+
+console.log("Doodle", Doodle);
+console.info("For example, try:    Doodle.strokeWidth = 7;");
+
+// Paths of the doodle, to be drawn in the holding canvas
 const drawnPaths = [];
+// Snapshot (deep copy) of the above, to revert destructive actions
+const snapshotPaths = [];
 
 //// UTILS /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -71,6 +82,7 @@ class Notifications {
         speaker:   'neo', // public/img/speaker/<speaker>.png
         animationInDuration: 1000,
         animationOutDuration: 750,
+        once: false,
         onShow: (that) => {
             // Notification stays for 13s and then GTFO
             setTimeout((() => { if (that) that.hide(); }), 13000);
@@ -91,6 +103,15 @@ class Notifications {
             ...Notifications.defaultOptions,
             ...options,
         }
+
+        if (options.once) {
+            for (var i = 0, l = this.pastNotifications.length ; i < l ; i++) {
+                if (this.pastNotifications[i].message === message) {
+                    return;
+                }
+            }
+        }
+
         if (options.clear) {
             this.pastNotifications.forEach((n) => {
                 n.hide();
@@ -129,7 +150,8 @@ class Notification {
         this.element.append(paragraph);
 
         paragraph.addEventListener("click", (e) => {
-            this.hide();
+            this.hide(); // perhaps move this to default onClick ?
+            this.options.onClick(this);
         });
     }
 
@@ -150,10 +172,9 @@ class Notification {
 }
 
 
-let notifs;
 document.addEventListener("DOMContentLoaded", () => {
     const notificationsHolder = document.getElementById("notifications");
-    notifs = new Notifications(notificationsHolder);
+    Doodle.notifs = new Notifications(notificationsHolder);
     setTimeout(
         () => {
             notif('Hello there !<br /><strong>Click and drag</strong> anywhere on the screen to draw a doodle.', {
@@ -165,10 +186,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function notif (message, options) {
-    if (notifs) notifs.add(message, options);
-    else console.error('Notification failed', message, options);
+    if (Doodle.notifs) {
+        options.once = true;
+        Doodle.notifs.add(message, options);
+    } else {
+        console.error('Notification failed', message, options);
+    }
 }
-
 
 
 //// FRAMERATE /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -216,13 +240,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
+// Remove all DOM elements with class "nojs".  Useful when <noscript> is tricky.
 document.addEventListener("DOMContentLoaded", () => {
-    const nojsEls = document.getElementsByClassName("nojs");
-    Array.from(nojsEls).forEach((el) => {
-        el.remove();
-    });
+    Array.from(document.getElementsByClassName("nojs")).forEach((el) => el.remove());
 });
 
 /** TOOLS *************************************************************************************************************/
@@ -257,29 +277,70 @@ const drawHolder = function () {
     paper.view.draw();
 };
 
+function hasSnapshot() {
+    return snapshotPaths.length > 0;
+}
+
+function makeSnapshot() {
+    snapshotPaths.length = 0;  // clear
+    drawnPaths.forEach(p => {
+        snapshotPaths.push(p.segments.map((s) => {
+            return {
+                'point': {'x': s.point.getX(), 'y': s.point.getY()},
+                'handleIn': {'x': s.handleIn.getX(), 'y': s.handleIn.getY()},
+                'handleOut': {'x': s.handleOut.getX(), 'y': s.handleOut.getY()},
+            }
+        }));
+    });
+}
+
+function restoreSnapshot() {
+    if (snapshotPaths.length === 0) {
+        return;
+    }
+
+    snapshotPaths.forEach((segs, i) => {
+        segs.forEach((s, j) => {
+            const drawnSeg = drawnPaths[i].segments[j];
+            drawnSeg.point.setX(s.point.x);
+            drawnSeg.point.setY(s.point.y);
+            drawnSeg.handleIn.setX(s.handleIn.x);
+            drawnSeg.handleIn.setY(s.handleIn.y);
+            drawnSeg.handleOut.setX(s.handleOut.x);
+            drawnSeg.handleOut.setY(s.handleOut.y);
+        });
+    });
+
+    drawHolder();
+}
+
+function invalidateSnapshot() {
+    snapshotPaths.length = 0;
+}
+
+// Note: "Path" class not available here, so we define this in the holding paperscript
+// function copyPath(path) {
+//     const pathCopy = new Path(path.segments);
+//     pathCopy.strokeColor = path.strokeColor;
+//     pathCopy.strokeWidth = path.strokeWidth;
+//     pathCopy.closed      = path.closed;
+//     return pathCopy;
+// }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*
-function getLinkSend (doodleId) {
-    return 'doodle/send/' + doodleId;
-}
-
-function getLinkDownAsImage (doodleId) {
-    return 'doodle/download/' + doodleId;
-}
-
-function getLinkViewAsImage (doodleId) {
-    return 'doodle/view/' + doodleId;
-}
-*/
 
 
 /** CONTROL LOGIC *****************************************************************************************************/
 
 function undo () {
-    const p = drawnPaths.pop();
-    p.remove();
+    if (snapshotPaths.length > 0) {
+        restoreSnapshot();
+        snapshotPaths.length = 0;
+    } else {
+        const p = drawnPaths.pop();
+        p.remove();
+    }
+
     updateControls('undo', {});
     drawHolder();
 }

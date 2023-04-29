@@ -51,11 +51,11 @@ drawingTool.onMouseUp = function (event) {
     // If it is a point, make it so
     if (segmentCount === 1) {
         drawnPath.remove();
-        drawnPath = new Path.Circle(drawnPath.segments[0]._point, 1);
-        drawnPath.strokeWidth = 2;
+        drawnPath = new Path.Circle(drawnPath.segments[0]._point, Doodle.strokeWidth / 3.0);
+        drawnPath.strokeWidth = Doodle.strokeWidth;
         drawnPath.strokeColor = 'white';
     } else {
-        drawnPath.strokeWidth = 2;
+        drawnPath.strokeWidth = Doodle.strokeWidth;
     }
 
     const drawnPathCopy = addPathToHolder(drawnPath);
@@ -63,18 +63,20 @@ drawingTool.onMouseUp = function (event) {
     drawnPath = null;
     drawnPaths.push(drawnPathCopy);
 
+    //invalidateSnapshot(); // design choice here, not sure
+
     updateControls('draw');
 };
 
-
+/*
+// "Official" PaperJs way of handling keys, but …
+// CONTROL key is unavailable here ; we handle undo in doodle.js
 drawingTool.onKeyDown = function (event) {
     if (event.key === 'z') {
-        // CONTROL key is unavailable here
         //console.log(event);
-        // So we disable UNDO on Z unless we can detect focus
-        //undo();
     }
 };
+*/
 
 drawingTool.activate();
 
@@ -82,12 +84,23 @@ drawingTool.activate();
 
 /** VIEW ONFRAME ******************************************************************************************************/
 
+var framesHoldingDollar = 0;
+
 function onFrame (event) {
     // Evil `$` keyboard shortcut that screws up the drawing
-    // Disabled until we can detect focus
     if (Key.isDown('$')) {
+        if (framesHoldingDollar === 0) {
+            if (! hasSnapshot()) {
+                makeSnapshot();
+            }
+        }
+
         movePathsTowardsSave();
         drawHolder();
+
+        framesHoldingDollar++;
+    } else {
+        framesHoldingDollar = 0;
     }
 
     // Debug framerate
@@ -98,58 +111,6 @@ function onFrame (event) {
 
 /** DOM BEHAVIORS *****************************************************************************************************/
 
-/*
-window.addEvent('domready', function () {
-
-    var buttonSave = document.id('buttonSave');
-    var buttonUndo = document.id('buttonUndo');
-    var buttonSend = document.id('buttonSend');
-    var buttonView = document.id('buttonView');
-    var buttonDown = document.id('buttonDown');
-    var formSend   = document.id('formSend');
-
-
-    buttonSave.addEvents({
-        'click': function (event) {
-            event = new Event(event); event.stop();
-            buttonSave.addClass('hiddenSmall');
-            buttonUndo.addClass('hiddenSmall');
-            save();
-        }
-//    'mousedown': function (event) { this.addClass('selected'); },
-//    'mouseup':   function (event) { this.removeClass('selected'); }
-    });
-
-    buttonUndo.addEvents({
-        'click': function (event) {
-            event = new Event(event); event.stop();
-            undo();
-        }
-//    'mousedown': function (event) { this.addClass('selected'); },
-//    'mouseup':   function (event) { this.removeClass('selected'); }
-    });
-
-    buttonSend.addEvent('click', function (event) {
-        event = new Event(event);
-        event.stop();
-        formSend.removeClass('hiddenSmall');
-    });
-
-    formSend.addEvents({
-        'submit': function (event) {
-            event.stop();
-            var formData = this.toQueryString().parseQueryString();
-            // Send the stuff back to base
-            send(Object.merge({id: buttonSend.getAttribute('doodleId')}, formData));
-        },
-        // compatibility with paper's onKeyDown
-        'keydown': function (event) { event.stopPropagation(); },
-        'keyup':   function (event) { event.stopPropagation(); }
-    });
-
-
-});
-*/
 
 /** ANIMATION STEPS ***************************************************************************************************/
 

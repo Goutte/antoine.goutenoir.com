@@ -3,15 +3,22 @@
 // Remember: This is paperscript, not ES6.   No fancy things like let or => functions
 
 
-// defined globally in doodle.js
+// Doodle is defined globally in doodle.js
 Doodle.holdingPaperScope = paper;
 
 
-Doodle.holdingPaperScope.addPathToHolder = function(path) {
+Doodle.copyPath = function(path) {
     const pathCopy = new Path(path.segments);
     pathCopy.strokeColor = path.strokeColor;
     pathCopy.strokeWidth = path.strokeWidth;
     pathCopy.closed      = path.closed;
+
+    return pathCopy;
+};
+
+
+Doodle.holdingPaperScope.addPathToHolder = function(path) {
+    const pathCopy = Doodle.copyPath(path);
 
     view.draw();
 
