@@ -94,7 +94,8 @@ function onFrame (event) {
             }
         }
 
-        movePathsTowardsSave();
+        wobblePaths();
+        //movePathsTowardsSave(); // very destructive, although neat
         drawHolder();
 
         framesHoldingDollar++;
@@ -108,6 +109,25 @@ function onFrame (event) {
 
 
 /** ANIMATION STEPS ***************************************************************************************************/
+
+function wobblePaths () {
+    for (var i = 0; i < drawnPaths.length; i++) {
+        wobblePath(drawnPaths[i], 1.0);
+    }
+}
+
+function wobblePath (path, speed) {
+    const coeff = (360.0 / 60.0);
+    for (var i = 0, len = path.segments.length; i < len; i++) {
+        var segment = path.segments[i];
+        if (segment.handleIn) {
+            segment.handleIn.angle += speed * coeff;
+        }
+        if (segment.handleOut) {
+            segment.handleOut.angle -= speed * coeff;
+        }
+    }
+}
 
 function movePathsTowardsSave () {
     const toX = view.size.width;
@@ -128,7 +148,9 @@ function movePathTowards (path, destinationPoint) {
     do {
         j++;
         movingVector = destinationPoint - path.segments[j].point;
-        if (movingVector.length > movingSpeed) movingVector = movingVector.normalize(movingSpeed);
+        if (movingVector.length > movingSpeed) {
+            movingVector = movingVector.normalize(movingSpeed);
+        }
     } while (movingVector.isZero() && j < path.segments.length - 1);
 
     // If we have nothing to move for this path

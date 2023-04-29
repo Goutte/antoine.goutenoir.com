@@ -412,32 +412,35 @@ function updateControls (from, options) {
 
     // Inexpensive notification chain
     if ('draw' === from) {
-        if (drawnPaths.length === 1) {
-            notif('Good job ! Have fun !<br /><small>(and with you may be the fork)</small>', {clear: true, speaker: 'yoda'});
-        } else if (drawnPaths.length === 2) {
-            notif('This is not an usual contact page, <br /> but you know what they say... <br /> <em>An image is worth a thousand words.</em>', {clear: false, speaker: 'wizard'});
-        } else if (drawnPaths.length === 3) {
-            notif("Like most things I do, this website is <em>libre software</em>.<br />You can browse its <a href=\"https://github.com/Goutte/antoine.goutenoir.com\" target='\"_blank\"'>source code</a>.", {clear: false, speaker: 'penguins'});
-        } else if (drawnPaths.length === 5) {
+        const amountOfPaths = drawnPaths.length;
+        if (amountOfPaths === 1) {
+            notif(`Good job — Have fun !<br /><small title="… fork ever and never !">(and with you may be the fork)</small>`, {clear: true, speaker: 'yoda'});
+        } else if (amountOfPaths === 2) {
+            notif(`This is not an usual contact page, <br /> but you know what they say... <br /> <em title="&#10084;">A doodle is worth a thousand words.</em>`, {clear: false, speaker: 'wizard'});
+        } else if (amountOfPaths === 3) {
+            notif("Like most things I do, this website is <em>libre software</em>.<br />You can browse its <a href=\"https://github.com/Goutte/antoine.goutenoir.com\" target=\"_blank\">source code</a>.", {clear: false, speaker: 'penguins'});
+        } else if (amountOfPaths === 5) {
             notif('<strong>KEYBOARD ENABLED !</strong><br />You can hit <b><kbd>[CTRL]+[Z]</kbd></b> to <strong>undo</strong> your last draw.', {clear: false, speaker: 'rabbit'});
-        } else if (drawnPaths.length === 8) {
+        } else if (amountOfPaths === 8) {
             notif('The page may be a bit sluggish.<br />It is expected, as this is a performance experiment.<br /><small>(a few atoms were hurt in the making of this webpage)</small>', {clear: false, speaker: 'geiger'});
-        } else if (drawnPaths.length === 13) {
-            notif("Just hold <strong><kbd>[$]</kbd></strong> for Free Cake™ !<br /><small>(no undo, no refunds)</small>", {clear: true, speaker: 'devil'});
-        } else if (drawnPaths.length === 21) {
-            notif('<em>Enlightenment does matter.</em>', {clear: false, speaker: 'idea'});
-        } else if (drawnPaths.length === 34) {
+        } else if (amountOfPaths === 13) {
+            notif("Just hold <strong><kbd>[$]</kbd></strong> for Free Cake™ !<br /><small>(EPILEPSY TRIGGER WARNING)</small>", {clear: true, speaker: 'devil'});
+        } else if (amountOfPaths === 21) {
+            notif('<em title="But Mom Knows Best.   Thanks, Françoise & Xavier !">Enlightenment does matter.</em>', {clear: false, speaker: 'idea'});
+        } else if (amountOfPaths === 34) {
             notif("I highly recommend that you visit the <a href=\"https://www.khanacademy.org\" target=\"_blank\">Khan Academy</a>.<br />It is the kind of school I dreamt of as a kid.", {speaker: 'vishnu'});
-        } else if (drawnPaths.length === 55) {
-            notif("<strong><code>666 999 = 666 x 999 + 666 + 999</code></strong><br />Upside down, this is still true !", {speaker: 'devil'});
-        } else if (drawnPaths.length === 89) {
+        } else if (amountOfPaths === 55) {
+            notif(`<strong><code title="I found this serendipitiously while looking at some raw memory dumps in my long gone days of dark hatting.">666 999 = 666 x 999 + 666 + 999</code></strong><br />Upside down, this is still true !`, {speaker: 'devil'});
+        } else if (amountOfPaths === 89) {
             notif("Waow, that's a big doodle you're drawing there !<br />I hope you'll save that !", {speaker: 'hulk'});
-        } else if (drawnPaths.length === 144) {
+        } else if (amountOfPaths === 144) {
             notif("Did you notice that the notifications' frequency <br /> followed the Fibonacci sequence ? <br /> <em title=\"Congratulations to Gaëlle, who figured it out !\">Bet you didn't !</em>", {speaker: 'neo'});
-        } else if (drawnPaths.length === 233) {
+        } else if (amountOfPaths === 233) {
+            notif("If you want a game, you should <a href=\"https://antoine.goutenoir.com/games/cyx\">try Cyx</a> instead of slashing these notifications.", {speaker: 'samurai'});
+        } else if (amountOfPaths === 377) {
             notif("<b>~ ACHIEVEMENT UNLOCKED ~</b><br /><em>Web Doodle Artist</em>", {speaker: 'wizard'});
-        } else if (drawnPaths.length === 377) {
-            notif("<strong>Congratulations</strong>, you reached the end of the notifications, with <code>377</code> strokes.", {speaker: 'penguins'});
+        } else if (amountOfPaths === 610) {
+            notif("<strong>CONGRATULATIONS, YOU MAD HATTER</strong>, you reached the end of the notifications, with <code>610</code> strokes.", {speaker: 'rabbit'});
         }
     }
 
