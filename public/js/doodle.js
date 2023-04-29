@@ -1,23 +1,25 @@
 
 console.info("Welcome, Ô gracious internet adept !  You can configure some of the Doodle properties here.");
 
-const Doodle = {};
 
 //// CONFIGURATION AND GLOBAL VARS /////////////////////////////////////////////////////////////////////////////////////
+
+const Doodle = {};
+Doodle.strokeWidth = 3;
+Doodle.strokeColor = 'white';
+Doodle.strokeSimplificationStrength = 13;
 
 const minDistBetweenPoints = 7;
 const movingSpeedFor1000 = 50;
 const minMovingSpeed = 17;
-const baseSimplificationStrength = 13;
 
-Doodle.strokeWidth = 3;
 
 console.log("Doodle", Doodle);
 console.info("For example, try:    Doodle.strokeWidth = 7;");
 
 // Paths of the doodle, to be drawn in the holding canvas
 const drawnPaths = [];
-// Snapshot (deep copy) of the above, to revert destructive actions
+// Snapshot (copy, but shallow) of the above, to revert destructive things like $
 const snapshotPaths = [];
 
 //// UTILS /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -222,10 +224,10 @@ const framerateBuffer = new RollingValue(30, 0.016);
  * Refreshes the framerate under AG for benchmarking
  * @param delta event.delta
  */
-let refreshFramerate = function(delta){};
+let recordFramerate = function(delta){};
 
 document.addEventListener("DOMContentLoaded", () => {
-    refreshFramerate = function (delta) {
+    recordFramerate = function (delta) {
         framerateBuffer.addValue(delta);
         if (framerateBuffer.currentIndex === 0) {  // only update twice per second (expensive!)
             document.getElementById('framerate').textContent =
@@ -284,6 +286,7 @@ function hasSnapshot() {
 function makeSnapshot() {
     snapshotPaths.length = 0;  // clear
     drawnPaths.forEach(p => {
+        // Make a shallow copy bc/ we can't clone paths (we can, but they show up) nor serialize
         snapshotPaths.push(p.segments.map((s) => {
             return {
                 'point': {'x': s.point.getX(), 'y': s.point.getY()},
@@ -338,7 +341,9 @@ function undo () {
         snapshotPaths.length = 0;
     } else {
         const p = drawnPaths.pop();
-        p.remove();
+        if (p) {
+            p.remove();
+        }
     }
 
     updateControls('undo', {});

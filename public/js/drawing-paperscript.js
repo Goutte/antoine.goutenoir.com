@@ -4,7 +4,7 @@
 
 /** INIT **************************************************************************************************************/
 
-// Currently drawn path, the only path on this rendering layer.
+// Currently drawn "ghost" path, the only path on this rendering layer.
 var drawnPath;
 
 /** TOOLS LISTENERS ***************************************************************************************************/
@@ -14,18 +14,17 @@ const drawingTool = new Tool();
 drawingTool.minDistance = minDistBetweenPoints;
 
 drawingTool.onMouseDown = function (event) {
-    // If we produced a path before, deselect it:
     if (drawnPath) {
-        //drawnPath.selected = false;
+        // Handle case where we got multiple mouse downs and no mouse up,
+        // such as when the user leaves the window while dragging.
         drawingTool.onMouseUp(event);
     } else {
         // Create a new path
         drawnPath = new Path();
         drawnPath.add(event.point);
         drawnPath.selected = false;
-        drawnPath.strokeColor = 'white';
+        drawnPath.strokeColor = Doodle.strokeColor;
     }
-
 };
 
 // While the user drags the mouse or the finger, points are added to the path
@@ -46,16 +45,17 @@ drawingTool.onMouseUp = function (event) {
     const segmentCount = drawnPath.segments.length;
 
     // When the mouse is released, simplify it:
-    drawnPath.simplify(baseSimplificationStrength);
+    drawnPath.simplify(Doodle.strokeSimplificationStrength);
 
     // If it is a point, make it so
     if (segmentCount === 1) {
         drawnPath.remove();
         drawnPath = new Path.Circle(drawnPath.segments[0]._point, Doodle.strokeWidth / 3.0);
         drawnPath.strokeWidth = Doodle.strokeWidth;
-        drawnPath.strokeColor = 'white';
+        drawnPath.strokeColor = Doodle.strokeColor;
     } else {
         drawnPath.strokeWidth = Doodle.strokeWidth;
+        drawnPath.strokeColor = Doodle.strokeColor;
     }
 
     const drawnPathCopy = addPathToHolder(drawnPath);
@@ -63,8 +63,7 @@ drawingTool.onMouseUp = function (event) {
     drawnPath = null;
     drawnPaths.push(drawnPathCopy);
 
-    //invalidateSnapshot(); // design choice here, not sure
-
+    invalidateSnapshot(); // design choice here, not sure
     updateControls('draw');
 };
 
@@ -103,13 +102,9 @@ function onFrame (event) {
         framesHoldingDollar = 0;
     }
 
-    // Debug framerate
-    refreshFramerate(event.delta);
+    // Debug framerate, record the delay between frames
+    recordFramerate(event.delta);
 }
-
-
-
-/** DOM BEHAVIORS *****************************************************************************************************/
 
 
 /** ANIMATION STEPS ***************************************************************************************************/

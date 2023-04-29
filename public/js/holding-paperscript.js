@@ -4,6 +4,7 @@
 
 
 // Doodle is defined globally in doodle.js
+// We need these shenanigans because of how paperscript works
 Doodle.holdingPaperScope = paper;
 
 
@@ -24,11 +25,3 @@ Doodle.holdingPaperScope.addPathToHolder = function(path) {
 
     return pathCopy;
 };
-
-
-
-// snippet
-//drawnPath = new Path();
-//drawnPath.add(new Point.random() * view.size);
-//drawnPath.add(new Point.random() * view.size);
-//drawnPath.strokeColor = 'blue';
