@@ -197,6 +197,7 @@ kbd {
 #vanity-card {
     font-family: 'Handwriting', serif;
     font-size: 3em;
+    font-weight: normal;
     position: absolute;
     top: 0;
     left: 0.2rem;

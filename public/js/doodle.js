@@ -13,14 +13,17 @@ const minDistBetweenPoints = 7;
 const movingSpeedFor1000 = 50;
 const minMovingSpeed = 17;
 
-
-console.log("Doodle", Doodle);
-console.info("For example, try:    Doodle.strokeWidth = 7;");
-
 // Paths of the doodle, to be drawn in the holding canvas
 const drawnPaths = [];
 // Snapshot (copy, but shallow) of the above, to revert destructive things like $
 const snapshotPaths = [];
+
+
+//// WELCOME ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+console.log("Doodle", Doodle);
+console.info("For example, try:    Doodle.strokeWidth = 7;");
+
 
 //// UTILS /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -73,6 +76,10 @@ Doodle.canvasToImage = (canvas, backgroundColor) => {
 // The page has virtually no selectable content, so we remove selection altogether
 document.onselectstart = () => { return false; };
 
+// Remove all DOM elements with class "nojs".  Useful when <noscript> is tricky.
+document.addEventListener("DOMContentLoaded", () => {
+    Array.from(document.getElementsByClassName("nojs")).forEach((el) => el.remove());
+});
 
 //// NOTIFICATIONS /////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -242,10 +249,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Remove all DOM elements with class "nojs".  Useful when <noscript> is tricky.
-document.addEventListener("DOMContentLoaded", () => {
-    Array.from(document.getElementsByClassName("nojs")).forEach((el) => el.remove());
-});
 
 /** TOOLS *************************************************************************************************************/
 
@@ -257,7 +260,7 @@ function getDrawingCanvasDomElement () {
 }
 
 function getHoldingCanvas () {
-    paper = Doodle.holdingPaperScope;
+    paper = Doodle.holdingPaperScope; // keep ; paperjs scoping shenanigans
     return paper.project.view._element;
 }
 
@@ -397,7 +400,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateControls("init");
 });
 
-function updateControls (from, options) {
+function updateControls (from, options) { // horrible ; just use events
 
     // Show / Hide Undo
     const undoButton = document.getElementById("control-undo");
