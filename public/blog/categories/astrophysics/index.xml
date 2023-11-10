@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Astrophysics on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/astrophysics/</link>
+    <description>Recent content in Astrophysics on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 01 Nov 2013 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/astrophysics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Working with the CNRS</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-11-01-working-with-the-cnrs/</link>
+      <pubDate>Fri, 01 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-11-01-working-with-the-cnrs/</guid>
+      <description>As of December 2013, I&amp;rsquo;ll be working for the IRAP (Astrophysics and Planetary Science Institute), doing software design, code migration, data treatment and manipulation for MUSE (Multi-Unit Spectroscopic Explorer).
+We&amp;rsquo;ll be using this data to study galaxies, galactic winds, and overall for serendipity.
+ MUSE is the product of nine years of hard work from hundreds of people around the world, and I have the good fortune to pitch in at the payroll.</description>
+    </item>
+    
+  </channel>
+</rss>

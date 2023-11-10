@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shell on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/shell/</link>
+    <description>Recent content in Shell on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 11 Oct 2008 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/shell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setup (for good) Symfony2 cache and logs permissions with setfacl</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2008-10-11-setup-for-good-symfony2-cache-and-logs-permissions-with-setfacl/</link>
+      <pubDate>Sat, 11 Oct 2008 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2008-10-11-setup-for-good-symfony2-cache-and-logs-permissions-with-setfacl/</guid>
+      <description>chmod is not enough, sometimes. Therefore, we need to adapt our access control lust (see what I did there ?) for our www-data user.
+This may or may not be the best solution, but here is a bash script to put in bin/ that does the job :
+#!/bin/sh  DIR=&amp;#34;$( cd &amp;#34;$( dirname &amp;#34;$0&amp;#34; )&amp;#34; &amp;amp;&amp;amp; pwd )&amp;#34; cd $DIR # bin/, sibling of app/ cd .. # project root sudo setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs sudo setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx web sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx web </description>
+    </item>
+    
+  </channel>
+</rss>

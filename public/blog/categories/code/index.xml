@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Code on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/code/</link>
+    <description>Recent content in Code on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 21 Mar 2013 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/code/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PHP ~ Using a multi-dimensional array as index</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-03-21-php-using-a-multi-dimensional-array-as-index/</link>
+      <pubDate>Thu, 21 Mar 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-03-21-php-using-a-multi-dimensional-array-as-index/</guid>
+      <description>EDIT: Those are pretty poorly optimized functions. Best not use.
+ Say you want to use a multidimensional array as a multiple-keyed index.
+Here is a small collection of functions to handle indexing operations on multidimensional arrays.
+Getting a value &amp;lt;?php // fails when one of the keys does not exist $value = $index[$ka][$kb][$kc][$kd]; // returns null when one of the keys does not exist index_get($index, array($ka, $kb, $kc, $kd)); And below is a simple (but tested) function safely getting a value from a multidimensional array :</description>
+    </item>
+    
+    <item>
+      <title>PHP ~ Rooted Tree Node Serialization</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2012-12-15-php-rooted-tree-node-serialization/</link>
+      <pubDate>Sat, 15 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2012-12-15-php-rooted-tree-node-serialization/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;UPDATE&lt;/strong&gt; :
+That was before I found out about SPL&amp;rsquo;s &lt;a href=&#34;http://www.php.net/manual/en/class.recursivetreeiterator.php&#34;&gt;Recursive Tree Iterator&lt;/a&gt;.
+Well, live and learn !&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;I wrote a Symfony2 bundle providing tools for easy (de)serialization of rooted trees structures
+where nodes hold a string value, and some methods for tree handling.&lt;/p&gt;
+&lt;p&gt;Using this, I can easily generate random trees like :&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;A
++--B
+|  +--C
+|  |  +--D
+|  |     +--E
+|  |     |  +--H
+|  |     |  +--I
+|  |     +--R
+|  |     +--T
+|  +--F
+|  |  +--J
+|  |  |  +--M
+|  |  |  |  +--N
+|  |  |  |  |  +--P
+|  |  |  |  +--Q
+|  |  |  |  +--U
+|  |  |  |     +--V
+|  |  |  +--Y
+|  |  +--L
+|  |     +--O
+|  |        +--X
+|  |        +--Z
+|  +--G
+|     +--W
++--K
+   +--S
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;It is extensively tested but it has a small learning curve, if you’re new to Symfony.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Code completion for PHPUnit_Framework_TestCase in PHPStorm</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2012-11-17-code-completion-for-phpunit_framework_testcase-in-phpstorm/</link>
+      <pubDate>Sat, 17 Nov 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2012-11-17-code-completion-for-phpunit_framework_testcase-in-phpstorm/</guid>
+      <description>To allow PHPStorm to discover the PHPUnit classes, go to Settings &amp;gt; Project Settings &amp;gt; PHP, and add the path to PHPUnit, usually something like /usr/share/php/PHPUnit.
+}} -- Now you do not have an excuse not to test your Symfony2 bundles !</description>
+    </item>
+    
+    <item>
+      <title>PHP ~ Slugify a String With or Without Iconv</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2011-10-11-php-slugify-a-string/</link>
+      <pubDate>Tue, 11 Oct 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2011-10-11-php-slugify-a-string/</guid>
+      <description>&lt;p&gt;While playing with Symfony (with Doctrine), I tweaked some of their built-in functions that I found useful.
+Slugifying a string for instance, for when you want pretty URIs&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;without-iconv&#34;&gt;Without iconv&lt;/h2&gt;
+&lt;p&gt;What if my server has not iconv ?&lt;/p&gt;
+&lt;p&gt;Here is how to quickly slugify a string without iconv.
+Try the following function, which covers less use-cases, but enough sometimes.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;php&lt;/span&gt;
+&lt;span style=&#34;color:#e6db74&#34;&gt;/**
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * Returns the slugified (aka urlized) $string,
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * which will match \a-z0-9-\
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * Some special chars are
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * &amp;#34;Ça alors, déjà !?&amp;#34; =&amp;gt; &amp;#34;ca-alors-deja&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *               &amp;#34;Œuf&amp;#34; =&amp;gt; &amp;#34;uf&amp;#34;   :(
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *          &amp;#34;~&amp;amp;a; -b?&amp;#34; =&amp;gt; &amp;#34;a-b&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *             &amp;#34;! ? #&amp;#34; =&amp;gt; &amp;#34;n-a&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * Notes :
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * - $string must be UTF-8
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * - æœÆŒ not covered !
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * @param  string $s The utf8 string to slugify
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * @return string    The slugified string
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; */&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;utf8_slugify&lt;/span&gt; ($s) {
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;utf8_decode&lt;/span&gt;($s);
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;html_entity_decode&lt;/span&gt;($s);
+  
+  &lt;span style=&#34;color:#75715e&#34;&gt;// list is not extensive -- suggestions are welcome !
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  $b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ÀÁÂÃÄÅàáâãäåÇçÈÉÊËèéêëÌÍÎÏìíîïÑñÒÓÔÕÖØòóôõöøÙÚÛÜùúûüÿ&amp;#39;&lt;/span&gt;;
+  $a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;AAAAAAaaaaaaCcEEEEeeeeIIIIiiiiNnOOOOOOooooooUUUUuuuuy&amp;#39;&lt;/span&gt;;
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;strtr&lt;/span&gt;($s, &lt;span style=&#34;color:#a6e22e&#34;&gt;utf8_decode&lt;/span&gt;($b), $a);
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;trim&lt;/span&gt;($s); &lt;span style=&#34;color:#75715e&#34;&gt;// trim white whars
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  
+  &lt;span style=&#34;color:#75715e&#34;&gt;// remove unwanted chars
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;preg_replace&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/([^a-z0-9]+)/i&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;-&amp;#39;&lt;/span&gt;, $s);
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;strtolower&lt;/span&gt;($s);
+  
+  &lt;span style=&#34;color:#75715e&#34;&gt;// remove `-` duplicates
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;preg_replace&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/--+/&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;-&amp;#39;&lt;/span&gt;, $s);
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;trim&lt;/span&gt;($s, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;-&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// trim `-`
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;empty&lt;/span&gt;($s)) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;n-a&amp;#39;&lt;/span&gt;;
+
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;utf8_encode&lt;/span&gt;($s);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is a hack as-is, neither maintained nor properly unit tested.
+Nowadays, I recommend using &lt;em&gt;Inflectors&lt;/em&gt; instead of this function.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Browser-Independant CSS3 Transition Classes</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2011-01-17-browser-independant-css3-transition-class/</link>
+      <pubDate>Mon, 17 Jan 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2011-01-17-browser-independant-css3-transition-class/</guid>
+      <description>&lt;p&gt;When you’re building a full-featured website with HTML5 and CSS3,
+you start to see the problem with having so many different browsers with so many different property naming conventions.
+Factorization becomes mandatory, so you &lt;del&gt;might&lt;/del&gt; should add somewhere in your main css file the following, or your custom implementation of it.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;smooth&lt;/span&gt; {
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;-webkit-&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;transition&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;all&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;ease-in-out&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;-khtml-&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;transition&lt;/span&gt;:  &lt;span style=&#34;color:#66d9ef&#34;&gt;all&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;ease-in-out&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;-moz-&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;transition&lt;/span&gt;:    &lt;span style=&#34;color:#66d9ef&#34;&gt;all&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;ease-in-out&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;-o-&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;transition&lt;/span&gt;:      &lt;span style=&#34;color:#66d9ef&#34;&gt;all&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;ease-in-out&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;transition&lt;/span&gt;:         &lt;span style=&#34;color:#66d9ef&#34;&gt;all&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;ease-in-out&lt;/span&gt;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then, you’ll just have to add the smooth class to your DOM element,
+and for example any property you put in the &lt;code&gt;:hover&lt;/code&gt; CSS definition for this element will transition smoothly !&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;smooth&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Tip ~ Check whether the current PHP file is included or executed</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2010-10-28-php-tip-check-whether-the-current-file-is-included-or-standalone/</link>
+      <pubDate>Thu, 28 Oct 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2010-10-28-php-tip-check-whether-the-current-file-is-included-or-standalone/</guid>
+      <description>Let’s say you got a php file you want to behave differently if it is included ; in my case I wanted it to only define the functions and classes it used and skip the output part.
+&amp;lt;?php /** * Returns true if current file is included */ function isIncluded() { $f = get_included_files(); return $f[0] != __FILE__; } if ( !isIncluded() ) { // Do some stuff, eg: print some HTML } else { // Do other stuff, &amp;#39;cause you&amp;#39;re included } // You can also use (recommended) if ( __FILE__ !</description>
+    </item>
+    
+    <item>
+      <title>PHP Class ~ Detect which Browser your visitor is using</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2010-10-26-php-class-detect-which-browser-your-visitor-is-using/</link>
+      <pubDate>Tue, 26 Oct 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2010-10-26-php-class-detect-which-browser-your-visitor-is-using/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Instead of this, I recommend using the native &lt;code&gt;get_browser()&lt;/code&gt; PHP function when you can,
+which uses the exhaustive &lt;a href=&#34;http://www.php.net/manual/en/function.get-browser.php&#34;&gt;browscap&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You can use this very simple static class to detect which browser your visitor is using.
+It uses &lt;code&gt;$_SERVER[&#39;HTTP_USER_AGENT&#39;]&lt;/code&gt;, with all its drawbacks.
+It’s quite useful for styling, if you want to add a CSS file only for a certain browser, such as, for example :&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php if ( Browser::isIE() ): ?&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;style/css/ie.css&amp;#34;&lt;/span&gt; /&amp;gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php endif; ?&amp;gt;&lt;/span&gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php if ( Browser::isIE6() ): ?&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;style/css/ie6.css&amp;#34;&lt;/span&gt; /&amp;gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php endif; ?&amp;gt;&lt;/span&gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php if ( Browser::isAndroid() ): ?&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;style/css/android.css&amp;#34;&lt;/span&gt; /&amp;gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php endif; ?&amp;gt;&lt;/span&gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php if ( Browser::isIpad() || Browser::isIphone() ): ?&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;style/css/apple_mobile.css&amp;#34;&lt;/span&gt; /&amp;gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php endif; ?&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can detect IE6, IE7, IE8, IE9, Chrome, Firefox, Opera, Safari, the iPhone, the iPad, and Android.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mootools ~ Center an element vertically in its parent</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2010-10-01-mootools-center-an-element-vertically/</link>
+      <pubDate>Fri, 01 Oct 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2010-10-01-mootools-center-an-element-vertically/</guid>
+      <description>This mootools implementation will center an element into its parent element, which you can override by passing it as parameter. Sometimes we just cannot do this in pure CSS, so&amp;hellip;
+Element.implement ({ /** * Centers vertically this Element in its parent element. * Makes this element absolute and its parent at least relative. * Might wreak havoc in the element&amp;#39;s horizontal centering, * because the `left` property will be 0. (the default) * * @param Element parent Optional.</description>
+    </item>
+    
+    <item>
+      <title>Mootools ~ Change typeface-js color after initialization</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2010-09-28-mootools-change-typeface-js-color/</link>
+      <pubDate>Tue, 28 Sep 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2010-09-28-mootools-change-typeface-js-color/</guid>
+      <description>Typeface-js is a useful javascript-based font renderer, but there is no method for changing the color of a typefaced element once it has been processed. So, here is one way to change the color on-the-fly with mootools. Be warned : it may be buggy.
+Element.implement ({ /** * Change Typefaced Element color * @param string color eg: #FF3399 */ changeTypefaceColor: function(color){ if (Browser.Engine.trident) { // IE SHIT  this.getFirst(&amp;#39;span&amp;#39;).getChildren().each(function(vectorElement){ vectorElement.fillColor = color; }); } else { // OTHERS  this.</description>
+    </item>
+    
+    <item>
+      <title>CodeMirror 2 ~ Smarty (*.tpl) Syntax Highlighting Mode</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2009-10-11-codemirror-2-smarty-syntax-highlighting-mode/</link>
+      <pubDate>Sun, 11 Oct 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2009-10-11-codemirror-2-smarty-syntax-highlighting-mode/</guid>
+      <description>Quick and dirty, but way better than nothing !
+CodeMirror.defineMode(&amp;#34;tpl&amp;#34;, function() { return { token: function(stream) { var ch = stream.next(); if (ch == &amp;#39;{&amp;#39;) { if (stream.peek() == &amp;#39;$&amp;#39;) { // Variable  stream.skipTo(&amp;#39;}&amp;#39;); stream.next(); return &amp;#39;smarty_variable&amp;#39;; } else if (stream.peek() == &amp;#39;*&amp;#39;) { // Comment  stream.skipTo(&amp;#39;}&amp;#39;); stream.next(); return &amp;#39;smarty_comment&amp;#39;; } else { // Logic  stream.skipTo(&amp;#39;}&amp;#39;); stream.next(); return &amp;#39;smarty_logic&amp;#39;; } } } }; }); CodeMirror.defineMIME(&amp;#34;text/tpl&amp;#34;, &amp;#34;tpl&amp;#34;); </description>
+    </item>
+    
+    <item>
+      <title>Mootools ~ Github repository : mootools-cloud</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2009-03-21-github-repository-mootools-cloud/</link>
+      <pubDate>Sat, 21 Mar 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2009-03-21-github-repository-mootools-cloud/</guid>
+      <description>A blog is not a proper place to host code ; a software forge is.
+On mootools-cloud, you will find javascript snippets and mootools extensions, written in the mootools-more way as much as possible. Feel free to fork it !
+ Openness of knowledge is paramount for the very survival of our civilization. Hope.
+ </description>
+    </item>
+    
+  </channel>
+</rss>

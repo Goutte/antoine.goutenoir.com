@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LEAP on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/leap/</link>
+    <description>Recent content in LEAP on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 23 Jul 2013 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/leap/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Install LEAP Motion on Debian Wheezy</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-07-23-install-leap-motion-on-debian-wheezy/</link>
+      <pubDate>Tue, 23 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-07-23-install-leap-motion-on-debian-wheezy/</guid>
+      <description>Update : LEAP Motion now supports Linux, so this post is pretty much obsolete.
+ My #firstLEAP experience, despite being somewhat frustrating after a year and half of increasingly feverish expectations, proved to me one simple point : I had to get this to work under my linux development environment.
+WAIT, WHAT ? —You&amp;rsquo;re going to install closed-source software on Debian !?
+—Yes. Don&amp;rsquo;t twist the knife, please.
+ THE PROCESS Grab the LEAP Linux SDK, un-tar it, and try to install :</description>
+    </item>
+    
+  </channel>
+</rss>

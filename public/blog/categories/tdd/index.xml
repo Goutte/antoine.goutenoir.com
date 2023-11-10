@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TDD on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/tdd/</link>
+    <description>Recent content in TDD on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 06 Jun 2013 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/tdd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ægo ~ Gherkin features for a Go game</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-06-06-example-of-go-game-gherkin-feature/</link>
+      <pubDate>Thu, 06 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-06-06-example-of-go-game-gherkin-feature/</guid>
+      <description>Here&amp;rsquo;s how you might write the game rules features of a go game on a quadsphere :
+ Rejecting illegal moves lang:gherkin (go_game_rules.feature) Of course, these are far from exhaustive, as they cover only suicide and ko scenarios.
+Adding capture features allow us to cover a bit more code :
+ Capture lang:gherkin (go_game_capture.feature) Both these features were quite easy to implement, as unit-testing my classes made me craft all the tools I needed for Behat&amp;rsquo;s FeatureContext.</description>
+    </item>
+    
+  </channel>
+</rss>

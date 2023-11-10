@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/network/</link>
+    <description>Recent content in Network on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 07 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/network/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>USBip Share USB device over network</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2021-01-07-usbip-share-usb-device-over-network/</link>
+      <pubDate>Thu, 07 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2021-01-07-usbip-share-usb-device-over-network/</guid>
+      <description>Install usbip apt install linux-tools-common  You may need to install a package targeted to your kernel version.
+Best install hwdata too to get detailed info about the devices.
+On the server The server is the one that shares the device.
+Start by enabling the required kernel modules:
+modprobe usbip_core modprobe usbip_host  Then, run the usbipd daemon:
+usbipd -D --tcp-port 3240  The TCP port defaults to 3240, it&amp;rsquo;s best to set your own.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BDD on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/bdd/</link>
+    <description>Recent content in BDD on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 04 Apr 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/bdd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A fortune cookie for Behat</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2015-04-04-a-fortune-cookie-for-behat/</link>
+      <pubDate>Sat, 04 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2015-04-04-a-fortune-cookie-for-behat/</guid>
+      <description>A lost ounce of gold may be found, a lost moment of time never.
+ When you run bin/behat and everything is green, you only get the warm fuzzy feeling of a work well done. Why not reward yourself a bit more ?
+Some show Chuck Norris giving the thumbs-up.
+Most don&amp;rsquo;t show anything special.
+Enters the fortune cookie.
+ To be sure of hitting the target, shoot first and, whatever you hit, call it the target.</description>
+    </item>
+    
+  </channel>
+</rss>
