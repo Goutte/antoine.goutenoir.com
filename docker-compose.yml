@@ -9,17 +9,18 @@ services:
       args:
         SYMFONY_VERSION: ${SYMFONY_VERSION:-}
         STABILITY: ${STABILITY:-stable}
-    restart: unless-stopped
+    #restart: unless-stopped
+    restart: no
     volumes:
       # We do not need that volume anymore, since we're using TCP not socket
       - php_socket:/var/run/php
       # We use flat files for doodles and messages, let's keep em around
       - doodles:/srv/app/var/doodle
     healthcheck:
-      interval: 600s
-      timeout: 3s
+      interval: 3600s
+      timeout: 5s
       retries: 2
-      start_period: 30s
+      start_period: 60s
     environment:
       # Run "composer require symfony/orm-pack" to install and configure Doctrine ORM
       # We are using a database to store messages (as in message queue), but not doodles.
@@ -34,6 +35,7 @@ services:
     depends_on:
       - php
     restart: unless-stopped
+    #restart: no
     #volumes:
       # use a bind-mounted host directory, as we want to keep the media
       #- ./public:/srv/app/public:ro

@@ -91,7 +91,7 @@ RUN set -eux; \
 
 # copy sources
 COPY --link  . ./
-RUN rm -Rf docker/
+#RUN rm -Rf docker/
 
 RUN set -eux; \
 	mkdir -p var/cache var/log; \
@@ -116,7 +116,7 @@ COPY --link docker/php/conf.d/app.dev.ini $PHP_INI_DIR/conf.d/
 
 RUN set -eux; \
 	install-php-extensions \
-    	xdebug \
+	xdebug \
     ;
 
 RUN rm -f .env.local.php

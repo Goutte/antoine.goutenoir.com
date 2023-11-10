@@ -1,4 +1,3 @@
-
 console.info("Welcome, Ô gracious internet adept !  You can configure some of the Doodle properties here.");
 
 
@@ -8,6 +7,7 @@ const Doodle = {};
 Doodle.strokeWidth = 3;
 Doodle.strokeColor = 'white';
 Doodle.strokeSimplificationStrength = 13;
+Doodle.backgroundColor = '#000';
 
 const minDistBetweenPoints = 7;
 const movingSpeedFor1000 = 50;
@@ -70,11 +70,60 @@ Doodle.canvasToImage = (canvas, backgroundColor) => {
 };
 
 
+/**
+ * Returns the dataURL (Base64 encoded data url string)
+ * of the specified canvas, but applies background color first
+ * @param canvas
+ * @param backgroundColor
+ * @return {String} the dataURL
+ */
+Doodle.canvasToImageBlob = (canvas, backgroundColor, callback) => {
+    const w = canvas.width;
+    const h = canvas.height;
+    let context = canvas.getContext("2d");
+    let canvasData;
+    let compositeOperation;
+
+    if (backgroundColor) {
+        // get the current ImageData for the canvas.
+        canvasData = context.getImageData(0, 0, w, h);
+        // store the current globalCompositeOperation
+        compositeOperation = context.globalCompositeOperation;
+        // set to draw behind current content
+        context.globalCompositeOperation = "destination-over";
+        // set background color
+        context.fillStyle = backgroundColor;
+        // draw background / rect on entire canvas
+        context.fillRect(0, 0, w, h);
+    }
+
+    // get the image data from the canvas
+    canvas.toBlob((blob) => {
+        try {
+            callback(blob);
+        } catch (e) {
+            console.error("Error with canvas.toBlob()", e);
+        } finally {
+            if (backgroundColor) {
+                // clear the canvas
+                context.clearRect(0, 0, w, h);
+                // restore it with original / cached ImageData
+                context.putImageData(canvasData, 0, 0);
+                // reset the globalCompositeOperation to what it was
+                context.globalCompositeOperation = compositeOperation;
+            }
+        }
+    }, "image/png");
+};
+
+
 //// UGLY-ASS TWEAKS ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Chrome, linux (maybe others?), the crosshair is sometimes replaced by a text-select
 // The page has virtually no selectable content, so we remove selection altogether
-document.onselectstart = () => { return false; };
+document.onselectstart = () => {
+    return false;
+};
 
 // Remove all DOM elements with class "nojs".  Useful when <noscript> is tricky.
 document.addEventListener("DOMContentLoaded", () => {
@@ -88,13 +137,15 @@ class Notifications {
         classes: ['notification'],
         classShow: 'backInDown',
         classHide: 'backOutUp',
-        speaker:   'neo', // public/img/speaker/<speaker>.png
+        speaker: 'neo', // public/img/speaker/<speaker>.png
         animationInDuration: 1000,
         animationOutDuration: 750,
         once: false,
         onShow: (that) => {
             // Notification stays for 13s and then GTFO
-            setTimeout((() => { if (that) that.hide(); }), 13000);
+            setTimeout((() => {
+                if (that) that.hide();
+            }), 13000);
         },
         onClick: () => {
             // Get the focus back to the canvas
@@ -107,14 +158,14 @@ class Notifications {
         this.pastNotifications = [];
     }
 
-    add(message, options={}) {
+    add(message, options = {}) {
         const notificationOptions = {
             ...Notifications.defaultOptions,
             ...options,
         }
 
         if (options.once) {
-            for (var i = 0, l = this.pastNotifications.length ; i < l ; i++) {
+            for (var i = 0, l = this.pastNotifications.length; i < l; i++) {
                 if (this.pastNotifications[i].message === message) {
                     return;
                 }
@@ -150,7 +201,7 @@ class Notification {
         this.element.classList.add(...this.options.classes)
 
         const speaker = document.createElement("img");
-        speaker.src = "img/speaker/"+this.options.speaker+".png";
+        speaker.src = "img/speaker/" + this.options.speaker + ".png";
         speaker.classList.add("speaker");
         this.element.append(speaker);
 
@@ -158,7 +209,7 @@ class Notification {
         paragraph.innerHTML = this.message;
         this.element.append(paragraph);
 
-        paragraph.addEventListener("click", (e) => {
+        paragraph.addEventListener("click", () => {
             this.hide(); // perhaps move this to default onClick ?
             this.options.onClick(this);
         });
@@ -186,28 +237,34 @@ document.addEventListener("DOMContentLoaded", () => {
     Doodle.notifs = new Notifications(notificationsHolder);
     setTimeout(
         () => {
-            notif('Hello there !<br /><strong>Click and drag</strong> anywhere on the screen to draw a doodle.', {
-                onShow: function(that){} // the first notification stays on-screen
+            notifOnce('Hello there !<br /><strong>Click and drag</strong> anywhere on the screen to draw a doodle.', {
+                onShow: function (that) {
+                } // the first notification stays on-screen
             });
         }, 666
     );
 });
 
 
-function notif (message, options) {
+Doodle.notif = (message, options) => {
     if (Doodle.notifs) {
-        options.once = true;
         Doodle.notifs.add(message, options);
     } else {
         console.error('Notification failed', message, options);
     }
 }
 
+function notifOnce(message, options) {
+    options = options || {};
+    options.once = true;
+    Doodle.notif(message, options);
+}
+
 
 //// FRAMERATE /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class RollingValue {
-    constructor(historySize=60, defaultValue=0.0) {
+    constructor(historySize = 60, defaultValue = 0.0) {
         this.historySize = historySize;
         this.history = Array(historySize).fill(defaultValue);
         this.currentIndex = 0;
@@ -231,7 +288,8 @@ const framerateBuffer = new RollingValue(30, 0.016);
  * Refreshes the framerate under AG for benchmarking
  * @param delta event.delta
  */
-let recordFramerate = function(delta){};
+let recordFramerate = function (delta) {
+};
 
 document.addEventListener("DOMContentLoaded", () => {
     recordFramerate = function (delta) {
@@ -240,7 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('framerate').textContent =
                 "fps = "
                 +
-                (delta ? Math.round(1.0/framerateBuffer.getMean()) : 0).toString()
+                (delta ? Math.round(1.0 / framerateBuffer.getMean()) : 0).toString()
             ;
         }
     }
@@ -252,14 +310,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /** TOOLS *************************************************************************************************************/
 
-function getDrawingCanvas () {
+function getDrawingCanvas() {
     return Doodle.drawingPaperScope.project.view._element;
 }
-function getDrawingCanvasDomElement () {
+
+function getDrawingCanvasDomElement() {
     return document.getElementById("doodleDrawingCanvas");
 }
 
-function getHoldingCanvas () {
+function getHoldingCanvas() {
     paper = Doodle.holdingPaperScope; // keep ; paperjs scoping shenanigans
     return paper.project.view._element;
 }
@@ -338,7 +397,11 @@ function invalidateSnapshot() {
 
 /** CONTROL LOGIC *****************************************************************************************************/
 
-function undo () {
+Doodle.toDataUrl = () => {
+    return Doodle.canvasToImage(getHoldingCanvas(), Doodle.backgroundColor);
+}
+
+Doodle.undo = () => {
     if (snapshotPaths.length > 0) {
         restoreSnapshot();
         snapshotPaths.length = 0;
@@ -353,11 +416,129 @@ function undo () {
     drawHolder();
 }
 
-function save() {
-    const dataURL = Doodle.canvasToImage(getHoldingCanvas(), '#000');
-    let now = (new Date()).toISOString().substring(0, 19).replaceAll(':', '');
+Doodle.save = () => {
+    const dataURL = Doodle.toDataUrl();
+    const now = (new Date()).toISOString().substring(0, 19).replaceAll(':', '');
     downloadBase64File(dataURL, `doodle_${now}.png`);
 }
+
+/*
+function SelectText(element) {
+    if (document.body.createTextRange) {
+        console.log("Using document.body.createTextRange")
+        const range = document.body.createTextRange();
+        range.moveToElementText(element);
+        range.select();
+    } else if (window.getSelection) {
+        console.log("Using window.getSelection")
+        const selection = window.getSelection();
+        const range2 = document.createRange();
+        range2.selectNodeContents(element);
+        selection.removeAllRanges();
+        selection.addRange(range2);
+        console.log("selection", selection);
+    }
+}
+*/
+
+Doodle.copyToClipboard = () => {
+    const dataURL = Doodle.toDataUrl();
+
+    console.info("Copying to clipboard…");
+
+    /*
+    const imgContainer = document.createElement('div');
+    const img = document.createElement('img');
+    img.setAttribute('src', dataURL);
+    imgContainer.append(img);
+    document.body.append(imgContainer);
+    img.setAttribute("contenteditable", "true");
+    imgContainer.setAttribute("contenteditable", "true");
+
+    SelectText(imgContainer);
+
+    try {
+        // Security exception may be thrown by some browsers.
+        document.execCommand("copy");
+    }
+    catch (ex) {
+        console.warn("Copy to clipboard failed.", ex);
+        return prompt("Copy to clipboard: Ctrl+C, Enter", text);
+    }
+    finally {
+        window.getSelection().removeAllRanges();
+        imgContainer.remove();
+    }
+    */
+
+
+    // Firefox does not have the Clipboard API yet, It's a little too soon.
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=1809106
+
+    if (window.ClipboardItem) {
+
+        Doodle.canvasToImageBlob(getHoldingCanvas(), Doodle.backgroundColor, (blobPart) => {
+            // const type = "text/plain";
+            const type = "image/png";
+            const blob = new Blob([blobPart], {type});
+            const data = [new ClipboardItem({[type]: blob})];
+            navigator.clipboard.write(data).then(
+                () => {
+                    Doodle.notif("Copied to clipboard.  Use <kbd>CTRL+V</kbd> to paste your doodle somewhere.");
+                },
+                () => {
+                    Doodle.notif("AAAAAARGH !  I cannot access your clipboard.  Use the Preview button instead ?", {'speaker': 'hulk'});
+                }
+            );
+
+        });
+
+    } else {
+        Doodle.notif("The <em>Clipboard API</em> is <strong>not available</strong> on your browser.  As a workaround, use the Preview button, then right-click on the image and select <em>'Copy Image'</em>.", {'speaker': 'hulk'})
+    }
+
+}
+
+Doodle.preview = () => {
+    const dataURL = Doodle.toDataUrl();
+    window.open(dataURL, '_blank').focus();
+}
+
+
+/*
+// FROM: https://stackoverflow.com/a/33928558
+// Copies a string to the clipboard. Must be called from within an
+// event handler such as click. May return false if it failed, but
+// this is not always possible. Browser support for Chrome 43+,
+// Firefox 42+, Safari 10+, Edge and Internet Explorer 10+.
+// Internet Explorer: The clipboard feature may be disabled by
+// an administrator. By default a prompt is shown the first
+// time the clipboard is used (per session).
+function copyToClipboard(text) {
+    if (window.clipboardData && window.clipboardData.setData) {
+        // Internet Explorer-specific code path to prevent textarea being shown while dialog is visible.
+        return window.clipboardData.setData("Text", text);
+
+    }
+    else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
+        var textarea = document.createElement("textarea");
+        textarea.textContent = text;
+        textarea.style.position = "fixed";  // Prevent scrolling to bottom of page in Microsoft Edge.
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            return document.execCommand("copy");  // Security exception may be thrown by some browsers.
+        }
+        catch (ex) {
+            console.warn("Copy to clipboard failed.", ex);
+            return prompt("Copy to clipboard: Ctrl+C, Enter", text);
+        }
+        finally {
+            document.body.removeChild(textarea);
+        }
+    }
+}
+*/
 
 function downloadBase64File(dataUrl, fileName) {
     const downloadLink = document.createElement('a');
@@ -368,11 +549,12 @@ function downloadBase64File(dataUrl, fileName) {
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("send-drawing-form");
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", () => {
         const doodleInput = document.getElementById("send-drawing-image");
-        const dataURL = Doodle.canvasToImage(getHoldingCanvas(), '#000');
+        const dataURL = Doodle.toDataUrl();
         doodleInput.value = dataURL;
         console.log("Doodle data url", dataURL);
+        console.info("💖  Thank you for the doodle !  🦊");
     });
 });
 
@@ -383,67 +565,105 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getDrawingCanvasDomElement().addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.key === 'z') {
-            undo();
+            Doodle.undo();
         }
     });
 
     const undoButton = document.getElementById("control-undo");
-    undoButton.addEventListener("click", (e) => {
-        undo();
+    undoButton.addEventListener("click", () => {
+        Doodle.undo();
     });
 
     const saveButton = document.getElementById("control-save");
-    saveButton.addEventListener("click", (e) => {
-        save();
+    saveButton.addEventListener("click", () => {
+        Doodle.save();
+    });
+
+    const previewButton = document.getElementById("control-preview");
+    previewButton.addEventListener("click", () => {
+        Doodle.preview();
+        Doodle.notif(`どうもありがとうございます !`, {'speaker': 'samurai'});
+    });
+
+    const copyButton = document.getElementById("control-copy");
+    copyButton.addEventListener("click", () => {
+        Doodle.copyToClipboard();
     });
 
     updateControls("init");
 });
 
-function updateControls (from, options) { // horrible ; just use events
+function updateControls(from, options) { // horrible ; just use events
 
     // Show / Hide Undo
     const undoButton = document.getElementById("control-undo");
     const saveButton = document.getElementById("control-save");
+    const copyButton = document.getElementById("control-copy");
+    const previewButton = document.getElementById("control-preview");
     if ('save' !== from && 'send' !== from && drawnPaths.length) {
         undoButton.classList.remove('hidden');
         saveButton.classList.remove('hidden');
+        copyButton.classList.remove('hidden');
+        previewButton.classList.remove('hidden');
     } else {
         undoButton.classList.add('hidden');
         saveButton.classList.add('hidden');
+        copyButton.classList.add('hidden');
+        previewButton.classList.add('hidden');
     }
 
     // Inexpensive notification chain
     if ('draw' === from) {
         const amountOfPaths = drawnPaths.length;
         if (amountOfPaths === 1) {
-            notif(`Good job — Have fun !<br /><small title="… fork ever and never !">(and with you may be the fork)</small>`, {clear: true, speaker: 'yoda'});
+            notifOnce(`Good job — Have fun !<br /><small title="… fork ever and never !">(and with you may be the fork)</small>`, {
+                clear: true,
+                speaker: 'yoda'
+            });
         } else if (amountOfPaths === 2) {
-            notif(`This is not an usual contact page, <br /> but you know what they say... <br /> <em title="&#10084;">A doodle is worth a thousand words.</em>`, {clear: false, speaker: 'wizard'});
+            notifOnce(`This is not an usual contact page, <br /> but you know what they say... <br /> <em title="&#10084;">A doodle is worth a thousand words.</em>`, {
+                clear: false,
+                speaker: 'wizard'
+            });
         } else if (amountOfPaths === 3) {
-            notif("Like most things I do, this website is <em>libre software</em>.<br />You can browse its <a href=\"https://github.com/Goutte/antoine.goutenoir.com\" target=\"_blank\">source code</a>.", {clear: false, speaker: 'penguins'});
+            notifOnce("Like most things I do, this website is <em>libre software</em>.<br />You can browse its <a href=\"https://github.com/Goutte/antoine.goutenoir.com\" target=\"_blank\">source code</a>.", {
+                clear: false,
+                speaker: 'penguins'
+            });
         } else if (amountOfPaths === 5) {
-            notif('<strong>KEYBOARD ENABLED !</strong><br />You can hit <b><kbd>[CTRL]+[Z]</kbd></b> to <strong>undo</strong> your last draw.', {clear: false, speaker: 'rabbit'});
+            notifOnce('<strong>KEYBOARD ENABLED !</strong><br />You can hit <b><kbd>[CTRL]+[Z]</kbd></b> to <strong>undo</strong> your last draw.', {
+                clear: false,
+                speaker: 'rabbit'
+            });
         } else if (amountOfPaths === 8) {
-            notif('The page may be a bit sluggish.<br />It is expected, as this is a performance experiment.<br /><small>(a few atoms were hurt in the making of this webpage)</small>', {clear: false, speaker: 'geiger'});
+            notifOnce('The page may be a bit sluggish.<br />It is expected, as this is a performance experiment.<br /><small>(a few atoms were hurt in the making of this webpage)</small>', {
+                clear: false,
+                speaker: 'geiger'
+            });
         } else if (amountOfPaths === 13) {
-            notif("Just hold <strong><kbd>[$]</kbd></strong> for Free Cake™ !<br /><small>(EPILEPSY TRIGGER WARNING)</small>", {clear: true, speaker: 'devil'});
+            notifOnce("Just hold <strong><kbd>[$]</kbd></strong> for Free Cake™ !<br /><small>(EPILEPSY TRIGGER WARNING)</small>", {
+                clear: true,
+                speaker: 'devil'
+            });
         } else if (amountOfPaths === 21) {
-            notif('<em title="But Mom Knows Best.   Thanks, Françoise & Xavier !">Enlightenment does matter.</em>', {clear: false, speaker: 'idea'});
+            notifOnce('<em title="But Mom Knows Best.   Thanks, Françoise & Xavier !">Enlightenment does matter.</em>', {
+                clear: false,
+                speaker: 'idea'
+            });
         } else if (amountOfPaths === 34) {
-            notif("I highly recommend that you visit the <a href=\"https://www.khanacademy.org\" target=\"_blank\">Khan Academy</a>.<br />It is the kind of school I dreamt of as a kid.", {speaker: 'vishnu'});
+            notifOnce("I highly recommend that you visit the <a href=\"https://www.khanacademy.org\" target=\"_blank\">Khan Academy</a>.<br />It is the kind of school I dreamt of as a kid.", {speaker: 'vishnu'});
         } else if (amountOfPaths === 55) {
-            notif(`<strong><code title="I found this serendipitiously while looking at some raw memory dumps in my long gone days of dark hatting.">666 999 = 666 x 999 + 666 + 999</code></strong><br />Upside down, this is still true !`, {speaker: 'devil'});
+            notifOnce(`<strong><code title="I found this serendipitiously while looking at some raw memory dumps in my long gone days of dark hatting.">666 999 = 666 x 999 + 666 + 999</code></strong><br />Upside down, this is still true !`, {speaker: 'devil'});
         } else if (amountOfPaths === 89) {
-            notif("Waow, that's a big doodle you're drawing there !<br />I hope you'll save that !", {speaker: 'hulk'});
+            notifOnce("Waow, that's a big doodle you're drawing there !<br />I hope you'll save that !", {speaker: 'hulk'});
         } else if (amountOfPaths === 144) {
-            notif("Did you notice that the notifications' frequency <br /> followed the Fibonacci sequence ? <br /> <em title=\"Congratulations to Gaëlle, who figured it out !\">Bet you didn't !</em>", {speaker: 'neo'});
+            notifOnce("Did you notice that the notifications' frequency <br /> followed the Fibonacci sequence ? <br /> <em title=\"Congratulations to Gaëlle, who figured it out !\">Bet you didn't !</em>", {speaker: 'neo'});
         } else if (amountOfPaths === 233) {
-            notif("If you want a game, you should <a href=\"https://antoine.goutenoir.com/games/cyx\">try Cyx</a> instead of slashing these notifications.", {speaker: 'samurai'});
+            notifOnce("If you want a game, you should <a href=\"https://antoine.goutenoir.com/games/cyx\">try Cyx</a> instead of slashing these notifications.", {speaker: 'samurai'});
         } else if (amountOfPaths === 377) {
-            notif("<b>~ ACHIEVEMENT UNLOCKED ~</b><br /><em>Web Doodle Artist</em>", {speaker: 'wizard'});
+            notifOnce("<b>~ ACHIEVEMENT UNLOCKED ~</b><br /><em>Web Doodle Artist</em>", {speaker: 'wizard'});
         } else if (amountOfPaths === 610) {
-            notif("<strong>CONGRATULATIONS, YOU MAD HATTER</strong>, you reached the end of the notifications, with <code>610</code> strokes.", {speaker: 'rabbit'});
+            notifOnce("<strong>CONGRATULATIONS, YOU MAD HATTER</strong>, you reached the end of the notifications, with <code>610</code> strokes.", {speaker: 'rabbit'});
         }
     }
 

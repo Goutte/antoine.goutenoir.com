@@ -7027,7 +7027,14 @@ var View = this.View = Base.extend(Callback, {
 		dragging = false;
 
 	function getView(event) {
-		return View._viewsById[DomEvent.getTarget(event).getAttribute('id')];
+		if (event) {
+			if (DomEvent.getTarget(event) === null) {
+				console.warn("ouch -- wip");
+			}
+			return View._viewsById[DomEvent.getTarget(event).getAttribute('id')];
+		}
+
+		return View._focused;
 	}
 
 	function viewToProject(view, event) {

@@ -45,8 +45,10 @@
             <marquee id="send-drawing-title" scrolldelay="220">Contact Me</marquee>
 
             <div id="doodle-controls">
-                <input type="button" id="control-save" value="Save" title="Download your doodle as PNG." />
-                <input type="button" id="control-undo" value="Undo" title="Remove the most recent spline.  (CTRL+Z)" />
+                <input type="button" id="control-copy" value="⌨ Copy" title="Copy your doodle to your clipboard. (if available)" />
+                <input type="button" id="control-preview" value="👀 Preview" title="To copy your doodle into your clipboard, you can preview it and then right-click on the preview and select 'Copy Image'." />
+                <input type="button" id="control-save" value="💾 Save" title="Download your doodle as PNG." />
+                <input type="button" id="control-undo" value="⎌ Undo" title="Remove the most recent spline.  (CTRL+Z)" />
             </div>
 {#            <input type="button" id="control-vortex" value="&#127786;" />#}
             <hr>
@@ -59,13 +61,13 @@
                 </p>
                 <br>
                 <label for="send-drawing-what">
-                    What do you want ?
+                    What would you like ?
                 </label>
                 <p>
                     <textarea id="send-drawing-what" name="what" rows="9" cols="42" placeholder="… because you get three wishes !"></textarea>
                 </p>
                 <input id="send-drawing-image" type="hidden" name="doodle" />
-                <input type="submit" value="Submit" />
+                <input type="submit" value="✉ Send" />
                 <label title="please do, I enjoy your doodles">
                     <input type="checkbox" value="checked" checked disabled="disabled" />
                     <span>attach doodle</span>
