@@ -9,20 +9,20 @@ fi
 if [ "$1" = 'php-fpm' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
 	# Install the project the first time PHP is started
 	# After the installation, the following block can be deleted
-	if [ ! -f composer.json ]; then
-		CREATION=1
+	#if [ ! -f composer.json ]; then
+	#	CREATION=1
 
-		rm -Rf tmp/
-		composer create-project "symfony/skeleton $SYMFONY_VERSION" tmp --stability="$STABILITY" --prefer-dist --no-progress --no-interaction --no-install
+	#	rm -Rf tmp/
+	#	composer create-project "symfony/skeleton $SYMFONY_VERSION" tmp --stability="$STABILITY" --prefer-dist --no-progress --no-interaction --no-install
 
-		cd tmp
-		composer require "php:>=$PHP_VERSION"
-		composer config --json extra.symfony.docker 'true'
-		cp -Rp . ..
-		cd -
+	#	cd tmp
+	#	composer require "php:>=$PHP_VERSION"
+	#	composer config --json extra.symfony.docker 'true'
+	#	cp -Rp . ..
+	#	cd -
 
-		rm -Rf tmp/
-	fi
+	#	rm -Rf tmp/
+	#fi
 
 	if [ "$APP_ENV" != 'prod' ]; then
 		composer install --prefer-dist --no-progress --no-interaction
@@ -30,10 +30,10 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
 
 	if grep -q ^DATABASE_URL= .env; then
 		# After the installation, the following block can be deleted
-		if [ "$CREATION" = "1" ]; then
-			echo "To finish the installation please press Ctrl+C to stop Docker Compose and run: docker compose up --build"
-			sleep infinity
-		fi
+		#if [ "$CREATION" = "1" ]; then
+		#	echo "To finish the installation please press Ctrl+C to stop Docker Compose and run: docker compose up --build"
+		#	sleep infinity
+		#fi
 
 		echo "Waiting for db to be ready..."
 		ATTEMPTS_LEFT_TO_REACH_DATABASE=60
@@ -53,7 +53,7 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
 			echo "$DATABASE_ERROR"
 			exit 1
 		else
-			echo "The db is now ready and reachable"
+			echo "The database is now ready and reachable."
 		fi
 
 		if [ "$( find ./migrations -iname '*.php' -print -quit )" ]; then
@@ -63,11 +63,12 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
 
 	setfacl -R -m u:www-data:rwX -m u:"$(whoami)":rwX var
 	setfacl -dR -m u:www-data:rwX -m u:"$(whoami)":rwX var
-fi
 
-# We could also use RabbitMQ and another container for this.
-# Also, we process the queue every 15 minutes, it's enough.
-bin/console messenger:consume async -vv --sleep 900 &
+  # We could also use RabbitMQ and another container for this.
+  # Also, we process the queue every 15 minutes, it's enough.
+  bin/console messenger:consume async -vv --sleep 900 &
+
+fi
 
 echo "Almost done with the PHP entrypoint…"
 

@@ -10,23 +10,22 @@ FROM composer/composer:2-bin AS composer
 
 FROM mlocati/php-extension-installer:latest AS php_extension_installer
 
-FROM caddy:2.6-builder-alpine AS app_caddy_builder
-
-RUN xcaddy build \
-	--with github.com/dunglas/mercure \
-	--with github.com/dunglas/mercure/caddy \
-	--with github.com/dunglas/vulcain \
-	--with github.com/dunglas/vulcain/caddy
+#FROM caddy:2.6-builder-alpine AS app_caddy_builder
+#RUN xcaddy build \
+#	--with github.com/dunglas/mercure \
+#	--with github.com/dunglas/mercure/caddy \
+#	--with github.com/dunglas/vulcain \
+#	--with github.com/dunglas/vulcain/caddy
 
 ########################################################################################################################
 # Prod image
 FROM php:8.2-fpm-alpine AS app_php
 
-# Allow to use development versions of Symfony
+# Allow using development versions of Symfony
 ARG STABILITY="stable"
 ENV STABILITY ${STABILITY}
 
-# Allow to select Symfony version
+# Allow Symfony version selection
 ARG SYMFONY_VERSION=""
 ENV SYMFONY_VERSION ${SYMFONY_VERSION}
 
@@ -102,6 +101,7 @@ RUN set -eux; \
 		chmod +x bin/console; sync; \
     fi
 
+########################################################################################################################
 # Dev image
 FROM app_php AS app_php_dev
 
@@ -124,13 +124,13 @@ RUN rm -f .env.local.php
 ########################################################################################################################
 # Caddy image
 # Caddy falls into a 300 loop with our config, somehow.  Going for nginx instead…
-FROM caddy:2.6-alpine AS app_caddy
+#FROM caddy:2.6-alpine AS app_caddy
 
-WORKDIR /srv/app
+#WORKDIR /srv/app
 
-COPY --from=app_caddy_builder --link /usr/bin/caddy /usr/bin/caddy
-COPY --from=app_php --link /srv/app/public public/
-COPY --link docker/caddy/Caddyfile /etc/caddy/Caddyfile
+#COPY --from=app_caddy_builder --link /usr/bin/caddy /usr/bin/caddy
+#COPY --from=app_php --link /srv/app/public public/
+#COPY --link docker/caddy/Caddyfile /etc/caddy/Caddyfile
 
 ########################################################################################################################
 # Nginx
