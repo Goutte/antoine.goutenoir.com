@@ -83,7 +83,7 @@ COPY --from=composer --link /composer /usr/bin/composer
 # prevent the reinstallation of vendors at every changes in the source code
 # (or not, since we're not COPYing the whole source tree below now)
 # install the PHP vendor dependencies
-COPY --link symfony/composer.* symfony/symfony.* ./
+COPY --link composer.* symfony.* ./
 RUN set -eux; \
 	if [ -f composer.json ]; then \
 		composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress; \
