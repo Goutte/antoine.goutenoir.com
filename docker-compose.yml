@@ -36,15 +36,15 @@ services:
       - php
     restart: unless-stopped
     #restart: no
-    #volumes:
-      # use a bind-mounted host directory, as we want to keep the media
-      #- ./public:/srv/app/public:ro
-    # You probably want to uncomment this ; I handle network weirdly
+    volumes:
+      - ./docker/volumes/blog:/srv/app/public/blog
+      - ./docker/volumes/games:/srv/app/public/games
+    # You probably want to uncomment this ; I handle network incorrectly
 #    ports:
 #      - "80:80"
     environment:
       # Config for server's nginx-reverse-proxy container
-      # move this to an un-committed override
+      # todo: move this to an un-committed override?
       LETSENCRYPT_HOST: antoine.goutenoir.com
       LETSENCRYPT_EMAIL: antoine@goutenoir.com
       VIRTUAL_HOST: antoine.goutenoir.com

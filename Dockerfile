@@ -46,12 +46,12 @@ RUN apk add --no-cache \
 	;
 
 RUN set -eux; \
-    install-php-extensions \
+	install-php-extensions \
 		apcu \
 		intl \
 		opcache \
 		zip \
-    ;
+	;
 
 ###> recipes ###
 ###< recipes ###
@@ -81,25 +81,28 @@ ENV PATH="${PATH}:/root/.composer/vendor/bin"
 COPY --from=composer --link /composer /usr/bin/composer
 
 # prevent the reinstallation of vendors at every changes in the source code
-COPY --link composer.* symfony.* ./
+# (or not, since we're not COPYing the whole source tree below now)
+# install the PHP vendor dependencies
+COPY --link symfony/composer.* symfony/symfony.* ./
 RUN set -eux; \
-    if [ -f composer.json ]; then \
+	if [ -f composer.json ]; then \
 		composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress; \
 		composer clear-cache; \
-    fi
+	fi
 
 # copy sources
 COPY --link  . ./
-#RUN rm -Rf docker/
+RUN rm -Rf docker/
 
+# prepare autoload files and bootstrap
 RUN set -eux; \
 	mkdir -p var/cache var/log; \
-    if [ -f composer.json ]; then \
+	if [ -f composer.json ]; then \
 		composer dump-autoload --classmap-authoritative --no-dev; \
 		composer dump-env prod; \
 		composer run-script --no-dev post-install-cmd; \
 		chmod +x bin/console; sync; \
-    fi
+	fi
 
 ########################################################################################################################
 # Dev image
@@ -117,7 +120,7 @@ COPY --link docker/php/conf.d/app.dev.ini $PHP_INI_DIR/conf.d/
 RUN set -eux; \
 	install-php-extensions \
 	xdebug \
-    ;
+	;
 
 RUN rm -f .env.local.php
 
