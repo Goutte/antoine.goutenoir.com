@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Memo on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/memo/</link>
+    <description>Recent content in Memo on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 07 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/memo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>USBip Share USB device over network</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2021-01-07-usbip-share-usb-device-over-network/</link>
+      <pubDate>Thu, 07 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2021-01-07-usbip-share-usb-device-over-network/</guid>
+      <description>Install usbip apt install linux-tools-common  You may need to install a package targeted to your kernel version.
+Best install hwdata too to get detailed info about the devices.
+On the server The server is the one that shares the device.
+Start by enabling the required kernel modules:
+modprobe usbip_core modprobe usbip_host  Then, run the usbipd daemon:
+usbipd -D --tcp-port 3240  The TCP port defaults to 3240, it&amp;rsquo;s best to set your own.</description>
+    </item>
+    
+    <item>
+      <title>Install and use phpenv on Ubuntu/Debian</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2020-02-04-install-and-use-phpenv/</link>
+      <pubDate>Tue, 04 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2020-02-04-install-and-use-phpenv/</guid>
+      <description>Download and install phpenv in ${HOME}/.phpenv :
+curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash Then, edit ~/.bashrc:
+export PHPENV_ROOT=&amp;quot;${HOME}/.phpenv&amp;quot; if [ -d &amp;quot;${PHPENV_ROOT}&amp;quot; ]; then export PATH=&amp;quot;${PHPENV_ROOT}/bin:${PATH}&amp;quot; eval &amp;quot;$(phpenv init -)&amp;quot; fi ~/.phpenv/plugins/php-build/install-dependencies.sh  Or install some debian packages:
+apt install \ libxml2-dev \ libssl-dev \ libsqlite3-dev \ libbz2-dev \ libcurlpp-dev \ libpng-dev \ libjpeg-dev \ libonig-dev \ libreadline-dev \ libtidy-dev \ libxslt1-dev \ libzip-dev We can now install any version of PHP:</description>
+    </item>
+    
+  </channel>
+</rss>

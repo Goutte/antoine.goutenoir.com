@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Experiment on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/experiment/</link>
+    <description>Recent content in Experiment on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 16 Jun 2012 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/experiment/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Doodle away !</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2012-06-16-doodle-away/</link>
+      <pubDate>Sat, 16 Jun 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2012-06-16-doodle-away/</guid>
+      <description>I experimented a bit with canvas and paper.js, and made an online doodle app working quite nicely on powerful tablets.
+You can fork the whole project on github.
+The trick was to have two separate canvases, one for the path being drawn, and the other for the paths already drawn. PaperScript’s tricky clever scoping is inspiring — my usage of it feels like a hack.
+Remember to press C for Free Cake© once you&amp;rsquo;ve drawn some lines !</description>
+    </item>
+    
+  </channel>
+</rss>

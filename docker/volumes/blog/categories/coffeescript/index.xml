@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CoffeeScript on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/coffeescript/</link>
+    <description>Recent content in CoffeeScript on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 06 Jun 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/coffeescript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A bot for Cyx</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2015-06-06-a-bot-for-cyx/</link>
+      <pubDate>Sat, 06 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2015-06-06-a-bot-for-cyx/</guid>
+      <description>As a tracer bullet for the game of Go I&amp;rsquo;ve been working on for the past ten years (yes, it is a long time, and for my defense I re-wrote it from scratch a bunch of times), I made Cyx.
+It&amp;rsquo;s been highlighted in the Chrome Webstore lately, and since then thousands of players try it every day.
+You can only play it against a local friend or against the computer.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Symfony on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/symfony/</link>
+    <description>Recent content in Symfony on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 02 Aug 2013 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/symfony/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Install Symfony CMF on Debian Wheezy</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-08-02-install-symfony-cmf-on-debian-wheezy/</link>
+      <pubDate>Fri, 02 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-08-02-install-symfony-cmf-on-debian-wheezy/</guid>
+      <description>Symfony CMF Its awesomeness speaks for itself.
+Setup Problem When composing, you get the requested linked library icu has the wrong version installed or is missing from your system.
+Solution $ sudo aptitude install php5-intl Usage Problem When saving a modified page from the inline editor. General error: 14 unable to write to database file or General error: 14 unable to open database file.
+Solution app/app.sqlite must be writeable, and, weirdly, app/ too.</description>
+    </item>
+    
+  </channel>
+</rss>

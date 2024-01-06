@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/linux/</link>
+    <description>Recent content in Linux on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 07 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>USBip Share USB device over network</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2021-01-07-usbip-share-usb-device-over-network/</link>
+      <pubDate>Thu, 07 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2021-01-07-usbip-share-usb-device-over-network/</guid>
+      <description>Install usbip apt install linux-tools-common  You may need to install a package targeted to your kernel version.
+Best install hwdata too to get detailed info about the devices.
+On the server The server is the one that shares the device.
+Start by enabling the required kernel modules:
+modprobe usbip_core modprobe usbip_host  Then, run the usbipd daemon:
+usbipd -D --tcp-port 3240  The TCP port defaults to 3240, it&amp;rsquo;s best to set your own.</description>
+    </item>
+    
+    <item>
+      <title>Useful Aliases for Bash</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2017-03-06-useful-aliases-for-bash/</link>
+      <pubDate>Mon, 06 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2017-03-06-useful-aliases-for-bash/</guid>
+      <description>Just a bunch of useful aliases.
+alias observe=&amp;#34;tail -f -n 62&amp;#34; alias gpp=&amp;#39;git pull --rebase --autostash &amp;amp;&amp;amp; git push&amp;#39; alias gci=&amp;#39;git commit -v --interactive&amp;#39; alias gsv=&amp;#39;git status --verbose&amp;#39; alias gl=&amp;#39;git log -v&amp;#39; alias gg=&amp;#39;git log --graph --oneline --all&amp;#39; alias gd=&amp;#39;git diff&amp;#39; </description>
+    </item>
+    
+    <item>
+      <title>Mount a remote folder using sshfs</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2014-01-10-mount-remote-folder-using-sshfs/</link>
+      <pubDate>Fri, 10 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2014-01-10-mount-remote-folder-using-sshfs/</guid>
+      <description>Install sshfs (SSH FileSystem) from the repositories :
+sudo apt-get install sshfs  You will want to mount the directory as yourself, not root, so append (-a) yourself to the fuse group (-G) :
+sudo usermod -a -G fuse antoine  Reboot (?), or exec su -l $USER.
+Then, you can mount :
+sshfs antoine@remote_host:/path/to/directory /path/to/local/mount/point  Add your public key (with an empty password, if you dare) to the server&amp;rsquo;s ~/.</description>
+    </item>
+    
+    <item>
+      <title>Install Symfony CMF on Debian Wheezy</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-08-02-install-symfony-cmf-on-debian-wheezy/</link>
+      <pubDate>Fri, 02 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-08-02-install-symfony-cmf-on-debian-wheezy/</guid>
+      <description>Symfony CMF Its awesomeness speaks for itself.
+Setup Problem When composing, you get the requested linked library icu has the wrong version installed or is missing from your system.
+Solution $ sudo aptitude install php5-intl Usage Problem When saving a modified page from the inline editor. General error: 14 unable to write to database file or General error: 14 unable to open database file.
+Solution app/app.sqlite must be writeable, and, weirdly, app/ too.</description>
+    </item>
+    
+    <item>
+      <title>Install LEAP Motion on Debian Wheezy</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-07-23-install-leap-motion-on-debian-wheezy/</link>
+      <pubDate>Tue, 23 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-07-23-install-leap-motion-on-debian-wheezy/</guid>
+      <description>Update : LEAP Motion now supports Linux, so this post is pretty much obsolete.
+ My #firstLEAP experience, despite being somewhat frustrating after a year and half of increasingly feverish expectations, proved to me one simple point : I had to get this to work under my linux development environment.
+WAIT, WHAT ? —You&amp;rsquo;re going to install closed-source software on Debian !?
+—Yes. Don&amp;rsquo;t twist the knife, please.
+ THE PROCESS Grab the LEAP Linux SDK, un-tar it, and try to install :</description>
+    </item>
+    
+    <item>
+      <title>Leech a website using wget</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-05-10-leech-website-using-wget/</link>
+      <pubDate>Fri, 10 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-05-10-leech-website-using-wget/</guid>
+      <description>Want to download a website for offline reading ?
+Use wget, it&amp;rsquo;s awesomely simple and powerful.
+$ wget -km http://antoine.goutenoir.com/blog -m makes it recursive and thorough ; mirror-like, the doc says.
+-k rewrites links to keep stylesheets and javascript working.</description>
+    </item>
+    
+    <item>
+      <title>Osmos ~ Get sound under Debian or Ubuntu 64bits</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2011-05-15-osmos-get-sound-under-debian-64bits/</link>
+      <pubDate>Sun, 15 May 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2011-05-15-osmos-get-sound-under-debian-64bits/</guid>
+      <description>Fresh install, no sound.
+Launched /opt/Osmos/Osmos :
+Commandline: ./Osmos.bin64 Preinitializing game: HEMI version 1.6.1 1568 Localization: using language “fr” Localization: loaded Osmos-fr.loc Arch: Intel(R) Core(TM) i7 CPU Q 740 @ 1.73GHz OS: Linux 2.6.38-2-amd64 Using sound Showing splash Using fullscreen mode: 1920 x 1080 Not using vsync Initializing GLRenderDevice… OpenGL version: 4.1.0 NVIDIA 270.41.06 Initializing game Initializing GLRenderer… Loading textures Loading fonts Backed up stats to Stats/Backup/Osmos_0018.sta Initializing SoundSystem… Initializing OpenAL Getting OpenAL device list Found 3 devices: Device 0: PulseAudio Software (3: OPENAL DEFAULT) Device 1: ALSA Software Device 2: PortAudio Software Pass 1: no valid device was specified (-1) Pass 2: no valid device was specified (-1) Pass 3: attempting device 0: “PulseAudio Software”… Failed to open device WARNING: Failed to initialize OpenAL App exiting — bye!</description>
+    </item>
+    
+    <item>
+      <title>Setup (for good) Symfony2 cache and logs permissions with setfacl</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2008-10-11-setup-for-good-symfony2-cache-and-logs-permissions-with-setfacl/</link>
+      <pubDate>Sat, 11 Oct 2008 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2008-10-11-setup-for-good-symfony2-cache-and-logs-permissions-with-setfacl/</guid>
+      <description>chmod is not enough, sometimes. Therefore, we need to adapt our access control lust (see what I did there ?) for our www-data user.
+This may or may not be the best solution, but here is a bash script to put in bin/ that does the job :
+#!/bin/sh  DIR=&amp;#34;$( cd &amp;#34;$( dirname &amp;#34;$0&amp;#34; )&amp;#34; &amp;amp;&amp;amp; pwd )&amp;#34; cd $DIR # bin/, sibling of app/ cd .. # project root sudo setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs sudo setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx web sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx web </description>
+    </item>
+    
+    <item>
+      <title>Bash smart history on UP</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2008-07-06-bash-smart-history-on-arrow-up/</link>
+      <pubDate>Sun, 06 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2008-07-06-bash-smart-history-on-arrow-up/</guid>
+      <description>You can either edit your ~/.bashrc :
+if [[ $- == *i* ]] then bind &amp;#39;&amp;#34;\e[A&amp;#34;: history-search-backward&amp;#39; bind &amp;#39;&amp;#34;\e[B&amp;#34;: history-search-forward&amp;#39; fi or create a ~/.inputrc file :
+&amp;#34;\e[A&amp;#34;: history-search-backward &amp;#34;\e[B&amp;#34;: history-search-forward Launch a new terminal, start typing, hit ↑, and enjoy !
+This is the kind of shortcut whose existence you forget about and are painfully reminded of when you use someone else&amp;rsquo;s terminal !</description>
+    </item>
+    
+  </channel>
+</rss>

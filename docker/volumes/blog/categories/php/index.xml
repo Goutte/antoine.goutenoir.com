@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PHP on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/php/</link>
+    <description>Recent content in PHP on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 04 Apr 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/php/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A fortune cookie for Behat</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2015-04-04-a-fortune-cookie-for-behat/</link>
+      <pubDate>Sat, 04 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2015-04-04-a-fortune-cookie-for-behat/</guid>
+      <description>A lost ounce of gold may be found, a lost moment of time never.
+ When you run bin/behat and everything is green, you only get the warm fuzzy feeling of a work well done. Why not reward yourself a bit more ?
+Some show Chuck Norris giving the thumbs-up.
+Most don&amp;rsquo;t show anything special.
+Enters the fortune cookie.
+ To be sure of hitting the target, shoot first and, whatever you hit, call it the target.</description>
+    </item>
+    
+    <item>
+      <title>Install Symfony CMF on Debian Wheezy</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-08-02-install-symfony-cmf-on-debian-wheezy/</link>
+      <pubDate>Fri, 02 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-08-02-install-symfony-cmf-on-debian-wheezy/</guid>
+      <description>Symfony CMF Its awesomeness speaks for itself.
+Setup Problem When composing, you get the requested linked library icu has the wrong version installed or is missing from your system.
+Solution $ sudo aptitude install php5-intl Usage Problem When saving a modified page from the inline editor. General error: 14 unable to write to database file or General error: 14 unable to open database file.
+Solution app/app.sqlite must be writeable, and, weirdly, app/ too.</description>
+    </item>
+    
+    <item>
+      <title>PHP ~ Test-Driven HTML5 Websockets and Symfony2 using Ratchet</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-07-02-test-driven-websockets-and-symfony2-using-ratchet/</link>
+      <pubDate>Tue, 02 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-07-02-test-driven-websockets-and-symfony2-using-ratchet/</guid>
+      <description>In order to make a smooth game experience for players of Cyx and Ægo, I needed my application to support HTML5&amp;rsquo;s Websockets.
+The easy way to achieve this is using the Node.js framework Sails.js, but I&amp;rsquo;d never done Websockets in PHP and I was curious. I&amp;rsquo;ll move eventually to Scala (as lichess did), or Go (because it looks awesome and it would be sooo meta), but it&amp;rsquo;s not the subject.</description>
+    </item>
+    
+    <item>
+      <title>Ægo ~ Gherkin features for a Go game</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-06-06-example-of-go-game-gherkin-feature/</link>
+      <pubDate>Thu, 06 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-06-06-example-of-go-game-gherkin-feature/</guid>
+      <description>Here&amp;rsquo;s how you might write the game rules features of a go game on a quadsphere :
+ Rejecting illegal moves lang:gherkin (go_game_rules.feature) Of course, these are far from exhaustive, as they cover only suicide and ko scenarios.
+Adding capture features allow us to cover a bit more code :
+ Capture lang:gherkin (go_game_capture.feature) Both these features were quite easy to implement, as unit-testing my classes made me craft all the tools I needed for Behat&amp;rsquo;s FeatureContext.</description>
+    </item>
+    
+    <item>
+      <title>PHP ~ Using Traits for Doctrine ODM or ORM Annotations</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-04-04-php-using-traits-for-doctrine-annotations/</link>
+      <pubDate>Thu, 04 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-04-04-php-using-traits-for-doctrine-annotations/</guid>
+      <description>}} *[ODM]: Object Document Manager *[ORM]: Object Relational Manager {%endcomment}} -- Say you want to reuse document properties through multiple documents. You can use PHP 5.4 Traits to both implement interfaces and define Doctrine&amp;rsquo;s annotations. I use an ODM in this post, but it should hold true for ORMs as well.
+Say you have the interface Identifiable,
+&amp;lt;?php namespace MyVendor\MyBundle\Is; interface Identifiable { public function getId(); public function setId($id); } &amp;hellip; which you want to implement using the Trait IdAsParameter :</description>
+    </item>
+    
+    <item>
+      <title>PHP ~ Using a multi-dimensional array as index</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-03-21-php-using-a-multi-dimensional-array-as-index/</link>
+      <pubDate>Thu, 21 Mar 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-03-21-php-using-a-multi-dimensional-array-as-index/</guid>
+      <description>EDIT: Those are pretty poorly optimized functions. Best not use.
+ Say you want to use a multidimensional array as a multiple-keyed index.
+Here is a small collection of functions to handle indexing operations on multidimensional arrays.
+Getting a value &amp;lt;?php // fails when one of the keys does not exist $value = $index[$ka][$kb][$kc][$kd]; // returns null when one of the keys does not exist index_get($index, array($ka, $kb, $kc, $kd)); And below is a simple (but tested) function safely getting a value from a multidimensional array :</description>
+    </item>
+    
+    <item>
+      <title>PHP ~ Rooted Tree Node Serialization</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2012-12-15-php-rooted-tree-node-serialization/</link>
+      <pubDate>Sat, 15 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2012-12-15-php-rooted-tree-node-serialization/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;UPDATE&lt;/strong&gt; :
+That was before I found out about SPL&amp;rsquo;s &lt;a href=&#34;http://www.php.net/manual/en/class.recursivetreeiterator.php&#34;&gt;Recursive Tree Iterator&lt;/a&gt;.
+Well, live and learn !&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;I wrote a Symfony2 bundle providing tools for easy (de)serialization of rooted trees structures
+where nodes hold a string value, and some methods for tree handling.&lt;/p&gt;
+&lt;p&gt;Using this, I can easily generate random trees like :&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;A
++--B
+|  +--C
+|  |  +--D
+|  |     +--E
+|  |     |  +--H
+|  |     |  +--I
+|  |     +--R
+|  |     +--T
+|  +--F
+|  |  +--J
+|  |  |  +--M
+|  |  |  |  +--N
+|  |  |  |  |  +--P
+|  |  |  |  +--Q
+|  |  |  |  +--U
+|  |  |  |     +--V
+|  |  |  +--Y
+|  |  +--L
+|  |     +--O
+|  |        +--X
+|  |        +--Z
+|  +--G
+|     +--W
++--K
+   +--S
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;It is extensively tested but it has a small learning curve, if you’re new to Symfony.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Code completion for PHPUnit_Framework_TestCase in PHPStorm</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2012-11-17-code-completion-for-phpunit_framework_testcase-in-phpstorm/</link>
+      <pubDate>Sat, 17 Nov 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2012-11-17-code-completion-for-phpunit_framework_testcase-in-phpstorm/</guid>
+      <description>To allow PHPStorm to discover the PHPUnit classes, go to Settings &amp;gt; Project Settings &amp;gt; PHP, and add the path to PHPUnit, usually something like /usr/share/php/PHPUnit.
+}} -- Now you do not have an excuse not to test your Symfony2 bundles !</description>
+    </item>
+    
+    <item>
+      <title>PHP ~ Slugify a String With or Without Iconv</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2011-10-11-php-slugify-a-string/</link>
+      <pubDate>Tue, 11 Oct 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2011-10-11-php-slugify-a-string/</guid>
+      <description>&lt;p&gt;While playing with Symfony (with Doctrine), I tweaked some of their built-in functions that I found useful.
+Slugifying a string for instance, for when you want pretty URIs&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;without-iconv&#34;&gt;Without iconv&lt;/h2&gt;
+&lt;p&gt;What if my server has not iconv ?&lt;/p&gt;
+&lt;p&gt;Here is how to quickly slugify a string without iconv.
+Try the following function, which covers less use-cases, but enough sometimes.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;php&lt;/span&gt;
+&lt;span style=&#34;color:#e6db74&#34;&gt;/**
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * Returns the slugified (aka urlized) $string,
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * which will match \a-z0-9-\
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * Some special chars are
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * &amp;#34;Ça alors, déjà !?&amp;#34; =&amp;gt; &amp;#34;ca-alors-deja&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *               &amp;#34;Œuf&amp;#34; =&amp;gt; &amp;#34;uf&amp;#34;   :(
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *          &amp;#34;~&amp;amp;a; -b?&amp;#34; =&amp;gt; &amp;#34;a-b&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *             &amp;#34;! ? #&amp;#34; =&amp;gt; &amp;#34;n-a&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * Notes :
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * - $string must be UTF-8
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * - æœÆŒ not covered !
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * @param  string $s The utf8 string to slugify
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * @return string    The slugified string
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; */&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;utf8_slugify&lt;/span&gt; ($s) {
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;utf8_decode&lt;/span&gt;($s);
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;html_entity_decode&lt;/span&gt;($s);
+  
+  &lt;span style=&#34;color:#75715e&#34;&gt;// list is not extensive -- suggestions are welcome !
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  $b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ÀÁÂÃÄÅàáâãäåÇçÈÉÊËèéêëÌÍÎÏìíîïÑñÒÓÔÕÖØòóôõöøÙÚÛÜùúûüÿ&amp;#39;&lt;/span&gt;;
+  $a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;AAAAAAaaaaaaCcEEEEeeeeIIIIiiiiNnOOOOOOooooooUUUUuuuuy&amp;#39;&lt;/span&gt;;
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;strtr&lt;/span&gt;($s, &lt;span style=&#34;color:#a6e22e&#34;&gt;utf8_decode&lt;/span&gt;($b), $a);
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;trim&lt;/span&gt;($s); &lt;span style=&#34;color:#75715e&#34;&gt;// trim white whars
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  
+  &lt;span style=&#34;color:#75715e&#34;&gt;// remove unwanted chars
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;preg_replace&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/([^a-z0-9]+)/i&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;-&amp;#39;&lt;/span&gt;, $s);
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;strtolower&lt;/span&gt;($s);
+  
+  &lt;span style=&#34;color:#75715e&#34;&gt;// remove `-` duplicates
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;preg_replace&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/--+/&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;-&amp;#39;&lt;/span&gt;, $s);
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;trim&lt;/span&gt;($s, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;-&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// trim `-`
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;empty&lt;/span&gt;($s)) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;n-a&amp;#39;&lt;/span&gt;;
+
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;utf8_encode&lt;/span&gt;($s);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is a hack as-is, neither maintained nor properly unit tested.
+Nowadays, I recommend using &lt;em&gt;Inflectors&lt;/em&gt; instead of this function.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Tip ~ Check whether the current PHP file is included or executed</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2010-10-28-php-tip-check-whether-the-current-file-is-included-or-standalone/</link>
+      <pubDate>Thu, 28 Oct 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2010-10-28-php-tip-check-whether-the-current-file-is-included-or-standalone/</guid>
+      <description>Let’s say you got a php file you want to behave differently if it is included ; in my case I wanted it to only define the functions and classes it used and skip the output part.
+&amp;lt;?php /** * Returns true if current file is included */ function isIncluded() { $f = get_included_files(); return $f[0] != __FILE__; } if ( !isIncluded() ) { // Do some stuff, eg: print some HTML } else { // Do other stuff, &amp;#39;cause you&amp;#39;re included } // You can also use (recommended) if ( __FILE__ !</description>
+    </item>
+    
+    <item>
+      <title>PHP Class ~ Detect which Browser your visitor is using</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2010-10-26-php-class-detect-which-browser-your-visitor-is-using/</link>
+      <pubDate>Tue, 26 Oct 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2010-10-26-php-class-detect-which-browser-your-visitor-is-using/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Instead of this, I recommend using the native &lt;code&gt;get_browser()&lt;/code&gt; PHP function when you can,
+which uses the exhaustive &lt;a href=&#34;http://www.php.net/manual/en/function.get-browser.php&#34;&gt;browscap&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You can use this very simple static class to detect which browser your visitor is using.
+It uses &lt;code&gt;$_SERVER[&#39;HTTP_USER_AGENT&#39;]&lt;/code&gt;, with all its drawbacks.
+It’s quite useful for styling, if you want to add a CSS file only for a certain browser, such as, for example :&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php if ( Browser::isIE() ): ?&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;style/css/ie.css&amp;#34;&lt;/span&gt; /&amp;gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php endif; ?&amp;gt;&lt;/span&gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php if ( Browser::isIE6() ): ?&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;style/css/ie6.css&amp;#34;&lt;/span&gt; /&amp;gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php endif; ?&amp;gt;&lt;/span&gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php if ( Browser::isAndroid() ): ?&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;style/css/android.css&amp;#34;&lt;/span&gt; /&amp;gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php endif; ?&amp;gt;&lt;/span&gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php if ( Browser::isIpad() || Browser::isIphone() ): ?&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;style/css/apple_mobile.css&amp;#34;&lt;/span&gt; /&amp;gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php endif; ?&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can detect IE6, IE7, IE8, IE9, Chrome, Firefox, Opera, Safari, the iPhone, the iPad, and Android.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

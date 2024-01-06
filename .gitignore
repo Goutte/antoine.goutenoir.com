@@ -1,19 +1,22 @@
-# PHP Storm
-.idea
 
-# KDE
-.directory
+/.idea
 
-# Bootstrap
-app/bootstrap*
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
 
-# Symfony directories
-vendor/*
-*/logs/*
-*/cache/*
-web/uploads/*
-web/bundles/*
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
 
-# Configuration files
-app/config/parameters.ini
-app/phpunit.xml
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###

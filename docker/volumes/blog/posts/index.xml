@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/posts/</link>
+    <description>Recent content in Posts on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 06 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mû, a board game with five elements</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2023-11-06-mu-board-video-game/</link>
+      <pubDate>Mon, 06 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2023-11-06-mu-board-video-game/</guid>
+      <description>Available in HTML5 Godot being amazing, I exported an HTML5 build of the game that you can run in your web browser.
+Play the HTML5 Demo
+The Rules of Mû You win by achieving any of the following:
+ Reach the top of the opponent&amp;rsquo;s hill. Capture both the opponent&amp;rsquo;s priests. Capture all the opponent&amp;rsquo;s pawns.  Movement Pawns and priests move alike, to one of the three tiles in front of them, if it is on the board and not already occupied by another pawn.</description>
+    </item>
+    
+    <item>
+      <title>USBip Share USB device over network</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2021-01-07-usbip-share-usb-device-over-network/</link>
+      <pubDate>Thu, 07 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2021-01-07-usbip-share-usb-device-over-network/</guid>
+      <description>Install usbip apt install linux-tools-common  You may need to install a package targeted to your kernel version.
+Best install hwdata too to get detailed info about the devices.
+On the server The server is the one that shares the device.
+Start by enabling the required kernel modules:
+modprobe usbip_core modprobe usbip_host  Then, run the usbipd daemon:
+usbipd -D --tcp-port 3240  The TCP port defaults to 3240, it&amp;rsquo;s best to set your own.</description>
+    </item>
+    
+    <item>
+      <title>Install and use phpenv on Ubuntu/Debian</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2020-02-04-install-and-use-phpenv/</link>
+      <pubDate>Tue, 04 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2020-02-04-install-and-use-phpenv/</guid>
+      <description>Download and install phpenv in ${HOME}/.phpenv :
+curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash Then, edit ~/.bashrc:
+export PHPENV_ROOT=&amp;quot;${HOME}/.phpenv&amp;quot; if [ -d &amp;quot;${PHPENV_ROOT}&amp;quot; ]; then export PATH=&amp;quot;${PHPENV_ROOT}/bin:${PATH}&amp;quot; eval &amp;quot;$(phpenv init -)&amp;quot; fi ~/.phpenv/plugins/php-build/install-dependencies.sh  Or install some debian packages:
+apt install \ libxml2-dev \ libssl-dev \ libsqlite3-dev \ libbz2-dev \ libcurlpp-dev \ libpng-dev \ libjpeg-dev \ libonig-dev \ libreadline-dev \ libtidy-dev \ libxslt1-dev \ libzip-dev We can now install any version of PHP:</description>
+    </item>
+    
+    <item>
+      <title>Pip requirements cheatsheet</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2019-09-11-pip-requirements-cheatsheet/</link>
+      <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2019-09-11-pip-requirements-cheatsheet/</guid>
+      <description>requirements.txt # Pin a branch of a repository git+git://github.com/someone/package@branch#egg=package # Only allow patch updates cryptography==2.8.*  </description>
+    </item>
+    
+    <item>
+      <title>Useful Aliases for Bash</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2017-03-06-useful-aliases-for-bash/</link>
+      <pubDate>Mon, 06 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2017-03-06-useful-aliases-for-bash/</guid>
+      <description>Just a bunch of useful aliases.
+alias observe=&amp;#34;tail -f -n 62&amp;#34; alias gpp=&amp;#39;git pull --rebase --autostash &amp;amp;&amp;amp; git push&amp;#39; alias gci=&amp;#39;git commit -v --interactive&amp;#39; alias gsv=&amp;#39;git status --verbose&amp;#39; alias gl=&amp;#39;git log -v&amp;#39; alias gg=&amp;#39;git log --graph --oneline --all&amp;#39; alias gd=&amp;#39;git diff&amp;#39; </description>
+    </item>
+    
+    <item>
+      <title>A sparse vector in python</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2016-05-18-python-sparse-vector/</link>
+      <pubDate>Wed, 18 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2016-05-18-python-sparse-vector/</guid>
+      <description>Ever needed a sparse vector in python ?
+scipy.sparse You could use the 2D matrices in scipy.sparse, like :
+from scipy.sparse import lil_matrix m = lil_matrix((1, 10000)) But there&amp;rsquo;s a bunch of issues with that :
+ The default value must be 0. Confusing and verbose API for 1D data.  Look at the following :
+m # &amp;lt;1x1000 sparse matrix of type &amp;#39;&amp;lt;type &amp;#39;numpy.float64&amp;#39;&amp;gt;&amp;#39; # with 1 stored elements in LInked List format&amp;gt; m[0] # &amp;lt;1x1000 sparse matrix of type &amp;#39;&amp;lt;type &amp;#39;numpy.</description>
+    </item>
+    
+    <item>
+      <title>A bot for Cyx</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2015-06-06-a-bot-for-cyx/</link>
+      <pubDate>Sat, 06 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2015-06-06-a-bot-for-cyx/</guid>
+      <description>As a tracer bullet for the game of Go I&amp;rsquo;ve been working on for the past ten years (yes, it is a long time, and for my defense I re-wrote it from scratch a bunch of times), I made Cyx.
+It&amp;rsquo;s been highlighted in the Chrome Webstore lately, and since then thousands of players try it every day.
+You can only play it against a local friend or against the computer.</description>
+    </item>
+    
+    <item>
+      <title>A fortune cookie for Behat</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2015-04-04-a-fortune-cookie-for-behat/</link>
+      <pubDate>Sat, 04 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2015-04-04-a-fortune-cookie-for-behat/</guid>
+      <description>A lost ounce of gold may be found, a lost moment of time never.
+ When you run bin/behat and everything is green, you only get the warm fuzzy feeling of a work well done. Why not reward yourself a bit more ?
+Some show Chuck Norris giving the thumbs-up.
+Most don&amp;rsquo;t show anything special.
+Enters the fortune cookie.
+ To be sure of hitting the target, shoot first and, whatever you hit, call it the target.</description>
+    </item>
+    
+    <item>
+      <title>Mathematics and Philosophy of Google&#39;s autocompletion</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2014-08-21-mathematics-and-philosophy-of-autocompletion/</link>
+      <pubDate>Thu, 21 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2014-08-21-mathematics-and-philosophy-of-autocompletion/</guid>
+      <description>This is not a post about the philosophical implications and the mathematical formulæ of &amp;ldquo;past user queries&amp;rdquo;-based autocompletion.
+This is a shameless hack of the above to peep into the human collective mind about these topics, at the date of this post :
+It&amp;rsquo;s sad to realize that money is half the drive for mathematics, but it&amp;rsquo;s refreshing to see music in there too. Our favorite mathemusician would be pleased, I&amp;rsquo;m sure.</description>
+    </item>
+    
+    <item>
+      <title>Dart ~ An iterator for map values</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2014-06-13-dart-map-values-iterator/</link>
+      <pubDate>Fri, 13 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2014-06-13-dart-map-values-iterator/</guid>
+      <description>A convoluted way I did not find this on the Internet, so here it is :
+/// A simple iterator on the values of a Map. class MapValuesIterator implements Iterator { Map map; Iterator iterator; MapValuesIterator(Map this.map) { iterator = map.keys.iterator; } get current =&amp;gt; map[iterator.current]; bool moveNext() { return iterator.moveNext(); } } Pretty useful when you have class wrapping a Map, like this :
+class MyIterableClass extends IterableBase { Map myInternalMap; get iterator =&amp;gt; new MapValuesIterator(myInternalMap); // .</description>
+    </item>
+    
+    <item>
+      <title>Math symbols ~ Tau should be ◯</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2014-03-21-math-symbols-tau-pi-circle-constant/</link>
+      <pubDate>Fri, 21 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2014-03-21-math-symbols-tau-pi-circle-constant/</guid>
+      <description>What is a mathematical symbol ? A mathematical symbol is the projection of an abstract concept on a small 2D plane section.
+As human memory is limited and costly, we should strive to make the unprojection as painless as possible. That means good symbols. They should scale well, and be as different to one another as the concepts are.
+π is not the most elegant constant For starters, read the Tau manifesto.</description>
+    </item>
+    
+    <item>
+      <title>Python tips for scientists</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2014-02-01-python-tips-for-scientists/</link>
+      <pubDate>Sat, 01 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2014-02-01-python-tips-for-scientists/</guid>
+      <description>Zen of Python Just type :
+import this in ipython, or any other python console.
+Idioms == vs is When comparing with None, you should always use is instead of ==. It&amp;rsquo;s a tad faster and it&amp;rsquo;s more idiomatic.
+Replace if my_data != None: by if my_data is not None:.
+When comparing with other things, is will compare pointers (True only if they are the same object in memory) and == will compare values (can be different objects in memory, as long as their values are the same).</description>
+    </item>
+    
+    <item>
+      <title>Mount a remote folder using sshfs</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2014-01-10-mount-remote-folder-using-sshfs/</link>
+      <pubDate>Fri, 10 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2014-01-10-mount-remote-folder-using-sshfs/</guid>
+      <description>Install sshfs (SSH FileSystem) from the repositories :
+sudo apt-get install sshfs  You will want to mount the directory as yourself, not root, so append (-a) yourself to the fuse group (-G) :
+sudo usermod -a -G fuse antoine  Reboot (?), or exec su -l $USER.
+Then, you can mount :
+sshfs antoine@remote_host:/path/to/directory /path/to/local/mount/point  Add your public key (with an empty password, if you dare) to the server&amp;rsquo;s ~/.</description>
+    </item>
+    
+    <item>
+      <title>Python UnitTest : assertIsNan() and assertIsNotNan()</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-12-12-python-unittest-assertisnan-and-assertisnotnan/</link>
+      <pubDate>Thu, 12 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-12-12-python-unittest-assertisnan-and-assertisnotnan/</guid>
+      <description>How do we assert that a value is nan (not a number) ?
+We could do self.assertTrue(math.isnan(value)), but it will raise a TypeError if value is neither a float or a Real.
+And when we want to assert that a value is not nan using self.assertFalse(math.isnan(value)), it is a problem.
+It&amp;rsquo;s an interesting question actually : does &amp;ldquo;not nan&amp;rdquo; needs to be a number or just not nan ? It&amp;rsquo;s a matter of taste, I think.</description>
+    </item>
+    
+    <item>
+      <title>Working with the CNRS</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-11-01-working-with-the-cnrs/</link>
+      <pubDate>Fri, 01 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-11-01-working-with-the-cnrs/</guid>
+      <description>As of December 2013, I&amp;rsquo;ll be working for the IRAP (Astrophysics and Planetary Science Institute), doing software design, code migration, data treatment and manipulation for MUSE (Multi-Unit Spectroscopic Explorer).
+We&amp;rsquo;ll be using this data to study galaxies, galactic winds, and overall for serendipity.
+ MUSE is the product of nine years of hard work from hundreds of people around the world, and I have the good fortune to pitch in at the payroll.</description>
+    </item>
+    
+    <item>
+      <title>AVS Réseaux, a lightweight webpage</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-10-11-avs-reseaux-lightweight-webpage/</link>
+      <pubDate>Fri, 11 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-10-11-avs-reseaux-lightweight-webpage/</guid>
+      <description>Here&amp;rsquo;s an example of a lightweight webpage made for AVS Réseaux.
+As usual, it&amp;rsquo;s an A-grade website, validating the pre-DRM W3C.</description>
+    </item>
+    
+    <item>
+      <title>Install Symfony CMF on Debian Wheezy</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-08-02-install-symfony-cmf-on-debian-wheezy/</link>
+      <pubDate>Fri, 02 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-08-02-install-symfony-cmf-on-debian-wheezy/</guid>
+      <description>Symfony CMF Its awesomeness speaks for itself.
+Setup Problem When composing, you get the requested linked library icu has the wrong version installed or is missing from your system.
+Solution $ sudo aptitude install php5-intl Usage Problem When saving a modified page from the inline editor. General error: 14 unable to write to database file or General error: 14 unable to open database file.
+Solution app/app.sqlite must be writeable, and, weirdly, app/ too.</description>
+    </item>
+    
+    <item>
+      <title>Install LEAP Motion on Debian Wheezy</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-07-23-install-leap-motion-on-debian-wheezy/</link>
+      <pubDate>Tue, 23 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-07-23-install-leap-motion-on-debian-wheezy/</guid>
+      <description>Update : LEAP Motion now supports Linux, so this post is pretty much obsolete.
+ My #firstLEAP experience, despite being somewhat frustrating after a year and half of increasingly feverish expectations, proved to me one simple point : I had to get this to work under my linux development environment.
+WAIT, WHAT ? —You&amp;rsquo;re going to install closed-source software on Debian !?
+—Yes. Don&amp;rsquo;t twist the knife, please.
+ THE PROCESS Grab the LEAP Linux SDK, un-tar it, and try to install :</description>
+    </item>
+    
+    <item>
+      <title>PHP ~ Test-Driven HTML5 Websockets and Symfony2 using Ratchet</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-07-02-test-driven-websockets-and-symfony2-using-ratchet/</link>
+      <pubDate>Tue, 02 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-07-02-test-driven-websockets-and-symfony2-using-ratchet/</guid>
+      <description>In order to make a smooth game experience for players of Cyx and Ægo, I needed my application to support HTML5&amp;rsquo;s Websockets.
+The easy way to achieve this is using the Node.js framework Sails.js, but I&amp;rsquo;d never done Websockets in PHP and I was curious. I&amp;rsquo;ll move eventually to Scala (as lichess did), or Go (because it looks awesome and it would be sooo meta), but it&amp;rsquo;s not the subject.</description>
+    </item>
+    
+    <item>
+      <title>Ægo ~ Gherkin features for a Go game</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-06-06-example-of-go-game-gherkin-feature/</link>
+      <pubDate>Thu, 06 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-06-06-example-of-go-game-gherkin-feature/</guid>
+      <description>Here&amp;rsquo;s how you might write the game rules features of a go game on a quadsphere :
+ Rejecting illegal moves lang:gherkin (go_game_rules.feature) Of course, these are far from exhaustive, as they cover only suicide and ko scenarios.
+Adding capture features allow us to cover a bit more code :
+ Capture lang:gherkin (go_game_capture.feature) Both these features were quite easy to implement, as unit-testing my classes made me craft all the tools I needed for Behat&amp;rsquo;s FeatureContext.</description>
+    </item>
+    
+    <item>
+      <title>Leech a website using wget</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-05-10-leech-website-using-wget/</link>
+      <pubDate>Fri, 10 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-05-10-leech-website-using-wget/</guid>
+      <description>Want to download a website for offline reading ?
+Use wget, it&amp;rsquo;s awesomely simple and powerful.
+$ wget -km http://antoine.goutenoir.com/blog -m makes it recursive and thorough ; mirror-like, the doc says.
+-k rewrites links to keep stylesheets and javascript working.</description>
+    </item>
+    
+    <item>
+      <title>PHP ~ Using Traits for Doctrine ODM or ORM Annotations</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-04-04-php-using-traits-for-doctrine-annotations/</link>
+      <pubDate>Thu, 04 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-04-04-php-using-traits-for-doctrine-annotations/</guid>
+      <description>}} *[ODM]: Object Document Manager *[ORM]: Object Relational Manager {%endcomment}} -- Say you want to reuse document properties through multiple documents. You can use PHP 5.4 Traits to both implement interfaces and define Doctrine&amp;rsquo;s annotations. I use an ODM in this post, but it should hold true for ORMs as well.
+Say you have the interface Identifiable,
+&amp;lt;?php namespace MyVendor\MyBundle\Is; interface Identifiable { public function getId(); public function setId($id); } &amp;hellip; which you want to implement using the Trait IdAsParameter :</description>
+    </item>
+    
+    <item>
+      <title>PHP ~ Using a multi-dimensional array as index</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-03-21-php-using-a-multi-dimensional-array-as-index/</link>
+      <pubDate>Thu, 21 Mar 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-03-21-php-using-a-multi-dimensional-array-as-index/</guid>
+      <description>EDIT: Those are pretty poorly optimized functions. Best not use.
+ Say you want to use a multidimensional array as a multiple-keyed index.
+Here is a small collection of functions to handle indexing operations on multidimensional arrays.
+Getting a value &amp;lt;?php // fails when one of the keys does not exist $value = $index[$ka][$kb][$kc][$kd]; // returns null when one of the keys does not exist index_get($index, array($ka, $kb, $kc, $kd)); And below is a simple (but tested) function safely getting a value from a multidimensional array :</description>
+    </item>
+    
+    <item>
+      <title>BadaCSS 3D</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-02-23-badacss-3d/</link>
+      <pubDate>Sat, 23 Feb 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-02-23-badacss-3d/</guid>
+      <description>Code Drops http://tympanus.net/Development/CreativeLinkEffects/
+TriDiv  </description>
+    </item>
+    
+    <item>
+      <title>Cubik Architecture</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-01-10-making-a-website-for-architects-cubik/</link>
+      <pubDate>Thu, 10 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-01-10-making-a-website-for-architects-cubik/</guid>
+      <description>Responds to size, orientation, fullscreen or windowed image swiping.
+Crafted with pleasure and talented modern designer Joffrey Jochum.
+Visit the website </description>
+    </item>
+    
+    <item>
+      <title>PHP ~ Rooted Tree Node Serialization</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2012-12-15-php-rooted-tree-node-serialization/</link>
+      <pubDate>Sat, 15 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2012-12-15-php-rooted-tree-node-serialization/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;UPDATE&lt;/strong&gt; :
+That was before I found out about SPL&amp;rsquo;s &lt;a href=&#34;http://www.php.net/manual/en/class.recursivetreeiterator.php&#34;&gt;Recursive Tree Iterator&lt;/a&gt;.
+Well, live and learn !&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;I wrote a Symfony2 bundle providing tools for easy (de)serialization of rooted trees structures
+where nodes hold a string value, and some methods for tree handling.&lt;/p&gt;
+&lt;p&gt;Using this, I can easily generate random trees like :&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;A
++--B
+|  +--C
+|  |  +--D
+|  |     +--E
+|  |     |  +--H
+|  |     |  +--I
+|  |     +--R
+|  |     +--T
+|  +--F
+|  |  +--J
+|  |  |  +--M
+|  |  |  |  +--N
+|  |  |  |  |  +--P
+|  |  |  |  +--Q
+|  |  |  |  +--U
+|  |  |  |     +--V
+|  |  |  +--Y
+|  |  +--L
+|  |     +--O
+|  |        +--X
+|  |        +--Z
+|  +--G
+|     +--W
++--K
+   +--S
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;It is extensively tested but it has a small learning curve, if you’re new to Symfony.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Code completion for PHPUnit_Framework_TestCase in PHPStorm</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2012-11-17-code-completion-for-phpunit_framework_testcase-in-phpstorm/</link>
+      <pubDate>Sat, 17 Nov 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2012-11-17-code-completion-for-phpunit_framework_testcase-in-phpstorm/</guid>
+      <description>To allow PHPStorm to discover the PHPUnit classes, go to Settings &amp;gt; Project Settings &amp;gt; PHP, and add the path to PHPUnit, usually something like /usr/share/php/PHPUnit.
+}} -- Now you do not have an excuse not to test your Symfony2 bundles !</description>
+    </item>
+    
+    <item>
+      <title>Doodle away !</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2012-06-16-doodle-away/</link>
+      <pubDate>Sat, 16 Jun 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2012-06-16-doodle-away/</guid>
+      <description>I experimented a bit with canvas and paper.js, and made an online doodle app working quite nicely on powerful tablets.
+You can fork the whole project on github.
+The trick was to have two separate canvases, one for the path being drawn, and the other for the paths already drawn. PaperScript’s tricky clever scoping is inspiring — my usage of it feels like a hack.
+Remember to press C for Free Cake© once you&amp;rsquo;ve drawn some lines !</description>
+    </item>
+    
+    <item>
+      <title>Elfassy Barrès Associés</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2012-03-21-static-generation-with-phrozn-elfassy/</link>
+      <pubDate>Wed, 21 Mar 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2012-03-21-static-generation-with-phrozn-elfassy/</guid>
+      <description>Very light, very fast, highly responsive, generated using Phrozn. It&amp;rsquo;s also using twitter 1.1 OAuth&#39;d API to get the homepage feed.
+Crafted with pleasure and designer Joffrey Jochum.
+Review the A-grade benchmark, or visit the website.</description>
+    </item>
+    
+    <item>
+      <title>PHP ~ Slugify a String With or Without Iconv</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2011-10-11-php-slugify-a-string/</link>
+      <pubDate>Tue, 11 Oct 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2011-10-11-php-slugify-a-string/</guid>
+      <description>&lt;p&gt;While playing with Symfony (with Doctrine), I tweaked some of their built-in functions that I found useful.
+Slugifying a string for instance, for when you want pretty URIs&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;without-iconv&#34;&gt;Without iconv&lt;/h2&gt;
+&lt;p&gt;What if my server has not iconv ?&lt;/p&gt;
+&lt;p&gt;Here is how to quickly slugify a string without iconv.
+Try the following function, which covers less use-cases, but enough sometimes.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;php&lt;/span&gt;
+&lt;span style=&#34;color:#e6db74&#34;&gt;/**
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * Returns the slugified (aka urlized) $string,
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * which will match \a-z0-9-\
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * Some special chars are
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * &amp;#34;Ça alors, déjà !?&amp;#34; =&amp;gt; &amp;#34;ca-alors-deja&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *               &amp;#34;Œuf&amp;#34; =&amp;gt; &amp;#34;uf&amp;#34;   :(
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *          &amp;#34;~&amp;amp;a; -b?&amp;#34; =&amp;gt; &amp;#34;a-b&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *             &amp;#34;! ? #&amp;#34; =&amp;gt; &amp;#34;n-a&amp;#34;
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * Notes :
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * - $string must be UTF-8
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * - æœÆŒ not covered !
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; *
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * @param  string $s The utf8 string to slugify
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; * @return string    The slugified string
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; */&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;utf8_slugify&lt;/span&gt; ($s) {
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;utf8_decode&lt;/span&gt;($s);
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;html_entity_decode&lt;/span&gt;($s);
+  
+  &lt;span style=&#34;color:#75715e&#34;&gt;// list is not extensive -- suggestions are welcome !
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  $b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;ÀÁÂÃÄÅàáâãäåÇçÈÉÊËèéêëÌÍÎÏìíîïÑñÒÓÔÕÖØòóôõöøÙÚÛÜùúûüÿ&amp;#39;&lt;/span&gt;;
+  $a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;AAAAAAaaaaaaCcEEEEeeeeIIIIiiiiNnOOOOOOooooooUUUUuuuuy&amp;#39;&lt;/span&gt;;
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;strtr&lt;/span&gt;($s, &lt;span style=&#34;color:#a6e22e&#34;&gt;utf8_decode&lt;/span&gt;($b), $a);
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;trim&lt;/span&gt;($s); &lt;span style=&#34;color:#75715e&#34;&gt;// trim white whars
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  
+  &lt;span style=&#34;color:#75715e&#34;&gt;// remove unwanted chars
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;preg_replace&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/([^a-z0-9]+)/i&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;-&amp;#39;&lt;/span&gt;, $s);
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;strtolower&lt;/span&gt;($s);
+  
+  &lt;span style=&#34;color:#75715e&#34;&gt;// remove `-` duplicates
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;preg_replace&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/--+/&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;-&amp;#39;&lt;/span&gt;, $s);
+  $s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;trim&lt;/span&gt;($s, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;-&amp;#39;&lt;/span&gt;); &lt;span style=&#34;color:#75715e&#34;&gt;// trim `-`
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;empty&lt;/span&gt;($s)) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;n-a&amp;#39;&lt;/span&gt;;
+
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;utf8_encode&lt;/span&gt;($s);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is a hack as-is, neither maintained nor properly unit tested.
+Nowadays, I recommend using &lt;em&gt;Inflectors&lt;/em&gt; instead of this function.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Styles&#39;n Scroll into Driver Trends</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2011-07-25-linking-css-styles-to-scroll/</link>
+      <pubDate>Mon, 25 Jul 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2011-07-25-linking-css-styles-to-scroll/</guid>
+      <description>Crafted with pleasure at Diplomatic Cover.
+Visit the website, or read some source code.
+There&amp;rsquo;s less than 40k of javascript, including libraries and the Ubibar&amp;rsquo;s overhead.</description>
+    </item>
+    
+    <item>
+      <title>Osmos ~ Get sound under Debian or Ubuntu 64bits</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2011-05-15-osmos-get-sound-under-debian-64bits/</link>
+      <pubDate>Sun, 15 May 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2011-05-15-osmos-get-sound-under-debian-64bits/</guid>
+      <description>Fresh install, no sound.
+Launched /opt/Osmos/Osmos :
+Commandline: ./Osmos.bin64 Preinitializing game: HEMI version 1.6.1 1568 Localization: using language “fr” Localization: loaded Osmos-fr.loc Arch: Intel(R) Core(TM) i7 CPU Q 740 @ 1.73GHz OS: Linux 2.6.38-2-amd64 Using sound Showing splash Using fullscreen mode: 1920 x 1080 Not using vsync Initializing GLRenderDevice… OpenGL version: 4.1.0 NVIDIA 270.41.06 Initializing game Initializing GLRenderer… Loading textures Loading fonts Backed up stats to Stats/Backup/Osmos_0018.sta Initializing SoundSystem… Initializing OpenAL Getting OpenAL device list Found 3 devices: Device 0: PulseAudio Software (3: OPENAL DEFAULT) Device 1: ALSA Software Device 2: PortAudio Software Pass 1: no valid device was specified (-1) Pass 2: no valid device was specified (-1) Pass 3: attempting device 0: “PulseAudio Software”… Failed to open device WARNING: Failed to initialize OpenAL App exiting — bye!</description>
+    </item>
+    
+    <item>
+      <title>Browser-Independant CSS3 Transition Classes</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2011-01-17-browser-independant-css3-transition-class/</link>
+      <pubDate>Mon, 17 Jan 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2011-01-17-browser-independant-css3-transition-class/</guid>
+      <description>&lt;p&gt;When you’re building a full-featured website with HTML5 and CSS3,
+you start to see the problem with having so many different browsers with so many different property naming conventions.
+Factorization becomes mandatory, so you &lt;del&gt;might&lt;/del&gt; should add somewhere in your main css file the following, or your custom implementation of it.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;smooth&lt;/span&gt; {
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;-webkit-&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;transition&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;all&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;ease-in-out&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;-khtml-&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;transition&lt;/span&gt;:  &lt;span style=&#34;color:#66d9ef&#34;&gt;all&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;ease-in-out&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;-moz-&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;transition&lt;/span&gt;:    &lt;span style=&#34;color:#66d9ef&#34;&gt;all&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;ease-in-out&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;-o-&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;transition&lt;/span&gt;:      &lt;span style=&#34;color:#66d9ef&#34;&gt;all&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;ease-in-out&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;transition&lt;/span&gt;:         &lt;span style=&#34;color:#66d9ef&#34;&gt;all&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;ease-in-out&lt;/span&gt;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then, you’ll just have to add the smooth class to your DOM element,
+and for example any property you put in the &lt;code&gt;:hover&lt;/code&gt; CSS definition for this element will transition smoothly !&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;smooth&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Tip ~ Check whether the current PHP file is included or executed</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2010-10-28-php-tip-check-whether-the-current-file-is-included-or-standalone/</link>
+      <pubDate>Thu, 28 Oct 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2010-10-28-php-tip-check-whether-the-current-file-is-included-or-standalone/</guid>
+      <description>Let’s say you got a php file you want to behave differently if it is included ; in my case I wanted it to only define the functions and classes it used and skip the output part.
+&amp;lt;?php /** * Returns true if current file is included */ function isIncluded() { $f = get_included_files(); return $f[0] != __FILE__; } if ( !isIncluded() ) { // Do some stuff, eg: print some HTML } else { // Do other stuff, &amp;#39;cause you&amp;#39;re included } // You can also use (recommended) if ( __FILE__ !</description>
+    </item>
+    
+    <item>
+      <title>PHP Class ~ Detect which Browser your visitor is using</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2010-10-26-php-class-detect-which-browser-your-visitor-is-using/</link>
+      <pubDate>Tue, 26 Oct 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2010-10-26-php-class-detect-which-browser-your-visitor-is-using/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Instead of this, I recommend using the native &lt;code&gt;get_browser()&lt;/code&gt; PHP function when you can,
+which uses the exhaustive &lt;a href=&#34;http://www.php.net/manual/en/function.get-browser.php&#34;&gt;browscap&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You can use this very simple static class to detect which browser your visitor is using.
+It uses &lt;code&gt;$_SERVER[&#39;HTTP_USER_AGENT&#39;]&lt;/code&gt;, with all its drawbacks.
+It’s quite useful for styling, if you want to add a CSS file only for a certain browser, such as, for example :&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php if ( Browser::isIE() ): ?&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;style/css/ie.css&amp;#34;&lt;/span&gt; /&amp;gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php endif; ?&amp;gt;&lt;/span&gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php if ( Browser::isIE6() ): ?&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;style/css/ie6.css&amp;#34;&lt;/span&gt; /&amp;gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php endif; ?&amp;gt;&lt;/span&gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php if ( Browser::isAndroid() ): ?&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;style/css/android.css&amp;#34;&lt;/span&gt; /&amp;gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php endif; ?&amp;gt;&lt;/span&gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php if ( Browser::isIpad() || Browser::isIphone() ): ?&amp;gt;&lt;/span&gt;
+    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;style/css/apple_mobile.css&amp;#34;&lt;/span&gt; /&amp;gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?php endif; ?&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can detect IE6, IE7, IE8, IE9, Chrome, Firefox, Opera, Safari, the iPhone, the iPad, and Android.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mootools ~ Center an element vertically in its parent</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2010-10-01-mootools-center-an-element-vertically/</link>
+      <pubDate>Fri, 01 Oct 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2010-10-01-mootools-center-an-element-vertically/</guid>
+      <description>This mootools implementation will center an element into its parent element, which you can override by passing it as parameter. Sometimes we just cannot do this in pure CSS, so&amp;hellip;
+Element.implement ({ /** * Centers vertically this Element in its parent element. * Makes this element absolute and its parent at least relative. * Might wreak havoc in the element&amp;#39;s horizontal centering, * because the `left` property will be 0. (the default) * * @param Element parent Optional.</description>
+    </item>
+    
+    <item>
+      <title>Mootools ~ Change typeface-js color after initialization</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2010-09-28-mootools-change-typeface-js-color/</link>
+      <pubDate>Tue, 28 Sep 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2010-09-28-mootools-change-typeface-js-color/</guid>
+      <description>Typeface-js is a useful javascript-based font renderer, but there is no method for changing the color of a typefaced element once it has been processed. So, here is one way to change the color on-the-fly with mootools. Be warned : it may be buggy.
+Element.implement ({ /** * Change Typefaced Element color * @param string color eg: #FF3399 */ changeTypefaceColor: function(color){ if (Browser.Engine.trident) { // IE SHIT  this.getFirst(&amp;#39;span&amp;#39;).getChildren().each(function(vectorElement){ vectorElement.fillColor = color; }); } else { // OTHERS  this.</description>
+    </item>
+    
+    <item>
+      <title>CodeMirror 2 ~ Smarty (*.tpl) Syntax Highlighting Mode</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2009-10-11-codemirror-2-smarty-syntax-highlighting-mode/</link>
+      <pubDate>Sun, 11 Oct 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2009-10-11-codemirror-2-smarty-syntax-highlighting-mode/</guid>
+      <description>Quick and dirty, but way better than nothing !
+CodeMirror.defineMode(&amp;#34;tpl&amp;#34;, function() { return { token: function(stream) { var ch = stream.next(); if (ch == &amp;#39;{&amp;#39;) { if (stream.peek() == &amp;#39;$&amp;#39;) { // Variable  stream.skipTo(&amp;#39;}&amp;#39;); stream.next(); return &amp;#39;smarty_variable&amp;#39;; } else if (stream.peek() == &amp;#39;*&amp;#39;) { // Comment  stream.skipTo(&amp;#39;}&amp;#39;); stream.next(); return &amp;#39;smarty_comment&amp;#39;; } else { // Logic  stream.skipTo(&amp;#39;}&amp;#39;); stream.next(); return &amp;#39;smarty_logic&amp;#39;; } } } }; }); CodeMirror.defineMIME(&amp;#34;text/tpl&amp;#34;, &amp;#34;tpl&amp;#34;); </description>
+    </item>
+    
+    <item>
+      <title>phpMyAdmin ~ Name snippet for database export</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2009-06-18-phpmyadmin-name-snippet-for-database-export/</link>
+      <pubDate>Thu, 18 Jun 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2009-06-18-phpmyadmin-name-snippet-for-database-export/</guid>
+      <description>When you export a database, its name is formatted using strftime. Use the following to get a filename with the current date :
+__DB___%Y-%m-%d  Will yield something like mydatabase_2023-12-25.
+ </description>
+    </item>
+    
+    <item>
+      <title>Mootools ~ Github repository : mootools-cloud</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2009-03-21-github-repository-mootools-cloud/</link>
+      <pubDate>Sat, 21 Mar 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2009-03-21-github-repository-mootools-cloud/</guid>
+      <description>A blog is not a proper place to host code ; a software forge is.
+On mootools-cloud, you will find javascript snippets and mootools extensions, written in the mootools-more way as much as possible. Feel free to fork it !
+ Openness of knowledge is paramount for the very survival of our civilization. Hope.
+ </description>
+    </item>
+    
+    <item>
+      <title>MySQL ~ Command-line import big database</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2008-12-12-mysql-command-line-import-big-database/</link>
+      <pubDate>Fri, 12 Dec 2008 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2008-12-12-mysql-command-line-import-big-database/</guid>
+      <description>Assuming MyFile.sql is a SQL file containing an export of one database :
+cat MyFile.sql | mysql -u MyUser -p&amp;#39;MyPassword&amp;#39; MyDatabase Notes  there is no space between the -p option and the password. the password is raw in the command-line = VERY BAD practice ! you should never copy-paste command-lines from websites.  </description>
+    </item>
+    
+    <item>
+      <title>Setup (for good) Symfony2 cache and logs permissions with setfacl</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2008-10-11-setup-for-good-symfony2-cache-and-logs-permissions-with-setfacl/</link>
+      <pubDate>Sat, 11 Oct 2008 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2008-10-11-setup-for-good-symfony2-cache-and-logs-permissions-with-setfacl/</guid>
+      <description>chmod is not enough, sometimes. Therefore, we need to adapt our access control lust (see what I did there ?) for our www-data user.
+This may or may not be the best solution, but here is a bash script to put in bin/ that does the job :
+#!/bin/sh  DIR=&amp;#34;$( cd &amp;#34;$( dirname &amp;#34;$0&amp;#34; )&amp;#34; &amp;amp;&amp;amp; pwd )&amp;#34; cd $DIR # bin/, sibling of app/ cd .. # project root sudo setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs sudo setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx web sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx web </description>
+    </item>
+    
+    <item>
+      <title>Bash smart history on UP</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2008-07-06-bash-smart-history-on-arrow-up/</link>
+      <pubDate>Sun, 06 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2008-07-06-bash-smart-history-on-arrow-up/</guid>
+      <description>You can either edit your ~/.bashrc :
+if [[ $- == *i* ]] then bind &amp;#39;&amp;#34;\e[A&amp;#34;: history-search-backward&amp;#39; bind &amp;#39;&amp;#34;\e[B&amp;#34;: history-search-forward&amp;#39; fi or create a ~/.inputrc file :
+&amp;#34;\e[A&amp;#34;: history-search-backward &amp;#34;\e[B&amp;#34;: history-search-forward Launch a new terminal, start typing, hit ↑, and enjoy !
+This is the kind of shortcut whose existence you forget about and are painfully reminded of when you use someone else&amp;rsquo;s terminal !</description>
+    </item>
+    
+  </channel>
+</rss>

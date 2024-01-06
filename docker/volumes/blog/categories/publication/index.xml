@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Publication on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/publication/</link>
+    <description>Recent content in Publication on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 06 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/publication/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mû, a board game with five elements</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2023-11-06-mu-board-video-game/</link>
+      <pubDate>Mon, 06 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2023-11-06-mu-board-video-game/</guid>
+      <description>Available in HTML5 Godot being amazing, I exported an HTML5 build of the game that you can run in your web browser.
+Play the HTML5 Demo
+The Rules of Mû You win by achieving any of the following:
+ Reach the top of the opponent&amp;rsquo;s hill. Capture both the opponent&amp;rsquo;s priests. Capture all the opponent&amp;rsquo;s pawns.  Movement Pawns and priests move alike, to one of the three tiles in front of them, if it is on the board and not already occupied by another pawn.</description>
+    </item>
+    
+    <item>
+      <title>AVS Réseaux, a lightweight webpage</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-10-11-avs-reseaux-lightweight-webpage/</link>
+      <pubDate>Fri, 11 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-10-11-avs-reseaux-lightweight-webpage/</guid>
+      <description>Here&amp;rsquo;s an example of a lightweight webpage made for AVS Réseaux.
+As usual, it&amp;rsquo;s an A-grade website, validating the pre-DRM W3C.</description>
+    </item>
+    
+    <item>
+      <title>Cubik Architecture</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-01-10-making-a-website-for-architects-cubik/</link>
+      <pubDate>Thu, 10 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-01-10-making-a-website-for-architects-cubik/</guid>
+      <description>Responds to size, orientation, fullscreen or windowed image swiping.
+Crafted with pleasure and talented modern designer Joffrey Jochum.
+Visit the website </description>
+    </item>
+    
+    <item>
+      <title>Doodle away !</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2012-06-16-doodle-away/</link>
+      <pubDate>Sat, 16 Jun 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2012-06-16-doodle-away/</guid>
+      <description>I experimented a bit with canvas and paper.js, and made an online doodle app working quite nicely on powerful tablets.
+You can fork the whole project on github.
+The trick was to have two separate canvases, one for the path being drawn, and the other for the paths already drawn. PaperScript’s tricky clever scoping is inspiring — my usage of it feels like a hack.
+Remember to press C for Free Cake© once you&amp;rsquo;ve drawn some lines !</description>
+    </item>
+    
+    <item>
+      <title>Elfassy Barrès Associés</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2012-03-21-static-generation-with-phrozn-elfassy/</link>
+      <pubDate>Wed, 21 Mar 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2012-03-21-static-generation-with-phrozn-elfassy/</guid>
+      <description>Very light, very fast, highly responsive, generated using Phrozn. It&amp;rsquo;s also using twitter 1.1 OAuth&#39;d API to get the homepage feed.
+Crafted with pleasure and designer Joffrey Jochum.
+Review the A-grade benchmark, or visit the website.</description>
+    </item>
+    
+    <item>
+      <title>Styles&#39;n Scroll into Driver Trends</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2011-07-25-linking-css-styles-to-scroll/</link>
+      <pubDate>Mon, 25 Jul 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2011-07-25-linking-css-styles-to-scroll/</guid>
+      <description>Crafted with pleasure at Diplomatic Cover.
+Visit the website, or read some source code.
+There&amp;rsquo;s less than 40k of javascript, including libraries and the Ubibar&amp;rsquo;s overhead.</description>
+    </item>
+    
+  </channel>
+</rss>

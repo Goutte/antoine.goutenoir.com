@@ -1,0 +1,19 @@
+
+
+/* UNUSED (see main.css) */
+
+
+:root {
+/*     --color-accent: #ffcd00; */
+    --color-link: #dec973;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --color-link: #dec973;
+    }
+}
+
+article.entry a {
+    color: var(--color-link);
+}
