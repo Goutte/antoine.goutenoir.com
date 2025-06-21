@@ -26,7 +26,13 @@ class DoodleController extends AbstractController
         MailSender $mailer,
         DoodleRepository $doodleRepository,
     ): Response {
-        // TODO: come on, just use the Form and Validator components
+
+        $expectedCaptcha = "blanc"; // so far so good
+        $providedCaptcha = $request->get("captcha", "");
+        if (mb_strtolower($providedCaptcha) != $expectedCaptcha) {
+            throw $this->createAccessDeniedException("Sorry…  You failed.");
+        }
+
         $doodle = Doodle::fromRequest($request);
 
         $doodleRepository->saveDoodle($doodle);
@@ -42,8 +48,8 @@ class DoodleController extends AbstractController
     public function index(
         DoodleRepository $doodleRepository,
         Request $request,
-    ): Response
-    {
+    ): Response {
+
         $page = (int) ($request->get("page", 0));
         $count = $doodleRepository->countDoodles();
 

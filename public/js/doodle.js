@@ -621,35 +621,17 @@ function updateControls(from, options) { // horrible ; just use events
                 speaker: 'yoda'
             });
         } else if (amountOfPaths === 2) {
-            notifOnce(`This is not an usual contact page, <br /> but you know what they say... <br /> <em title="&#10084;">A doodle is worth a thousand words.</em>`, {
-                clear: false,
-                speaker: 'wizard'
-            });
+            notifOnce(`This is not an usual contact page, <br /> but you know what they say... <br /> <em title="&#10084;">A doodle is worth a thousand words.</em>`, {speaker: 'wizard'});
         } else if (amountOfPaths === 3) {
-            notifOnce("Like most things I do, this website is <em>libre software</em>.<br />You can browse its <a href=\"https://github.com/Goutte/antoine.goutenoir.com\" target=\"_blank\">source code</a>.", {
-                clear: false,
-                speaker: 'penguins'
-            });
+            notifOnce("Like most things I do, this website is <em>libre software</em>.<br />You can browse its <a href=\"https://github.com/Goutte/antoine.goutenoir.com\" target=\"_blank\">source code</a>.", {speaker: 'penguins'});
         } else if (amountOfPaths === 5) {
-            notifOnce('<strong>KEYBOARD ENABLED !</strong><br />You can hit <b><kbd>[CTRL]+[Z]</kbd></b> to <strong>undo</strong> your last draw.', {
-                clear: false,
-                speaker: 'rabbit'
-            });
+            notifOnce('<strong>KEYBOARD ENABLED !</strong><br />You can hit <b><kbd>[CTRL]+[Z]</kbd></b> to <strong>undo</strong> your last draw.', {speaker: 'rabbit'});
         } else if (amountOfPaths === 8) {
-            notifOnce('The page may be a bit sluggish.<br />It is expected, as this is a performance experiment.<br /><small>(a few atoms were hurt in the making of this webpage)</small>', {
-                clear: false,
-                speaker: 'geiger'
-            });
+            notifOnce('The page may be a bit sluggish.<br />It is expected, as this is a performance experiment.<br /><small>(a few atoms were hurt in the making of this webpage)</small>', {speaker: 'geiger'});
         } else if (amountOfPaths === 13) {
-            notifOnce("Just hold <strong><kbd>[$]</kbd></strong> for Free Cake™ !<br /><small>(EPILEPSY TRIGGER WARNING)</small>", {
-                clear: true,
-                speaker: 'devil'
-            });
+            notifOnce("Just hold <strong><kbd>[$]</kbd></strong> for Free Cake™ !<br /><small>(EPILEPSY TRIGGER WARNING)</small>", {speaker: 'devil'});
         } else if (amountOfPaths === 21) {
-            notifOnce('<em title="But Mom Knows Best.   Thanks, Françoise & Xavier !">Enlightenment does matter.</em>', {
-                clear: false,
-                speaker: 'idea'
-            });
+            notifOnce('<em title="But Mom Knows Best.   Thanks, Françoise & Xavier !">Enlightenment does matter.</em>', {speaker: 'idea'});
         } else if (amountOfPaths === 34) {
             notifOnce("I highly recommend that you visit the <a href=\"https://www.khanacademy.org\" target=\"_blank\">Khan Academy</a>.<br />It is the kind of school I dreamt of as a kid.", {speaker: 'vishnu'});
         } else if (amountOfPaths === 55) {

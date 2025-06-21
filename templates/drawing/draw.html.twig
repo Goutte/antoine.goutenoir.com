@@ -67,8 +67,17 @@
                     <textarea id="send-drawing-what" name="what" rows="9" cols="42" placeholder="… because you get three wishes !"></textarea>
                 </p>
                 <input id="send-drawing-image" type="hidden" name="doodle" />
+                <p>
+                    <label for="send-drawing-captcha"
+                           title="Ill-intentioned people started spamming me, sorry.  Please answer the question to prove your are not one of them nasty bots.">
+                        &#129302;:&nbsp;
+                    </label>
+                    <input id="send-drawing-captcha" type="text" name="captcha" size="50"
+                           title="Quelle est la couleur du cheval blanc d'Henry IV ?"
+                           placeholder="Quelle est la couleur du cheval blanc d'Henry IV ?">
+                </p>
                 <input type="submit" value="✉ Send" />
-                <label title="please do, I enjoy your doodles">
+                <label title="Please do, I enjoy your doodles.">
                     <input type="checkbox" value="checked" checked disabled="disabled" />
                     <span>attach doodle</span>
                 </label>

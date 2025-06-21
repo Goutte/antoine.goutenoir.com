@@ -23,20 +23,21 @@ FROM php:8.2-fpm-alpine AS app_php
 
 # Allow using development versions of Symfony
 ARG STABILITY="stable"
-ENV STABILITY ${STABILITY}
+ENV STABILITY=${STABILITY}
 
 # Allow Symfony version selection
 ARG SYMFONY_VERSION=""
-ENV SYMFONY_VERSION ${SYMFONY_VERSION}
+ENV SYMFONY_VERSION=${SYMFONY_VERSION}
 
 ENV APP_ENV=prod
 
 WORKDIR /srv/app
 
+# Allows using install-php-extensions to install PHP extensions easily, see below
 # php extensions installer: https://github.com/mlocati/docker-php-extension-installer
 COPY --from=php_extension_installer --link /usr/bin/install-php-extensions /usr/local/bin/
 
-# persistent / runtime deps
+# System deps
 RUN apk add --no-cache \
 		acl \
 		fcgi \
@@ -81,7 +82,6 @@ ENV PATH="${PATH}:/root/.composer/vendor/bin"
 COPY --from=composer --link /composer /usr/bin/composer
 
 # prevent the reinstallation of vendors at every changes in the source code
-# (or not, since we're not COPYing the whole source tree below now)
 # install the PHP vendor dependencies
 COPY --link composer.* symfony.* ./
 RUN set -eux; \
@@ -90,47 +90,44 @@ RUN set -eux; \
 		composer clear-cache; \
 	fi
 
-# copy sources
-COPY --link  . ./
-RUN rm -Rf docker/
+# copy sources (no!)
+#COPY --link  . ./
+#RUN rm -Rf docker/
 
 # prepare autoload files and bootstrap
-RUN set -eux; \
-	mkdir -p var/cache var/log; \
-	if [ -f composer.json ]; then \
-		composer dump-autoload --classmap-authoritative --no-dev; \
-		composer dump-env prod; \
-		composer run-script --no-dev post-install-cmd; \
-		chmod +x bin/console; sync; \
-	fi
+#RUN set -eux; \
+#	mkdir -p var/cache var/log; \
+#	if [ -f composer.json ]; then \
+#		composer dump-autoload --classmap-authoritative --no-dev; \
+#		composer dump-env prod; \
+#		composer run-script --no-dev post-install-cmd; \
+#		chmod +x bin/console; sync; \
+#	fi
 
 ########################################################################################################################
 # Dev image
-FROM app_php AS app_php_dev
+#FROM app_php AS app_php_dev
 
-ENV APP_ENV=dev XDEBUG_MODE=off
-VOLUME /srv/app/var/
+#ENV APP_ENV=dev XDEBUG_MODE=off
+#VOLUME /srv/app/var/
 
-RUN rm "$PHP_INI_DIR/conf.d/app.prod.ini"; \
-	mv "$PHP_INI_DIR/php.ini" "$PHP_INI_DIR/php.ini-production"; \
-	mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+#RUN rm "$PHP_INI_DIR/conf.d/app.prod.ini"; \
+#	mv "$PHP_INI_DIR/php.ini" "$PHP_INI_DIR/php.ini-production"; \
+#	mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
-COPY --link docker/php/conf.d/app.dev.ini $PHP_INI_DIR/conf.d/
+#COPY --link docker/php/conf.d/app.dev.ini $PHP_INI_DIR/conf.d/
 
-RUN set -eux; \
-	install-php-extensions \
-	xdebug \
-	;
+#RUN set -eux; \
+#	install-php-extensions \
+#		xdebug \
+#	;
 
-RUN rm -f .env.local.php
 
 ########################################################################################################################
 # Caddy image
 # Caddy falls into a 300 loop with our config, somehow.  Going for nginx instead…
 #FROM caddy:2.6-alpine AS app_caddy
-
 #WORKDIR /srv/app
-
 #COPY --from=app_caddy_builder --link /usr/bin/caddy /usr/bin/caddy
 #COPY --from=app_php --link /srv/app/public public/
 #COPY --link docker/caddy/Caddyfile /etc/caddy/Caddyfile
@@ -140,8 +137,9 @@ RUN rm -f .env.local.php
 FROM nginx:1.16-alpine AS app_nginx
 
 COPY docker/nginx/conf.d /etc/nginx/conf.d/
+COPY --link docker/nginx/autoindex_template.xslt /etc/nginx/autoindex_template.xslt
 
 WORKDIR /srv/app
 
-COPY --from=app_php --link /srv/app/public public/
+#COPY --from=app_php --link /srv/app/public public/
 #COPY --from=app_nodejs /srv/app/public public/

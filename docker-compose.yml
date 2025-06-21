@@ -1,8 +1,7 @@
-version: "3.4"
-
 services:
   php:
     container_name: antoine.goutenoir.com_php
+    hostname: antoine.goutenoir.com_php
     build:
       context: .
       target: app_php
@@ -10,17 +9,13 @@ services:
         SYMFONY_VERSION: ${SYMFONY_VERSION:-}
         STABILITY: ${STABILITY:-stable}
     restart: unless-stopped
-    #restart: no
     volumes:
       # We do not need that volume anymore, since we're using TCP not socket
       - php_socket:/var/run/php
-      # We use flat files for doodles and messages, let's keep em around
+      # Let's not rebuild every time we change something
+      - .:/srv/app
+      # We use flat files for doodles and messages, let's keep 'em around
       - doodles:/srv/app/var/doodle
-    healthcheck:
-      interval: 3600s
-      timeout: 5s
-      retries: 2
-      start_period: 60s
     environment:
       # Run "composer require symfony/orm-pack" to install and configure Doctrine ORM
       # We are using a database to store messages (as in message queue), but not doodles.
@@ -28,28 +23,28 @@ services:
       APP_ENV: prod
 
   nginx:
+    container_name: antoine.goutenoir.com_nginx
+    hostname: antoine.goutenoir.com_nginx
     build:
       context: .
       target: app_nginx
-    container_name: antoine.goutenoir.com_nginx
     depends_on:
       - php
     restart: unless-stopped
-    #restart: no
     volumes:
       - ./docker/volumes/blog:/srv/app/public/blog
       - ./docker/volumes/games:/srv/app/public/games
-    # You probably want to uncomment this ; I handle network incorrectly
-#    ports:
-#      - "80:80"
+      - ./public:/srv/app/public:ro
+    ports:
+      - "8000:80"
     environment:
       # Config for server's nginx-reverse-proxy container
-      # todo: move this to an un-committed override?
       LETSENCRYPT_HOST: antoine.goutenoir.com
       LETSENCRYPT_EMAIL: antoine@goutenoir.com
       VIRTUAL_HOST: antoine.goutenoir.com
       VIRTUAL_PORT: 80
       ###################################################
+
 
 ###> recipes ###
 ###< recipes ###
