@@ -34,7 +34,7 @@ services:
     volumes:
       - ./docker/volumes/blog:/srv/app/public/blog
       - ./docker/volumes/games:/srv/app/public/games
-      - ./public:/srv/app/public:ro
+      - ./public:/srv/app/public
     ports:
       - "8000:80"
     environment:
