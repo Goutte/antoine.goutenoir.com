@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mobile on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/mobile/</link>
+    <description>Recent content in Mobile on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 10 Jan 2013 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/mobile/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cubik Architecture</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-01-10-making-a-website-for-architects-cubik/</link>
+      <pubDate>Thu, 10 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-01-10-making-a-website-for-architects-cubik/</guid>
+      <description>Responds to size, orientation, fullscreen or windowed image swiping.
+Crafted with pleasure and talented modern designer Joffrey Jochum.
+Visit the website </description>
+    </item>
+    
+    <item>
+      <title>Elfassy Barrès Associés</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2012-03-21-static-generation-with-phrozn-elfassy/</link>
+      <pubDate>Wed, 21 Mar 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2012-03-21-static-generation-with-phrozn-elfassy/</guid>
+      <description>Very light, very fast, highly responsive, generated using Phrozn. It&amp;rsquo;s also using twitter 1.1 OAuth&#39;d API to get the homepage feed.
+Crafted with pleasure and designer Joffrey Jochum.
+Review the A-grade benchmark, or visit the website.</description>
+    </item>
+    
+  </channel>
+</rss>

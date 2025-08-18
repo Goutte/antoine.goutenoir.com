@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tips on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/tips/</link>
+    <description>Recent content in Tips on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 10 May 2013 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/tips/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Leech a website using wget</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-05-10-leech-website-using-wget/</link>
+      <pubDate>Fri, 10 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-05-10-leech-website-using-wget/</guid>
+      <description>Want to download a website for offline reading ?
+Use wget, it&amp;rsquo;s awesomely simple and powerful.
+$ wget -km http://antoine.goutenoir.com/blog -m makes it recursive and thorough ; mirror-like, the doc says.
+-k rewrites links to keep stylesheets and javascript working.</description>
+    </item>
+    
+    <item>
+      <title>PHP ~ Using Traits for Doctrine ODM or ORM Annotations</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-04-04-php-using-traits-for-doctrine-annotations/</link>
+      <pubDate>Thu, 04 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-04-04-php-using-traits-for-doctrine-annotations/</guid>
+      <description>}} *[ODM]: Object Document Manager *[ORM]: Object Relational Manager {%endcomment}} -- Say you want to reuse document properties through multiple documents. You can use PHP 5.4 Traits to both implement interfaces and define Doctrine&amp;rsquo;s annotations. I use an ODM in this post, but it should hold true for ORMs as well.
+Say you have the interface Identifiable,
+&amp;lt;?php namespace MyVendor\MyBundle\Is; interface Identifiable { public function getId(); public function setId($id); } &amp;hellip; which you want to implement using the Trait IdAsParameter :</description>
+    </item>
+    
+    <item>
+      <title>Code completion for PHPUnit_Framework_TestCase in PHPStorm</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2012-11-17-code-completion-for-phpunit_framework_testcase-in-phpstorm/</link>
+      <pubDate>Sat, 17 Nov 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2012-11-17-code-completion-for-phpunit_framework_testcase-in-phpstorm/</guid>
+      <description>To allow PHPStorm to discover the PHPUnit classes, go to Settings &amp;gt; Project Settings &amp;gt; PHP, and add the path to PHPUnit, usually something like /usr/share/php/PHPUnit.
+}} -- Now you do not have an excuse not to test your Symfony2 bundles !</description>
+    </item>
+    
+    <item>
+      <title>Browser-Independant CSS3 Transition Classes</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2011-01-17-browser-independant-css3-transition-class/</link>
+      <pubDate>Mon, 17 Jan 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2011-01-17-browser-independant-css3-transition-class/</guid>
+      <description>&lt;p&gt;When you’re building a full-featured website with HTML5 and CSS3,
+you start to see the problem with having so many different browsers with so many different property naming conventions.
+Factorization becomes mandatory, so you &lt;del&gt;might&lt;/del&gt; should add somewhere in your main css file the following, or your custom implementation of it.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;smooth&lt;/span&gt; {
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;-webkit-&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;transition&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;all&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;ease-in-out&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;-khtml-&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;transition&lt;/span&gt;:  &lt;span style=&#34;color:#66d9ef&#34;&gt;all&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;ease-in-out&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;-moz-&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;transition&lt;/span&gt;:    &lt;span style=&#34;color:#66d9ef&#34;&gt;all&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;ease-in-out&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;-o-&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;transition&lt;/span&gt;:      &lt;span style=&#34;color:#66d9ef&#34;&gt;all&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;ease-in-out&lt;/span&gt;;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;transition&lt;/span&gt;:         &lt;span style=&#34;color:#66d9ef&#34;&gt;all&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;ease-in-out&lt;/span&gt;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then, you’ll just have to add the smooth class to your DOM element,
+and for example any property you put in the &lt;code&gt;:hover&lt;/code&gt; CSS definition for this element will transition smoothly !&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;smooth&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Tip ~ Check whether the current PHP file is included or executed</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2010-10-28-php-tip-check-whether-the-current-file-is-included-or-standalone/</link>
+      <pubDate>Thu, 28 Oct 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2010-10-28-php-tip-check-whether-the-current-file-is-included-or-standalone/</guid>
+      <description>Let’s say you got a php file you want to behave differently if it is included ; in my case I wanted it to only define the functions and classes it used and skip the output part.
+&amp;lt;?php /** * Returns true if current file is included */ function isIncluded() { $f = get_included_files(); return $f[0] != __FILE__; } if ( !isIncluded() ) { // Do some stuff, eg: print some HTML } else { // Do other stuff, &amp;#39;cause you&amp;#39;re included } // You can also use (recommended) if ( __FILE__ !</description>
+    </item>
+    
+    <item>
+      <title>phpMyAdmin ~ Name snippet for database export</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2009-06-18-phpmyadmin-name-snippet-for-database-export/</link>
+      <pubDate>Thu, 18 Jun 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2009-06-18-phpmyadmin-name-snippet-for-database-export/</guid>
+      <description>When you export a database, its name is formatted using strftime. Use the following to get a filename with the current date :
+__DB___%Y-%m-%d  Will yield something like mydatabase_2023-12-25.
+ </description>
+    </item>
+    
+    <item>
+      <title>MySQL ~ Command-line import big database</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2008-12-12-mysql-command-line-import-big-database/</link>
+      <pubDate>Fri, 12 Dec 2008 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2008-12-12-mysql-command-line-import-big-database/</guid>
+      <description>Assuming MyFile.sql is a SQL file containing an export of one database :
+cat MyFile.sql | mysql -u MyUser -p&amp;#39;MyPassword&amp;#39; MyDatabase Notes  there is no space between the -p option and the password. the password is raw in the command-line = VERY BAD practice ! you should never copy-paste command-lines from websites.  </description>
+    </item>
+    
+    <item>
+      <title>Setup (for good) Symfony2 cache and logs permissions with setfacl</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2008-10-11-setup-for-good-symfony2-cache-and-logs-permissions-with-setfacl/</link>
+      <pubDate>Sat, 11 Oct 2008 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2008-10-11-setup-for-good-symfony2-cache-and-logs-permissions-with-setfacl/</guid>
+      <description>chmod is not enough, sometimes. Therefore, we need to adapt our access control lust (see what I did there ?) for our www-data user.
+This may or may not be the best solution, but here is a bash script to put in bin/ that does the job :
+#!/bin/sh  DIR=&amp;#34;$( cd &amp;#34;$( dirname &amp;#34;$0&amp;#34; )&amp;#34; &amp;amp;&amp;amp; pwd )&amp;#34; cd $DIR # bin/, sibling of app/ cd .. # project root sudo setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs sudo setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx web sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx web </description>
+    </item>
+    
+    <item>
+      <title>Bash smart history on UP</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2008-07-06-bash-smart-history-on-arrow-up/</link>
+      <pubDate>Sun, 06 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2008-07-06-bash-smart-history-on-arrow-up/</guid>
+      <description>You can either edit your ~/.bashrc :
+if [[ $- == *i* ]] then bind &amp;#39;&amp;#34;\e[A&amp;#34;: history-search-backward&amp;#39; bind &amp;#39;&amp;#34;\e[B&amp;#34;: history-search-forward&amp;#39; fi or create a ~/.inputrc file :
+&amp;#34;\e[A&amp;#34;: history-search-backward &amp;#34;\e[B&amp;#34;: history-search-forward Launch a new terminal, start typing, hit ↑, and enjoy !
+This is the kind of shortcut whose existence you forget about and are painfully reminded of when you use someone else&amp;rsquo;s terminal !</description>
+    </item>
+    
+  </channel>
+</rss>

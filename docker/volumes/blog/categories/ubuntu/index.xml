@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ubuntu on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/ubuntu/</link>
+    <description>Recent content in Ubuntu on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 15 May 2011 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Osmos ~ Get sound under Debian or Ubuntu 64bits</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2011-05-15-osmos-get-sound-under-debian-64bits/</link>
+      <pubDate>Sun, 15 May 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2011-05-15-osmos-get-sound-under-debian-64bits/</guid>
+      <description>Fresh install, no sound.
+Launched /opt/Osmos/Osmos :
+Commandline: ./Osmos.bin64 Preinitializing game: HEMI version 1.6.1 1568 Localization: using language “fr” Localization: loaded Osmos-fr.loc Arch: Intel(R) Core(TM) i7 CPU Q 740 @ 1.73GHz OS: Linux 2.6.38-2-amd64 Using sound Showing splash Using fullscreen mode: 1920 x 1080 Not using vsync Initializing GLRenderDevice… OpenGL version: 4.1.0 NVIDIA 270.41.06 Initializing game Initializing GLRenderer… Loading textures Loading fonts Backed up stats to Stats/Backup/Osmos_0018.sta Initializing SoundSystem… Initializing OpenAL Getting OpenAL device list Found 3 devices: Device 0: PulseAudio Software (3: OPENAL DEFAULT) Device 1: ALSA Software Device 2: PortAudio Software Pass 1: no valid device was specified (-1) Pass 2: no valid device was specified (-1) Pass 3: attempting device 0: “PulseAudio Software”… Failed to open device WARNING: Failed to initialize OpenAL App exiting — bye!</description>
+    </item>
+    
+  </channel>
+</rss>

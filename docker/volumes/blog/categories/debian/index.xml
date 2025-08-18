@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Debian on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/debian/</link>
+    <description>Recent content in Debian on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 04 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/debian/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Install and use phpenv on Ubuntu/Debian</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2020-02-04-install-and-use-phpenv/</link>
+      <pubDate>Tue, 04 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2020-02-04-install-and-use-phpenv/</guid>
+      <description>Download and install phpenv in ${HOME}/.phpenv :
+curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash Then, edit ~/.bashrc:
+export PHPENV_ROOT=&amp;quot;${HOME}/.phpenv&amp;quot; if [ -d &amp;quot;${PHPENV_ROOT}&amp;quot; ]; then export PATH=&amp;quot;${PHPENV_ROOT}/bin:${PATH}&amp;quot; eval &amp;quot;$(phpenv init -)&amp;quot; fi ~/.phpenv/plugins/php-build/install-dependencies.sh  Or install some debian packages:
+apt install \ libxml2-dev \ libssl-dev \ libsqlite3-dev \ libbz2-dev \ libcurlpp-dev \ libpng-dev \ libjpeg-dev \ libonig-dev \ libreadline-dev \ libtidy-dev \ libxslt1-dev \ libzip-dev We can now install any version of PHP:</description>
+    </item>
+    
+    <item>
+      <title>Install Symfony CMF on Debian Wheezy</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-08-02-install-symfony-cmf-on-debian-wheezy/</link>
+      <pubDate>Fri, 02 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-08-02-install-symfony-cmf-on-debian-wheezy/</guid>
+      <description>Symfony CMF Its awesomeness speaks for itself.
+Setup Problem When composing, you get the requested linked library icu has the wrong version installed or is missing from your system.
+Solution $ sudo aptitude install php5-intl Usage Problem When saving a modified page from the inline editor. General error: 14 unable to write to database file or General error: 14 unable to open database file.
+Solution app/app.sqlite must be writeable, and, weirdly, app/ too.</description>
+    </item>
+    
+    <item>
+      <title>Install LEAP Motion on Debian Wheezy</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-07-23-install-leap-motion-on-debian-wheezy/</link>
+      <pubDate>Tue, 23 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-07-23-install-leap-motion-on-debian-wheezy/</guid>
+      <description>Update : LEAP Motion now supports Linux, so this post is pretty much obsolete.
+ My #firstLEAP experience, despite being somewhat frustrating after a year and half of increasingly feverish expectations, proved to me one simple point : I had to get this to work under my linux development environment.
+WAIT, WHAT ? —You&amp;rsquo;re going to install closed-source software on Debian !?
+—Yes. Don&amp;rsquo;t twist the knife, please.
+ THE PROCESS Grab the LEAP Linux SDK, un-tar it, and try to install :</description>
+    </item>
+    
+    <item>
+      <title>Osmos ~ Get sound under Debian or Ubuntu 64bits</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2011-05-15-osmos-get-sound-under-debian-64bits/</link>
+      <pubDate>Sun, 15 May 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2011-05-15-osmos-get-sound-under-debian-64bits/</guid>
+      <description>Fresh install, no sound.
+Launched /opt/Osmos/Osmos :
+Commandline: ./Osmos.bin64 Preinitializing game: HEMI version 1.6.1 1568 Localization: using language “fr” Localization: loaded Osmos-fr.loc Arch: Intel(R) Core(TM) i7 CPU Q 740 @ 1.73GHz OS: Linux 2.6.38-2-amd64 Using sound Showing splash Using fullscreen mode: 1920 x 1080 Not using vsync Initializing GLRenderDevice… OpenGL version: 4.1.0 NVIDIA 270.41.06 Initializing game Initializing GLRenderer… Loading textures Loading fonts Backed up stats to Stats/Backup/Osmos_0018.sta Initializing SoundSystem… Initializing OpenAL Getting OpenAL device list Found 3 devices: Device 0: PulseAudio Software (3: OPENAL DEFAULT) Device 1: ALSA Software Device 2: PortAudio Software Pass 1: no valid device was specified (-1) Pass 2: no valid device was specified (-1) Pass 3: attempting device 0: “PulseAudio Software”… Failed to open device WARNING: Failed to initialize OpenAL App exiting — bye!</description>
+    </item>
+    
+  </channel>
+</rss>

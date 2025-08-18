@@ -1,0 +1,156 @@
+@import 'config';
+@import 'animate';
+@import 'mixins';
+
+
+// LOADER
+
+.gmf_ui_loader {
+  width:  128px;
+  height: 128px;
+  margin: 10px auto;
+  background: url(../img/gmf/loading.png) no-repeat center center;
+  .spin;
+  .animated;
+  .infinitelyAnimated;
+}
+
+
+// MINI JS NOTIFICATIONS
+
+#notification {
+  position: fixed;
+  z-index: 100;
+  .clickable;
+  width: 30%;
+  background: #fff;
+  padding: 1.5em 1em 0.5em 1em;
+
+  font-size: 1.5em;
+
+  border: 2px solid @colorGrey;
+
+  @colorBox: fade(@colorText, 20%);
+  box-shadow:         0 0em 0.6em @colorBox;
+  -moz-box-shadow:    0 0em 0.6em @colorBox;
+  -webkit-box-shadow: 0 0em 0.6em @colorBox;
+
+  h2 {
+    margin: 0;
+    font-size: 3.5em;
+    text-shadow: -3px -2px 0px @colorBlue;
+  }
+  h4 {
+    margin-top: 0;
+  }
+
+  p.continue {
+    text-align: right;
+    font-style: italic;
+    font-size: 0.85em;
+    margin: 0;
+    color: lighten(@colorText, 70%);
+  }
+
+}
+
+// LINKS
+
+
+
+
+// FOOTER LINKS
+
+footer a.credentials {
+  .smooth;
+  transform-style: preserve-3d;
+  display: inline-block;
+}
+footer a.credentials:hover {
+  transform: rotateY(180deg);
+}
+
+// LINKS
+
+/* Effect 2: 3D rolling links, idea from http://hakim.se/thoughts/rolling-links */
+//.link-effect-cube-roll a {
+//  line-height: 26px;
+//  -webkit-perspective: 1000px;
+//  -moz-perspective: 1000px;
+//  perspective: 1000px;
+//  text-decoration: none;
+//}
+//
+//.link-effect-cube-roll a span {
+//  position: relative;
+//  display: inline-block;
+//  padding: 0 14px;
+//  color: @colorBG;
+//  background: lighten(@colorBlue,10%);
+//  -webkit-transition: -webkit-transform 0.3s;
+//  -moz-transition: -moz-transform 0.3s;
+//  transition: transform 0.3s;
+//  -webkit-transform-origin: 50% 0;
+//  -moz-transform-origin: 50% 0;
+//  transform-origin: 50% 0;
+//  -webkit-transform-style: preserve-3d;
+//  -moz-transform-style: preserve-3d;
+//  transform-style: preserve-3d;
+//}
+//
+//.link-effect-cube-roll a span::before {
+//  position: absolute;
+//  top: 100%;
+//  left: 0;
+//  width: 100%;
+//  height: 100%;
+//  background: lighten(@colorOrange,50%);
+//  content: attr(data-hover);
+//  -webkit-transition: background 0.3s;
+//  -moz-transition: background 0.3s;
+//  transition: background 0.3s;
+//  -webkit-transform: rotateX(-90deg);
+//  -moz-transform: rotateX(-90deg);
+//  transform: rotateX(-90deg);
+//  -webkit-transform-origin: 50% 0;
+//  -moz-transform-origin: 50% 0;
+//  transform-origin: 50% 0;
+//}
+//
+//.link-effect-cube-roll a.hover span,
+//.link-effect-cube-roll a:hover span,
+//.link-effect-cube-roll a:focus span {
+//  -webkit-transform: rotateX(90deg) translateY(-22px);
+//  -moz-transform: rotateX(90deg) translateY(-22px);
+//  transform: rotateX(90deg) translateY(-22px);
+//}
+//
+//.link-effect-cube-roll a.hover span::before,
+//.link-effect-cube-roll a:hover span::before,
+//.link-effect-cube-roll a:focus span::before {
+//  background: lighten(@colorOrange,10%);
+//}
+
+
+
+// Not used in the page anymore
+
+//*[data-load-on] {
+//
+//  position: relative;
+//
+//  *:not(.gmf_ui_loader) {
+//    visibility: hidden;
+//  }
+//
+//  &.loaded {
+//
+//    *:not(.gmf_ui_loader) {
+//      visibility: visible;
+//    }
+//    div.gmf_ui_loader {
+//      display: none;
+//    }
+//  }
+//
+//}

@@ -1,0 +1,24 @@
+.youtube-video {
+  -webkit-transition: all 0.5s ease-in-out;
+  -khtml-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  margin-top: 15px;
+  border-top: 31px solid transparent;
+  border-right: 31px solid transparent;
+  border-bottom: 31px solid transparent;
+  border-left: 31px solid transparent;
+}
+.youtube-video:hover {
+  border-top-color: #f08301;
+  border-bottom-color: #f08301;
+  border-left-color: #00a4f1;
+  border-right-color: #00a4f1;
+}
+.fb-like-box {
+  overflow: hidden;
+  border: 1px solid #dcdcdc;
+  height: 158px;
+  clear: both;
+}

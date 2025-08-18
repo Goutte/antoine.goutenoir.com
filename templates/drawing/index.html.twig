@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Browse Doodles{% endblock %}
+
+{% block body %}
+
+<h1>{{ doodlesCount }} Doodles</h1>
+
+{% for doodle in doodles %}
+<article class="doodle">
+    <img src="{{ doodle.doodle }}" alt="A doodle" />
+    <p class="message">
+        {{ doodle.what }}
+    </p>
+</article>
+<hr />
+{% else %}
+<p>
+    No more doodles.
+</p>
+{% endfor %}
+
+<nav>
+{% if page > 0 %}
+    <a href="{{ path('app_doodles_index', {'page': page-1}) }}">← Previous Page</a>
+    &nbsp; ✶ &nbsp;
+{% endif %}
+    <a href="{{ path('app_doodles_index', {'page': page+1}) }}">Next Page →</a>
+</nav>
+
+{% endblock %}

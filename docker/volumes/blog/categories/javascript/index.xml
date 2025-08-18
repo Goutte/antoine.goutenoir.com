@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javascript on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/javascript/</link>
+    <description>Recent content in Javascript on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 25 Jul 2011 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Styles&#39;n Scroll into Driver Trends</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2011-07-25-linking-css-styles-to-scroll/</link>
+      <pubDate>Mon, 25 Jul 2011 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2011-07-25-linking-css-styles-to-scroll/</guid>
+      <description>Crafted with pleasure at Diplomatic Cover.
+Visit the website, or read some source code.
+There&amp;rsquo;s less than 40k of javascript, including libraries and the Ubibar&amp;rsquo;s overhead.</description>
+    </item>
+    
+    <item>
+      <title>Mootools ~ Center an element vertically in its parent</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2010-10-01-mootools-center-an-element-vertically/</link>
+      <pubDate>Fri, 01 Oct 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2010-10-01-mootools-center-an-element-vertically/</guid>
+      <description>This mootools implementation will center an element into its parent element, which you can override by passing it as parameter. Sometimes we just cannot do this in pure CSS, so&amp;hellip;
+Element.implement ({ /** * Centers vertically this Element in its parent element. * Makes this element absolute and its parent at least relative. * Might wreak havoc in the element&amp;#39;s horizontal centering, * because the `left` property will be 0. (the default) * * @param Element parent Optional.</description>
+    </item>
+    
+    <item>
+      <title>Mootools ~ Change typeface-js color after initialization</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2010-09-28-mootools-change-typeface-js-color/</link>
+      <pubDate>Tue, 28 Sep 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2010-09-28-mootools-change-typeface-js-color/</guid>
+      <description>Typeface-js is a useful javascript-based font renderer, but there is no method for changing the color of a typefaced element once it has been processed. So, here is one way to change the color on-the-fly with mootools. Be warned : it may be buggy.
+Element.implement ({ /** * Change Typefaced Element color * @param string color eg: #FF3399 */ changeTypefaceColor: function(color){ if (Browser.Engine.trident) { // IE SHIT  this.getFirst(&amp;#39;span&amp;#39;).getChildren().each(function(vectorElement){ vectorElement.fillColor = color; }); } else { // OTHERS  this.</description>
+    </item>
+    
+    <item>
+      <title>CodeMirror 2 ~ Smarty (*.tpl) Syntax Highlighting Mode</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2009-10-11-codemirror-2-smarty-syntax-highlighting-mode/</link>
+      <pubDate>Sun, 11 Oct 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2009-10-11-codemirror-2-smarty-syntax-highlighting-mode/</guid>
+      <description>Quick and dirty, but way better than nothing !
+CodeMirror.defineMode(&amp;#34;tpl&amp;#34;, function() { return { token: function(stream) { var ch = stream.next(); if (ch == &amp;#39;{&amp;#39;) { if (stream.peek() == &amp;#39;$&amp;#39;) { // Variable  stream.skipTo(&amp;#39;}&amp;#39;); stream.next(); return &amp;#39;smarty_variable&amp;#39;; } else if (stream.peek() == &amp;#39;*&amp;#39;) { // Comment  stream.skipTo(&amp;#39;}&amp;#39;); stream.next(); return &amp;#39;smarty_comment&amp;#39;; } else { // Logic  stream.skipTo(&amp;#39;}&amp;#39;); stream.next(); return &amp;#39;smarty_logic&amp;#39;; } } } }; }); CodeMirror.defineMIME(&amp;#34;text/tpl&amp;#34;, &amp;#34;tpl&amp;#34;); </description>
+    </item>
+    
+    <item>
+      <title>Mootools ~ Github repository : mootools-cloud</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2009-03-21-github-repository-mootools-cloud/</link>
+      <pubDate>Sat, 21 Mar 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2009-03-21-github-repository-mootools-cloud/</guid>
+      <description>A blog is not a proper place to host code ; a software forge is.
+On mootools-cloud, you will find javascript snippets and mootools extensions, written in the mootools-more way as much as possible. Feel free to fork it !
+ Openness of knowledge is paramount for the very survival of our civilization. Hope.
+ </description>
+    </item>
+    
+  </channel>
+</rss>

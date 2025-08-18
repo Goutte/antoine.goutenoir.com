@@ -1,0 +1,32 @@
+@import 'config';
+@import 'mixins';
+
+
+.youtube-video {
+
+  .smooth;
+
+  margin-top: 15px;
+
+  @borderSize: 31px;
+
+  border-top:    @borderSize solid transparent;
+  border-right:  @borderSize solid transparent;
+  border-bottom: @borderSize solid transparent;
+  border-left:   @borderSize solid transparent;
+  &:hover {
+    border-top-color:    @colorOrange;
+    border-bottom-color: @colorOrange;
+    border-left-color:   @colorBlue;
+    border-right-color:  @colorBlue;
+  }
+
+}
+
+
+.fb-like-box {
+  overflow: hidden;
+  border: 1px solid #dcdcdc;
+  height: 158px;
+  clear: both;
+}

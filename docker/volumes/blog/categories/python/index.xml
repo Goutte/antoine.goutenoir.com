@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/python/</link>
+    <description>Recent content in Python on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 04 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Install and use phpenv on Ubuntu/Debian</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2020-02-04-install-and-use-phpenv/</link>
+      <pubDate>Tue, 04 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2020-02-04-install-and-use-phpenv/</guid>
+      <description>Download and install phpenv in ${HOME}/.phpenv :
+curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash Then, edit ~/.bashrc:
+export PHPENV_ROOT=&amp;quot;${HOME}/.phpenv&amp;quot; if [ -d &amp;quot;${PHPENV_ROOT}&amp;quot; ]; then export PATH=&amp;quot;${PHPENV_ROOT}/bin:${PATH}&amp;quot; eval &amp;quot;$(phpenv init -)&amp;quot; fi ~/.phpenv/plugins/php-build/install-dependencies.sh  Or install some debian packages:
+apt install \ libxml2-dev \ libssl-dev \ libsqlite3-dev \ libbz2-dev \ libcurlpp-dev \ libpng-dev \ libjpeg-dev \ libonig-dev \ libreadline-dev \ libtidy-dev \ libxslt1-dev \ libzip-dev We can now install any version of PHP:</description>
+    </item>
+    
+    <item>
+      <title>Pip requirements cheatsheet</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2019-09-11-pip-requirements-cheatsheet/</link>
+      <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2019-09-11-pip-requirements-cheatsheet/</guid>
+      <description>requirements.txt # Pin a branch of a repository git+git://github.com/someone/package@branch#egg=package # Only allow patch updates cryptography==2.8.*  </description>
+    </item>
+    
+    <item>
+      <title>A sparse vector in python</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2016-05-18-python-sparse-vector/</link>
+      <pubDate>Wed, 18 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2016-05-18-python-sparse-vector/</guid>
+      <description>Ever needed a sparse vector in python ?
+scipy.sparse You could use the 2D matrices in scipy.sparse, like :
+from scipy.sparse import lil_matrix m = lil_matrix((1, 10000)) But there&amp;rsquo;s a bunch of issues with that :
+ The default value must be 0. Confusing and verbose API for 1D data.  Look at the following :
+m # &amp;lt;1x1000 sparse matrix of type &amp;#39;&amp;lt;type &amp;#39;numpy.float64&amp;#39;&amp;gt;&amp;#39; # with 1 stored elements in LInked List format&amp;gt; m[0] # &amp;lt;1x1000 sparse matrix of type &amp;#39;&amp;lt;type &amp;#39;numpy.</description>
+    </item>
+    
+    <item>
+      <title>Python tips for scientists</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2014-02-01-python-tips-for-scientists/</link>
+      <pubDate>Sat, 01 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2014-02-01-python-tips-for-scientists/</guid>
+      <description>Zen of Python Just type :
+import this in ipython, or any other python console.
+Idioms == vs is When comparing with None, you should always use is instead of ==. It&amp;rsquo;s a tad faster and it&amp;rsquo;s more idiomatic.
+Replace if my_data != None: by if my_data is not None:.
+When comparing with other things, is will compare pointers (True only if they are the same object in memory) and == will compare values (can be different objects in memory, as long as their values are the same).</description>
+    </item>
+    
+    <item>
+      <title>Python UnitTest : assertIsNan() and assertIsNotNan()</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-12-12-python-unittest-assertisnan-and-assertisnotnan/</link>
+      <pubDate>Thu, 12 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-12-12-python-unittest-assertisnan-and-assertisnotnan/</guid>
+      <description>How do we assert that a value is nan (not a number) ?
+We could do self.assertTrue(math.isnan(value)), but it will raise a TypeError if value is neither a float or a Real.
+And when we want to assert that a value is not nan using self.assertFalse(math.isnan(value)), it is a problem.
+It&amp;rsquo;s an interesting question actually : does &amp;ldquo;not nan&amp;rdquo; needs to be a number or just not nan ? It&amp;rsquo;s a matter of taste, I think.</description>
+    </item>
+    
+    <item>
+      <title>Working with the CNRS</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2013-11-01-working-with-the-cnrs/</link>
+      <pubDate>Fri, 01 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2013-11-01-working-with-the-cnrs/</guid>
+      <description>As of December 2013, I&amp;rsquo;ll be working for the IRAP (Astrophysics and Planetary Science Institute), doing software design, code migration, data treatment and manipulation for MUSE (Multi-Unit Spectroscopic Explorer).
+We&amp;rsquo;ll be using this data to study galaxies, galactic winds, and overall for serendipity.
+ MUSE is the product of nine years of hard work from hundreds of people around the world, and I have the good fortune to pitch in at the payroll.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+# PHP Storm
+.idea
+
+# KDE
+.directory
+
+# Bootstrap
+app/bootstrap*
+
+# Symfony directories
+vendor/*
+*/logs/*
+*/cache/*
+web/uploads/*
+web/bundles/*
+
+# Configuration files
+app/config/parameters.ini
+app/phpunit.xml

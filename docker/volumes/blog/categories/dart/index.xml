@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dart on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/dart/</link>
+    <description>Recent content in Dart on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 13 Jun 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/dart/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dart ~ An iterator for map values</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2014-06-13-dart-map-values-iterator/</link>
+      <pubDate>Fri, 13 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2014-06-13-dart-map-values-iterator/</guid>
+      <description>A convoluted way I did not find this on the Internet, so here it is :
+/// A simple iterator on the values of a Map. class MapValuesIterator implements Iterator { Map map; Iterator iterator; MapValuesIterator(Map this.map) { iterator = map.keys.iterator; } get current =&amp;gt; map[iterator.current]; bool moveNext() { return iterator.moveNext(); } } Pretty useful when you have class wrapping a Map, like this :
+class MyIterableClass extends IterableBase { Map myInternalMap; get iterator =&amp;gt; new MapValuesIterator(myInternalMap); // .</description>
+    </item>
+    
+  </channel>
+</rss>

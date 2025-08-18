@@ -1,0 +1,31 @@
+@import 'config';
+@import 'animate';
+
+
+//// NO LEAP ERROR //
+
+#noleap_error {
+  position: fixed;
+  top: 77px;
+  width: 100%;
+
+  display: none;
+  pointer-events: none;
+  z-index: 10;
+
+  & > p {
+    display: inline-block;
+    color: @colorError;
+    background-color: lighten(@colorError, 59%);
+
+    border: 7px dotted @colorError;
+    padding: 10px 20px;
+
+    font-size: 3em;
+    text-transform: uppercase;
+
+    .glow;
+    .infinitelyAnimated;
+  }
+
+}

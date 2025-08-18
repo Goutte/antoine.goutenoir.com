@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bash on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/bash/</link>
+    <description>Recent content in Bash on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 06 Mar 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/bash/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Useful Aliases for Bash</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2017-03-06-useful-aliases-for-bash/</link>
+      <pubDate>Mon, 06 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2017-03-06-useful-aliases-for-bash/</guid>
+      <description>Just a bunch of useful aliases.
+alias observe=&amp;#34;tail -f -n 62&amp;#34; alias gpp=&amp;#39;git pull --rebase --autostash &amp;amp;&amp;amp; git push&amp;#39; alias gci=&amp;#39;git commit -v --interactive&amp;#39; alias gsv=&amp;#39;git status --verbose&amp;#39; alias gl=&amp;#39;git log -v&amp;#39; alias gg=&amp;#39;git log --graph --oneline --all&amp;#39; alias gd=&amp;#39;git diff&amp;#39; </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,194 @@
+@import 'mixins';
+@import 'animate';
+
+canvas {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0); /* mobile webkit */
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline: none;
+}
+
+
+//// WIDGETS //
+
+.widget {
+  color: white;
+  position: absolute;
+  width:  64px;
+  height: 64px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-origin: center center;
+  .clickable;
+}
+
+// BACK TO MAIN MENU
+#ingame_widget_back {
+  top:  7px;
+  left: 7px;
+  background-image: url(../img/icons/close.png);
+  background:  no-repeat center center 100%;
+
+  .infinitelyAnimated;
+}
+
+// TOGGLE SOUND
+#ingame_widget_toggle_sound {
+  top:  77px;
+  left: 10px;
+  background-image: url(../img/icons/sound.png);
+
+  &.muted {
+    background-image: url(../img/icons/mute.png);
+  }
+}
+
+// GAME RULES
+#ingame_widget_help {
+  top:  148px;
+  left: 10px;
+  background-image: url(../img/icons/tuneup_utilities.png);
+}
+#ingame_layer_help {
+  .clickable;
+  color: white;
+  background: rgba(0,0,0,0.85) url(../img/help/overlay_bg.png) no-repeat center center;
+
+  h2 {
+    font-size: 1.5em;
+    position: absolute;
+    top:  50%;
+    left: 50%;
+    width:  50%;
+    height: 50px;
+    margin: 8px 0 0 -25%;
+  }
+}
+
+
+//// CROSSHAIR //
+
+@crosshairSize: 25px;
+
+#ingame_crosshair {
+  pointer-events: none;
+  position: absolute;
+  width:  @crosshairSize;
+  height: @crosshairSize;
+  top: 50%;
+  left: 50%;
+  margin-top: -1 * @crosshairSize / 2;
+  margin-left: -1 * @crosshairSize / 2;
+  border-radius: @crosshairSize / 2;
+  background-color: transparent; // will be set by js
+  .opacity(0.6);
+}
+
+
+//// FLOATING SHAPES //
+
+@paddingShapes: 5px;
+
+#ingame_shape_flower {
+  position: absolute;
+  width:  128px;
+  height: 128px;
+  top: @paddingShapes;
+  left: @paddingShapes;
+  background: url('../img/shapes/flower.png') no-repeat center center;
+}
+#ingame_shape_circle {
+  position: absolute;
+  width:  128px;
+  height: 128px;
+  top: @paddingShapes;
+  right: @paddingShapes;
+  background: url('../img/shapes/circle.png') no-repeat center center;
+}
+#ingame_shape_triangle {
+  position: absolute;
+  width:  128px;
+  height: 128px;
+  bottom: @paddingShapes;
+  right: @paddingShapes;
+  background: url('../img/shapes/triangle.png') no-repeat center center;
+}
+#ingame_shape_line {
+  position: absolute;
+  width:  256px;
+  height: 64px;
+  bottom: @paddingShapes*2;
+  left: @paddingShapes;
+  background: url('../img/shapes/line.png') no-repeat center center;
+}
+
+
+//// TUTORIAL //
+
+.tutorial_step {
+  pointer-events: none;
+
+  position: absolute;
+
+  padding-top: 10px;
+
+  width:  256px;
+  height: 365px;
+  top: 0;
+  bottom: 0;
+  left: @paddingShapes;
+  margin: auto;
+
+  .transition(left 500ms ease);
+
+  border: 1px solid black;
+
+  background-color: fadeout(@colorText, 20%);
+  color: @colorBG;
+  line-height: 17px;
+
+  &.hidden {
+    display: block;
+    left: -300px;
+  }
+
+  strong {
+    font-size: 2em;
+  }
+
+  p.tutorial_tagline {
+    font-size:   3em;
+    line-height: 0.9em;
+  }
+}
+
+
+//// GAME OVER //
+
+#game_over_msg {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+  display: none;
+  z-index: 10;
+
+  & > p {
+    display: inline-block;
+    color: @colorError;
+    background-color: @colorBG;
+    padding: 10px 20px;
+    margin: 0;
+
+    font-size: 3em;
+    text-transform: uppercase;
+
+    .glow;
+    .infinitelyAnimated;
+  }
+}

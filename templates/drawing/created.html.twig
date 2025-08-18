@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Success!{% endblock %}
+
+{% block body %}
+<style>
+    .hero-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+</style>
+
+<div class="hero-wrapper">
+    <h1>Your doodle was sent ! &#9989;</h1>
+
+{% if not wasMailSent %}
+    <p>
+        &#128308; The doodle was recorded but the email notification failed,
+        so I might not see your message right away unless you ping me some other way.
+    </p>
+{% endif %}
+
+    <strong>Thank you !</strong>
+
+    Get in touch by <a href="mailto:antoine@goutenoir.com">e-mail</a>,
+    on the <a href="https://mastodon.social/@Goutte">Fedi</a>,
+    <a>Linkedin</a>, or <a href="https://github.com/Goutte">Github</a>.
+
+    <hr>
+
+    <img src="{{ doodle.doodle }}" alt="A Doodle" width="600px" />
+    <pre>{{ doodle.who }}</pre>
+    <pre>{{ doodle.what }}</pre>
+</div>
+{% endblock %}

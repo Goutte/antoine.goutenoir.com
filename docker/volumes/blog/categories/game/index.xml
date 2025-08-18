@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Game on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/game/</link>
+    <description>Recent content in Game on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 06 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/game/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mû, a board game with five elements</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2023-11-06-mu-board-video-game/</link>
+      <pubDate>Mon, 06 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2023-11-06-mu-board-video-game/</guid>
+      <description>Available in HTML5 Godot being amazing, I exported an HTML5 build of the game that you can run in your web browser.
+Play the HTML5 Demo
+The Rules of Mû You win by achieving any of the following:
+ Reach the top of the opponent&amp;rsquo;s hill. Capture both the opponent&amp;rsquo;s priests. Capture all the opponent&amp;rsquo;s pawns.  Movement Pawns and priests move alike, to one of the three tiles in front of them, if it is on the board and not already occupied by another pawn.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SQL on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/sql/</link>
+    <description>Recent content in SQL on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 18 Jun 2009 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/sql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>phpMyAdmin ~ Name snippet for database export</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2009-06-18-phpmyadmin-name-snippet-for-database-export/</link>
+      <pubDate>Thu, 18 Jun 2009 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2009-06-18-phpmyadmin-name-snippet-for-database-export/</guid>
+      <description>When you export a database, its name is formatted using strftime. Use the following to get a filename with the current date :
+__DB___%Y-%m-%d  Will yield something like mydatabase_2023-12-25.
+ </description>
+    </item>
+    
+    <item>
+      <title>MySQL ~ Command-line import big database</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2008-12-12-mysql-command-line-import-big-database/</link>
+      <pubDate>Fri, 12 Dec 2008 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2008-12-12-mysql-command-line-import-big-database/</guid>
+      <description>Assuming MyFile.sql is a SQL file containing an export of one database :
+cat MyFile.sql | mysql -u MyUser -p&amp;#39;MyPassword&amp;#39; MyDatabase Notes  there is no space between the -p option and the password. the password is raw in the command-line = VERY BAD practice ! you should never copy-paste command-lines from websites.  </description>
+    </item>
+    
+  </channel>
+</rss>

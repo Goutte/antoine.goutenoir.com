@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Maths on Guttulous L∞ps</title>
+    <link>https://antoine.goutenoir.com/blog/categories/maths/</link>
+    <description>Recent content in Maths on Guttulous L∞ps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 21 Mar 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://antoine.goutenoir.com/blog/categories/maths/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Math symbols ~ Tau should be ◯</title>
+      <link>https://antoine.goutenoir.com/blog/posts/2014-03-21-math-symbols-tau-pi-circle-constant/</link>
+      <pubDate>Fri, 21 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://antoine.goutenoir.com/blog/posts/2014-03-21-math-symbols-tau-pi-circle-constant/</guid>
+      <description>What is a mathematical symbol ? A mathematical symbol is the projection of an abstract concept on a small 2D plane section.
+As human memory is limited and costly, we should strive to make the unprojection as painless as possible. That means good symbols. They should scale well, and be as different to one another as the concepts are.
+π is not the most elegant constant For starters, read the Tau manifesto.</description>
+    </item>
+    
+  </channel>
+</rss>
