@@ -1,24 +1,28 @@
 services:
+
   php:
     container_name: antoine.goutenoir.com_php
     hostname: antoine.goutenoir.com_php
     build:
       context: .
       target: app_php
-      args:
-        SYMFONY_VERSION: ${SYMFONY_VERSION:-}
-        STABILITY: ${STABILITY:-stable}
     restart: unless-stopped
     volumes:
       # We do not need that volume anymore, since we're using TCP not socket
       - php_socket:/var/run/php
       # Let's not rebuild every time we change something
       - .:/srv/app
-      # We use flat files for doodles and messages, let's keep 'em around
+      # We use flat files for doodles and contact messages, let's keep 'em around
       - doodles:/srv/app/var/doodle
+    # We don't really need this.  Symfony already loads .env.* files pretty well, actually.
+    env_file:
+      - path: .env
+        required: true
+      - path: .env.local
+        required: false
     environment:
       # Run "composer require symfony/orm-pack" to install and configure Doctrine ORM
-      # We are using a database to store messages (as in message queue), but not doodles.
+      # We are using a database to store async messages (as in message queue), but not doodles.
       #DATABASE_URL: postgresql://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD:-!ChangeMe!}@database:5432/${POSTGRES_DB:-app}?serverVersion=${POSTGRES_VERSION:-14}&charset=${POSTGRES_CHARSET:-utf8}
       APP_ENV: prod
 
@@ -35,10 +39,12 @@ services:
       - ./docker/volumes/blog:/srv/app/public/blog
       - ./docker/volumes/games:/srv/app/public/games
       - ./public:/srv/app/public
+    # Note: this port mapping is removed by the compose override config file on the server
     ports:
       - "8000:80"
     environment:
       # Config for server's nginx-reverse-proxy container
+      # This should only be on the server, not in the source — remove it
       LETSENCRYPT_HOST: antoine.goutenoir.com
       LETSENCRYPT_EMAIL: antoine@goutenoir.com
       VIRTUAL_HOST: antoine.goutenoir.com

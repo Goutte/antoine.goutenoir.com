@@ -21,13 +21,9 @@ FROM mlocati/php-extension-installer:latest AS php_extension_installer
 # Prod image
 FROM php:8.2-fpm-alpine AS app_php
 
-# Allow using development versions of Symfony
-ARG STABILITY="stable"
-ENV STABILITY=${STABILITY}
-
-# Allow Symfony version selection
-ARG SYMFONY_VERSION=""
-ENV SYMFONY_VERSION=${SYMFONY_VERSION}
+# Allow Symfony version selection (kept as ARG snippet sample)
+#ARG SYMFONY_VERSION=""
+#ENV SYMFONY_VERSION=${SYMFONY_VERSION}
 
 ENV APP_ENV=prod
 
@@ -77,7 +73,7 @@ CMD ["php-fpm"]
 
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
 ENV COMPOSER_ALLOW_SUPERUSER=1
-ENV PATH="${PATH}:/root/.composer/vendor/bin"
+#ENV PATH="${PATH}:/root/.composer/vendor/bin"
 
 COPY --from=composer --link /composer /usr/bin/composer
 
@@ -90,11 +86,13 @@ RUN set -eux; \
 		composer clear-cache; \
 	fi
 
-# copy sources (no!)
+#RUN php --info && php -m
+
+# copy sources (no! — well, technically, yes, but I want flexibility)
 #COPY --link  . ./
 #RUN rm -Rf docker/
 
-# prepare autoload files and bootstrap
+# prepare autoload files and bootstrap (we'd need the sources for this)
 #RUN set -eux; \
 #	mkdir -p var/cache var/log; \
 #	if [ -f composer.json ]; then \
@@ -103,6 +101,7 @@ RUN set -eux; \
 #		composer run-script --no-dev post-install-cmd; \
 #		chmod +x bin/console; sync; \
 #	fi
+
 
 ########################################################################################################################
 # Dev image
@@ -132,6 +131,7 @@ RUN set -eux; \
 #COPY --from=app_php --link /srv/app/public public/
 #COPY --link docker/caddy/Caddyfile /etc/caddy/Caddyfile
 
+
 ########################################################################################################################
 # Nginx
 FROM nginx:1.16-alpine AS app_nginx
@@ -139,7 +139,3 @@ FROM nginx:1.16-alpine AS app_nginx
 COPY docker/nginx/conf.d /etc/nginx/conf.d/
 COPY --link docker/nginx/autoindex_template.xslt /etc/nginx/autoindex_template.xslt
 
-WORKDIR /srv/app
-
-#COPY --from=app_php --link /srv/app/public public/
-#COPY --from=app_nodejs /srv/app/public public/
