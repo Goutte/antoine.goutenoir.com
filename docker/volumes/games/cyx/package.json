@@ -1,0 +1,14 @@
+{
+    "name":    "Cyx",
+    "version": "3.3.1",
+    "main":    "index.html",
+    "window": {
+        "width":  1024,
+        "height": 768,
+        "frame":   true,
+        "toolbar": false,
+        "position": "center",
+        "icon": "img/icons/cyx64.png",
+        "resizable":  true
+    }
+}

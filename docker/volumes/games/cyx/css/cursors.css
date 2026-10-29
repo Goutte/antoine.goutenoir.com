@@ -1,0 +1,23 @@
+.leap-cursor {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  margin: 0;
+  transition-property: background-color;
+  transition-timing-function: ease-in;
+  background-color: white;
+  border: 5px solid #00a4f1;
+  border-radius: 50%;
+}
+.leap-cursor.active-timer {
+  background-color: #f08301;
+}
+body {
+  cursor: url('../img/cursors/hand.png') 11 2, pointer;
+}
+body.player-cyan {
+  cursor: url('../img/cursors/hand_cyan.png') 11 2, pointer;
+}
+body.player-orange {
+  cursor: url('../img/cursors/hand_orange.png') 11 2, pointer;
+}

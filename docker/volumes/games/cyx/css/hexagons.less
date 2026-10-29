@@ -1,0 +1,188 @@
+
+@import 'animate';
+@import 'mixins';
+
+//// POINTY-TOPPED HEXAGONS //
+
+@hexagonRadius: 103px;
+@space: 20px;
+
+// All the below properties should be computed from the two above values
+
+@hexagonWidth: 178px;
+@hexagonHeight: 205px;
+
+@oddLineLeft: (@hexagonWidth + @space) / 2;
+@evenLineLeft: @hexagonWidth + @space;
+@evenLineTop: 177px;
+
+
+#hexagon_container {
+
+  position: relative;
+  overflow: visible;
+
+  // VARIOUS EFFECTS
+
+  .hexagon {
+    &.rotate_360:hover,
+    &.rotate_360.hover {
+      .rotate(-360deg);
+    }
+    &.rotate_60:hover,
+    &.rotate_60.hover {
+      .rotate(60deg);
+    }
+    &.keystroke:hover,
+    &.keystroke.hover {
+      .transform(scale(0.95) translate(13px,10px));
+    }
+    &.flatten:hover,
+    &.flatten.hover {
+      .transform(scaleY(0.81));
+    }
+    &.thinnen:hover,
+    &.thinnen.hover {
+      .transform(scaleX(0.81));
+    }
+    &.brackets1:hover,
+    &.brackets1.hover {
+      & > .hexagon_p60 ,
+      & > .hexagon_m60 {
+        .rotate(0deg);
+      }
+    }
+    &.brackets2:hover,
+    &.brackets2.hover {
+      & > .hexagon_m60 {
+        .rotate(60deg);
+      }
+    }
+    &.pulsar:hover,
+    &.pulsar.hover {
+      .animated;
+      .infinitelyAnimated;
+      .pulse;
+    }
+    &.tadaaa:hover,
+    &.tadaaa.hover {
+      .animated;
+      .infinitelyAnimated;
+      .tada;
+    }
+    &.bluish:hover,
+    &.bluish.hover {
+      color: #fff;
+      background-color: fadeout(@colorBlue,85%);
+      & > .hexagon_p60 ,
+      & > .hexagon_m60 {
+        background-color: fadeout(@colorBlue,85%);
+      }
+    }
+  }
+
+  // HEXAGON POSITIONING
+
+  .hexagon:nth-child(1) {
+    left: @oddLineLeft;
+  }
+
+  .hexagon:nth-child(2) {
+    left: 0;
+    top: @evenLineTop;
+  }
+
+  .hexagon:nth-child(3) {
+    left: @evenLineLeft;
+    top: @evenLineTop;
+  }
+
+  .hexagon:nth-child(4) {
+    top: @evenLineTop * 3 - 4;
+    left: 0;
+  }
+
+  .hexagon:nth-child(5) {
+    top: @evenLineTop * 3 - 4;
+    left: @evenLineLeft;
+  }
+
+}
+
+// SINGLE HEXAGON STRUCTURE
+
+.hexagon {
+  display: block;
+  width: @hexagonWidth;
+  height: @hexagonRadius;
+  margin: 0;
+
+  position: absolute;
+  left: 0; top: 0;
+
+  background-image: url('../img/css/menu/bg-hexagon.png');
+  background-position: center center;
+  z-index: 1;
+
+  font-size: 28px;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 28px;
+  text-align: center;
+  letter-spacing: -2px;
+
+  outline: none;
+
+  & > span {
+    display:inline-block;
+    padding-top: 20px;
+  }
+
+  & > .hexagon_p60,
+  & > .hexagon_m60 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: inherit;
+    z-index: -1;
+    /* Keeps borders smooth in webkit */
+    backface-visibility: hidden;
+
+    .smooth;
+
+    &:before {
+      content: '';
+      position: absolute;
+      width:  @hexagonWidth;
+      height: @hexagonHeight;
+      background: inherit;
+    }
+  }
+
+  & > .hexagon_p60 {
+    .rotate(60deg);
+    &:before {
+      left: 0;
+      .transform-origin(left, top);
+      .transform(rotate(-60deg) translate(-1*@hexagonWidth/2, 0));
+    }
+  }
+
+  & > .hexagon_m60 {
+    .rotate(-60deg);
+    &:before {
+      right: 0;
+      .transform-origin(right, top);
+      .transform(rotate(60deg) translate(@hexagonWidth/2, 0));
+    }
+  }
+}
+
+// LOCKED HEXAGON
+
+.hexagon.locked {
+
+}
