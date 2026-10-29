@@ -71,11 +71,14 @@ class DoodleController extends AbstractController
         string $id,
         DoodleRepository $doodleRepository,
     ): Response {
+
         $id = Doodle::sanitizeId($id);
         if (empty($id)) {
             return new Response("Invalid doodle id.");
         }
+
         $doodleRepository->deleteDoodle($id);
+
         return new Response("Deleted $id.");
     }
 }

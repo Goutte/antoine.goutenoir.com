@@ -13,7 +13,7 @@ security:
                         roles: ['ROLE_ADMIN']
     firewalls:
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            pattern: ^/(_(profiler|wdt)|css|images|img|font|js)/
             security: false
         main:
             lazy: true
@@ -23,7 +23,7 @@ security:
             # https://symfony.com/doc/current/security.html#the-firewall
 
             http_basic:
-                realm: "Good.  Very good.  To continue, now, you will need a password."
+                realm: "Gouttelosia"
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
