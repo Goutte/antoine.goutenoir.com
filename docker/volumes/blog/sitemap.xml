@@ -3,28 +3,52 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://antoine.goutenoir.com/blog/categories/</loc>
-    <lastmod>2023-11-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://antoine.goutenoir.com/blog/categories/game/</loc>
-    <lastmod>2023-11-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://antoine.goutenoir.com/blog/categories/godot/</loc>
-    <lastmod>2023-11-06T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://antoine.goutenoir.com/blog/</loc>
-    <lastmod>2023-11-06T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://antoine.goutenoir.com/blog/posts/2023-11-06-mu-board-video-game/</loc>
-    <lastmod>2023-11-06T00:00:00+00:00</lastmod>
+    <loc>https://antoine.goutenoir.com/blog/categories/philosophy/</loc>
+    <lastmod>2026-09-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://antoine.goutenoir.com/blog/posts/</loc>
-    <lastmod>2023-11-06T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://antoine.goutenoir.com/blog/categories/publication/</loc>
-    <lastmod>2023-11-06T00:00:00+00:00</lastmod>
+    <loc>https://antoine.goutenoir.com/blog/posts/2026-09-20-vivescence-from-anthroplena/</loc>
+    <lastmod>2026-09-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://antoine.goutenoir.com/blog/categories/docker/</loc>
+    <lastmod>2024-03-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://antoine.goutenoir.com/blog/categories/linux/</loc>
-    <lastmod>2021-01-07T00:00:00+00:00</lastmod>
+    <lastmod>2024-03-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://antoine.goutenoir.com/blog/posts/2024-03-21-move-docker-files-around/</loc>
+    <lastmod>2024-03-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://antoine.goutenoir.com/blog/posts/2023-11-13-publishing-on-debian/</loc>
+    <lastmod>2023-11-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://antoine.goutenoir.com/blog/categories/code/</loc>
+    <lastmod>2023-11-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://antoine.goutenoir.com/blog/posts/2023-11-10-keep-track-of-spent-time-in-git-commits/</loc>
+    <lastmod>2023-11-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://antoine.goutenoir.com/blog/categories/tools/</loc>
+    <lastmod>2023-11-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://antoine.goutenoir.com/blog/categories/game/</loc>
+    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://antoine.goutenoir.com/blog/categories/godot/</loc>
+    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://antoine.goutenoir.com/blog/posts/2022-11-06-mu-board-video-game/</loc>
+    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://antoine.goutenoir.com/blog/categories/publication/</loc>
+    <lastmod>2022-11-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://antoine.goutenoir.com/blog/categories/memo/</loc>
     <lastmod>2021-01-07T00:00:00+00:00</lastmod>
@@ -77,9 +101,6 @@
     <loc>https://antoine.goutenoir.com/blog/posts/2014-08-21-mathematics-and-philosophy-of-autocompletion/</loc>
     <lastmod>2014-08-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://antoine.goutenoir.com/blog/categories/philosophy/</loc>
-    <lastmod>2014-08-21T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://antoine.goutenoir.com/blog/categories/dart/</loc>
     <lastmod>2014-06-13T00:00:00+00:00</lastmod>
   </url><url>
@@ -128,10 +149,10 @@
     <loc>https://antoine.goutenoir.com/blog/posts/2013-07-02-test-driven-websockets-and-symfony2-using-ratchet/</loc>
     <lastmod>2013-07-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://antoine.goutenoir.com/blog/categories/tdd/</loc>
+    <loc>https://antoine.goutenoir.com/blog/posts/2013-06-06-example-of-go-game-gherkin-feature/</loc>
     <lastmod>2013-06-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://antoine.goutenoir.com/blog/posts/2013-06-06-example-of-go-game-gherkin-feature/</loc>
+    <loc>https://antoine.goutenoir.com/blog/categories/tdd/</loc>
     <lastmod>2013-06-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://antoine.goutenoir.com/blog/posts/2013-05-10-leech-website-using-wget/</loc>
@@ -142,9 +163,6 @@
   </url><url>
     <loc>https://antoine.goutenoir.com/blog/posts/2013-04-04-php-using-traits-for-doctrine-annotations/</loc>
     <lastmod>2013-04-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://antoine.goutenoir.com/blog/categories/code/</loc>
-    <lastmod>2013-03-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://antoine.goutenoir.com/blog/posts/2013-03-21-php-using-a-multi-dimensional-array-as-index/</loc>
     <lastmod>2013-03-21T00:00:00+00:00</lastmod>

@@ -4,14 +4,14 @@
   <meta charset='utf-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <meta name='description' content='EDIT: Those are pretty poorly optimized functions. Best not use.
- Say you want to use a multidimensional array as a multiple-keyed index.
+Say you want to use a multidimensional array as a multiple-keyed index.
 Here is a small collection of functions to handle indexing operations on multidimensional arrays.
 Getting a value &lt;?php // fails when one of the keys does not exist $value = $index[$ka][$kb][$kc][$kd]; // returns null when one of the keys does not exist index_get($index, array($ka, $kb, $kc, $kd)); And below is a simple (but tested) function safely getting a value from a multidimensional array :'>
   <meta name='theme-color' content='#ffcd00'>
 
   <meta property='og:title' content='PHP ~ Using a multi-dimensional array as index • Guttulous L∞ps'>
   <meta property='og:description' content='EDIT: Those are pretty poorly optimized functions. Best not use.
- Say you want to use a multidimensional array as a multiple-keyed index.
+Say you want to use a multidimensional array as a multiple-keyed index.
 Here is a small collection of functions to handle indexing operations on multidimensional arrays.
 Getting a value &lt;?php // fails when one of the keys does not exist $value = $index[$ka][$kb][$kc][$kd]; // returns null when one of the keys does not exist index_get($index, array($ka, $kb, $kc, $kd)); And below is a simple (but tested) function safely getting a value from a multidimensional array :'>
   <meta property='og:url' content='https://antoine.goutenoir.com/blog/posts/2013-03-21-php-using-a-multi-dimensional-array-as-index/'>
@@ -20,7 +20,7 @@ Getting a value &lt;?php // fails when one of the keys does not exist $value = $
   <meta property='article:modified_time' content='2013-03-21T00:00:00Z'/>
   <meta name='twitter:card' content='summary'>
 
-  <meta name="generator" content="Hugo 0.92.2" />
+  <meta name="generator" content="Hugo 0.131.0">
 
   <title>PHP ~ Using a multi-dimensional array as index • Guttulous L∞ps</title>
   <link rel='canonical' href='https://antoine.goutenoir.com/blog/posts/2013-03-21-php-using-a-multi-dimensional-array-as-index/'>
@@ -78,11 +78,13 @@ Getting a value &lt;?php // fails when one of the keys does not exist $value = $
       </li><li>
         <a href='/blog/categories/coffeescript/' style='font-size:1em'>CoffeeScript</a>
       </li><li>
-        <a href='/blog/categories/css/' style='font-size:1.1em'>CSS</a>
+        <a href='/blog/categories/css/' style='font-size:1.0909090909090908em'>CSS</a>
       </li><li>
         <a href='/blog/categories/dart/' style='font-size:1em'>Dart</a>
       </li><li>
-        <a href='/blog/categories/debian/' style='font-size:1.3em'>Debian</a>
+        <a href='/blog/categories/debian/' style='font-size:1.2727272727272727em'>Debian</a>
+      </li><li>
+        <a href='/blog/categories/docker/' style='font-size:1em'>Docker</a>
       </li><li>
         <a href='/blog/categories/experiment/' style='font-size:1em'>Experiment</a>
       </li><li>
@@ -90,51 +92,53 @@ Getting a value &lt;?php // fails when one of the keys does not exist $value = $
       </li><li>
         <a href='/blog/categories/godot/' style='font-size:1em'>Godot</a>
       </li><li>
-        <a href='/blog/categories/html/' style='font-size:1.1em'>HTML</a>
+        <a href='/blog/categories/html/' style='font-size:1.0909090909090908em'>HTML</a>
       </li><li>
-        <a href='/blog/categories/javascript/' style='font-size:1.4em'>Javascript</a>
+        <a href='/blog/categories/javascript/' style='font-size:1.3636363636363638em'>Javascript</a>
       </li><li>
         <a href='/blog/categories/leap/' style='font-size:1em'>LEAP</a>
       </li><li>
         <a href='/blog/categories/less/' style='font-size:1em'>LESS</a>
       </li><li>
-        <a href='/blog/categories/linux/' style='font-size:1.8em'>Linux</a>
+        <a href='/blog/categories/linux/' style='font-size:1.9090909090909092em'>Linux</a>
       </li><li>
         <a href='/blog/categories/mathematics/' style='font-size:1em'>Mathematics</a>
       </li><li>
         <a href='/blog/categories/maths/' style='font-size:1em'>Maths</a>
       </li><li>
-        <a href='/blog/categories/memo/' style='font-size:1.1em'>Memo</a>
+        <a href='/blog/categories/memo/' style='font-size:1.0909090909090908em'>Memo</a>
       </li><li>
-        <a href='/blog/categories/mobile/' style='font-size:1.1em'>Mobile</a>
+        <a href='/blog/categories/mobile/' style='font-size:1.0909090909090908em'>Mobile</a>
       </li><li>
-        <a href='/blog/categories/mootools/' style='font-size:1.2em'>Mootools</a>
+        <a href='/blog/categories/mootools/' style='font-size:1.1818181818181819em'>Mootools</a>
       </li><li>
         <a href='/blog/categories/network/' style='font-size:1em'>Network</a>
       </li><li>
-        <a href='/blog/categories/philosophy/' style='font-size:1em'>Philosophy</a>
+        <a href='/blog/categories/philosophy/' style='font-size:1.0909090909090908em'>Philosophy</a>
       </li><li>
-        <a href='/blog/categories/php/' style='font-size:2em'>PHP</a>
+        <a href='/blog/categories/php/' style='font-size:1.9090909090909092em'>PHP</a>
       </li><li>
-        <a href='/blog/categories/publication/' style='font-size:1.5em'>Publication</a>
+        <a href='/blog/categories/publication/' style='font-size:1.4545454545454546em'>Publication</a>
       </li><li>
-        <a href='/blog/categories/python/' style='font-size:1.5em'>Python</a>
+        <a href='/blog/categories/python/' style='font-size:1.4545454545454546em'>Python</a>
       </li><li>
-        <a href='/blog/categories/responsive/' style='font-size:1.1em'>Responsive</a>
+        <a href='/blog/categories/responsive/' style='font-size:1.0909090909090908em'>Responsive</a>
       </li><li>
         <a href='/blog/categories/shell/' style='font-size:1em'>Shell</a>
       </li><li>
-        <a href='/blog/categories/snippet/' style='font-size:1.2em'>Snippet</a>
+        <a href='/blog/categories/snippet/' style='font-size:1.1818181818181819em'>Snippet</a>
       </li><li>
-        <a href='/blog/categories/snippets/' style='font-size:1.5em'>Snippets</a>
+        <a href='/blog/categories/snippets/' style='font-size:1.4545454545454546em'>Snippets</a>
       </li><li>
-        <a href='/blog/categories/sql/' style='font-size:1.1em'>SQL</a>
+        <a href='/blog/categories/sql/' style='font-size:1.0909090909090908em'>SQL</a>
       </li><li>
         <a href='/blog/categories/symfony/' style='font-size:1em'>Symfony</a>
       </li><li>
         <a href='/blog/categories/tdd/' style='font-size:1em'>TDD</a>
       </li><li>
-        <a href='/blog/categories/tips/' style='font-size:1.8em'>Tips</a>
+        <a href='/blog/categories/tips/' style='font-size:1.7272727272727273em'>Tips</a>
+      </li><li>
+        <a href='/blog/categories/tools/' style='font-size:1em'>Tools</a>
       </li><li>
         <a href='/blog/categories/ubuntu/' style='font-size:1em'>Ubuntu</a>
       </li><li>
@@ -256,138 +260,134 @@ Getting a value &lt;?php // fails when one of the keys does not exist $value = $
 <p>Say you want to use a multidimensional array as a multiple-keyed index.</p>
 <p>Here is a small collection of functions to handle indexing operations on multidimensional arrays.</p>
 <h2 id="getting-a-value">Getting a value</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-
-<span style="color:#75715e">// fails when one of the keys does not exist
-</span><span style="color:#75715e"></span>$value <span style="color:#f92672">=</span> $index[$ka][$kb][$kc][$kd];
-
-<span style="color:#75715e">// returns null when one of the keys does not exist
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">index_get</span>($index, <span style="color:#66d9ef">array</span>($ka, $kb, $kc, $kd));
-
-</code></pre></div><p>And below is a simple <em>(but tested)</em> function safely getting a value from a multidimensional array :</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-
-<span style="color:#e6db74">/**
-</span><span style="color:#e6db74"> * Gets value in the multidimensional array, at the specified $keys.
-</span><span style="color:#e6db74"> * Returns null when not found.
-</span><span style="color:#e6db74"> *
-</span><span style="color:#e6db74"> * Eg:
-</span><span style="color:#e6db74"> * using $keys = array(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;)
-</span><span style="color:#e6db74"> * is equivalent to $array[&#39;a&#39;][&#39;b&#39;][&#39;c&#39;]
-</span><span style="color:#e6db74"> *
-</span><span style="color:#e6db74"> * @param  array             $array
-</span><span style="color:#e6db74"> * @param  array|ArrayObject $keys
-</span><span style="color:#e6db74"> * @return mixed|null
-</span><span style="color:#e6db74"> */</span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">index_get</span> (<span style="color:#f92672">&amp;</span>$array, $keys)
-{
-    $keys <span style="color:#f92672">=</span> (<span style="color:#66d9ef">array</span>) $keys;
-    <span style="color:#66d9ef">for</span> ($i <span style="color:#f92672">=&amp;</span> $array; <span style="color:#66d9ef">null</span> <span style="color:#f92672">!==</span> $key <span style="color:#f92672">=</span> <span style="color:#a6e22e">array_shift</span>($keys); $i <span style="color:#f92672">=&amp;</span> $i[$key]) {
-        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">isset</span>($i[$key])) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
-    }
-
-    <span style="color:#66d9ef">return</span> $i;
-}
-</code></pre></div><h2 id="setting-a-value">Setting a value</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-
-<span style="color:#75715e">// fails if index is not already populated with arrays
-</span><span style="color:#75715e"></span>$index[$ka][$kb][$kc][$kd] <span style="color:#f92672">=</span> $value;<span style="color:#960050;background-color:#1e0010">`</span>
-
-<span style="color:#75715e">// will create &#34;intermediate&#34; arrays
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">index_set</span>($index, <span style="color:#66d9ef">array</span>($ka, $kb, $kc, $kd), $value);
-
-</code></pre></div><p>Below is a simple <em>(but tested)</em> function safely setting a value in a multidimensional array :</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-
-<span style="color:#e6db74">/**
-</span><span style="color:#e6db74"> * Mutates $value in the multidimensional array, at the specified $keys.
-</span><span style="color:#e6db74"> * Creates subarrays if needed.
-</span><span style="color:#e6db74"> *
-</span><span style="color:#e6db74"> * Eg:
-</span><span style="color:#e6db74"> * using $keys = array(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;)
-</span><span style="color:#e6db74"> * is equivalent to $array[&#39;a&#39;][&#39;b&#39;][&#39;c&#39;] = $value
-</span><span style="color:#e6db74"> *
-</span><span style="color:#e6db74"> * @param array             $array
-</span><span style="color:#e6db74"> * @param array|ArrayObject $keys
-</span><span style="color:#e6db74"> * @param mixed             $value
-</span><span style="color:#e6db74"> */</span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">index_set</span> (<span style="color:#f92672">&amp;</span>$array, $keys, $value)
-{
-    $keys <span style="color:#f92672">=</span> (<span style="color:#66d9ef">array</span>) $keys;
-    <span style="color:#66d9ef">for</span> ($i <span style="color:#f92672">=&amp;</span> $array; <span style="color:#66d9ef">null</span> <span style="color:#f92672">!==</span> $key <span style="color:#f92672">=</span> <span style="color:#a6e22e">array_shift</span>($keys); $i <span style="color:#f92672">=&amp;</span> $i[$key]) {
-        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">isset</span>($i[$key])) $i[$key] <span style="color:#f92672">=</span> <span style="color:#66d9ef">array</span>();
-    }
-    $i <span style="color:#f92672">=</span> $value;
-}
-</code></pre></div><h2 id="removing-a-value">Removing a value</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// fails when one of the keys does not exist
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>$value <span style="color:#f92672">=</span> $index[$ka][$kb][$kc][$kd];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// returns null when one of the keys does not exist
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">index_get</span>($index, <span style="color:#66d9ef">array</span>($ka, $kb, $kc, $kd));
+</span></span></code></pre></div><p>And below is a simple <em>(but tested)</em> function safely getting a value from a multidimensional array :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * Gets value in the multidimensional array, at the specified $keys.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * Returns null when not found.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * Eg:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * using $keys = array(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * is equivalent to $array[&#39;a&#39;][&#39;b&#39;][&#39;c&#39;]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @param  array             $array
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @param  array|ArrayObject $keys
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @return mixed|null
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">index_get</span> (<span style="color:#f92672">&amp;</span>$array, $keys)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    $keys <span style="color:#f92672">=</span> (<span style="color:#66d9ef">array</span>) $keys;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> ($i <span style="color:#f92672">=&amp;</span> $array; <span style="color:#66d9ef">null</span> <span style="color:#f92672">!==</span> $key <span style="color:#f92672">=</span> <span style="color:#a6e22e">array_shift</span>($keys); $i <span style="color:#f92672">=&amp;</span> $i[$key]) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">isset</span>($i[$key])) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $i;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="setting-a-value">Setting a value</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// fails if index is not already populated with arrays
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>$index[$ka][$kb][$kc][$kd] <span style="color:#f92672">=</span> $value;<span style="color:#960050;background-color:#1e0010">`</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// will create &#34;intermediate&#34; arrays
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">index_set</span>($index, <span style="color:#66d9ef">array</span>($ka, $kb, $kc, $kd), $value);
+</span></span></code></pre></div><p>Below is a simple <em>(but tested)</em> function safely setting a value in a multidimensional array :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * Mutates $value in the multidimensional array, at the specified $keys.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * Creates subarrays if needed.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * Eg:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * using $keys = array(&#39;a&#39;,&#39;b&#39;,&#39;c&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * is equivalent to $array[&#39;a&#39;][&#39;b&#39;][&#39;c&#39;] = $value
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @param array             $array
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @param array|ArrayObject $keys
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @param mixed             $value
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">index_set</span> (<span style="color:#f92672">&amp;</span>$array, $keys, $value)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    $keys <span style="color:#f92672">=</span> (<span style="color:#66d9ef">array</span>) $keys;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> ($i <span style="color:#f92672">=&amp;</span> $array; <span style="color:#66d9ef">null</span> <span style="color:#f92672">!==</span> $key <span style="color:#f92672">=</span> <span style="color:#a6e22e">array_shift</span>($keys); $i <span style="color:#f92672">=&amp;</span> $i[$key]) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">isset</span>($i[$key])) $i[$key] <span style="color:#f92672">=</span> <span style="color:#66d9ef">array</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    $i <span style="color:#f92672">=</span> $value;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="removing-a-value">Removing a value</h2>
 <p>This is not like setting the value to null ; it removes the value and all empty arrays along the path.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-
-<span style="color:#e6db74">/**
-</span><span style="color:#e6db74"> * Cleanly removes a value from the multidimensional array,
-</span><span style="color:#e6db74"> * removing subarrays when they&#39;re empty.
-</span><span style="color:#e6db74"> * It always leaves the root array.
-</span><span style="color:#e6db74"> *
-</span><span style="color:#e6db74"> * @param array $array
-</span><span style="color:#e6db74"> * @param array|ArrayObject $keys
-</span><span style="color:#e6db74"> * @param bool $_check Internal value used by recursion.
-</span><span style="color:#e6db74"> *                     If this is false and there are arrays missing
-</span><span style="color:#e6db74"> *                     along the &#34;path&#34; made by $keys, your world will burn.
-</span><span style="color:#e6db74"> *
-</span><span style="color:#e6db74"> */</span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">index_remove</span> (<span style="color:#f92672">&amp;</span>$array, $keys, $_check<span style="color:#f92672">=</span><span style="color:#66d9ef">true</span>)
-{
-    $keys <span style="color:#f92672">=</span> (<span style="color:#66d9ef">array</span>) $keys;
-
-    <span style="color:#66d9ef">if</span> ($_check) {
-        $keys2 <span style="color:#f92672">=</span> $keys; <span style="color:#75715e">// copy
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> ($i <span style="color:#f92672">=&amp;</span> $array; <span style="color:#66d9ef">null</span> <span style="color:#f92672">!==</span> $key <span style="color:#f92672">=</span> <span style="color:#a6e22e">array_shift</span>($keys2); $i <span style="color:#f92672">=&amp;</span> $i[$key]) {
-            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">isset</span>($i[$key])) <span style="color:#66d9ef">return</span>;
-        }
-    }
-
-    <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">count</span>($keys)) {
-        <span style="color:#66d9ef">return</span>;
-    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">count</span>($keys)) {
-        <span style="color:#a6e22e">unset</span>($array[<span style="color:#a6e22e">array_shift</span>($keys)]);
-    } <span style="color:#66d9ef">else</span> {
-        $key <span style="color:#f92672">=</span> <span style="color:#a6e22e">array_shift</span>($keys);
-        <span style="color:#a6e22e">index_remove</span>($array[$key], $keys, <span style="color:#66d9ef">false</span>);
-        <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">empty</span>($array[$key])) <span style="color:#a6e22e">unset</span>($array[$key]);
-    }
-
-}
-</code></pre></div><p>Some tests :</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-
-$ma <span style="color:#f92672">=</span> <span style="color:#66d9ef">array</span>(
-    <span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#66d9ef">array</span>(
-        <span style="color:#ae81ff">0</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span>,
-        <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">11</span>,
-    ),
-    <span style="color:#e6db74">&#39;b&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#66d9ef">array</span>(
-        <span style="color:#e6db74">&#39;c&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">42</span>,
-    ),
-);
-
-
-<span style="color:#a6e22e">index_remove</span>($ma, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;b&#39;</span>,<span style="color:#e6db74">&#39;c&#39;</span>));
-
-<span style="color:#a6e22e">assertNull</span>(<span style="color:#a6e22e">index_get</span>($ma, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;b&#39;</span>,<span style="color:#e6db74">&#39;c&#39;</span>)), <span style="color:#e6db74">&#34;Remove value&#34;</span>);
-<span style="color:#a6e22e">assertCount</span>(<span style="color:#ae81ff">1</span>, $ma, <span style="color:#e6db74">&#34;Remove empty array(s)&#34;</span>);
-
-<span style="color:#a6e22e">index_remove</span>($ma, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;a&#39;</span>,<span style="color:#ae81ff">0</span>));
-<span style="color:#a6e22e">index_remove</span>($ma, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;a&#39;</span>,<span style="color:#ae81ff">1</span>));
-
-<span style="color:#a6e22e">assertEquals</span>(<span style="color:#66d9ef">array</span>(), $ma, <span style="color:#e6db74">&#34;Always leave the root array&#34;</span>);
-
-<span style="color:#a6e22e">index_remove</span>($ma, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;?&#39;</span>,<span style="color:#e6db74">&#39;¿&#39;</span>));
-<span style="color:#a6e22e">assertEquals</span>(<span style="color:#66d9ef">array</span>(), $ma, <span style="color:#e6db74">&#34;Silently ignore not found&#34;</span>);
-<span style="color:#75715e">// should it ? or should it throw like a greek discobole ?
-</span><span style="color:#75715e"></span>
-
-</code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * Cleanly removes a value from the multidimensional array,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * removing subarrays when they&#39;re empty.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * It always leaves the root array.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @param array $array
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @param array|ArrayObject $keys
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @param bool $_check Internal value used by recursion.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> *                     If this is false and there are arrays missing
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> *                     along the &#34;path&#34; made by $keys, your world will burn.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">index_remove</span> (<span style="color:#f92672">&amp;</span>$array, $keys, $_check<span style="color:#f92672">=</span><span style="color:#66d9ef">true</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    $keys <span style="color:#f92672">=</span> (<span style="color:#66d9ef">array</span>) $keys;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($_check) {
+</span></span><span style="display:flex;"><span>        $keys2 <span style="color:#f92672">=</span> $keys; <span style="color:#75715e">// copy
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> ($i <span style="color:#f92672">=&amp;</span> $array; <span style="color:#66d9ef">null</span> <span style="color:#f92672">!==</span> $key <span style="color:#f92672">=</span> <span style="color:#a6e22e">array_shift</span>($keys2); $i <span style="color:#f92672">=&amp;</span> $i[$key]) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">isset</span>($i[$key])) <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">count</span>($keys)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">count</span>($keys)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">unset</span>($array[<span style="color:#a6e22e">array_shift</span>($keys)]);
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        $key <span style="color:#f92672">=</span> <span style="color:#a6e22e">array_shift</span>($keys);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">index_remove</span>($array[$key], $keys, <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">empty</span>($array[$key])) <span style="color:#a6e22e">unset</span>($array[$key]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Some tests :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ma <span style="color:#f92672">=</span> <span style="color:#66d9ef">array</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#66d9ef">array</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">0</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">1</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">11</span>,
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;b&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#66d9ef">array</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;c&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">42</span>,
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">index_remove</span>($ma, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;b&#39;</span>,<span style="color:#e6db74">&#39;c&#39;</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">assertNull</span>(<span style="color:#a6e22e">index_get</span>($ma, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;b&#39;</span>,<span style="color:#e6db74">&#39;c&#39;</span>)), <span style="color:#e6db74">&#34;Remove value&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">assertCount</span>(<span style="color:#ae81ff">1</span>, $ma, <span style="color:#e6db74">&#34;Remove empty array(s)&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">index_remove</span>($ma, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;a&#39;</span>,<span style="color:#ae81ff">0</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">index_remove</span>($ma, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;a&#39;</span>,<span style="color:#ae81ff">1</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">assertEquals</span>(<span style="color:#66d9ef">array</span>(), $ma, <span style="color:#e6db74">&#34;Always leave the root array&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">index_remove</span>($ma, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;?&#39;</span>,<span style="color:#e6db74">&#39;¿&#39;</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">assertEquals</span>(<span style="color:#66d9ef">array</span>(), $ma, <span style="color:#e6db74">&#34;Silently ignore not found&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// should it ? or should it throw like a greek discobole ?
+</span></span></span></code></pre></div><hr>
 <p>I dabbled a bit with the OO approach of this, too.
 It needs more research, and I like the functional programming approach.</p>
 
@@ -512,7 +512,7 @@ It needs more research, and I like the functional programming approach.</p>
       </li></ul>
   </nav>
 </section><div class='copyright'>
-  <p>🌻 CC0 &copy; 2008-2023 Goutte </p>
+  <p>🌻 CC0 &copy; 2008-2026 Goutte </p>
 </div>
 
         </div>
