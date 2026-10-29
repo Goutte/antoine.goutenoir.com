@@ -57,7 +57,7 @@ class DoodleController extends AbstractController
         $count = $doodleRepository->countDoodles();
 
         return $this->render('drawing/index.html.twig', [
-            'doodles' => $doodleRepository->index($page, 16),
+            'doodles' => $doodleRepository->index($page, 16, true),
             'doodlesCount' => $count,
             'page' => $page,
         ]);

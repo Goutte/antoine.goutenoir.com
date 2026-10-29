@@ -31,10 +31,13 @@ class DoodleRepository
     }
 
     /**
-     * Careful, we're returning an iterative array of associative arrays, not of Doodle.
      * @return Doodle[]
      */
-    public function index($page = 0, $per_page = 4): array
+    public function index(
+        $page = 0,
+        $per_page = 4,
+        $sortDescending = false,
+    ): array
     {
         if ($page < 0) {
             $page = 0;
@@ -46,17 +49,23 @@ class DoodleRepository
         $start = $page * $per_page;  // inclusive
         $end = ($page + 1) * $per_page; // exclusive
         $cursor = 0;
-        foreach ($this->filesystem->listContents(".", false)->sortByPath() as $content) {
-            /** @var StorageAttributes $content */
-            if ($content->isFile() && str_ends_with($content->path(), ".yaml")) {
+        $storage = $this->filesystem->listContents(".", false)->sortByPath()->toArray();
+        if ($sortDescending) {
+            $storage = array_reverse($storage);
+        }
+        foreach ($storage as $stored) {
+            /** @var StorageAttributes $stored */
+            if ($stored->isFile() && str_ends_with($stored->path(), ".yaml")) {
                 if ($cursor >= $end) {
                     break;
                 }
                 if ($cursor >= $start) {
-                    $doodle_as_array = $this->readYamlFile($content->path()); // :(|)
+                    $doodle_as_array = $this->readYamlFile($stored->path()); // :(|)
                     $doodle = (new Doodle())->denormalize($doodle_as_array);
-                    $doodle_as_array['path'] = $content->path();
-//                    $doodles[] = $doodle_as_array;
+                    if ($doodle->getId() === "") {
+                        // Backwards compatibility with old doodles without id
+                        $doodle->setId(pathinfo($stored->path(), PATHINFO_FILENAME));
+                    }
                     $doodles[] = $doodle;
                 }
 
@@ -95,7 +104,8 @@ class DoodleRepository
         $this->filesystem->delete($filenamePng);
     }
 
-    protected function sanitizeId(string $id): string {
+    protected function sanitizeId(string $id): string
+    {
         return Doodle::sanitizeId($id);
     }
 }
