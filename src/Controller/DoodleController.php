@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Domain\Doodle;
 use App\Service\DoodleRepository;
 use App\Service\MailSender;
+use App\Service\RandomStringGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class DoodleController extends AbstractController
 {
@@ -25,6 +27,7 @@ class DoodleController extends AbstractController
         Request $request,
         MailSender $mailer,
         DoodleRepository $doodleRepository,
+        RandomStringGenerator $rsg,
     ): Response {
 
         $expectedCaptcha = "blanc"; // so far so good
@@ -33,7 +36,7 @@ class DoodleController extends AbstractController
             throw $this->createAccessDeniedException("Sorry…  You failed.");
         }
 
-        $doodle = Doodle::fromRequest($request);
+        $doodle = Doodle::fromRequest($request, $rsg);
 
         $doodleRepository->saveDoodle($doodle);
         $wasMailSent = $mailer->perhapsSendDoodle($doodle);
@@ -58,5 +61,21 @@ class DoodleController extends AbstractController
             'doodlesCount' => $count,
             'page' => $page,
         ]);
+    }
+
+    #[IsGranted('ROLE_ADMIN', message: 'You are not allowed to access the admin dashboard.')]
+    #[Route(path: '/doodles/{id}', name: 'app_doodles_delete', methods: ['delete'])]
+    // We are also providing an alternative to the DELETE method because HTML forms can't use it.
+    #[Route(path: '/doodles/{id}/delete', name: 'app_doodles_delete_post', methods: ['post'])]
+    public function delete(
+        string $id,
+        DoodleRepository $doodleRepository,
+    ): Response {
+        $id = Doodle::sanitizeId($id);
+        if (empty($id)) {
+            return new Response("Invalid doodle id.");
+        }
+        $doodleRepository->deleteDoodle($id);
+        return new Response("Deleted $id.");
     }
 }

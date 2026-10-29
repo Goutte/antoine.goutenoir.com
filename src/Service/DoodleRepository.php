@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Service;
-
 
 use App\Domain\Doodle;
 use League\Flysystem\Filesystem;
@@ -23,7 +21,7 @@ class DoodleRepository
     public function countDoodles(): int
     {
         $count = 0;
-        foreach ($this->filesystem->listContents(".") as $content) {
+        foreach ($this->filesystem->listContents(".", false) as $content) {
             /** @var StorageAttributes $content */
             if ($content->isFile() && str_ends_with($content->path(), ".yaml")) {
                 $count++;
@@ -34,7 +32,7 @@ class DoodleRepository
 
     /**
      * Careful, we're returning an iterative array of associative arrays, not of Doodle.
-     * TODO: deserialize properly into Doodle
+     * @return Doodle[]
      */
     public function index($page = 0, $per_page = 4): array
     {
@@ -56,8 +54,10 @@ class DoodleRepository
                 }
                 if ($cursor >= $start) {
                     $doodle_as_array = $this->readYamlFile($content->path()); // :(|)
+                    $doodle = (new Doodle())->denormalize($doodle_as_array);
                     $doodle_as_array['path'] = $content->path();
-                    $doodles[] = $doodle_as_array;
+//                    $doodles[] = $doodle_as_array;
+                    $doodles[] = $doodle;
                 }
 
                 $cursor++;
@@ -66,18 +66,36 @@ class DoodleRepository
         return $doodles;
     }
 
-    public function saveDoodle(doodle $doodle)
+    protected function readYamlFile($path): array
     {
-        $now = (new \DateTime())->format("Y-m-d_H:i:s");
-        $filenameYaml = $now . ".yaml";
-        $filenamePng = $now . ".png";
-        $serialized = Yaml::dump($doodle->serialize());
+        $contents = $this->filesystem->read($path);
+        return Yaml::parse($contents);
+    }
+
+    public function saveDoodle(Doodle $doodle): void
+    {
+        $filenameYaml = $doodle->getId() . ".yaml";
+        $filenamePng = $doodle->getId() . ".png";
+        $serialized = Yaml::dump($doodle->normalize());
         $this->filesystem->write($filenameYaml, $serialized);
         $this->filesystem->write($filenamePng, $doodle->getBlob());
     }
 
-    protected function readYamlFile($path) : array {
-        $contents = $this->filesystem->read($path);
-        return Yaml::parse($contents);
+    public function deleteDoodle(string $id): void
+    {
+        $id = $this->sanitizeId($id);
+        if (empty($id)) return;
+        $filenameYaml = $id . ".yaml";
+        $filenamePng = $id . ".png";
+
+        // Note: This silently fails if the file does not exist.  (and we rely on this for now)
+        // We *could* raise ourselves, and improve the controller, but I have other things to do.
+        // Anyway this whole flat file repo should implement the appropriate Doctrine interfaces I guess?
+        $this->filesystem->delete($filenameYaml);
+        $this->filesystem->delete($filenamePng);
+    }
+
+    protected function sanitizeId(string $id): string {
+        return Doodle::sanitizeId($id);
     }
 }
