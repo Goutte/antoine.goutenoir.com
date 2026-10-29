@@ -88,6 +88,8 @@ class Doodle implements \Serializable
         }
 
         $data->ip = $request->getClientIp() ?? "";
+
+        // A very sorry workaround — use TRUSTED_PROXIES instead, Symfony will handle it
         if ("172.21." === substr($data->ip, 0, 7)) {
             $data->ip = $request->headers->get("X-REAL-IP", $data->ip);
         }
