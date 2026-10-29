@@ -33,7 +33,7 @@ class DoodleRepository
     }
 
     /**
-     * Careful, we're returning an array of associative arrays, not of Doodle.
+     * Careful, we're returning an iterative array of associative arrays, not of Doodle.
      * TODO: deserialize properly into Doodle
      */
     public function index($page = 0, $per_page = 4): array
@@ -48,14 +48,16 @@ class DoodleRepository
         $start = $page * $per_page;  // inclusive
         $end = ($page + 1) * $per_page; // exclusive
         $cursor = 0;
-        foreach ($this->filesystem->listContents(".", false) as $content) {
+        foreach ($this->filesystem->listContents(".", false)->sortByPath() as $content) {
             /** @var StorageAttributes $content */
             if ($content->isFile() && str_ends_with($content->path(), ".yaml")) {
                 if ($cursor >= $end) {
                     break;
                 }
                 if ($cursor >= $start) {
-                    $doodles[] = $this->readYamlFile($content->path()); // :(|)
+                    $doodle_as_array = $this->readYamlFile($content->path()); // :(|)
+                    $doodle_as_array['path'] = $content->path();
+                    $doodles[] = $doodle_as_array;
                 }
 
                 $cursor++;
