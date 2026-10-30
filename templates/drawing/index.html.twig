@@ -4,33 +4,61 @@
 
 {% block body %}
 
-<h1>{{ doodlesCount }} Doodles</h1>
+    <h1>{{ doodlesCount }} Doodles</h1>
 
-{%~ for doodle in doodles %}
-<article class="doodle">
-    <img src="{{ doodle.doodle }}" alt="A doodle" />
-    <p class="message">
-        {{ doodle.what }}
+    <script type="application/javascript">
+
+        console.info("✨ Javascript is enabled.  You are brave.");
+        window.addEventListener("load", () => {
+            Array.from(document.getElementsByClassName("delete-doodle")).forEach((element) => {
+                element.addEventListener("click", evt => {
+                    evt.preventDefault();
+                    let form = element.parentElement;
+                    fetch(form.action, {
+                        method: 'post',
+                        body: new FormData(form),
+                    }).then((response) => {
+                        if (response.ok) {
+                            console.info("Deleted doodle.");
+                            let article = form.parentElement;
+                            article.remove();
+                        } else {
+                            console.warn("Failed to delete doodle.");
+                        }
+                    });
+                });
+            });
+        });
+
+    </script>
+
+    {%~ for doodle in doodles %}
+    <article class="doodle">
+        {%~ if doodle.doodle %}
+        <img src="{{ doodle.doodle }}" alt="A doodle"/>
+        {%~ endif %}
+        <p class="message">
+            {{ doodle.what }}
+        </p>
+        {%~ if is_granted('ROLE_ADMIN') and doodle.id %}
+        <form action="{{ path('app_doodles_delete_post', {'id': doodle.id}) }}" method="post">
+            <input class="delete-doodle" type="submit" value="Delete">
+        </form>
+        {%~ endif %}
+    </article>
+    <hr/>
+    {%~ else %}
+    <p>
+        No more doodles.
     </p>
-    {%~ if is_granted('ROLE_ADMIN') and doodle.id %}
-    <form action="{{ path('app_doodles_delete_post', {'id': doodle.id}) }}" method="post">
-        <input type="submit" value="Delete">
-    </form>
-    {%~ endif %}
-</article>
-<hr />
-{%~ else %}
-<p>
-    No more doodles.
-</p>
-{%~ endfor %}
+    {%~ endfor %}
 
-<nav>
-{%~ if page > 0 %}
-    <a href="{{ path('app_doodles_index', {'page': page-1}) }}">← Previous Page</a>
-    &nbsp; ✶ &nbsp;
-{%~ endif %}
-    <a href="{{ path('app_doodles_index', {'page': page+1}) }}">Next Page →</a>
-</nav>
+    <nav>
+        {%~ if page > 0 %}
+        <a href="{{ path('app_doodles_index', {'page': page-1}) }}">← Previous Page</a>
+        &nbsp; ✶ &nbsp;
+        {%~ endif %}
+        <a href="{{ path('app_doodles_index', {'page': page+1}) }}">Next Page →</a>
+    </nav>
 
 {% endblock %}
